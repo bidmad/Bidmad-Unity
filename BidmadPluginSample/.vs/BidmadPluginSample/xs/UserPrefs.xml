@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{00B6D44A-D8D7-6C48-6B73-0488DFF57DD0}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Bidmad/Scripts/AdSample/BannerAdSample.cs">
+    <Files>
+      <File FileName="Assets/Bidmad/Scripts/ButtonEvent.cs" Line="25" Column="37" />
+      <File FileName="Assets/Bidmad/Scripts/AdSample/BannerAdSample.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BidmadPluginSample" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Bidmad" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="AdSample" expanded="True">
+                    <Node name="BannerAdSample.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="dd97d4d3-5919-49df-89cc-059d51b2a11a" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
