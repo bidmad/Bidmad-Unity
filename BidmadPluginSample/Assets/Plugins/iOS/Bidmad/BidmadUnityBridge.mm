@@ -128,6 +128,20 @@ void _removeBanner(const char* zoneId){
     [banner remove];
 }
 
+void _hideBannerView(const char* zoneId){
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+    
+    UnityBanner* banner = [UnityBanner getIntance:_zoneID];
+    [banner hideView];
+}
+
+void _showBannerView(const char* zoneId){
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+    
+    UnityBanner* banner = [UnityBanner getIntance:_zoneID];
+    [banner showView];
+}
+
 /** Banner Interface End **/
 /** Interstitial Interface Start **/
 void _newInstanceInterstitial(const char* zoneId) {

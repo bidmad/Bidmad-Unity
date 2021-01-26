@@ -6,7 +6,7 @@ using AOT;
 
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "2.5.0";
+    string UNITY_PLUGIN_VERSION = "2.5.1";
 #if UNITY_IOS
     [DllImport("__Internal")]
     private static extern void _setIsDebug(bool isDebug);

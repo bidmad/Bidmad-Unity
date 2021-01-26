@@ -25,6 +25,8 @@ extern "C" {
     void _newInstanceBanner(const char* zoneId, float _x, float _y);
     void _loadBanner(const char* zoneId);
     void _removeBanner(const char* zoneId);
+    void _hideBannerView(const char* zoneId);
+    void _showBannerView(const char* zoneId);
 
     /*Interstitial*/
     void _newInstanceInterstitial(const char* zoneId);

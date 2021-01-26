@@ -5,7 +5,7 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 
 ## Getting started
 - [Download the latest sample project](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases/download/2.5.0/BidmadUnityPlugin_2.5.0.unitypackage)
+- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases/download/2.5.1/BidmadUnityPlugin_2.5.1.unitypackage)
 
 ### 1. Add Plugin
 #### 1.1 Android
@@ -252,6 +252,8 @@ public void removeBanner()|Remove the exposed banner.
 public void load()|Request an ad with the ZoneId entered in the constructor.
 public void pauseBanner()|Banner ads are stopped. It is mainly called when the OnPause event occurs. Only Android is supported.
 public void resumeBanner()|Restart banner ads. It is mainly called when the OnResume event occurs. Only Android is supported.
+public void hideBannerView()|Hide the banner View. 
+public void showBannerView()|Show the banner View.
 public void setBannerLoadCallback(Action callback)|If an Action is registered, the registered Action is executed when the banner is loaded.
 public void setBannerFailCallback(Action callback)|If an Action is registered, the registered Action is executed when the banner load through ZoneId fails.
 public void setBannerClickCallback(Action callback)|If an Action is registered, the registered Action is executed when a banner click event occurs.

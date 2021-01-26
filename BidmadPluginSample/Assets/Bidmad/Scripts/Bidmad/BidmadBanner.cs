@@ -19,6 +19,12 @@ public class BidmadBanner
     [DllImport("__Internal")]
     private static extern void _removeBanner(string zoneId);
 
+    [DllImport("__Internal")]
+    private static extern void _hideBannerView(string zoneId);
+
+    [DllImport("__Internal")]
+    private static extern void _showBannerView(string zoneId);
+
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
     private AndroidJavaClass javaClass = null;
@@ -116,6 +122,30 @@ public class BidmadBanner
 #endif
     }
 
+    public void hideBannerView()
+    {
+#if UNITY_IOS
+        _hideBannerView(mZoneId);
+#elif UNITY_ANDROID
+        if (javaClassInstance != null)
+        {
+            javaClassInstance.Call("hideBannerView");
+        }
+#endif
+    }
+
+    public void showBannerView()
+    {
+#if UNITY_IOS
+        _showBannerView(mZoneId);
+#elif UNITY_ANDROID
+        if (javaClassInstance != null)
+        {
+            javaClassInstance.Call("showBannerView");
+        }
+#endif
+    }
+    
     public void resumeBanner()
     {
 #if UNITY_IOS

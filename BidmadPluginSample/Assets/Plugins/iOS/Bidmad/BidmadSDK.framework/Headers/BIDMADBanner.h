@@ -60,6 +60,8 @@
 - (void)selectAds:(NSDictionary *)lv_dic isAdsExist:(BOOL)isAds;
 - (void)runAds;
 - (void)setParentController:(UIViewController *)parentVC;
+- (void)hideView;
+- (void)showView;
 
 @end
 

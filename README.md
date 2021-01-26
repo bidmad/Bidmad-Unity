@@ -5,7 +5,7 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 
 ## 시작하기
 - [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.5.0/BidmadUnityPlugin_2.5.0.unitypackage)
+- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.5.1/BidmadUnityPlugin_2.5.1.unitypackage)
 
 ### 1. Plugin 추가하기
 #### 1.1 Android
@@ -252,6 +252,8 @@ public void removeBanner()|노출된 배너를 제거합니다.
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.
 public void pauseBanner()|배너 광고를 정지 시킵니다. 주로 OnPause 이벤트 발생 시 호출하며, Android만 지원합니다. 
 public void resumeBanner()|배너 광고를 다시 시작합니다. 주로 OnResume 이벤트 발생 시 호출하며, Android만 지원합니다. 
+public void hideBannerView()|배너 광고 View를 숨깁니다. 
+public void showBannerView()|배너 광고 View를 노출시킵니다.
 public void setBannerLoadCallback(Action callback)|Action을 등록했다면 배너를 Load 했을 때 등록한 Action을 실행합니다.
 public void setBannerFailCallback(Action callback)|Action을 등록했다면 ZoneId를 통한 배너 Load가 실패 했을 때 등록한 Action을 실행합니다.
 public void setBannerClickCallback(Action callback)|Action을 등록했다면 배너 클릭 이벤트 발생 시 등록한 Action을 실행합니다.

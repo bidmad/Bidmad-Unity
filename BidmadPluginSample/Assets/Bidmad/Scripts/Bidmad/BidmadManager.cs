@@ -94,7 +94,7 @@ public class BidmadManager : MonoBehaviour
 /*** Reward Callback ***/
     void OnRewardLoad(string zoneId) 
     {
-        Debug.Log("OnRewardLoad : " + zoneId);
+        Debug.Log("OnRewardLoad");
         if(dicRewardLoad.ContainsKey(zoneId)){
             Action onRewardLoad = dicRewardLoad[zoneId];
             onRewardLoad();

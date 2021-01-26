@@ -29,6 +29,8 @@ NSMutableDictionary* bannerDic;
 - (void)load;
 - (void)remove;
 - (void)setRefreshInterval:(int)sec;
+- (void)hideView;
+- (void)showView;
 
 @end
 
