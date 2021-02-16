@@ -23,7 +23,7 @@
 @class BIDMADRewardVideo;
 
 #ifdef GOOGLESDK_EXIST
-@interface BIDMADAdmanager : NSObject<GADBannerViewDelegate,GADInterstitialDelegate,GADRewardedAdDelegate>
+@interface BIDMADAdmanager : NSObject<GADBannerViewDelegate, GADFullScreenContentDelegate>
 #else
 @interface BIDMADAdmanager : NSObject
 #endif

@@ -13,7 +13,7 @@
 #import "BIDMADSetting.h"
 #import "BIDMADRewardVideo.h"
 
-NSMutableDictionary* rewardDic;
+static NSMutableDictionary* rewardDic;
 
 @interface UnityReward : NSObject <BIDMADRewardVideoDelegate>{
     NSString* mZoneId;

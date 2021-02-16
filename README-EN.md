@@ -23,18 +23,16 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 #### 1.2 iOS
 
 1. Import the latest downloaded SDK to the project.<br>
-2. Change the framework settings in the project General> Framworks, Libraries, and Embedded Content.<br>
-- Change the BidmadSDK.framework option to Embed&Sign<br>
-- Change the MopubSDK.framework option to Embed&Sign<br>
-3. Change the settings in the project's Build Settings.<br>
+2. Change the settings in the project's Build Settings.<br>
 - Set Enable BitCode = No<br>
 - Add Other Linker Flags = -ObjC<br>
-4. Add GADApplicationIdentifier to info.plist.<br>
+3. Add GADApplicationIdentifier to info.plist.<br>
 *GADApplicationIdentifier can be found in Google Admob.
 ```
     <key>GADApplicationIdentifier</key>
     <string>ca-app-pub-XXXXXX~XXXXXX</string>
 ```
+4. For 2019.03 and later versions, manually add bidmad_assets.bundle to [Build Phases > Capy Bundle Resources] of Unity-iPhone target.
 
 ### 2. Using Plugin
 

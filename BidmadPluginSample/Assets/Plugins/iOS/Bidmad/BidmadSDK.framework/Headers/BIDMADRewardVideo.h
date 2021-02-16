@@ -17,7 +17,6 @@
 #import "BIDMADUnityAds.h"
 #import "BIDMADAppLoving.h"
 #import "BIDMADAdColony.h"
-#import "BIDMADMoPub.h"
 #import "BIDMADIronSource.h"
 #import "BIDMADInterstitial.h"
 

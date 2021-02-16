@@ -5,7 +5,7 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 
 ## 시작하기
 - [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.5.1/BidmadUnityPlugin_2.5.1.unitypackage)
+- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.5.2/BidmadUnityPlugin_2.5.2.unitypackage)
 
 ### 1. Plugin 추가하기
 #### 1.1 Android
@@ -23,18 +23,16 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 #### 1.2 iOS
 
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다.<br>
-2. 프로젝트의 General > Framworks, Libraries, and Embedded Content에서 framework 설정을 변경합니다.<br>
-- BidmadSDK.framework를 Embed&Sign으로 변경<br>
-- MopubSDK.framework를 Embed&Sign으로 변경<br>
-3. 프로젝트의 Build Settings에서 설정을 수정합니다.<br>
+2. 프로젝트의 Build Settings에서 설정을 수정합니다.<br>
 - Enable BitCode = No 설정<br>
 - Other Linker Flags = -ObjC 추가<br>
-4. info.plist에 GADApplicationIdentifier를 추가합니다.<br>
+3. info.plist에 GADApplicationIdentifier를 추가합니다.<br>
 *GADApplicationIdentifier는 Google Admob에서 확인할 수 있습니다. 
 ```
     <key>GADApplicationIdentifier</key>
     <string>ca-app-pub-XXXXXX~XXXXXX</string>
 ```
+4. 2019.03 이상 버전에서는 수동으로 Unity-iPhone 타겟의 Build Phases > Capy Bundle Resources에 bidmad_assets.bundle를 추가합니다.
 
 ### 2. Plugin 사용하기
 
