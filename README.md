@@ -245,6 +245,7 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 Function|Description
 ---|---
 public BidmadBanner(string zoneId, float _y)|BidmadBanner 생성자, ZoneId와 배너 높이 위치 값(y)을 설정합니다.
+public BidmadBanner(string zoneId, float _x, float _y)|BidmadBanner 생성자, ZoneId와 배너의 위치정보 X,Y를 설정합니다.(Only Android support)
 public void setRefreshInterval(int time)|Banner Refresh 주기를 설정합니다.(60s~120s)
 public void removeBanner()|노출된 배너를 제거합니다.
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.

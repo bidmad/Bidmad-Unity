@@ -245,6 +245,7 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 Function|Description
 ---|---
 public BidmadBanner(string zoneId, float _y)|This is the BidmadBanner constructor. set the ZoneId and banner height position value (y).
+public BidmadBanner(string zoneId, float _x, float _y)|This is the BidmadBanner constructor, set the ZoneId and banner position x,y.(Only Android support)
 public void setRefreshInterval(int time)|Set the banner refresh cycle.(60s~120s)
 public void removeBanner()|Remove the exposed banner.
 public void load()|Request an ad with the ZoneId entered in the constructor.

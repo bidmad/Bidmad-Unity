@@ -32,15 +32,13 @@ public class BidmadBanner
 #endif
 
     private string mZoneId = "";
-    private float mX = 0;
-    private float mY = 0;
+    private bool setBannerPosition = false;
 
     public BidmadBanner(string zoneId, float _y)
     {
         mZoneId = zoneId;
-        mY = _y;
 #if UNITY_IOS
-        _newInstanceBanner(zoneId, 0, mY);
+        _newInstanceBanner(zoneId, 0, _y);
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -52,6 +50,34 @@ public class BidmadBanner
         {
             javaClassInstance.Call("setActivity", activityContext);
             javaClassInstance.Call("setContext", activityContext);
+            javaClassInstance.Call("setBottom", (int)_y);
+            javaClassInstance.Call("makeAdView");
+
+            javaClassInstance.Call("setAdInfo", mZoneId);
+        }
+#endif
+    }
+
+    public BidmadBanner(string zoneId, float _x, float _y)
+    {
+        mZoneId = zoneId;
+        setBannerPosition = true;
+#if UNITY_IOS
+        //iOS _x Position not support
+        _newInstanceBanner(zoneId, 0, _y);
+#elif UNITY_ANDROID
+        using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        {
+            activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+        }
+
+        getInstance();
+        if(javaClassInstance != null)
+        {
+            javaClassInstance.Call("setActivity", activityContext);
+            javaClassInstance.Call("setContext", activityContext);
+            javaClassInstance.Call("setBottom", (int)_y);
+            javaClassInstance.Call("setLeft", (int)_x);
             javaClassInstance.Call("makeAdView");
 
             javaClassInstance.Call("setAdInfo", mZoneId);
@@ -105,7 +131,12 @@ public class BidmadBanner
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
-            javaClassInstance.Call("start", (int)mY);
+            Debug.Log("loadWith test");
+
+            if(!setBannerPosition)
+                javaClassInstance.Call("loadWithY");
+            else
+                javaClassInstance.Call("loadWithXY");
         }
 #endif
     }
