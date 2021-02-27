@@ -43,16 +43,6 @@
 // Indicates that a AppLovin servers have returned an invalid response.
 #define kALErrorCodeInvalidResponse -800
 
-// Indicates that there was an error while attempting to render a native ad
-#define kALErrorCodeUnableToRenderNativeAd -700
-
-// Indicates that an unspecified network issue occurred.
-#define kALErrorCodeUnableToPreloadNativeAd -701
-
-// Indicates that the impression has already been tracked.
-#define kALErrorCodeNativeAdImpressionAlreadyTracked -702
-
-
 //
 // Rewarded Videos
 //
@@ -72,3 +62,11 @@
 
 // Indicates that a postback URL you attempted to dispatch was empty or nil.
 #define kALErrorCodeInvalidURL -900
+
+//
+// Deprecated
+//
+
+#define kALErrorCodeUnableToRenderNativeAd -700
+#define kALErrorCodeUnableToPreloadNativeAd -701
+#define kALErrorCodeNativeAdImpressionAlreadyTracked -702

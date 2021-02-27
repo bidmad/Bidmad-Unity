@@ -15,11 +15,9 @@ return _sharedObject; \
 
 #import "BidmadUnityBridge.h"
 
-@interface BidmadUnityBridge : NSObject<BIDMADBannerDelegate,BIDMADInterstitialDelegate,BIDMADRewardVideoDelegate>
+@interface BidmadUnityBridge : NSObject<BIDMADBannerDelegate,BIDMADInterstitialDelegate,BIDMADRewardVideoDelegate, BIDMADUnityCommonDelegate>
 + (BidmadUnityBridge *)sharedInstance;
 @end
-
-static bool isTestMode;
 
 @implementation BidmadUnityBridge
 
@@ -88,25 +86,33 @@ static bool isTestMode;
     UnitySendMessage("BidmadManager", "OnRewardSkip", [core.zoneID UTF8String]);
 }
 
--(void)BIDMADRewardVideoClose:(BIDMADRewardVideo *)core{
+-(void)BIDMADRewardVideoClose:(BIDMADRewardVideo *)core
+{
     UnitySendMessage("BidmadManager", "OnRewardClose", [core.zoneID UTF8String]);
 }
 
 /** Reward Callback End **/
+/** Common Callback Start **/
 
+- (void)BIDMADAdTrackingAuthorizationResponse:(NSString*)response
+{
+    NSLog(@"BIDMADAdTrackingAuthorizationResponse");
+    UnitySendMessage("BidmadManager", "OnAdTrackingAuthorizationResponse", [response UTF8String]);
+}
 
+/** Common Callback End **/
 @end
 
 static NSString* __testDeviceId = nil;
 
 /** Banner Interface Start **/
-void _setRefreshInterval(const char* zoneId, int time){
+void _bidmadSetRefreshInterval(const char* zoneId, int time){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     UnityBanner* banner = [UnityBanner getIntance:_zoneID]; 
     [banner setRefreshInterval:time];
 }
 
-void _newInstanceBanner(const char* zoneId, float _x, float _y) {
+void _bidmadNewInstanceBanner(const char* zoneId, float _x, float _y) {
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
 
     UIViewController* pRootViewController = UnityGetGLViewController();
@@ -114,28 +120,28 @@ void _newInstanceBanner(const char* zoneId, float _x, float _y) {
     [banner setDelegate:[BidmadUnityBridge sharedInstance]];
 }
 
-void _loadBanner(const char* zoneId){
+void _bidmadLoadBanner(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
     UnityBanner* banner = [UnityBanner getIntance:_zoneID];
     [banner load];
 }
 
-void _removeBanner(const char* zoneId){
+void _bidmadRemoveBanner(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
     UnityBanner* banner = [UnityBanner getIntance:_zoneID];
     [banner remove];
 }
 
-void _hideBannerView(const char* zoneId){
+void _bidmadHideBannerView(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
     UnityBanner* banner = [UnityBanner getIntance:_zoneID];
     [banner hideView];
 }
 
-void _showBannerView(const char* zoneId){
+void _bidmadShowBannerView(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
     UnityBanner* banner = [UnityBanner getIntance:_zoneID];
@@ -144,7 +150,7 @@ void _showBannerView(const char* zoneId){
 
 /** Banner Interface End **/
 /** Interstitial Interface Start **/
-void _newInstanceInterstitial(const char* zoneId) {
+void _bidmadNewInstanceInterstitial(const char* zoneId) {
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
 
     UIViewController* pRootViewController = UnityGetGLViewController();
@@ -152,7 +158,7 @@ void _newInstanceInterstitial(const char* zoneId) {
     [interstitial setDelegate:[BidmadUnityBridge sharedInstance]];
 }
 
-void _loadInterstitial(const char* zoneId){
+void _bidmadLoadInterstitial(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     UnityInterstitial* interstitial = [UnityInterstitial getInstance:_zoneID];
     
@@ -161,7 +167,7 @@ void _loadInterstitial(const char* zoneId){
     }
 }
 
-void _showInterstitial(const char* zoneId){
+void _bidmadShowInterstitial(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     UnityInterstitial* interstitial = [UnityInterstitial getInstance:_zoneID];
     
@@ -171,7 +177,7 @@ void _showInterstitial(const char* zoneId){
     
 }
 
-bool _isLoadedInterstitial(const char* zoneId){
+bool _bidmadIsLoadedInterstitial(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     UnityInterstitial* interstitial = [UnityInterstitial getInstance:_zoneID];
     
@@ -179,14 +185,14 @@ bool _isLoadedInterstitial(const char* zoneId){
 }
 /** Interstitial Interface End **/
 /** Reward Interface Start **/
-void _newInstanceReward(const char* zoneId) {
+void _bidmadNewInstanceReward(const char* zoneId) {
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
 
     UnityReward *reward = [[UnityReward alloc]initWithZoneId:_zoneID];
     [reward setDelegate:[BidmadUnityBridge sharedInstance]];
 }
 
-void _loadRewardVideo(const char* zoneId){
+void _bidmadLoadRewardVideo(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     UnityReward *reward = [UnityReward getInstance:_zoneID];
 
@@ -196,7 +202,7 @@ void _loadRewardVideo(const char* zoneId){
 
 }
 
-void _showRewardVideo(const char* zoneId){
+void _bidmadShowRewardVideo(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     UnityReward *reward = [UnityReward getInstance:_zoneID];
     
@@ -205,7 +211,7 @@ void _showRewardVideo(const char* zoneId){
     }
 }
 
-bool _isLoadedReward(const char* zoneId){
+bool _bidmadIsLoadedReward(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     UnityReward *reward = [UnityReward getInstance:_zoneID];
     
@@ -213,23 +219,39 @@ bool _isLoadedReward(const char* zoneId){
 }
 /** Reward Interface End **/
 /** ETC Interface Start **/
-void _setIsDebug(bool isDebug) {
-    [[BIDMADSetting sharedInstance] setIsDebug:isDebug];
-}
-void _setTestMode(bool isDebug) {
-    isTestMode = isDebug;
+void _bidmadSetDebug(bool isDebug) {
+    [[UnityCommon sharedInstance] setDebugMode:isDebug];
 }
 
-void _setGgTestDeviceid(const char* _deviceId){
+void _bidmadSetGgTestDeviceid(const char* _deviceId){
     NSString* deviceId = [NSString stringWithUTF8String:_deviceId];
     __testDeviceId = deviceId;
 }
-void _setGdprConsent(bool consent, bool useArea){
+
+void _bidmadSetGdprConsent(bool consent, bool useArea){
    
      [BIDMADGDPR setGDPRSetting:consent:useArea];
     
 }
-int _getGdprConsent(bool useArea){
+
+int _bidmadGetGdprConsent(bool useArea){
     return (int) ([BIDMADGDPR getGDPRSetting:useArea]);
+}
+
+typedef void (*CallbackT)(const char *foo);
+// extern "C" void method(CallbackT callback);
+void _bidmadReqAdTrackingAuthorization()
+{
+    [[UnityCommon sharedInstance] setDelegate:[BidmadUnityBridge sharedInstance]];
+    [[UnityCommon sharedInstance] reqAdTrackingAuthorization];
+}
+void _bidmadSetAdvertiserTrackingEnabled(bool enable)
+{
+    [[UnityCommon sharedInstance] setAdvertiserTrackingEnabled:enable];
+}
+
+bool _bidmadGetAdvertiserTrackingEnabled()
+{
+    return [[UnityCommon sharedInstance] getAdvertiserTrackingEnabled];
 }
 /** ETC Interface End **/

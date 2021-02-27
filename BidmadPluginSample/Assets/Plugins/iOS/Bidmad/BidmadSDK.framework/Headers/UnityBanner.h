@@ -13,7 +13,7 @@
 #import "BIDMADSetting.h"
 #import "BIDMADBanner.h"
 
-static NSMutableDictionary* bannerDic;
+static NSMutableDictionary* BidmadBannerDic;
 
 @interface UnityBanner : NSObject <BIDMADBannerDelegate>{
     NSString* mZoneId;

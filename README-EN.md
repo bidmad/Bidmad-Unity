@@ -5,7 +5,7 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 
 ## Getting started
 - [Download the latest sample project](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases/download/2.5.3/BidmadUnityPlugin_2.5.3.unitypackage)
+- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases/download/2.6.0/BidmadUnityPlugin_2.6.0.unitypackage)
 
 ### 1. Add Plugin
 #### 1.1 Android
@@ -33,6 +33,7 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     <string>ca-app-pub-XXXXXX~XXXXXX</string>
 ```
 4. For 2019.03 and later versions, manually add bidmad_assets.bundle to [Build Phases > Capy Bundle Resources] of Unity-iPhone target.
+5. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up and SKAdNetwork.
 
 ### 2. Using Plugin
 
@@ -288,3 +289,13 @@ public void setRewardFailCallback(Action callback)|If an Action is registered, t
 public void setRewardCompleteCallback(Action callback)|If an Action is registered, the registered Action is executed when the reward payment criteria of the reward ad are met.
 public void setRewardSkipCallback(Action callback)|If an Action is registered, the registered Action is executed when the reward payment standard of the reward ad is not met.
 public void setRewardCloseCallback(Action callback)|If an action is registered, the registered action is executed when the reward ad is closed.
+
+#### 4.4 iOS14 AppTrackingTransparencyAuthorization
+
+*AppTrackingTransparencyAuthorization functions are provided through BidmadCommon.
+
+Function|Description
+---|---
+public static void reqAdTrackingAuthorization(Action<BidmadTrackingAuthorizationStatus> callback)| App Tracking Transparency Displays the approval request popup and passes the result to the callback.
+public static void setAdvertiserTrackingEnabled(bool enable)| Set the result for app tracking transparency approval request pop-up consent/rejection obtained with a function other than reqAdTrackingAuthorization.
+public static bool getAdvertiserTrackingEnabled()| Set app tracking transparency approval request popup inquires the result of consent/rejection.

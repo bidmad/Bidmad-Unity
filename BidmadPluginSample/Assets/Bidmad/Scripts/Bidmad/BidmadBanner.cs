@@ -8,22 +8,22 @@ public class BidmadBanner
 {
 #if UNITY_IOS
     [DllImport("__Internal")]
-    private static extern void _newInstanceBanner(string zoneId, float _x, float _y);
+    private static extern void _bidmadNewInstanceBanner(string zoneId, float _x, float _y);
 
     [DllImport("__Internal")]
-    private static extern void _setRefreshInterval(string zoneId, int time);
+    private static extern void _bidmadSetRefreshInterval(string zoneId, int time);
 
     [DllImport("__Internal")]
-    private static extern void _loadBanner(string zoneId);
+    private static extern void _bidmadLoadBanner(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern void _removeBanner(string zoneId);
+    private static extern void _bidmadRemoveBanner(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern void _hideBannerView(string zoneId);
+    private static extern void _bidmadHideBannerView(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern void _showBannerView(string zoneId);
+    private static extern void _bidmadShowBannerView(string zoneId);
 
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
@@ -38,7 +38,7 @@ public class BidmadBanner
     {
         mZoneId = zoneId;
 #if UNITY_IOS
-        _newInstanceBanner(zoneId, 0, _y);
+        _bidmadNewInstanceBanner(zoneId, 0, _y);
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -64,7 +64,7 @@ public class BidmadBanner
         setBannerPosition = true;
 #if UNITY_IOS
         //iOS _x Position not support
-        _newInstanceBanner(zoneId, 0, _y);
+        _bidmadNewInstanceBanner(zoneId, 0, _y);
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -103,7 +103,7 @@ public class BidmadBanner
     public void setRefreshInterval(int time)
     {
 #if UNITY_IOS
-        _setRefreshInterval(mZoneId, time);
+        _bidmadSetRefreshInterval(mZoneId, time);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
@@ -115,7 +115,7 @@ public class BidmadBanner
 	public void removeBanner()
 	{
 #if UNITY_IOS
-        _removeBanner(mZoneId);
+        _bidmadRemoveBanner(mZoneId);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
@@ -127,16 +127,11 @@ public class BidmadBanner
 	public void load()
 	{
 #if UNITY_IOS
-        _loadBanner(mZoneId);
+        _bidmadLoadBanner(mZoneId);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
-            Debug.Log("loadWith test");
-
-            if(!setBannerPosition)
-                javaClassInstance.Call("loadWithY");
-            else
-                javaClassInstance.Call("loadWithXY");
+            javaClassInstance.Call("start", (int)mY);
         }
 #endif
     }
@@ -148,7 +143,10 @@ public class BidmadBanner
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
-            javaClassInstance.Call("onPause");
+            if(!setBannerPosition)
+                javaClassInstance.Call("loadWithY");
+            else
+                javaClassInstance.Call("loadWithXY");
         }
 #endif
     }
@@ -156,7 +154,7 @@ public class BidmadBanner
     public void hideBannerView()
     {
 #if UNITY_IOS
-        _hideBannerView(mZoneId);
+        _bidmadHideBannerView(mZoneId);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
@@ -168,7 +166,7 @@ public class BidmadBanner
     public void showBannerView()
     {
 #if UNITY_IOS
-        _showBannerView(mZoneId);
+        _bidmadShowBannerView(mZoneId);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {

@@ -21,11 +21,30 @@ public class gameobject : MonoBehaviour
         {
             Destroy(bidmadManager);
         }
+
+
+        BidmadCommon.reqAdTrackingAuthorization(adTrackingAuthCallback);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void adTrackingAuthCallback(BidmadTrackingAuthorizationStatus status)
+    {
+        if (status == BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusAuthorized)
+        {
+            Debug.Log("BidmadAuthorizationStatusAuthorized");
+        }
+        else if (status == BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusDenied)
+        {
+            Debug.Log("BidmadAuthorizationStatusDenied");
+        }
+        else if (status == BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusLessThaniOS14)
+        {
+            Debug.Log("BidmadAuthorizationStatusLessThaniOS14");
+        }
     }
 }

@@ -5,7 +5,7 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 
 ## 시작하기
 - [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.5.3/BidmadUnityPlugin_2.5.3.unitypackage)
+- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.6.0/BidmadUnityPlugin_2.6.0.unitypackage)
 
 ### 1. Plugin 추가하기
 #### 1.1 Android
@@ -32,7 +32,8 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     <key>GADApplicationIdentifier</key>
     <string>ca-app-pub-XXXXXX~XXXXXX</string>
 ```
-4. 2019.03 이상 버전에서는 수동으로 Unity-iPhone 타겟의 Build Phases > Capy Bundle Resources에 bidmad_assets.bundle를 추가합니다.
+4. 2019.03 이상 버전에서는 수동으로 Unity-iPhone 타겟의 Build Phases > Capy Bundle Resources에 bidmad_assets.bundle를 추가합니다.<br>
+5. [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업 및 SKAdNetwork를 적용합니다.
 
 ### 2. Plugin 사용하기
 
@@ -274,7 +275,7 @@ public void setInterstitialCloseCallback(Action callback)|Action을 등록했다
 
 #### 4.3 보상형
 
-*보상형 광고는 BidmadBanner를 통해 처리되며 이를 위한 함수 목록입니다.
+*보상형 광고는 BidmadReward를 통해 처리되며 이를 위한 함수 목록입니다.
 
 Function|Description
 ---|---
@@ -288,3 +289,13 @@ public void setRewardFailCallback(Action callback)|Action을 등록했다면 Zon
 public void setRewardCompleteCallback(Action callback)|Action을 등록했다면 보상형광고의 리워드 지급기준을 충족 했을 때 등록한 Action을 실행합니다.
 public void setRewardSkipCallback(Action callback)|Action을 등록했다면 보상형광고의 리워드 지급기준에 미달 했을 때 등록한 Action을 실행합니다.
 public void setRewardCloseCallback(Action callback)|Action을 등록했다면 보상형광고를 Close 했을 때 등록한 Action을 실행합니다.
+
+#### 4.4 iOS14 앱 추적 투명성 승인 요청
+
+*앱 추적 투명성 승인 요청에 관한 함수는 BidmadCommon을 통해 제공됩니다.
+
+Function|Description
+---|---
+public static void reqAdTrackingAuthorization(Action<BidmadTrackingAuthorizationStatus> callback)| 앱 추적 투명성 승인 요청 팝업을 발생시키고 결과를 callback으로 전달 합니다.
+public static void setAdvertiserTrackingEnabled(bool enable)|reqAdTrackingAuthorization 이외의 함수로 앱 추적 투명성 승인 요청 팝업 동의/거절을 얻는 경우 이에 대한 결과를 설정합니다.
+public static bool getAdvertiserTrackingEnabled()|설정된 앱 추적 투명성 승인 요청 팝업 동의/거절에 대한 결과를 조회합니다.

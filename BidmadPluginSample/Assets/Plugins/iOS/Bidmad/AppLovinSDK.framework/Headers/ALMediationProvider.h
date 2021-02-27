@@ -19,7 +19,7 @@ extern NSString *const ALMediationProviderAppodeal;
 extern NSString *const ALMediationProviderFusePowered;
 extern NSString *const ALMediationProviderFyber;
 extern NSString *const ALMediationProviderHeyzap;
-extern NSString *const ALMediationProviderHyperMX;
+extern NSString *const ALMediationProviderHyprMX;
 extern NSString *const ALMediationProviderIronsource;
 extern NSString *const ALMediationProviderMAX;
 extern NSString *const ALMediationProviderMoPub;

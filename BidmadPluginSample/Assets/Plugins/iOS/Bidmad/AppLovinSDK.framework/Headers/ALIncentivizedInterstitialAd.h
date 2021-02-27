@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Get a reference to the shared instance of ALIncentivizedInterstitialAd.
  *
- * This wraps the [ALSdk shared] call, and will only work if you hve set your SDK key in Info.plist.
+ * This wraps the [ALSdk shared] call, and will only work if you have set your SDK key in Info.plist.
 */
 + (ALIncentivizedInterstitialAd *)shared;
 
@@ -176,6 +176,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (instancetype)init __attribute__((unavailable("Use initWithSdk:, initWithZoneIdentifier:, or [ALIncentivizedInterstitialAd shared] instead.")));
++ (instancetype)new NS_UNAVAILABLE;
 
 @end
 

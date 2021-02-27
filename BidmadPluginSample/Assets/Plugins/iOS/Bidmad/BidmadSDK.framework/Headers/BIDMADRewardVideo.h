@@ -11,13 +11,10 @@
 #import "BIDMADSetting.h"
 #import "BIDMADFacebook.h"
 #import "BIDMADAtomReward.h"
-#import "BIDMADFacebookBidding.h"
 #import "BIDMADAdmob.h"
 #import "BIDMADAdmanager.h"
 #import "BIDMADUnityAds.h"
 #import "BIDMADAppLoving.h"
-#import "BIDMADAdColony.h"
-#import "BIDMADIronSource.h"
 #import "BIDMADInterstitial.h"
 
 @protocol BIDMADRewardVideoDelegate;
@@ -60,8 +57,6 @@
 @property (nonatomic) bool justLoading;
 
 @property (nonatomic, strong) NSString* userId;
-
-@property (strong,nonatomic) NSString*                      isFBB;
 
 @property (nonatomic) BOOL                       isLabelService;
 @property (nonatomic) BOOL                       isLabelServiceAdmin;

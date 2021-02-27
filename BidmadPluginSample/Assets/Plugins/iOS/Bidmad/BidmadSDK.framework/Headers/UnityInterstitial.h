@@ -13,7 +13,7 @@
 #import "BIDMADSetting.h"
 #import "BIDMADInterstitial.h"
 
-static NSMutableDictionary* interstitialDic;
+static NSMutableDictionary* BidmadInterstitialDic;
 
 @interface UnityInterstitial : NSObject <BIDMADInterstitialDelegate>{
     NSString* mZoneId;

@@ -30,6 +30,7 @@
 
 #ifdef GOOGLESDK_EXIST
 @interface BIDMADAdmob : NSObject<GADBannerViewDelegate, GADFullScreenContentDelegate>
+
 #else
 @interface BIDMADAdmob : NSObject
 #endif

@@ -12,7 +12,9 @@
 #import "BidmadSDK/UnityBanner.h"
 #import "BidmadSDK/UnityInterstitial.h"
 #import "BidmadSDK/UnityReward.h"
+#import "BidmadSDK/UnityCommon.h"
 #import "BidmadSDK/BIDMADGDPR.h"
+#import "BidmadSDK/BIDMADSetting.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,31 +23,34 @@ extern "C" {
     void UnitySendMessage(const char* obj, const char* method, const char* msg);
 
     /*Banner*/
-    void _setRefreshInterval(const char* zoneId, int time);
-    void _newInstanceBanner(const char* zoneId, float _x, float _y);
-    void _loadBanner(const char* zoneId);
-    void _removeBanner(const char* zoneId);
-    void _hideBannerView(const char* zoneId);
-    void _showBannerView(const char* zoneId);
+    void _bidmadSetRefreshInterval(const char* zoneId, int time);
+    void _bidmadNewInstanceBanner(const char* zoneId, float _x, float _y);
+    void _bidmadLoadBanner(const char* zoneId);
+    void _bidmadRemoveBanner(const char* zoneId);
+    void _bidmadHideBannerView(const char* zoneId);
+    void _bidmadShowBannerView(const char* zoneId);
 
     /*Interstitial*/
-    void _newInstanceInterstitial(const char* zoneId);
-    void _loadInterstitial(const char* zoneId);
-    void _showInterstitial(const char* zoneId);
-    bool _isLoadedInterstitial(const char* zoneId);
+    void _bidmadNewInstanceInterstitial(const char* zoneId);
+    void _bidmadLoadInterstitial(const char* zoneId);
+    void _bidmadShowInterstitial(const char* zoneId);
+    bool _bidmadIsLoadedInterstitial(const char* zoneId);
 
     /*Reward*/
-    void _newInstanceReward(const char* zoneId);
-    void _loadRewardVideo(const char* zoneId);
-    void _showRewardVideo(const char* zoneId);
-    bool _isLoadedReward(const char* zoneId);
+    void _bidmadNewInstanceReward(const char* zoneId);
+    void _bidmadLoadRewardVideo(const char* zoneId);
+    void _bidmadShowRewardVideo(const char* zoneId);
+    bool _bidmadIsLoadedReward(const char* zoneId);
 
     /*ETC*/
-    void _setIsDebug(bool isDebug); 
-    void _setTestMode(bool isDebug);
-    void _setGgTestDeviceid(const char* deviceId);
-    void _setGdprConsent(bool consent, bool useArea);
-    int  _getGdprConsent(bool useArea);
+    void _bidmadSetDebug(bool isDebug); 
+    void _bidmadSetGgTestDeviceid(const char* deviceId);
+    void _bidmadSetGdprConsent(bool consent, bool useArea);
+    int _bidmadGetGdprConsent(bool useArea);
+
+    void _bidmadReqAdTrackingAuthorization();
+    void _bidmadSetAdvertiserTrackingEnabled(bool enable);
+    bool _bidmadGetAdvertiserTrackingEnabled();
     
 #ifdef __cplusplus
 }

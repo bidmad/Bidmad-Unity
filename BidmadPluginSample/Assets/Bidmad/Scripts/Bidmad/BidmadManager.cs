@@ -22,6 +22,8 @@ public class BidmadManager : MonoBehaviour
     public static Dictionary<string, Action> dicRewardComplete = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicRewardSkip = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicRewardClose = new Dictionary<string, Action>();
+/*** Common Dictionnary ***/
+    public static Action<BidmadTrackingAuthorizationStatus> adTrackingAuthResponse;
 
 /*** Banner Callback ***/
     void OnBannerLoad(string zoneId)
@@ -148,5 +150,35 @@ public class BidmadManager : MonoBehaviour
             onRewardClose();
         }
     }
-/*** Reward Callback ***/
+ /*** Reward Callback ***/
+ /*** Common Callback ***/
+    void OnAdTrackingAuthorizationResponse(string responseCode)
+    {
+        Debug.Log("OnAdTrackingAuthorizationResponse");
+        if (adTrackingAuthResponse != null)
+        {
+            switch (responseCode)
+            {
+                case "0":
+                    adTrackingAuthResponse(BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusNotDetermined);
+                    break;
+                case "1":
+                    adTrackingAuthResponse(BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusRestricted);
+                    break;
+                case "2":
+                    adTrackingAuthResponse(BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusDenied);
+                    break;
+                case "3":
+                    adTrackingAuthResponse(BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusAuthorized);
+                    break;
+                case "4":
+                    adTrackingAuthResponse(BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusLessThaniOS14);
+                    break;
+                default:
+                    adTrackingAuthResponse(BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusDenied);
+                    break;
+            }
+        }
+    }
+/*** Common Callback ***/
 }

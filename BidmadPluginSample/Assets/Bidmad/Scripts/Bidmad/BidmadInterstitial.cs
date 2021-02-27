@@ -8,16 +8,16 @@ public class BidmadInterstitial
 {
 #if UNITY_IOS
     [DllImport("__Internal")]
-    private static extern void _newInstanceInterstitial(string zoneId);
+    private static extern void _bidmadNewInstanceInterstitial(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern void _loadInterstitial(string zoneId);
+    private static extern void _bidmadLoadInterstitial(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern void _showInterstitial(string zoneId);
+    private static extern void _bidmadShowInterstitial(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern bool _isLoadedInterstitial(string zoneId);
+    private static extern bool _bidmadIsLoadedInterstitial(string zoneId);
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
     private AndroidJavaClass javaClass = null;
@@ -31,7 +31,7 @@ public class BidmadInterstitial
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            _newInstanceInterstitial(zoneId);
+            _bidmadNewInstanceInterstitial(zoneId);
         }
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
@@ -71,7 +71,7 @@ public class BidmadInterstitial
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            _loadInterstitial(mZoneId);
+            _bidmadLoadInterstitial(mZoneId);
         }
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
@@ -86,7 +86,7 @@ public class BidmadInterstitial
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            _showInterstitial(mZoneId);
+            _bidmadShowInterstitial(mZoneId);
         }
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
@@ -100,7 +100,7 @@ public class BidmadInterstitial
     {
         bool result = false;
 #if UNITY_IOS
-        result = _isLoadedInterstitial(mZoneId);
+        result = _bidmadIsLoadedInterstitial(mZoneId);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {

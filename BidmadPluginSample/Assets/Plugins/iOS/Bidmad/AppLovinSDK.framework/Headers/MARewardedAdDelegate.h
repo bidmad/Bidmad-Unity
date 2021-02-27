@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * This delegate is intended to be notified when a user watches a rewarded video and whether a reward was granted or rejected.
  */
-@protocol MARewardedAdDelegate <MAAdDelegate>
+@protocol MARewardedAdDelegate<MAAdDelegate>
 
 /**
  * This method will be invoked when rewarded video has started.

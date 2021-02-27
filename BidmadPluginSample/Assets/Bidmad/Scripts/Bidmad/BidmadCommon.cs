@@ -4,24 +4,39 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using AOT;
 
+public enum BidmadTrackingAuthorizationStatus
+{
+    BidmadAuthorizationStatusNotDetermined = 0,
+    BidmadAuthorizationStatusRestricted,
+    BidmadAuthorizationStatusDenied,
+    BidmadAuthorizationStatusAuthorized,
+    BidmadAuthorizationStatusLessThaniOS14
+}
+
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "2.5.3";
+    string UNITY_PLUGIN_VERSION = "2.6.0";
 #if UNITY_IOS
     [DllImport("__Internal")]
-    private static extern void _setIsDebug(bool isDebug);
+    private static extern void _bidmadSetDebug(bool isDebug);
 
     [DllImport("__Internal")]
-    private static extern void _setTestMode(bool b);
+    private static extern void _bidmadSetGgTestDeviceid(string deviceId);
 
     [DllImport("__Internal")]
-    private static extern void _setGgTestDeviceid(string deviceId);
+    private static extern void _bidmadSetGdprConsent(bool consent, bool useArea);
 
     [DllImport("__Internal")]
-    private static extern void _setGdprConsent(bool consent, bool useArea);
+    private static extern int _bidmadGetGdprConsent(bool useArea);
 
     [DllImport("__Internal")]
-    private static extern int  _getGdprConsent(bool useArea);
+    private static extern void _bidmadReqAdTrackingAuthorization();
+
+    [DllImport("__Internal")]
+    private static extern void _bidmadSetAdvertiserTrackingEnabled(bool enable);
+
+    [DllImport("__Internal")]
+    private static extern bool _bidmadGetAdvertiserTrackingEnabled();
 
 
 #elif UNITY_ANDROID
@@ -36,7 +51,7 @@ public class BidmadCommon
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            _setIsDebug(isDebug);
+            _bidmadSetDebug(isDebug);
         }
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
@@ -47,24 +62,12 @@ public class BidmadCommon
 #endif
 	}
 
-	public static void setRewardTestMode(bool b)
-	{
-#if UNITY_IOS
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            _setTestMode(b);
-
-        }
-#elif UNITY_ANDROID
-#endif
-	}
-
 	public static void setGgTestDeviceid(string deviceId)
 	{
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-           _setGgTestDeviceid(deviceId);
+           _bidmadSetGgTestDeviceid(deviceId);
         }
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
@@ -80,7 +83,7 @@ public class BidmadCommon
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            _setGdprConsent(consent, useArea);
+            _bidmadSetGdprConsent(consent, useArea);
         }
 
 #elif UNITY_ANDROID
@@ -111,7 +114,7 @@ public class BidmadCommon
              * UNKWON(-1)
              * UNUSE(-2) 
              */
-            result = _getGdprConsent(useArea);
+            result = _bidmadGetGdprConsent(useArea);
             return result;
         }
         else
@@ -170,4 +173,47 @@ public class BidmadCommon
         }
 #endif
 	}
+
+
+    public static void reqAdTrackingAuthorization(Action<BidmadTrackingAuthorizationStatus> callback)
+    {
+#if UNITY_IOS
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            _bidmadReqAdTrackingAuthorization();
+
+            BidmadManager.adTrackingAuthResponse = callback;
+        }
+
+#elif UNITY_ANDROID
+#endif
+    }
+
+    public static void setAdvertiserTrackingEnabled(bool enable)
+    {
+#if UNITY_IOS
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            _bidmadSetAdvertiserTrackingEnabled(enable);
+        }
+#elif UNITY_ANDROID
+#endif
+    }
+
+
+    public static bool getAdvertiserTrackingEnabled()
+    {
+#if UNITY_IOS
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            return _bidmadGetAdvertiserTrackingEnabled();
+        }
+        else
+        {
+            return false;
+        }
+#elif UNITY_ANDROID
+#endif
+    }
+
 }//END

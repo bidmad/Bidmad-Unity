@@ -24,6 +24,7 @@
 
 #ifdef GOOGLESDK_EXIST
 @interface BIDMADAdmanager : NSObject<GADBannerViewDelegate, GADFullScreenContentDelegate>
+
 #else
 @interface BIDMADAdmanager : NSObject
 #endif

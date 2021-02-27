@@ -8,16 +8,16 @@ public class BidmadReward
 {
 #if UNITY_IOS
     [DllImport("__Internal")]
-    private static extern void _newInstanceReward(string zoneId);
+    private static extern void _bidmadNewInstanceReward(string zoneId);
     
     [DllImport("__Internal")]
-    private static extern void _loadRewardVideo(string zoneId);
+    private static extern void _bidmadLoadRewardVideo(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern void _showRewardVideo(string zoneId);
+    private static extern void _bidmadShowRewardVideo(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern bool _isLoadedReward(string zoneId);
+    private static extern bool _bidmadIsLoadedReward(string zoneId);
 
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
@@ -32,7 +32,7 @@ public class BidmadReward
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            _newInstanceReward(zoneId);
+            _bidmadNewInstanceReward(zoneId);
         }
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
@@ -72,7 +72,7 @@ public class BidmadReward
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            _loadRewardVideo(mZoneId);
+            _bidmadLoadRewardVideo(mZoneId);
         }
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
@@ -87,7 +87,7 @@ public class BidmadReward
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            _showRewardVideo(mZoneId);
+            _bidmadShowRewardVideo(mZoneId);
         }
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
@@ -101,7 +101,7 @@ public class BidmadReward
     {
         bool result = false;
 #if UNITY_IOS
-        result = _isLoadedReward(mZoneId);
+        result = _bidmadIsLoadedReward(mZoneId);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {

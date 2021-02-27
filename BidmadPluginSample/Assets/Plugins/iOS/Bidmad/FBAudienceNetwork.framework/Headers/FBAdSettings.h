@@ -120,6 +120,13 @@ FB_CLASS_EXPORT FB_SUBCLASSING_RESTRICTED @interface FBAdSettings : NSObject
 @property (class, nonatomic, copy, readonly) NSString *routingToken;
 
 /**
+ User's consent for advertiser tracking.
+
+ The setter API only works in iOS14 or above and won't take effect in iOS13 or below.
+ */
++ (void)setAdvertiserTrackingEnabled:(BOOL)advertiserTrackingEnabled;
+
+/**
  Returns test mode on/off.
  */
 + (BOOL)isTestMode;
@@ -217,8 +224,6 @@ FB_CLASS_EXPORT FB_SUBCLASSING_RESTRICTED @interface FBAdSettings : NSObject
 /// for the United States of America, or 0, to request that we geolocate that event.
 /// @param state A state that you want to associate with this data processing option. Current accepted values are 1000,
 /// for California, or 0, to request that we geolocate that event.
-
-
 + (void)setDataProcessingOptions:(NSArray<NSString *> *)options country:(NSInteger)country state:(NSInteger)state;
 
 /// Data processing options.

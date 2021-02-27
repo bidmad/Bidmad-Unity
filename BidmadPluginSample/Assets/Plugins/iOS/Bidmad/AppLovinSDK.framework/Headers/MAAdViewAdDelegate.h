@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * This delegate is notified about ad view events.
  */
-@protocol MAAdViewAdDelegate <MAAdDelegate>
+@protocol MAAdViewAdDelegate<MAAdDelegate>
 
 /**
  * This method will be invoked when the `MAAdView` has expanded the full screen.

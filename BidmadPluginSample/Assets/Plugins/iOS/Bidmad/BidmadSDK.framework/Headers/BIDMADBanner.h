@@ -11,11 +11,9 @@
 #import "BIDMADSetting.h"
 #import "BIDMADFacebook.h"
 #import "BIDMADAtom.h"
-#import "BIDMADFacebookBidding.h"
 #import "BIDMADAdmob.h"
 #import "BIDMADUnityAds.h"
 #import "BIDMADAdmanager.h"
-#import "BIDMADAdColony.h"
 //#import "BIDMADAdFit.h"
 
 @protocol BIDMADBannerDelegate;
@@ -23,7 +21,6 @@
 
 @property (assign, nonatomic) SEL requestSelector;
 @property (strong, nonatomic) NSDictionary* ads_dic;
-@property (strong,nonatomic) NSString* isFBB;
 @property (nonatomic) bannerSizeType bannerType;
 @property (strong, nonatomic) id<BIDMADBannerDelegate> delegate;
 

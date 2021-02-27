@@ -1,3 +1,10 @@
+# Version 2.6.0
+#### Changes
+- Add interface for iOS14 AppTrackingTransparencyAuthorization
+#### Integration Bidmad SDK version 
+- Android : bidmad-androidx-g 1.0.7
+- iOS : BidmadSDK.framework 2.5.0
+
 # Version 2.5.3
 #### Changes
 - Add interface for setting banner position X in Android

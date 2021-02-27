@@ -30,6 +30,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy, readonly) NSString *networkName;
 
+/**
+ * The creative id tied to the ad, if any. It may not be available for some ad networks until @code -[MAFullscreenAdDelegate didDisplayAd:] @endcode is called.
+ */
+@property (nonatomic, copy, readonly, nullable) NSString *creativeIdentifier;
+
+/**
+ * @return The placement to tie the ad's postbacks to.
+ */
+@property (atomic, copy, readonly, nullable) NSString *placement;
+
++ (instancetype)new NS_UNAVAILABLE;
+
 @end
 
 NS_ASSUME_NONNULL_END
