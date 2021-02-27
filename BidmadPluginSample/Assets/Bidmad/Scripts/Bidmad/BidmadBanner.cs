@@ -147,10 +147,7 @@ public class BidmadBanner
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
-            if(!setBannerPosition)
-                javaClassInstance.Call("loadWithY");
-            else
-                javaClassInstance.Call("loadWithXY");
+            javaClassInstance.Call("onPause");
         }
 #endif
     }
