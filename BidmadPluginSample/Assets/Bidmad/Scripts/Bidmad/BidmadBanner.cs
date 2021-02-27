@@ -135,7 +135,7 @@ public class BidmadBanner
                 javaClassInstance.Call("loadWithY");
             else
                 javaClassInstance.Call("loadWithXY");
-
+                
         }
 #endif
     }

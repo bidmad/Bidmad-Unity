@@ -22,8 +22,9 @@ public class gameobject : MonoBehaviour
             Destroy(bidmadManager);
         }
 
-
+        #if UNITY_IOS
         BidmadCommon.reqAdTrackingAuthorization(adTrackingAuthCallback);
+        #endif
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class gameobject : MonoBehaviour
     {
         
     }
-
+    #if UNITY_IOS
     void adTrackingAuthCallback(BidmadTrackingAuthorizationStatus status)
     {
         if (status == BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusAuthorized)
@@ -47,4 +48,5 @@ public class gameobject : MonoBehaviour
             Debug.Log("BidmadAuthorizationStatusLessThaniOS14");
         }
     }
+    #endif
 }
