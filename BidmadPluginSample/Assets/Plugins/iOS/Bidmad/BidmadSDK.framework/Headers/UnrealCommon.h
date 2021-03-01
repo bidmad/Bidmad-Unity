@@ -16,7 +16,7 @@
 
 @optional
 
-- (void)BIDMADAdTrackingAuthorizationResponse:(NSString*)response;
+- (void)BIDMADAdTrackingAuthorizationResponse:(int)response;
 
 @end
 
