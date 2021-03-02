@@ -1,21 +1,12 @@
 ﻿<Properties StartupConfiguration="{00B6D44A-D8D7-6C48-6B73-0488DFF57DD0}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Bidmad/Scripts/Scripts/Bidmad/BidmadBanner.cs">
-    <Files>
-      <File FileName="Assets/Bidmad/Scripts/Scripts/Bidmad/BidmadBanner.cs" Line="60" Column="6" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BidmadPluginSample" expanded="True">
-            <Node name="Assets" expanded="True">
+            <Node name="Assets" expanded="True" selected="True">
               <Node name="Bidmad" expanded="True">
-                <Node name="Scripts" expanded="True">
-                  <Node name="Scripts" expanded="True">
-                    <Node name="Bidmad" expanded="True">
-                      <Node name="BidmadBanner.cs" selected="True" />
-                    </Node>
-                  </Node>
-                </Node>
+                <Node name="Scripts" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -25,7 +16,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="56ef135b-a69c-4483-81a3-2b6b76b2fd5b" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8fecb9d9-3ecd-4e40-b649-2e0db22acb23" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
