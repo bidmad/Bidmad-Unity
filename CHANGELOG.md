@@ -1,3 +1,10 @@
+# Version 2.6.1
+#### Changes
+- Fix Bugs
+#### Integration Bidmad SDK version 
+- Android : bidmad-androidx-g 1.0.7
+- iOS : BidmadSDK.framework 2.5.1
+
 # Version 2.6.0
 #### Changes
 - Add interface for iOS14 AppTrackingTransparencyAuthorization
