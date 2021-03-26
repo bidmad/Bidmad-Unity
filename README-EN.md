@@ -35,6 +35,8 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 4. For 2019.03 and later versions, manually add bidmad_assets.bundle to [Build Phases > Capy Bundle Resources] of Unity-iPhone target.
 5. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up and SKAdNetwork.
 
+If you're looking for a guide to the privacy requirements of the Apple Store, [see here](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BENG%5D).
+
 ### 2. Using Plugin
 
 #### 2.1 Banner

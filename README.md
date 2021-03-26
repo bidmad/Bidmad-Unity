@@ -33,7 +33,9 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     <string>ca-app-pub-XXXXXX~XXXXXX</string>
 ```
 4. 2019.03 이상 버전에서는 수동으로 Unity-iPhone 타겟의 Build Phases > Capy Bundle Resources에 bidmad_assets.bundle를 추가합니다.<br>
-5. [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업 및 SKAdNetwork를 적용합니다.
+5. [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업 및 SKAdNetwork를 적용합니다.<br>
+
+*Apple Store에서 요구하는 개인정보 보호에 관한 가이드가 필요한 경우 [이곳](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BKOR%5D)을 참고하세요.
 
 ### 2. Plugin 사용하기
 
