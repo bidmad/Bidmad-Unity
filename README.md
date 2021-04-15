@@ -5,7 +5,7 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 
 ## 시작하기
 - [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.6.1/BidmadUnityPlugin_2.6.1.unitypackage)
+- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.7.0/BidmadUnityPlugin_2.7.0.unitypackage)
 
 ### 1. Plugin 추가하기
 #### 1.1 Android
