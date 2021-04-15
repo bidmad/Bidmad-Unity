@@ -22,8 +22,14 @@ public class BidmadManager : MonoBehaviour
     public static Dictionary<string, Action> dicRewardComplete = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicRewardSkip = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicRewardClose = new Dictionary<string, Action>();
-/*** Common Dictionnary ***/
+/*** Common Callback ***/
     public static Action<BidmadTrackingAuthorizationStatus> adTrackingAuthResponse;
+/*** googleGdpr Callback ***/
+    public static Action consentInfoUpdateSuccess;
+    public static Action<string> consentInfoUpdateFailure;
+    public static Action consentFormLoadSuccess;
+    public static Action<string> consentFormLoadFailure;
+    public static Action<string> consentFormDismissed;
 
 /*** Banner Callback ***/
     void OnBannerLoad(string zoneId)
@@ -181,4 +187,51 @@ public class BidmadManager : MonoBehaviour
         }
     }
 /*** Common Callback ***/
+
+/*** googleGdpr Callback ***/
+    void onConsentInfoUpdateSuccess()
+    {
+        Debug.Log("onConsentInfoUpdateSuccess");
+        if (consentInfoUpdateSuccess != null)
+        {
+           consentInfoUpdateSuccess();
+        }
+    }
+
+    void onConsentInfoUpdateFailure(string msg)
+    {
+        Debug.Log("onConsentInfoUpdateFailure");
+        if (consentInfoUpdateFailure != null)
+        {
+            consentInfoUpdateFailure(msg);  
+        }
+    }
+
+    void onConsentFormLoadSuccess()
+    {
+        Debug.Log("onConsentFormLoadSuccess");
+        if (consentFormLoadSuccess != null)
+        {
+            consentFormLoadSuccess();  
+        }
+    }
+
+    void onConsentFormLoadFailure(string msg)
+    {
+        Debug.Log("onConsentFormLoadFailure");
+        if (consentFormLoadFailure != null)
+        {
+           consentFormLoadFailure(msg);
+        }
+    }
+
+    void onConsentFormDismissed(string msg)
+    {
+        Debug.Log("onConsentFormDismissed");
+        if (consentFormDismissed != null)
+        {
+           consentFormDismissed(msg);
+        }
+    }
+/*** googleGdpr Callback ***/
 }

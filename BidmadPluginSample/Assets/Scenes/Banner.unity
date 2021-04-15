@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -331,7 +333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1209776655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23d71bd082ebc458aaef8df3673a95a3, type: 3}
+  m_Script: {fileID: 11500000, guid: afe07bf1bcd0d4466887fc65a6cdd14e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1209776658
@@ -414,6 +416,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -444,7 +447,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1209776655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc66403193aa340c8ab750607efdb9f9, type: 3}
+  m_Script: {fileID: 11500000, guid: ed44b97bfd66c4d36bc601aaf23a5c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1774269616
@@ -722,6 +725,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -752,7 +756,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1848986174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc66403193aa340c8ab750607efdb9f9, type: 3}
+  m_Script: {fileID: 11500000, guid: ed44b97bfd66c4d36bc601aaf23a5c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2032374146
@@ -807,6 +811,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

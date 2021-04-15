@@ -15,7 +15,7 @@ return _sharedObject; \
 
 #import "BidmadUnityBridge.h"
 
-@interface BidmadUnityBridge : NSObject<BIDMADBannerDelegate,BIDMADInterstitialDelegate,BIDMADRewardVideoDelegate, BIDMADUnityCommonDelegate>
+@interface BidmadUnityBridge : NSObject<BIDMADBannerDelegate,BIDMADInterstitialDelegate,BIDMADRewardVideoDelegate, BIDMADUnityCommonDelegate, BIDMADGDPRforGoogleProtocol>
 + (BidmadUnityBridge *)sharedInstance;
 @end
 
@@ -101,6 +101,54 @@ return _sharedObject; \
 }
 
 /** Common Callback End **/
+/** GDPRforGoogle Callback Start **/
+ 
+// "Error [Message : " + formError.getMessage() + "][Code : " + formError.getErrorCode() + "]"
+
+- (NSString *)errorArgumentGenerator:(NSError *)formError {
+    NSString *errorArg;
+    
+    if (formError) {
+        NSNumber *errorCode = [NSNumber numberWithLong:formError.code];
+        NSString *errorDescription = formError.localizedDescription;
+        errorArg = [NSString stringWithFormat:@"Error [Message : %@][Code : %@]", errorDescription, errorCode.stringValue];
+    } else {
+        errorArg = [NSString stringWithFormat:@"Error [Message : %@][Code : %@]", @"No Error was Found.", [[NSNumber numberWithInt:0] stringValue]];
+    }
+    return errorArg;
+}
+
+- (void)onConsentFormDismissed:(NSError *)formError {
+    NSString *errorArg = [self errorArgumentGenerator:formError];
+    
+    UnitySendMessage("BidmadManager", "onConsentFormDismissed", [errorArg UTF8String]);
+    
+}
+
+- (void)onConsentFormLoadFailure:(NSError *)formError {
+    NSString *errorArg = [self errorArgumentGenerator:formError];
+    
+    UnitySendMessage("BidmadManager", "onConsentFormLoadFailure", [errorArg UTF8String]);
+    
+}
+
+- (void)onConsentFormLoadSuccess {
+    UnitySendMessage("BidmadManager", "onConsentFormLoadSuccess", "");
+}
+
+- (void)onConsentInfoUpdateFailure:(NSError *)formError {
+    NSString *errorArg = [self errorArgumentGenerator:formError];
+    
+    UnitySendMessage("BidmadManager", "onConsentInfoUpdateFailure", [errorArg UTF8String]);
+    
+}
+
+- (void)onConsentInfoUpdateSuccess {
+    UnitySendMessage("BidmadManager", "onConsentInfoUpdateSuccess", "");
+}
+
+/** GDPRforGoogle Callback End **/
+
 @end
 
 static NSString* __testDeviceId = nil;
@@ -228,14 +276,16 @@ void _bidmadSetGgTestDeviceid(const char* _deviceId){
     __testDeviceId = deviceId;
 }
 
-void _bidmadSetGdprConsent(bool consent, bool useArea){
-   
-     [BIDMADGDPR setGDPRSetting:consent:useArea];
-    
+void _bidmadSetUseArea(bool useArea){
+    [BIDMADGDPR setUseArea:useArea];
 }
 
-int _bidmadGetGdprConsent(bool useArea){
-    return (int) ([BIDMADGDPR getGDPRSetting:useArea]);
+void _bidmadSetGDPRSetting(bool consent) {
+    [BIDMADGDPR setGDPRSetting: consent];
+}
+
+int _bidmadGetGdprConsent(){
+    return ((int)[BIDMADGDPR getGDPRSetting]);
 }
 
 typedef void (*CallbackT)(const char *foo);
@@ -255,3 +305,46 @@ bool _bidmadGetAdvertiserTrackingEnabled()
     return [[UnityCommon sharedInstance] getAdvertiserTrackingEnabled];
 }
 /** ETC Interface End **/
+/** GDPRforGoogle Start **/
+
+void _bidmadGDPRforGoogleNewInstance(){
+    [UnityGDPRforGoogle sharedInstance];
+}
+
+void _bidmadGDPRforGoogleSetListener(){
+    [[UnityGDPRforGoogle sharedInstance] setListener];
+}
+
+void _bidmadGDPRforGoogleSetDebug(const char* testDeviceId, bool isTestEurope){
+    [[UnityGDPRforGoogle sharedInstance] setDebug: [NSString stringWithUTF8String:testDeviceId] isTestEurope: isTestEurope];
+}
+
+void _bidmadGDPRforGoogleRequestConsentInfoUpdate(){
+    [[UnityGDPRforGoogle sharedInstance] requestConsentInfoUpdate];
+}
+
+bool _bidmadGDPRforGoogleIsConsentFormAvailable(){
+    return [[UnityGDPRforGoogle sharedInstance] isConsentFormAvailable];
+}
+
+void _bidmadGDPRforGoogleLoadForm(){
+    [[UnityGDPRforGoogle sharedInstance] loadForm];
+}
+
+void _bidmadGDPRforGoogleShowForm(){
+    [[UnityGDPRforGoogle sharedInstance] showForm];
+}
+
+int _bidmadGDPRforGoogleGetConsentStatus(){
+    return [[[UnityGDPRforGoogle sharedInstance] getConsentStatus] intValue];
+}
+
+void _bidmadGDPRforGoogleReset(){
+    [[UnityGDPRforGoogle sharedInstance] reset];
+}
+
+void _bidmadGDPRforGoogleSetDelegate(){
+    [[UnityGDPRforGoogle sharedInstance] setDelegate: [BidmadUnityBridge sharedInstance]];
+}
+
+/** GDPRforGoogle End **/

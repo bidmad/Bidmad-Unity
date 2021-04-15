@@ -152,5 +152,6 @@ typedef void (^CompleteHandler)(BidmadTrackingAuthorizationStatus status);
 
 @property (nonatomic, strong) NSString* version;
 
+@property (nonatomic, strong) NSString* testDeviceId;
 
 @end

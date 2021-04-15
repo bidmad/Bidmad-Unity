@@ -14,6 +14,7 @@
 #import "BidmadSDK/UnityReward.h"
 #import "BidmadSDK/UnityCommon.h"
 #import "BidmadSDK/BIDMADGDPR.h"
+#import "BidmadSDK/UnityGDPRforGoogle.h"
 #import "BidmadSDK/BIDMADSetting.h"
 
 #ifdef __cplusplus
@@ -45,12 +46,25 @@ extern "C" {
     /*ETC*/
     void _bidmadSetDebug(bool isDebug); 
     void _bidmadSetGgTestDeviceid(const char* deviceId);
-    void _bidmadSetGdprConsent(bool consent, bool useArea);
-    int _bidmadGetGdprConsent(bool useArea);
+    void _bidmadSetUseArea(bool useArea);
+    void _bidmadSetGDPRSetting(bool consent);
+    int _bidmadGetGdprConsent();
 
     void _bidmadReqAdTrackingAuthorization();
     void _bidmadSetAdvertiserTrackingEnabled(bool enable);
     bool _bidmadGetAdvertiserTrackingEnabled();
+
+    /*GDPRforGoogle*/
+    void _bidmadGDPRforGoogleNewInstance();
+    void _bidmadGDPRforGoogleSetListener();
+    void _bidmadGDPRforGoogleSetDebug(const char* testDeviceId, bool isTestEurope);
+    void _bidmadGDPRforGoogleRequestConsentInfoUpdate();
+    bool _bidmadGDPRforGoogleIsConsentFormAvailable();
+    void _bidmadGDPRforGoogleLoadForm();
+    void _bidmadGDPRforGoogleShowForm();
+    int _bidmadGDPRforGoogleGetConsentStatus();
+    void _bidmadGDPRforGoogleReset();
+    void _bidmadGDPRforGoogleSetDelegate();
     
 #ifdef __cplusplus
 }

@@ -93,8 +93,6 @@
 
 - (void)removeInterstitialADS;
 
-- (void)setTestDevice :(NSString *)deviceId;
-
 - (void)sendLog :(NSDictionary *) info :(NSString *) advertisementType :(NSString *) logType;
 
 @end

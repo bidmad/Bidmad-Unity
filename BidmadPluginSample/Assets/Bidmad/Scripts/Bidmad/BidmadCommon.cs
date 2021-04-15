@@ -15,7 +15,7 @@ public enum BidmadTrackingAuthorizationStatus
 
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "2.6.0";
+    string UNITY_PLUGIN_VERSION = "2.7.0";
 #if UNITY_IOS
     [DllImport("__Internal")]
     private static extern void _bidmadSetDebug(bool isDebug);
@@ -24,10 +24,13 @@ public class BidmadCommon
     private static extern void _bidmadSetGgTestDeviceid(string deviceId);
 
     [DllImport("__Internal")]
-    private static extern void _bidmadSetGdprConsent(bool consent, bool useArea);
+    private static extern void _bidmadSetGDPRSetting(bool consent);
 
     [DllImport("__Internal")]
-    private static extern int _bidmadGetGdprConsent(bool useArea);
+    private static extern void _bidmadSetUseArea(bool useArea);
+
+    [DllImport("__Internal")]
+    private static extern int _bidmadGetGdprConsent();
 
     [DllImport("__Internal")]
     private static extern void _bidmadReqAdTrackingAuthorization();
@@ -83,7 +86,8 @@ public class BidmadCommon
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            _bidmadSetGdprConsent(consent, useArea);
+            _bidmadSetGDPRSetting(consent);
+            _bidmadSetUseArea(useArea);
         }
 
 #elif UNITY_ANDROID
@@ -114,7 +118,7 @@ public class BidmadCommon
              * UNKWON(-1)
              * UNUSE(-2) 
              */
-            result = _bidmadGetGdprConsent(useArea);
+            result = _bidmadGetGdprConsent();
             return result;
         }
         else
@@ -137,7 +141,7 @@ public class BidmadCommon
             {
                 AndroidJavaObject context = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
                 javaConsentClassInstance = javaConsentClass.CallStatic<AndroidJavaObject>("unityInstatnce", context, useArea);
-                result = javaConsentClassInstance.Call<int>("getGdprConsentForUnity");
+                result = javaConsentClassInstance.Call<int>("getGdprConsentForOtherPlatform");
             }
 
             return result;

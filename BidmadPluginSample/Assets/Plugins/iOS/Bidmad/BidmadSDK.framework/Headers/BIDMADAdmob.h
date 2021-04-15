@@ -19,7 +19,6 @@
 #import "UIButton+circle.h"
 #if __has_include("GoogleMobileAds/GoogleMobileAds.h")
 #import "GoogleMobileAds/GoogleMobileAds.h"
-#import <PersonalizedAdConsent/PersonalizedAdConsent.h>
 #define GOOGLESDK_EXIST
 #endif
 
@@ -57,6 +56,6 @@
 - (void)gogoAppOpenAd;
 
 - (void)setTestDevice:(NSString *) deviceId;
-- (void)setGDPRData;
+//- (void)setGDPRData;
 
 @end

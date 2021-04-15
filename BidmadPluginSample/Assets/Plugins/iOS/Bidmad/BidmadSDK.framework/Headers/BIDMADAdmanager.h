@@ -44,6 +44,6 @@
 - (void)gogoInterstitial:(UIViewController *) parentViewController;
 - (void)gogoRewardVideo;
 - (void)setTestDevice:(NSString *)deviceId;
-- (void)setGDPRData;
+//- (void)setGDPRData;
 
 @end

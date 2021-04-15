@@ -301,3 +301,8 @@ Function|Description
 public static void reqAdTrackingAuthorization(Action<BidmadTrackingAuthorizationStatus> callback)| App Tracking Transparency Displays the approval request popup and passes the result to the callback.
 public static void setAdvertiserTrackingEnabled(bool enable)| Set the result for app tracking transparency approval request pop-up consent/rejection obtained with a function other than reqAdTrackingAuthorization.
 public static bool getAdvertiserTrackingEnabled()| Set app tracking transparency approval request popup inquires the result of consent/rejection.
+
+----
+### Reference
+
+- [GDPR Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Unity-GDPR-Guide-%5BENG%5D)
