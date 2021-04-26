@@ -4,21 +4,20 @@ repositories {
     jcenter()
     mavenCentral()
     maven {
-        url = uri("https://maven.pkg.github.com/bidmad/Bidmad-Android")
-        credentials {
-            username = 'bidmad'
-            password = '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'
+        url "s3://bidmad-sdk"
+        credentials(AwsCredentials) {
+            accessKey "AKIAWNMRMGA2MIX2A2PZ"
+            secretKey "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"
         }
-    }
+    } //bidmad
 }
 
 dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation ('com.adop.sdk:bidmad-androidx-g:1.0.7'){
+    implementation ('com.adop.sdk:bidmad-androidx-g:1.1.0'){
       exclude group: "com.google.code.gson", module: "gson"
     }
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'ad.helper.openbidding:admob-obh-g:1.0.0'
 }
 
 android {
