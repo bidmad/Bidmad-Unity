@@ -1,3 +1,10 @@
+# Version 2.7.1
+#### Changes
+- Android Repository Change
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx-g 1.1.0
+- iOS : BidmadSDK.framework 2.6.0
+
 # Version 2.7.0
 #### Changes
 - GDPR Function Added (for Google Ad Networks)
