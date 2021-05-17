@@ -5,7 +5,7 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 
 ## Getting started
 - [Download the latest sample project](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases/download/2.7.1/BidmadUnityPlugin_2.7.2.unitypackage)
+- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases/download/2.7.2/BidmadUnityPlugin_2.7.2.unitypackage)
 
 ### 1. Add Plugin
 #### 1.1 Android
