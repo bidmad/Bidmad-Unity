@@ -5,7 +5,7 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 
 ## 시작하기
 - [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.7.1/BidmadUnityPlugin_2.7.1.unitypackage)
+- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.7.1/BidmadUnityPlugin_2.7.2.unitypackage)
 
 ### 1. Plugin 추가하기
 #### 1.1 Android
@@ -285,6 +285,7 @@ public BidmadReward(string zoneId)|BidmadReward 생성자, ZoneId를 설정합�
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.
 public void show()|Load한 광고를 노출 시킵니다.
 public bool isLoaded()|광고가 Load된 상태인지 체크합니다.
+public void setUserId(string id)|서버측 인증이 필요한 경우 호출합니다. 일부 네트워크에서만 동작하며, 사용이 필요한 경우 문의 바랍니다. (Android Only)
 public void setRewardLoadCallback(Action callback)|Action을 등록했다면 보상형광고를 Load 했을 때 등록한 Action을 실행합니다.
 public void setRewardShowCallback(Action callback)|Action을 등록했다면 보상형광고를 Show 했을 때 등록한 Action을 실행합니다.
 public void setRewardFailCallback(Action callback)|Action을 등록했다면 ZoneId를 통한 보상형광고 Load가 실패 했을 때 등록한 Action을 실행합니다.

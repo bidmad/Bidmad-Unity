@@ -5,7 +5,7 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 
 ## Getting started
 - [Download the latest sample project](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases/download/2.7.1/BidmadUnityPlugin_2.7.1.unitypackage)
+- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases/download/2.7.1/BidmadUnityPlugin_2.7.2.unitypackage)
 
 ### 1. Add Plugin
 #### 1.1 Android
@@ -285,6 +285,7 @@ public BidmadReward(string zoneId)|This is the BidmadReward constructor, Set the
 public void load()|Request an ad with the ZoneId entered in the constructor.
 public void show()|Display the loaded advertisement.
 public bool isLoaded()|Check if the ad is loaded.
+public void setUserId(string id)|Called when server-side verification is required. It only works on some networks, and if you need to use it, please contact us. (Android Only)
 public void setRewardLoadCallback(Action callback)|If an action is registered, the registered action is executed when the reward ad is loaded.
 public void setRewardShowCallback(Action callback)|If an action is registered, the registered action is executed when the reward ad is shown.
 public void setRewardFailCallback(Action callback)|If an Action is registered, the registered Action is executed when the load of reward ad through ZoneId fails.
