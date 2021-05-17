@@ -67,7 +67,19 @@ public class BidmadReward
 #endif
 	}
 
-	public void load()
+    public void setUserId(string userId)
+    {
+        //Only Android Support
+#if UNITY_IOS
+#elif UNITY_ANDROID
+        if (javaClassInstance != null)
+        {
+            javaClassInstance.Call("setUserId", userId);
+        }
+#endif
+    }
+
+    public void load()
 	{
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)

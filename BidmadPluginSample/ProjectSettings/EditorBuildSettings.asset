@@ -7,14 +7,14 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Main.unity
-    guid: 5d848aa074a854bfbb6bd353348393e8
-  - enabled: 1
-    path: Assets/Scenes/Reward.unity
-    guid: 5fe28f1e77a32412ab0ebe5e726a4690
-  - enabled: 1
-    path: Assets/Scenes/Interstitial.unity
-    guid: 832c88d37d22048a6ae79d16ae5c4bce
+    guid: 3bca382ab9ee74cd0a3612794fd7f67e
   - enabled: 1
     path: Assets/Scenes/Banner.unity
-    guid: 1d213916258364637bddd229e4b6ce89
+    guid: c0e0be054a7d6411092dca1660aa8c02
+  - enabled: 1
+    path: Assets/Scenes/Interstitial.unity
+    guid: 973e137ced3044e1f9eab2f0728096de
+  - enabled: 1
+    path: Assets/Scenes/Reward.unity
+    guid: 1710d109746954a4e8d433d366b84523
   m_configObjects: {}
