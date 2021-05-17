@@ -103,7 +103,7 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 
 #### 2.3 보상형
 
-- 보상형광고를 요청하기 위해 BidmadInterstitial를 생성합니다.
+- 보상형광고를 요청하기 위해 BidmadReward 생성합니다.
 - 보상형광고를 노출하기전에 isLoaded를 통해 광고 로드 여부를 체크합니다.
 ```cpp
     static BidmadReward reward;

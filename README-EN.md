@@ -103,7 +103,7 @@ If you're looking for a guide to the privacy requirements of the Apple Store, [s
 
 #### 2.3 Reward
 
-- BidmadInterstitial is created to request a reward ad.
+- BidmadReward is created to request a reward ad.
 - Before displaying an reward ad, check whether the ad is loaded through isLoaded.
 ```cpp
     static BidmadReward reward;
@@ -277,7 +277,7 @@ public void setInterstitialCloseCallback(Action callback)|If an action is regist
 
 #### 4.3 Reward
 
-*Rewarded ads are processed through BidmadBanner, and this is a list of functions for this.
+*Rewarded ads are processed through BidmadReward, and this is a list of functions for this.
 
 Function|Description
 ---|---
