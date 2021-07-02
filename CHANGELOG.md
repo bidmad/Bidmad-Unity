@@ -1,3 +1,13 @@
+# Version 2.8.0
+#### Changes
+- Update Ad Network SDK Version
+- Changed to Minimum build gradle plugin version 3.4.3 (Android Only)
+- Add Pangle Network
+- Bug Fix 
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx-g 1.3.0
+- iOS : BidmadSDK.framework 2.7.0
+
 # Version 2.7.1
 #### Changes
 - Add setUserId interface for server-side verification to reward AD (Android Only)

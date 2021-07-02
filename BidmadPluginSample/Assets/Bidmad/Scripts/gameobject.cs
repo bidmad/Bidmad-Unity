@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class gameobject : MonoBehaviour
 {
+    BidmadGoogleGDPR gGdpr;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,21 @@ public class gameobject : MonoBehaviour
         {
             Destroy(bidmadManager);
         }
+
+        gGdpr = new BidmadGoogleGDPR();
+        gGdpr.reset();
+        gGdpr.setConsentInfoUpdateSuccessCallback(onConsentInfoUpdateSuccess);
+        gGdpr.setConsentInfoUpdateFailureCallback(onConsentInfoUpdateFailure);
+        gGdpr.setConsentFormLoadSuccessCallback(onConsentFormLoadSuccess);
+        gGdpr.setConsentFormLoadFailureCallback(onConsentFormLoadFailure);
+        gGdpr.setConsentFormDismissedCallback(onConsentFormDismissed);
+
+        gGdpr.setDebug("24CA94DDEB5A9979BF934BB443157007", true);
+        gGdpr.requestConsentInfoUpdate();
+
+        BidmadCommon.setGdprConsent(false, true);
+        Debug.Log("getGdprConsent : " + BidmadCommon.getGdprConsent(true));
+        Debug.Log("getGdprConsent : " + BidmadCommon.getGdprConsent(false));
 
         #if UNITY_IOS
         BidmadCommon.reqAdTrackingAuthorization(adTrackingAuthCallback);
@@ -49,4 +65,34 @@ public class gameobject : MonoBehaviour
         }
     }
     #endif
+
+    void onConsentInfoUpdateSuccess()
+    {
+        Debug.Log("onConsentInfoUpdateSuccess callback : " + gGdpr.isConsentFormAvailable());
+        if(gGdpr.isConsentFormAvailable()){
+            gGdpr.loadForm();
+        }
+    }
+
+    void onConsentInfoUpdateFailure(string msg)
+    {
+        Debug.Log("onConsentInfoUpdateFailure callback : " + msg);
+    }
+
+    void onConsentFormLoadSuccess()
+    {
+        Debug.Log("onConsentFormLoadSuccess callback : " + gGdpr.getConsentStatus());
+        if(gGdpr.getConsentStatus() == 1)
+            gGdpr.showForm();
+    }
+
+    void onConsentFormLoadFailure(string msg)
+    {
+        Debug.Log("onConsentFormLoadFailure callback : " + msg);
+    }
+
+    void onConsentFormDismissed(string msg)
+    {
+        Debug.Log("onConsentFormDismissed callback : " + msg);
+    }
 }

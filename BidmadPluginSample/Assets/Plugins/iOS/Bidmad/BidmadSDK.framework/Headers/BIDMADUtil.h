@@ -65,6 +65,8 @@
 
 + (NSInteger) iOSMajorSystemVersion;
 
++ (UIWindow*) fetchKeyWindow;
+
 + (BOOL) isIphoneX;
 
 + (BOOL) isOverIOS11;
@@ -72,5 +74,13 @@
 + (NSString *) getCurrentRegionInfo;
 
 + (UIViewController*) topMostController;
+
++ (NSData*)bidmadResourceDataFetcherWithAssetName: (NSString*)assetName extension: (NSString*)extension;
+
++ (void)compassDataFetcherWithZoneId: (NSString *)zoneId completionBlock:(void (^)(NSDictionary *))completionBlock;
+
++ (void) sendLog :(NSDictionary *)info :(NSString *)advertisementType :(NSString *)logType :(NSString*)sessionId :(NSString*)realZoneId;
+
++ (void) sendLog :(NSDictionary *)info : (NSString *)advertisementType : (NSString *)logType : (NSString *)recvSessionId;
 
 @end

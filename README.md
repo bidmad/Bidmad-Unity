@@ -5,7 +5,7 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 
 ## 시작하기
 - [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases/download/2.7.2/BidmadUnityPlugin_2.7.2.unitypackage)
+- [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases)
 
 ### 1. Plugin 추가하기
 #### 1.1 Android
@@ -33,7 +33,29 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     <string>ca-app-pub-XXXXXX~XXXXXX</string>
 ```
 4. 2019.03 이상 버전에서는 수동으로 Unity-iPhone 타겟의 Build Phases > Capy Bundle Resources에 bidmad_assets.bundle를 추가합니다.<br>
-5. [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업 및 SKAdNetwork를 적용합니다.<br>
+5. 다음 라이브러리를 추가하십시오. ( 타겟 빌드 세팅 → Build Phases 의 "Link Binary With Libraries" 내부에, 다음 라이브러리를 추가해주십시오) <br>
+- StoreKit.framework <br>
+- MobileCoreServices.framework <br>
+- WebKit.framework <br>
+- MediaPlayer.framework <br>
+- CoreMedia.framework <br>
+- AVFoundation.framework <br>
+- CoreTelephony.framework <br>
+- SystemConfiguration.framework <br>
+- AdSupport.framework <br>
+- CoreMotion.framework <br>
+- Accelerate.framework <br>
+- libresolv.9.tbd <br>
+- libc++.tbd <br>
+- libz.tbd <br>
+- libsqlite3.tbd <br>
+- libbz2.tbd <br>
+- libxml2.tbd <br>
+- libiconv.tbd <br>
+- libc++abi.tbd <br>
+- Security.framework <br>
+
+6. [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업 및 SKAdNetwork를 적용합니다.<br>
 
 *Apple Store에서 요구하는 개인정보 보호에 관한 가이드가 필요한 경우 [이곳](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BKOR%5D)을 참고하세요.
 
@@ -248,7 +270,7 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 Function|Description
 ---|---
 public BidmadBanner(string zoneId, float _y)|BidmadBanner 생성자, ZoneId와 배너 높이 위치 값(y)을 설정합니다.
-public BidmadBanner(string zoneId, float _x, float _y)|BidmadBanner 생성자, ZoneId와 배너의 위치정보 X,Y를 설정합니다.(Only Android support)
+public BidmadBanner(string zoneId, float _x, float _y)|BidmadBanner 생성자, ZoneId와 배너의 위치정보 X,Y를 설정합니다.
 public void setRefreshInterval(int time)|Banner Refresh 주기를 설정합니다.(60s~120s)
 public void removeBanner()|노출된 배너를 제거합니다.
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.

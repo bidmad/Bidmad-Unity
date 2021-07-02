@@ -12,6 +12,7 @@
 #import "BIDMADInterstitial.h"
 #import "BIDMADRewardVideo.h"
 #import "BIDMADAppOpenAd.h"
+#import "BIDMADRewardInterstitial.h"
 
 #import "BIDMADSetting.h"
 #import "BIDMADUtil.h"
@@ -22,10 +23,13 @@
 #define GOOGLESDK_EXIST
 #endif
 
+#define REWARD_INTERSTITIAL_TEST_AD @"ca-app-pub-3940256099942544/6978759866"
+
 @class BIDMADBanner;
 @class BIDMADInterstitial;
 @class BIDMADRewardVideo;
 @class BIDMADAppOpenAd;
+@class BIDMADRewardInterstitial;
 
 #ifdef GOOGLESDK_EXIST
 @interface BIDMADAdmob : NSObject<GADBannerViewDelegate, GADFullScreenContentDelegate>
@@ -34,20 +38,23 @@
 @interface BIDMADAdmob : NSObject
 #endif
 
-@property (strong,nonatomic) BIDMADBanner* banner;
-@property (strong,nonatomic) BIDMADInterstitial* interstitial;
-@property (strong,nonatomic) BIDMADRewardVideo* rewardVideo;
-@property (strong,nonatomic) BIDMADAppOpenAd * appOpenAd;
+@property (weak,nonatomic) BIDMADBanner* banner;
+@property (weak,nonatomic) BIDMADInterstitial* interstitial;
+@property (weak,nonatomic) BIDMADRewardVideo* rewardVideo;
+@property (weak,nonatomic) BIDMADAppOpenAd * appOpenAd;
 
 - (id)initWithAdBanner:(NSDictionary *)dic bidmadbanner:(BIDMADBanner *)banner;
 - (id)initWithInterstitial:(NSDictionary *)dic bidmadInterstitial:(BIDMADInterstitial *)interstitial;
 - (id)initWithRewardVideo:(NSDictionary *)dic bidmadReward:(BIDMADRewardVideo *)rewardVideo userId:(NSString *) userId;
 - (id)initWithAppOpenAd:(NSDictionary *)dic bidmadAppOpenAd:(BIDMADAppOpenAd *)appOpenAd;
+- (id)initWithRewardInterstitial:(NSDictionary *)dic bidmadInterstitial:(BIDMADRewardInterstitial *)rewardInterstitialArg;
 
 - (void)showAdmobBanner:(UIViewController *)pvc bannerContainer:(UIView*)bannerContainer;
 - (void)showAdmobInterstitial:(UIViewController *)pvc;
 - (void)showAdmobRewardVideo: (UIViewController *)pvc;
 - (void)showAdmobAppOpenAd: (UIViewController *)pvc;
+- (void)loadAdmobRewardInterstitial:(UIViewController *)pvc;
+- (void)showAdmobRewardInterstitial;
 
 - (void)removeBannerAds;
 - (void)removeInterstitialAds;

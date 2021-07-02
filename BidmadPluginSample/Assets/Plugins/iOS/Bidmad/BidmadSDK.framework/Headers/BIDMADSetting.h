@@ -29,6 +29,7 @@
 #define IRONSOURCE              @"defa83bc-d2e0-11ea-8e02-021baddf8c08"
 #define ADFIT                   @"5e0ce4ec-57ec-4dbd-9703-dc330d027c40"
 #define TAPJOY                  @"6c470ac8-6069-11eb-8e02-021baddf8c08"
+#define PANGLE                  @"640ab9f2-d8b8-11eb-8e02-021baddf8c08"
 
 
 #define COMPASS_SERVING         @"https://compass.adop.cc/serving/ms.php"
@@ -68,6 +69,7 @@ typedef enum
 typedef enum     
 {
     banner_320_50 = 3747,
+    banner_320_100,
     banner_300_250
 }bannerSizeType;
 

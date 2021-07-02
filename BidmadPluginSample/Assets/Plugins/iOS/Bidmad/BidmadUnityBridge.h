@@ -25,6 +25,7 @@ extern "C" {
 
     /*Banner*/
     void _bidmadSetRefreshInterval(const char* zoneId, int time);
+    void _bidmadNewInstanceBannerAutoCenter(const char* zoneId, float _y);
     void _bidmadNewInstanceBanner(const char* zoneId, float _x, float _y);
     void _bidmadLoadBanner(const char* zoneId);
     void _bidmadRemoveBanner(const char* zoneId);

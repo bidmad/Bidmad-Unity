@@ -14,15 +14,29 @@
 #import "BIDMADAdmob.h"
 #import "BIDMADUnityAds.h"
 #import "BIDMADAdmanager.h"
-//#import "BIDMADAdFit.h"
+#import "BIDMADPangleBanner.h"
 
 @protocol BIDMADBannerDelegate;
-@interface BIDMADBanner : UIView
+
+@protocol BIDMADBannerInnerDelegate <NSObject>
+
+@optional
+
+- (void)onBannerAllFail:(BIDMADBanner *)core;
+- (void)onBannerError:(BIDMADBanner *)core code:(NSString *)error failType:(NSString*)failType current:(NSDictionary*)currentDic passbackStr:(NSString*) passBackStr passback:(NSDictionary*) passbackDic;
+- (void)onBannerClosed:(BIDMADBanner *)core current:(NSDictionary*) currentDic;
+- (void)onBannerLoad:(BIDMADBanner *)core current:(NSDictionary*) currentDic;
+- (void)onBannerClick:(BIDMADBanner*) core current:(NSDictionary*) currentDic;
+
+@end
+
+@interface BIDMADBanner : UIView<BIDMADBannerInnerDelegate>
 
 @property (assign, nonatomic) SEL requestSelector;
 @property (strong, nonatomic) NSDictionary* ads_dic;
 @property (nonatomic) bannerSizeType bannerType;
 @property (strong, nonatomic) id<BIDMADBannerDelegate> delegate;
+@property (strong, nonatomic) id<BIDMADBannerInnerDelegate> innerDelegate;
 
 @property (strong, nonatomic) NSDictionary* ecmp_rev_info;
 @property (strong, nonatomic) NSDictionary* area_info;
@@ -36,8 +50,6 @@
 
 @property (nonatomic) BOOL isLabelServiceAdmin;
 
-@property (nonatomic) float arpmYpoint;
-
 @property (nonatomic) NSString* realZoneId;
 
 @property (nonatomic) NSString* zoneID;
@@ -46,9 +58,18 @@
 
 @property (nonatomic, strong) NSString* houseBannerImgPath;
 
-/// INITIALIZE ADS
-- (id)initWithParentViewController:(UIViewController *)parentVC adsPosition:(CGPoint)pointn bannerSize:(bannerSizeType) bannerTypeParam;
-- (id)initWithParentViewController:(UIViewController *)parentVC rootView:(UIView *)view    bannerSize:(bannerSizeType) bannerTypeParam;
+@property (nonatomic) BOOL isRepeat; //default YES
+
+@property (nonatomic, strong) NSString* currentAdNetwork;
+
+/// Banner Size Parameter is no longer supported, Please use initWithParentViewController:(UIViewController *):(CGPoint)
+- (id)initWithParentViewController:(UIViewController *)parentVC adsPosition:(CGPoint)point bannerSize:(bannerSizeType)bannerTypeParam __deprecated;
+/// Banner Size Parameter is no longer supported, Please use initWithParentViewController:(UIViewController *):(UIView *)
+- (id)initWithParentViewController:(UIViewController *)parentVC rootView:(UIView *)view bannerSize:(bannerSizeType) bannerTypeParam __deprecated;
+
+- (id)initWithParentViewController:(UIViewController *)parentVC adsPosition:(CGPoint)point;
+- (id)initWithParentViewController:(UIViewController *)parentVC rootView:(UIView *)view;
+- (id)initWithParentViewController:(UIViewController *)parentVC yPoint:(int)yPoint;
 /// REQUEST ADS
 - (void)requestBannerView;
 /// DELETE ADS
@@ -67,14 +88,8 @@
 
 - (void)BIDMADBannerAllFail:(BIDMADBanner *)core;
 - (void)BIDMADBannerError:(BIDMADBanner *)core code:(NSString *)error;
-/// CLOSE BANNER VIEW
 - (void)BIDMADBannerClosed:(BIDMADBanner *)core;
-/// SHOW BANNER VIEW
-- (void)BIDMADBannerShow:(BIDMADBanner *)core;
-/// LOAD BANNER VIEW
 - (void)BIDMADBannerLoad:(BIDMADBanner *)core;
-// 배너가 변경될째 주는 Event
-- (void)BIDMADBannerIntervalClosed:(BIDMADBanner*) core;
 - (void)BIDMADBannerClick:(BIDMADBanner*) core;
 
 @end

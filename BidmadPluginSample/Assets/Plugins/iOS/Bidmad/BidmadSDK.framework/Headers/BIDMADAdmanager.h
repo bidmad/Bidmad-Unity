@@ -28,9 +28,9 @@
 #else
 @interface BIDMADAdmanager : NSObject
 #endif
-@property (strong,nonatomic) BIDMADBanner* banner;
-@property (strong,nonatomic) BIDMADInterstitial* interstitial;
-@property (strong,nonatomic) BIDMADRewardVideo* rewardVideo;
+@property (weak,nonatomic) BIDMADBanner* banner;
+@property (weak,nonatomic) BIDMADInterstitial* interstitial;
+@property (weak,nonatomic) BIDMADRewardVideo* rewardVideo;
 
 - (id)initWithAdBanner:(NSDictionary *)dic bidmadbanner:(BIDMADBanner *)banner;
 - (id)initWithInterstitial:(NSDictionary *)dic bidmadInterstitial:(BIDMADInterstitial *)interstitial;

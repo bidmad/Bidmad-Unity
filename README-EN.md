@@ -5,7 +5,7 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 
 ## Getting started
 - [Download the latest sample project](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
-- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases/download/2.7.2/BidmadUnityPlugin_2.7.2.unitypackage)
+- [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases)
 
 ### 1. Add Plugin
 #### 1.1 Android
@@ -33,7 +33,28 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     <string>ca-app-pub-XXXXXX~XXXXXX</string>
 ```
 4. For 2019.03 and later versions, manually add bidmad_assets.bundle to [Build Phases > Capy Bundle Resources] of Unity-iPhone target.
-5. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up and SKAdNetwork.
+5. Add the following libraries (Go to Target Build Setting → Build Phases and under the "Link Binary With Libraries," please add the following list of libraries) <br>
+- StoreKit.framework <br>
+- MobileCoreServices.framework <br>
+- WebKit.framework <br>
+- MediaPlayer.framework <br>
+- CoreMedia.framework <br>
+- AVFoundation.framework <br>
+- CoreTelephony.framework <br>
+- SystemConfiguration.framework <br>
+- AdSupport.framework <br>
+- CoreMotion.framework <br>
+- Accelerate.framework <br>
+- libresolv.9.tbd <br>
+- libc++.tbd <br>
+- libz.tbd <br>
+- libsqlite3.tbd <br>
+- libbz2.tbd <br>
+- libxml2.tbd <br>
+- libiconv.tbd <br>
+- libc++abi.tbd <br>
+- Security.framework <br>
+6. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up and SKAdNetwork.
 
 If you're looking for a guide to the privacy requirements of the Apple Store, [see here](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BENG%5D).
 
@@ -248,7 +269,7 @@ If you're looking for a guide to the privacy requirements of the Apple Store, [s
 Function|Description
 ---|---
 public BidmadBanner(string zoneId, float _y)|This is the BidmadBanner constructor. set the ZoneId and banner height position value (y).
-public BidmadBanner(string zoneId, float _x, float _y)|This is the BidmadBanner constructor, set the ZoneId and banner position x,y.(Only Android support)
+public BidmadBanner(string zoneId, float _x, float _y)|This is the BidmadBanner constructor, set the ZoneId and banner position x,y.
 public void setRefreshInterval(int time)|Set the banner refresh cycle.(60s~120s)
 public void removeBanner()|Remove the exposed banner.
 public void load()|Request an ad with the ZoneId entered in the constructor.

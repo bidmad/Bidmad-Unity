@@ -11,6 +11,9 @@ public class BidmadBanner
     private static extern void _bidmadNewInstanceBanner(string zoneId, float _x, float _y);
 
     [DllImport("__Internal")]
+    private static extern void _bidmadNewInstanceBannerAutoCenter(string zoneId, float _y);
+
+    [DllImport("__Internal")]
     private static extern void _bidmadSetRefreshInterval(string zoneId, int time);
 
     [DllImport("__Internal")]
@@ -38,7 +41,7 @@ public class BidmadBanner
     {
         mZoneId = zoneId;
 #if UNITY_IOS
-        _bidmadNewInstanceBanner(zoneId, 0, _y);
+        _bidmadNewInstanceBannerAutoCenter(zoneId, _y);
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
@@ -63,8 +66,7 @@ public class BidmadBanner
         mZoneId = zoneId;
         setBannerPosition = true;
 #if UNITY_IOS
-        //iOS _x Position not support
-        _bidmadNewInstanceBanner(zoneId, 0, _y);
+        _bidmadNewInstanceBanner(zoneId, _x, _y);
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {

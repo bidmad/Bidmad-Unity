@@ -73,6 +73,7 @@ return _sharedObject; \
 }
 
 - (void)BIDMADRewardVideoAllFail:(BIDMADRewardVideo *)core{
+    NSLog(@"Bidmad FAIL *****************");
     UnitySendMessage("BidmadManager", "OnRewardFail", [core.zoneID UTF8String]);
 }
 
@@ -158,6 +159,14 @@ void _bidmadSetRefreshInterval(const char* zoneId, int time){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     UnityBanner* banner = [UnityBanner getIntance:_zoneID]; 
     [banner setRefreshInterval:time];
+}
+
+void _bidmadNewInstanceBannerAutoCenter(const char* zoneId, float _y) {
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+
+    UIViewController* pRootViewController = UnityGetGLViewController();
+    UnityBanner* banner = [[UnityBanner alloc]initWithZoneId:_zoneID parentVC:pRootViewController adYPoint:(int)_y];
+    [banner setDelegate:[BidmadUnityBridge sharedInstance]];
 }
 
 void _bidmadNewInstanceBanner(const char* zoneId, float _x, float _y) {
@@ -273,7 +282,7 @@ void _bidmadSetDebug(bool isDebug) {
 
 void _bidmadSetGgTestDeviceid(const char* _deviceId){
     NSString* deviceId = [NSString stringWithUTF8String:_deviceId];
-    __testDeviceId = deviceId;
+    [[UnityCommon sharedInstance] setGoogleTestId:deviceId];
 }
 
 void _bidmadSetUseArea(bool useArea){

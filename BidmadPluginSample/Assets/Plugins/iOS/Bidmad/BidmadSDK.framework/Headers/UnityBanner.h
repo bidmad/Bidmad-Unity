@@ -23,6 +23,7 @@ static NSMutableDictionary* BidmadBannerDic;
 }
 
 - (id)initWithZoneId:(NSString *)zoneId parentVC:(UIViewController *)parentVC adsPosition:(CGPoint)point bannerSize:(bannerSizeType)bannerTypeParam;
+- (id)initWithZoneId:(NSString *)zoneId parentVC:(UIViewController *)parentVC adYPoint:(int)yPoint;
 + (id)getIntance:(NSString *)zoneId;
 - (void)setZoneID:(NSString *)zoneId;
 - (void)setDelegate:(id) param;

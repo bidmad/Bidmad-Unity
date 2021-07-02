@@ -13,6 +13,7 @@
 #import "BIDMADAdmanager.h"
 #import "BIDMADAdmob.h"
 #import "BIDMADAtomInterstitial.h"
+#import "BIDMADPangleInterstitial.h"
 
 @protocol BIDMADInterstitialDelegate <NSObject>
 
@@ -94,6 +95,8 @@
 - (void)removeInterstitialADS;
 
 - (void)sendLog :(NSDictionary *) info :(NSString *) advertisementType :(NSString *) logType;
+
+- (void) sendLog :(NSDictionary *) info :(NSString *) advertisementType :(NSString *) logType :(NSString *)recvSessionId;
 
 @end
 

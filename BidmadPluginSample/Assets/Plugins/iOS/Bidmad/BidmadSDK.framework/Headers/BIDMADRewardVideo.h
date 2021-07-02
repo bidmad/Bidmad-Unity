@@ -16,6 +16,7 @@
 #import "BIDMADUnityAds.h"
 #import "BIDMADAppLoving.h"
 #import "BIDMADInterstitial.h"
+#import "BIDMADPangleReward.h"
 
 @protocol BIDMADRewardVideoDelegate;
 
@@ -84,7 +85,11 @@
 
 - (void)selectAds:(NSDictionary *)lv_dic;
 
+- (void) removeRewardADS;
+
 - (void) sendLog :(NSDictionary *) info :(NSString *) advertisementType :(NSString *) logType;
+
+- (void) sendLog :(NSDictionary *) info :(NSString *) advertisementType :(NSString *) logType :(NSString *)recvSessionId;
 
 - (void) releaseBidmadResource;
 
