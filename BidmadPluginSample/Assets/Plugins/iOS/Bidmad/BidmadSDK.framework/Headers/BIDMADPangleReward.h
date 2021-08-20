@@ -16,8 +16,6 @@
 #define PANGLE_REWARD_TEST_ID_HORIZONTAL @"946273166"
 #define PANGLE_REWARD_TEST_APPID @"5185174"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface BIDMADPangleReward : NSObject<BURewardedVideoAdDelegate>
 
 @property (weak,nonatomic) BIDMADRewardVideo* rewardVideo;
@@ -28,5 +26,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeRewardAds;
 
 @end
-
-NS_ASSUME_NONNULL_END

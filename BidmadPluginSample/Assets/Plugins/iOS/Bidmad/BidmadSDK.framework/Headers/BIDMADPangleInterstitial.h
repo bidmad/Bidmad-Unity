@@ -16,8 +16,6 @@
 #define PANGLE_INTERSTITIAL_TEST_ID_HORIZONTAL @"946273143"
 #define PANGLE_INTERSTITIAL_TEST_APPID @"5185174"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface BIDMADPangleInterstitial : NSObject<BUFullscreenVideoAdDelegate>
 
 @property (weak,nonatomic) BIDMADInterstitial* interstitial;
@@ -28,5 +26,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeInterstitialAds;
 
 @end
-
-NS_ASSUME_NONNULL_END

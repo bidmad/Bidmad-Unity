@@ -31,4 +31,4 @@ static NSMutableDictionary* BidmadRewardDic;
 
 @end
 
-#endif /* UnityReward_h */
+#endif

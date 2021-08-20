@@ -11,7 +11,6 @@
 #import "BIDMADBanner.h"
 #import "BIDMADInterstitial.h"
 #import "BIDMADRewardVideo.h"
-#import "BIDMADAppOpenAd.h"
 #import "BIDMADRewardInterstitial.h"
 
 #import "BIDMADSetting.h"
@@ -41,18 +40,15 @@
 @property (weak,nonatomic) BIDMADBanner* banner;
 @property (weak,nonatomic) BIDMADInterstitial* interstitial;
 @property (weak,nonatomic) BIDMADRewardVideo* rewardVideo;
-@property (weak,nonatomic) BIDMADAppOpenAd * appOpenAd;
 
 - (id)initWithAdBanner:(NSDictionary *)dic bidmadbanner:(BIDMADBanner *)banner;
 - (id)initWithInterstitial:(NSDictionary *)dic bidmadInterstitial:(BIDMADInterstitial *)interstitial;
 - (id)initWithRewardVideo:(NSDictionary *)dic bidmadReward:(BIDMADRewardVideo *)rewardVideo userId:(NSString *) userId;
-- (id)initWithAppOpenAd:(NSDictionary *)dic bidmadAppOpenAd:(BIDMADAppOpenAd *)appOpenAd;
 - (id)initWithRewardInterstitial:(NSDictionary *)dic bidmadInterstitial:(BIDMADRewardInterstitial *)rewardInterstitialArg;
 
 - (void)showAdmobBanner:(UIViewController *)pvc bannerContainer:(UIView*)bannerContainer;
 - (void)showAdmobInterstitial:(UIViewController *)pvc;
 - (void)showAdmobRewardVideo: (UIViewController *)pvc;
-- (void)showAdmobAppOpenAd: (UIViewController *)pvc;
 - (void)loadAdmobRewardInterstitial:(UIViewController *)pvc;
 - (void)showAdmobRewardInterstitial;
 
@@ -60,7 +56,6 @@
 - (void)removeInterstitialAds;
 - (void)gogoInterstitial;
 - (void)gogoRewardVideo;
-- (void)gogoAppOpenAd;
 
 - (void)setTestDevice:(NSString *) deviceId;
 //- (void)setGDPRData;

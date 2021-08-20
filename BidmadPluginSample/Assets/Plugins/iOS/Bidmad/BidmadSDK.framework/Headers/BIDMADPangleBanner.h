@@ -21,8 +21,6 @@
  When the 320x100 ad requests come in, pass onBannerError with reason being "Unsupported Ad Banner Size"
  */
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface BIDMADPangleBanner : NSObject<BUNativeExpressBannerViewDelegate>
 
 @property (weak,nonatomic) BIDMADBanner* banner;
@@ -42,5 +40,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)nativeExpressBannerAdViewDidCloseOtherController:(BUNativeExpressBannerView *)bannerAdView interactionType:(BUInteractionType)interactionType;
 
 @end
-
-NS_ASSUME_NONNULL_END

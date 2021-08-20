@@ -13,7 +13,6 @@
 #import "BIDMADAdmanager.h"
 #import "BIDMADAdmob.h"
 #import "BIDMADAtomInterstitial.h"
-#import "BIDMADPangleInterstitial.h"
 
 @protocol BIDMADInterstitialDelegate <NSObject>
 
@@ -39,7 +38,7 @@
 @required
 
 - (void)onInterstitialLoad:(BIDMADInterstitial *)core       current:(NSDictionary*) currentDic;
-- (void)onInterstitialError:(BIDMADInterstitial *)core code:(NSString *)error failType:(NSString*)failType current:(NSDictionary*)currentDic passbackStr:(NSString*) passBackStr passback:(NSDictionary*) passbackDic;
+- (void)onInterstitialError:(NSString *)error failType:(NSString *)failType;
 - (void)onInterstitialShow:(BIDMADInterstitial *)core       current:(NSDictionary*) currentDic;
 - (void)onInterstitialClick:(BIDMADInterstitial *)core      current:(NSDictionary*) currentDic;
 - (void)onInterstitialClose:(BIDMADInterstitial *)core      current:(NSDictionary*) currentDic;

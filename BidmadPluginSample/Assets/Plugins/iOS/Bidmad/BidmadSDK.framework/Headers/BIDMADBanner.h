@@ -12,9 +12,14 @@
 #import "BIDMADFacebook.h"
 #import "BIDMADAtom.h"
 #import "BIDMADAdmob.h"
-#import "BIDMADUnityAds.h"
+#import "BIDMADUnityAdsBanner.h"
 #import "BIDMADAdmanager.h"
 #import "BIDMADPangleBanner.h"
+
+#if __has_include(<AdFitSDK/AdFitSDK.h>) || __has_include("AdFitSDK.h")
+#import "BIDMADAdFit.h"
+#import <AdFitSDK/AdFitSDK.h>
+#endif
 
 @protocol BIDMADBannerDelegate;
 
@@ -23,7 +28,7 @@
 @optional
 
 - (void)onBannerAllFail:(BIDMADBanner *)core;
-- (void)onBannerError:(BIDMADBanner *)core code:(NSString *)error failType:(NSString*)failType current:(NSDictionary*)currentDic passbackStr:(NSString*) passBackStr passback:(NSDictionary*) passbackDic;
+- (void)onBannerError:(NSString *)error failType:(NSString *)failType;
 - (void)onBannerClosed:(BIDMADBanner *)core current:(NSDictionary*) currentDic;
 - (void)onBannerLoad:(BIDMADBanner *)core current:(NSDictionary*) currentDic;
 - (void)onBannerClick:(BIDMADBanner*) core current:(NSDictionary*) currentDic;

@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "BIDMADUtil.h"
-#import "FMMoveTableView.h"
-#import "FMMoveTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BIDMADLabelView : UIView<FMMoveTableViewDelegate,FMMoveTableViewDataSource,UIAlertViewDelegate>
+@interface BIDMADLabelView : UIView<UIAlertViewDelegate>
 
-@property (strong, nonatomic) IBOutlet FMMoveTableView *fmTableView;
+@property (strong, nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *adop_logo;
 
