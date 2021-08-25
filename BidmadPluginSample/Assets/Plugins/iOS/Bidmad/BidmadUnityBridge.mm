@@ -15,7 +15,7 @@ return _sharedObject; \
 
 #import "BidmadUnityBridge.h"
 
-@interface BidmadUnityBridge : NSObject<BIDMADBannerDelegate,BIDMADInterstitialDelegate,BIDMADRewardVideoDelegate, BIDMADUnityCommonDelegate, BIDMADGDPRforGoogleProtocol>
+@interface BidmadUnityBridge : NSObject<BIDMADBannerDelegate,BIDMADInterstitialDelegate,BIDMADRewardVideoDelegate, BIDMADUnityCommonDelegate, BIDMADGDPRforGoogleProtocol, BIDMADRewardInterstitialDelegate>
 + (BidmadUnityBridge *)sharedInstance;
 @end
 
@@ -27,7 +27,8 @@ return _sharedObject; \
     });
 }
 
-/** Banner Callback Start **/
+#pragma mark Banner Callback
+
 -(void)BIDMADBannerLoad:(BIDMADBanner *)core{
     UnitySendMessage("BidmadManager", "OnBannerLoad", [core.zoneID UTF8String]);
 }
@@ -40,9 +41,7 @@ return _sharedObject; \
     UnitySendMessage("BidmadManager", "OnBannerClick", [core.zoneID UTF8String]);
 }
 
-
-/** Banner Callback End **/
-/** Interstitial Callback Start **/
+#pragma mark Interstitial Callback
 
 -(void)BIDMADInterstitialLoad:(BIDMADInterstitial *)core{
     UnitySendMessage("BidmadManager", "OnInterstitialLoad", [core.zoneID UTF8String]);
@@ -60,8 +59,7 @@ return _sharedObject; \
     UnitySendMessage("BidmadManager", "OnInterstitialClose", [core.zoneID UTF8String]);
 }
 
-/** Interstitial Callback End **/
-/** Reward Callback Start **/
+#pragma mark Reward Callback
 
 -(void)BIDMADRewardVideoLoad:(BIDMADRewardVideo *)core
 {
@@ -92,8 +90,42 @@ return _sharedObject; \
     UnitySendMessage("BidmadManager", "OnRewardClose", [core.zoneID UTF8String]);
 }
 
-/** Reward Callback End **/
-/** Common Callback Start **/
+#pragma mark RewardInterstitial Callback
+
+- (void)BIDMADRewardInterstitialAllFail:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BidmadSDK Unity Bridge Callback → BIDMADRewardInterstitialAllFail");
+    UnitySendMessage("BidmadManager", "OnRewardInterstitialAllFail", [core.zoneID UTF8String]);
+}
+- (void)BIDMADRewardInterstitialLoad:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BidmadSDK Unity Bridge Callback → BIDMADRewardInterstitialLoad");
+    UnitySendMessage("BidmadManager", "OnRewardInterstitialLoad", [core.zoneID UTF8String]);
+}
+- (void)BIDMADRewardInterstitialClose:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BidmadSDK Unity Bridge Callback → BIDMADRewardInterstitialClose");
+    UnitySendMessage("BidmadManager", "OnRewardInterstitialClose", [core.zoneID UTF8String]);
+}
+- (void)BIDMADRewardInterstitialShow:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BidmadSDK Unity Bridge Callback → BIDMADRewardInterstitialShow");
+    UnitySendMessage("BidmadManager", "OnRewardInterstitialShow", [core.zoneID UTF8String]);
+}
+- (void)BIDMADRewardInterstitialComplete:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BidmadSDK Unity Bridge Callback → BIDMADRewardInterstitialComplete");
+    UnitySendMessage("BidmadManager", "OnRewardInterstitialComplete", [core.zoneID UTF8String]);
+}
+- (void)BIDMADRewardInterstitialClick:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BidmadSDK Unity Bridge Callback → BIDMADRewardInterstitialClick");
+    UnitySendMessage("BidmadManager", "OnRewardInterstitialClick", [core.zoneID UTF8String]);
+}
+- (void)BIDMADRewardInterstitialSuccess:(BIDMADRewardInterstitial *)core {
+    NSLog(@"BidmadSDK Unity Bridge Callback → BIDMADRewardInterstitialSuccess");
+    UnitySendMessage("BidmadManager", "OnRewardInterstitialComplete", [core.zoneID UTF8String]);
+}
+- (void)BIDMADRewardInterstitialSkipped:(BIDMADRewardInterstitial *) core {
+    NSLog(@"BidmadSDK Unity Bridge Callback → BIDMADRewardInterstitialSkipped");
+    UnitySendMessage("BidmadManager", "OnRewardInterstitialSkipped", [core.zoneID UTF8String]);
+}
+
+#pragma mark Common Callback
 
 - (void)BIDMADAdTrackingAuthorizationResponse:(NSString*)response
 {
@@ -101,11 +133,9 @@ return _sharedObject; \
     UnitySendMessage("BidmadManager", "OnAdTrackingAuthorizationResponse", [response UTF8String]);
 }
 
-/** Common Callback End **/
-/** GDPRforGoogle Callback Start **/
- 
-// "Error [Message : " + formError.getMessage() + "][Code : " + formError.getErrorCode() + "]"
+#pragma mark GDPRforGoogle Callback
 
+// "Error [Message : " + formError.getMessage() + "][Code : " + formError.getErrorCode() + "]"
 - (NSString *)errorArgumentGenerator:(NSError *)formError {
     NSString *errorArg;
     
@@ -147,8 +177,6 @@ return _sharedObject; \
 - (void)onConsentInfoUpdateSuccess {
     UnitySendMessage("BidmadManager", "onConsentInfoUpdateSuccess", "");
 }
-
-/** GDPRforGoogle Callback End **/
 
 @end
 
@@ -241,7 +269,9 @@ bool _bidmadIsLoadedInterstitial(const char* zoneId){
     return [interstitial isLoaded];
 }
 /** Interstitial Interface End **/
-/** Reward Interface Start **/
+
+#pragma mark Reward Interface
+
 void _bidmadNewInstanceReward(const char* zoneId) {
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
 
@@ -274,8 +304,31 @@ bool _bidmadIsLoadedReward(const char* zoneId){
     
     return [reward isLoaded];
 }
-/** Reward Interface End **/
-/** ETC Interface Start **/
+
+#pragma mark RewardInterstitial Interface
+
+void _bidmadNewInstanceRewardInterstitial(const char* zoneId) {
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+    [[UnityRewardInterstitial sharedInstance] bidmadNewInstanceRewardInterstitial:_zoneID withDelegate:[BidmadUnityBridge sharedInstance]];
+}
+
+void _bidmadLoadRewardInterstitial(const char* zoneId){
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+    [[UnityRewardInterstitial sharedInstance] bidmadLoadRewardInterstitial: _zoneID];
+}
+
+void _bidmadShowRewardInterstitial(const char* zoneId){
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+    [[UnityRewardInterstitial sharedInstance] bidmadShowRewardInterstitial: _zoneID];
+}
+
+bool _bidmadIsLoadedRewardInterstitial(const char* zoneId){
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+    return [[UnityRewardInterstitial sharedInstance] bidmadIsLoadedRewardInterstitial: _zoneID];
+}
+
+#pragma mark ETC Interface
+
 void _bidmadSetDebug(bool isDebug) {
     [[UnityCommon sharedInstance] setDebugMode:isDebug];
 }
@@ -313,8 +366,8 @@ bool _bidmadGetAdvertiserTrackingEnabled()
 {
     return [[UnityCommon sharedInstance] getAdvertiserTrackingEnabled];
 }
-/** ETC Interface End **/
-/** GDPRforGoogle Start **/
+
+#pragma mark GDPRforGoogle Interface
 
 void _bidmadGDPRforGoogleNewInstance(){
     [UnityGDPRforGoogle sharedInstance];
@@ -355,5 +408,3 @@ void _bidmadGDPRforGoogleReset(){
 void _bidmadGDPRforGoogleSetDelegate(){
     [[UnityGDPRforGoogle sharedInstance] setDelegate: [BidmadUnityBridge sharedInstance]];
 }
-
-/** GDPRforGoogle End **/

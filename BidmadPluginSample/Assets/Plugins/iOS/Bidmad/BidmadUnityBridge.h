@@ -15,6 +15,7 @@
 #import "BidmadSDK/UnityCommon.h"
 #import "BidmadSDK/BIDMADGDPR.h"
 #import "BidmadSDK/UnityGDPRforGoogle.h"
+#import "BidmadSDK/UnityRewardInterstitial.h"
 #import "BidmadSDK/BIDMADSetting.h"
 
 #ifdef __cplusplus
@@ -43,6 +44,12 @@ extern "C" {
     void _bidmadLoadRewardVideo(const char* zoneId);
     void _bidmadShowRewardVideo(const char* zoneId);
     bool _bidmadIsLoadedReward(const char* zoneId);
+
+    /*RewardInterstitial*/
+    void _bidmadNewInstanceRewardInterstitial(const char* zoneId) ;
+    void _bidmadLoadRewardInterstitial(const char* zoneId);
+    void _bidmadShowRewardInterstitial(const char* zoneId);
+    bool _bidmadIsLoadedRewardInterstitial(const char* zoneId);
 
     /*ETC*/
     void _bidmadSetDebug(bool isDebug); 
