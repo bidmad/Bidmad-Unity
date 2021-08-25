@@ -38,6 +38,8 @@ public class gameobject : MonoBehaviour
         Debug.Log("getGdprConsent : " + BidmadCommon.getGdprConsent(true));
         Debug.Log("getGdprConsent : " + BidmadCommon.getGdprConsent(false));
 
+        // BidmadCommon.setGgTestDeviceid("24CA94DDEB5A9979BF934BB443157007");
+
         #if UNITY_IOS
         BidmadCommon.reqAdTrackingAuthorization(adTrackingAuthCallback);
         #endif

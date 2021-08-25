@@ -1,3 +1,12 @@
+# Version 2.9.0
+#### Changes
+- Reward Interstitial Ad Type added
+- iOS minimum build version changed to iOS 11 or higher
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx-g 1.3.0
+- iOS : BidmadSDK.framework 2.9.1
+
 # Version 2.8.0
 #### Changes
 - Update Ad Network SDK Version
@@ -8,7 +17,7 @@
 - Android : bidmad-androidx-g 1.3.0
 - iOS : BidmadSDK.framework 2.7.0
 
-# Version 2.7.1
+# Version 2.7.2
 #### Changes
 - Add setUserId interface for server-side verification to reward AD (Android Only)
 #### Integration Bidmad SDK version

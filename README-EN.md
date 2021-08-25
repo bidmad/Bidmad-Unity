@@ -22,41 +22,26 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 
 #### 1.2 iOS
 
-1. Import the latest downloaded SDK to the project.<br>
-2. Change the settings in the project's Build Settings.<br>
-- Set Enable BitCode = No<br>
-- Add Other Linker Flags = -ObjC<br>
-3. Add GADApplicationIdentifier to info.plist.<br>
-*GADApplicationIdentifier can be found in Google Admob.
-```
-    <key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-XXXXXX~XXXXXX</string>
-```
-4. For 2019.03 and later versions, manually add bidmad_assets.bundle to [Build Phases > Capy Bundle Resources] of Unity-iPhone target.
-5. Add the following libraries (Go to Target Build Setting → Build Phases and under the "Link Binary With Libraries," please add the following list of libraries) <br>
-- StoreKit.framework <br>
-- MobileCoreServices.framework <br>
-- WebKit.framework <br>
-- MediaPlayer.framework <br>
-- CoreMedia.framework <br>
-- AVFoundation.framework <br>
-- CoreTelephony.framework <br>
-- SystemConfiguration.framework <br>
-- AdSupport.framework <br>
-- CoreMotion.framework <br>
-- Accelerate.framework <br>
-- libresolv.9.tbd <br>
-- libc++.tbd <br>
-- libz.tbd <br>
-- libsqlite3.tbd <br>
-- libbz2.tbd <br>
-- libxml2.tbd <br>
-- libiconv.tbd <br>
-- libc++abi.tbd <br>
-- Security.framework <br>
-6. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up and SKAdNetwork.
+1. Please import the latest plugin.<br>
+2. Please make adjustments to BidmadPostProcessBuild.cs file in Assets → Bidmad → Editor.<br>
+    Make sure to change User Tracking Usage Description and Google App ID. 
+    ( GADApplicationIdentifier can be found in the Google Admob website )<br>
+    ![Bidmad-Guide-3](https://i.imgur.com/xPuJaSC.png)<br>
+3. Please open the settings panel from Assets - External Dependency Manager - iOS Resolver - Settings.<br>
+    ![Bidmad-Guide-4](https://i.imgur.com/8cvpZR0.png)<br>
+    Please check on <strong>Link Frameworks Statically</strong> inside the settings panel.<br>
+4. After building iOS Xcode Project, iOS Xcode Project folder will contain a project file with <strong>.xcworkspace</strong> extension. Please open it. <br>
+5. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
 
-If you're looking for a guide to the privacy requirements of the Apple Store, [see here](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BENG%5D).
+*If you're looking for a guide to the privacy requirements of the Apple Store, [see here](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BENG%5D).
+
+#### 1.3 iOS Migration Guide ( For Users migrating from 2.8.1 or under to the latest plugin )
+
+1. Delete Assets → Plugins → iOS → Bidmad
+2. Delete Assets → Resources → Bidmad
+3. Delete Assets → Bidmad → Scripts
+4. SKAdNetwork, Google App ID, User Tracking Usage Description Settings, which previously were set inside info.plist, are all moved to BidmadPostProcessBuild.cs (Please refer to the second step of 1.2 iOS Build Guide). Please set your App ID and User Tracking Usage Description in BidmadPostProcessBuild.cs file. It is not necessary for you to set SKAdNetwork as BidmadPostProcess is pre-set with needed SKAdNetworks. After setting and saving BidmadPostProcessBuild, there is no need for you to additionally set the info.plist. 
+4. After following the steps above, please follow the steps in the section 1.2 iOS Build Guide.
 
 ### 2. Using Plugin
 
@@ -157,6 +142,68 @@ If you're looking for a guide to the privacy requirements of the Apple Store, [s
         }
 #endif
     }
+```
+
+#### 2.4 Reward Interstitial
+
+Reward Interstitial is a new reward-type advertising format that can provide rewarded ads when switching between pages in an app.
+Unlike Reward ads, users can view Reward Interstitial ads without user's consent. However, the developer needs to provide a screen announcing that there will be a reward for watching an ad and the user can cancel watching the ad if he/she wants. (Please check the BidmadSDK sample app)
+
+- In order to request a Reward Interstitial Ad, please create a BidmadRewardInterstitial instance. 
+```cpp
+static BidmadRewardInterstitial rewardInterstitial;
+public void LoadRewardInterstitialAd()
+{
+#if UNITY_ANDROID
+    if (rewardInterstitial == null)
+        rewardInterstitial = new BidmadRewardInterstitial("YOUR-ANDROID-ZONE-ID");
+#elif UNITY_IOS
+    if (rewardInterstitial == null)
+        rewardInterstitial = new BidmadRewardInterstitial("YOUR-IOS-ZONE-ID");
+#endif
+    rewardInterstitial.load();
+
+    rewardInterstitial.setRewardInterstitialLoadCallback(OnRewardInterstitialLoad);
+    rewardInterstitial.setRewardInterstitialShowCallback(OnRewardInterstitialShow);
+    rewardInterstitial.setRewardInterstitialFailCallback(OnRewardInterstitialFail);
+    rewardInterstitial.setRewardInterstitialCompleteCallback(OnRewardInterstitialComplete);
+    rewardInterstitial.setRewardInterstitialSkipCallback(OnRewardInterstitialSkip);
+    rewardInterstitial.setRewardInterstitialCloseCallback(OnRewardInterstitialClose);
+}
+```
+
+- Before displaying Reward Interstitial ad, please display a screen that allows users to cancel the ad. 
+- Before displaying Reward Interstitial ad, please check if the ad is loaded by calling isLoaded.
+```cpp
+public void ShowRewardInterstitialAd()
+{
+    // Display a popup that gives users choice to opt out of Reward Interstitial Ads
+    GameObject resource = Resources.Load<GameObject>("Prefabs/RewardInterstitialAdPopupSample"); 
+    GameObject parent = GameObject.Find("Canvas"); 
+    GameObject popup = Instantiate<GameObject>(resource, parent.transform, false); 
+    popup.SetActive(true);
+
+    RewardInterstitialAdPopupSample popupComponent = GameObject.Find("PopupSample").GetComponent<RewardInterstitialAdPopupSample>(); 
+
+    // After certain time, if the user did not choose to opt out, automatically display the Reward Interstitial Ads  
+    popupComponent.SetPositiveCallBack(() => { 
+        Debug.Log("PositiveCallBack"); 
+
+        #if UNITY_ANDROID || UNITY_IOS
+            if (rewardInterstitial.isLoaded()){
+                rewardInterstitial.show();
+            }
+        #endif
+
+        Destroy(popup.gameObject); 
+    });
+
+    // If the user did choose to opt out, do not display the Reward Interstitial Ad.
+    popupComponent.SetNagativeCallBack(() => { 
+        Debug.Log("NagativeCallBack"); 
+        Destroy(popup.gameObject); 
+    });
+}
 ```
 
 ### 3 Callback
@@ -261,6 +308,46 @@ If you're looking for a guide to the privacy requirements of the Apple Store, [s
         Debug.Log("OnRewardClose Deletgate Callback Complate!!!");
     }
 ```
+#### 3.4 Reward Interstitial Callback
+```cpp
+    ...
+    rewardInterstitial.setRewardInterstitialLoadCallback(OnRewardInterstitialLoad);
+    rewardInterstitial.setRewardInterstitialShowCallback(OnRewardInterstitialShow);
+    rewardInterstitial.setRewardInterstitialFailCallback(OnRewardInterstitialFail);
+    rewardInterstitial.setRewardInterstitialCompleteCallback(OnRewardInterstitialComplete);
+    rewardInterstitial.setRewardInterstitialSkipCallback(OnRewardInterstitialSkip);
+    rewardInterstitial.setRewardInterstitialCloseCallback(OnRewardInterstitialClose);
+    ...
+    void OnRewardInterstitialLoad()
+    {
+        Debug.Log("OnRewardInterstitialLoad Deletgate Callback Complate!!!");
+    }
+
+    void OnRewardInterstitialShow()
+    {
+        Debug.Log("OnRewardInterstitialShow Deletgate Callback Complate!!!");
+    }
+
+    void OnRewardInterstitialFail()
+    {
+        Debug.Log("OnRewardInterstitialFail Deletgate Callback Complate!!!");
+    }
+
+    void OnRewardInterstitialComplete()
+    {
+        Debug.Log("OnRewardInterstitialComplete Deletgate Callback Complate!!!");
+    }
+
+    void OnRewardInterstitialSkip()
+    {
+        Debug.Log("OnRewardInterstitialSkip Deletgate Callback Complate!!!");
+    }
+
+    void OnRewardInterstitialClose()
+    {
+        Debug.Log("OnRewardInterstitialClose Deletgate Callback Complate!!!");
+    }
+```
 ### 4. Plugin Function
 #### 4.1 Banner
 
@@ -314,7 +401,25 @@ public void setRewardCompleteCallback(Action callback)|If an Action is registere
 public void setRewardSkipCallback(Action callback)|If an Action is registered, the registered Action is executed when the reward payment standard of the reward ad is not met.
 public void setRewardCloseCallback(Action callback)|If an action is registered, the registered action is executed when the reward ad is closed.
 
-#### 4.4 iOS14 AppTrackingTransparencyAuthorization
+#### 4.4 Reward Interstitial
+
+*Reward Interstitial ads are processed through BidmadRewardInterstitial, and this is a list of functions for this.
+
+Function|Description
+---|---
+public BidmadRewardInterstitial(string zoneId)|This is the BidmadRewardInterstitial constructor, Set the ZoneId
+public void setUserId(string userId)|Called when server-side verification is required. It only works on some networks, and if you need to use it, please contact us. (Android Only)
+public void load()|Request an ad with the ZoneId entered in the constructor.
+public void show()|Display the loaded advertisement.
+public bool isLoaded()|Check if the ad is loaded.
+public void setRewardInterstitialLoadCallback(Action callback)|If an action is registered, the registered action is executed when the Reward Interstitial ad is loaded.
+public void setRewardInterstitialShowCallback(Action callback)|If an action is registered, the registered action is executed when the Reward Interstitial ad is shown.
+public void setRewardInterstitialFailCallback(Action callback)|If an Action is registered, the registered Action is executed when Reward Interstitil ad loading fails.
+public void setRewardInterstitialCompleteCallback(Action callback)|If an Action is registered, the registered Action is executed when the criteria for reward is met for the Reward Interstitial.
+public void setRewardInterstitialSkipCallback(Action callback|If an Action is registered, the registered Action is executed when the cirteria for reward is not met.
+public void setRewardInterstitialCloseCallback(Action callback)|If an action is registered, the registered action is executed when the Reward Interstitial ad is closed.
+
+#### 4.5 iOS14 AppTrackingTransparencyAuthorization
 
 *AppTrackingTransparencyAuthorization functions are provided through BidmadCommon.
 

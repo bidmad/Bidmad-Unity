@@ -22,6 +22,13 @@ public class BidmadManager : MonoBehaviour
     public static Dictionary<string, Action> dicRewardComplete = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicRewardSkip = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicRewardClose = new Dictionary<string, Action>();
+/*** RewardInterstitial Dictionnary ***/
+    public static Dictionary<string, Action> dicRewardInterstitialLoad = new Dictionary<string, Action>();
+    public static Dictionary<string, Action> dicRewardInterstitialShow = new Dictionary<string, Action>();
+    public static Dictionary<string, Action> dicRewardInterstitialFail = new Dictionary<string, Action>();
+    public static Dictionary<string, Action> dicRewardInterstitialComplete = new Dictionary<string, Action>();
+    public static Dictionary<string, Action> dicRewardInterstitialSkip = new Dictionary<string, Action>();
+    public static Dictionary<string, Action> dicRewardInterstitialClose = new Dictionary<string, Action>();
 /*** Common Callback ***/
     public static Action<BidmadTrackingAuthorizationStatus> adTrackingAuthResponse;
 /*** googleGdpr Callback ***/
@@ -157,6 +164,64 @@ public class BidmadManager : MonoBehaviour
         }
     }
  /*** Reward Callback ***/
+ /*** RewardInterstitial Callback ***/
+        void OnRewardInterstitialLoad(string zoneId) 
+    {
+        Debug.Log("OnRewardInterstitialLoad");
+        if(dicRewardInterstitialLoad.ContainsKey(zoneId)){
+            Action onRewardInterstitialLoad = dicRewardInterstitialLoad[zoneId];
+            onRewardInterstitialLoad();
+        }
+    }
+
+    void OnRewardInterstitialShow(string zoneId)
+    {
+        Debug.Log("OnRewardInterstitialShow");
+        if(dicRewardInterstitialShow.ContainsKey(zoneId)){
+            Action onRewardInterstitialShow = dicRewardInterstitialShow[zoneId];
+            onRewardInterstitialShow();
+
+            BidmadRewardInterstitial rewardInterstitial = new BidmadRewardInterstitial(zoneId);
+            rewardInterstitial.load();
+        }
+    }
+
+    void OnRewardInterstitialFail(string zoneId)
+    {
+        Debug.Log("OnRewardInterstitialFail");
+        if(dicRewardInterstitialFail.ContainsKey(zoneId)){
+            Action onRewardInterstitialFail = dicRewardInterstitialFail[zoneId];
+            onRewardInterstitialFail();
+        }
+    }
+
+    void OnRewardInterstitialComplete(string zoneId)
+    {
+        Debug.Log("OnRewardInterstitialComplete");
+        if(dicRewardInterstitialComplete.ContainsKey(zoneId)){
+            Action onRewardInterstitialComplete = dicRewardInterstitialComplete[zoneId];
+            onRewardInterstitialComplete();
+        }
+    }
+
+    void OnRewardInterstitialSkip(string zoneId)
+    {
+        Debug.Log("OnRewardInterstitialSkip");
+        if(dicRewardInterstitialSkip.ContainsKey(zoneId)){
+            Action onRewardInterstitialSkip = dicRewardInterstitialSkip[zoneId];
+            onRewardInterstitialSkip();
+        }
+    }
+
+    void OnRewardInterstitialClose(string zoneId)
+    {
+        Debug.Log("OnRewardInterstitialClose");
+        if(dicRewardInterstitialClose.ContainsKey(zoneId)){
+            Action onRewardInterstitialClose = dicRewardInterstitialClose[zoneId];
+            onRewardInterstitialClose();
+        }
+    }
+ /*** RewardInterstitial Callback ***/
  /*** Common Callback ***/
     void OnAdTrackingAuthorizationResponse(string responseCode)
     {
