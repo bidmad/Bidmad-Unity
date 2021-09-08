@@ -1,3 +1,10 @@
+# Version 2.9.1
+#### Changes
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx-g 1.3.2
+- iOS : BidmadSDK.framework 2.9.1
+
 # Version 2.9.0
 #### Changes
 - Reward Interstitial Ad Type added
