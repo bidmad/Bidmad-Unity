@@ -56,7 +56,7 @@ public class BidmadReward
 	{
 #if UNITY_IOS
 #elif UNITY_ANDROID
-        using (javaClass = new AndroidJavaClass("com.adop.sdk.reward.UnityReward"))
+        using (javaClass = new AndroidJavaClass("ad.helper.openbidding.reward.UnityReward"))
         {
             if(javaClass != null)
             {

@@ -11,7 +11,8 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 #### 1.1 Android
 
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다.<br>
-2. 프로젝트 내 mainTemplate.gradle 파일에서 [apply plugin: 'com.android.application'] 코드를 찾아 그 아래에 Bidmad Gradle 파일 경로 선언합니다.
+2. 프로젝트 내 gradle 파일에서 [apply plugin: 'com.android.application'] 코드를 찾아 그 아래에 Bidmad Gradle 파일 경로 선언합니다.<br>
+(*2019.02 이하 mainTemplate.gradle / 2019.03 이상 launcherTemplate.gradle)
 
 ```cpp
 apply plugin: 'com.android.application'

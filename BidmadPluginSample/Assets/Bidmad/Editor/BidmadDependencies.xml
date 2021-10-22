@@ -1,5 +1,0 @@
-<dependencies>
-  <iosPods>
-    <iosPod name="BidmadSDK/ForGame" version="2.9.1" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
-  </iosPods>
-</dependencies>

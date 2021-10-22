@@ -11,7 +11,8 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 #### 1.1 Android
 
 1. Import the latest downloaded SDK to the project.<br>
-2. Find the [apply plugin:'com.android.application'] code in the mainTemplate.gradle file in the project and declare the path to the Bidmad Gradle file under it.<br>
+2. Find the [apply plugin:'com.android.application'] code in the gradle file in the project and declare the path to the Bidmad Gradle file under it.<br>
+(*mainTemplate.gradle for 2019.02 or less / launcherTemplate.gradle for 2019.03 or later)
 
 ```cpp
 apply plugin: 'com.android.application'

@@ -56,7 +56,7 @@ public class BidmadInterstitial
 #if UNITY_IOS
 
 #elif UNITY_ANDROID
-        using (javaClass = new AndroidJavaClass("com.adop.sdk.interstitial.UnityInterstitial"))
+        using (javaClass = new AndroidJavaClass("ad.helper.openbidding.interstitial.UnityInterstitial"))
         {
             if(javaClass != null) 
             {

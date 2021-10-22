@@ -92,7 +92,7 @@ public class BidmadBanner
 #if UNITY_IOS
 
 #elif UNITY_ANDROID
-        using (javaClass = new AndroidJavaClass("com.adop.sdk.adview.UnityAdView"))
+        using (javaClass = new AndroidJavaClass("ad.helper.openbidding.adview.UnityAdView"))
         {
             if(javaClass != null) 
             {

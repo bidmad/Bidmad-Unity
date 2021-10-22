@@ -52,7 +52,7 @@ public class BidmadRewardInterstitial
 	{
 #if UNITY_IOS
 #elif UNITY_ANDROID
-        using (javaClass = new AndroidJavaClass("com.adop.sdk.rewardinterstitial.UnityRewardInterstitial"))
+        using (javaClass = new AndroidJavaClass("ad.helper.openbidding.rewardinterstitial.UnityRewardInterstitial"))
         {
             if(javaClass != null)
             {

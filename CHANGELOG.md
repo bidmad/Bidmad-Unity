@@ -1,3 +1,11 @@
+# Version 2.10.0
+#### Changes
+- Improved the logic of advertisement processing
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx-g 1.4.0
+- iOS : BidmadSDK.framework 3.0.1
+
 # Version 2.9.1
 #### Changes
 - Bug Fix
