@@ -20,7 +20,7 @@ public class RewardInterstitialAdSample : MonoBehaviour
             rewardInterstitial = new BidmadRewardInterstitial("bcea5bf7-4082-4691-9401-aeb062edfcb0");
 #elif UNITY_IOS
         if (rewardInterstitial == null)
-            rewardInterstitial = new BidmadRewardInterstitial("29e1ef67-98d2-47b3-9fa2-9192327dd75d");
+            rewardInterstitial = new BidmadRewardInterstitial("ee6e601d-2232-421b-a429-2e7163a8b41f");
 #endif
         rewardInterstitial.load();
 

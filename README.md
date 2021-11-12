@@ -19,6 +19,9 @@ apply plugin: 'com.android.application'
 
 apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" //Bidmad Gradle 경로.
 ```
+3. 아동을 타겟으로 하고 PlayStore에 심사를 받는 앱은 인증된 광고 네트워크를 사용을 위해 추가 설정이 필요합니다.<br> 
+앱이 아동을 타겟하고 있다면 추가 설정을 위해 [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/PlayStore-%EC%95%B1-%ED%83%80%EA%B2%9F%ED%8C%85-%EC%97%B0%EB%A0%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%B6%94%EA%B0%80-%EC%84%A4%EC%A0%95.)를 확인하세요.<br>
+
 *Bidmad는 AndroidX 라이브러리를 사용합니다. AndroidX 프로젝트가 아니라면 AndroidX로 마이그레이션 바랍니다.
 
 #### 1.2 iOS
@@ -30,9 +33,11 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     ![Bidmad-Guide-3](https://i.imgur.com/xPuJaSC.png)<br>
 3. Assets → External Dependency Manager → iOS Resolver → Settings 경로를 통해 세팅을 열어주십시오.<br>
     ![Bidmad-Guide-4](https://i.imgur.com/8cvpZR0.png)<br>
-    Setting 패널에서 <strong>Link Frameworks Statically</strong> 를 체크해주십시오.<br>
+    Setting 패널에서 <strong>Link Frameworks Statically</strong> 를 체크한 뒤, OK 버튼을 눌러주십시오.<br>
 4. iOS Xcode 프로젝트를 빌드한 이후, iOS 프로젝트 폴더에서 <strong>.xcworkspace</strong> 확장자의 파일을 열어주십시오.<br>
-5. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
+5. Unity-iPhone 프로젝트 세팅 → Build Settings → UnityFramework 타겟 → Enable Bitcode 를 "No" 로 설정하십시오.<br>
+    ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
+6. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
 
 *Apple Store에서 요구하는 개인정보 보호에 관한 가이드가 필요한 경우 [이곳](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BKOR%5D)을 참고하세요.
 

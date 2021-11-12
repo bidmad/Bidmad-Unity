@@ -19,6 +19,9 @@ apply plugin: 'com.android.application'
 
 apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" //Path of Bidmad Gradle.
 ```
+3. Apps that target children and are vetted by the PlayStore require additional setup to use certified ad networks.<br> 
+If your app is targeting children, check out our [guide](https://github.com/bidmad/Bidmad-Unity/wiki/PlayStore-%EC%95%B1-%ED%83%80%EA%B2%9F%ED%8C%85-%EC%97%B0%EB%A0%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%B6%94%EA%B0%80-%EC%84%A4%EC%A0%95.) for further setup.<br>
+
 *Bidmad uses the AndroidX library. If it is not an AndroidX project, please migrate to AndroidX.
 
 #### 1.2 iOS
@@ -30,9 +33,11 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     ![Bidmad-Guide-3](https://i.imgur.com/xPuJaSC.png)<br>
 3. Please open the settings panel from Assets - External Dependency Manager - iOS Resolver - Settings.<br>
     ![Bidmad-Guide-4](https://i.imgur.com/8cvpZR0.png)<br>
-    Please check on <strong>Link Frameworks Statically</strong> inside the settings panel.<br>
+    Please check and click the OK button on <strong>Link Frameworks Statically</strong> inside the settings panel.<br>
 4. After building iOS Xcode Project, iOS Xcode Project folder will contain a project file with <strong>.xcworkspace</strong> extension. Please open it. <br>
-5. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
+5. Unity-iPhone Project Settings → Build Settings → UnityFramework Target → Set Enable Bitcode to "No".<br>
+    ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
+6. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
 
 *If you're looking for a guide to the privacy requirements of the Apple Store, [see here](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BENG%5D).
 

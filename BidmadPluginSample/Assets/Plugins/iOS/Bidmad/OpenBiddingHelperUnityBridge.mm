@@ -195,7 +195,7 @@ return _sharedObject; \
 /** Banner Interface Start **/
 void _bidmadSetRefreshInterval(const char* zoneId, int time){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getIntance:_zoneID]; 
+    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getIntance:_zoneID];
     [banner setRefreshInterval:time];
 }
 
@@ -283,7 +283,8 @@ bool _bidmadIsLoadedInterstitial(const char* zoneId){
 void _bidmadNewInstanceReward(const char* zoneId) {
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
 
-    OpenBiddingUnityReward *reward = [[OpenBiddingUnityReward alloc]initWithZoneId:_zoneID];
+    UIViewController* pRootViewController = UnityGetGLViewController();
+    OpenBiddingUnityReward *reward = [[OpenBiddingUnityReward alloc]initWithZoneId:_zoneID parentVC:pRootViewController];
     [reward setDelegate:[OpenBiddingHelperUnityBridge sharedInstance]];
 }
 
@@ -318,7 +319,9 @@ bool _bidmadIsLoadedReward(const char* zoneId){
 
 void _bidmadNewInstanceRewardInterstitial(const char* zoneId) {
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    [[OpenBiddingUnityRewardInterstitial sharedInstance] openBiddingNewInstanceRewardInterstitial:_zoneID withDelegate:[OpenBiddingHelperUnityBridge sharedInstance]];
+    
+    UIViewController* pRootViewController = UnityGetGLViewController();
+    [[OpenBiddingUnityRewardInterstitial sharedInstance] openBiddingNewInstanceRewardInterstitial:_zoneID withDelegate:[OpenBiddingHelperUnityBridge sharedInstance] parentVC:pRootViewController];
 }
 
 void _bidmadLoadRewardInterstitial(const char* zoneId){
