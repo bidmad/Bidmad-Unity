@@ -14,7 +14,7 @@ dependencies {
     }
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'ad.helper.openbidding:admob-obh-g:2.0.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter-g:2.0.0.0'.  //Certified ad SDK by Google
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter-g:2.0.0.0'  //Certified ad SDK by Google
     implementation 'com.adop.adapter.fnc:fncNetwork-adapter-g:2.0.0.0' //Not certified ad SDK by Google
 }
 
