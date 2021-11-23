@@ -83,9 +83,6 @@ public class BidmadManager : MonoBehaviour
         if(dicInterstitialShow.ContainsKey(zoneId)){
             Action onInterstitialShow = dicInterstitialShow[zoneId];
             onInterstitialShow();
-
-            BidmadInterstitial interstitial = new BidmadInterstitial(zoneId);
-            interstitial.load();
         }
     }
     void OnInterstitialFail(string zoneId)
@@ -122,9 +119,6 @@ public class BidmadManager : MonoBehaviour
         if(dicRewardShow.ContainsKey(zoneId)){
             Action onRewardShow = dicRewardShow[zoneId];
             onRewardShow();
-
-            BidmadReward reward = new BidmadReward(zoneId);
-            reward.load();
         }
     }
 
@@ -180,9 +174,6 @@ public class BidmadManager : MonoBehaviour
         if(dicRewardInterstitialShow.ContainsKey(zoneId)){
             Action onRewardInterstitialShow = dicRewardInterstitialShow[zoneId];
             onRewardInterstitialShow();
-
-            BidmadRewardInterstitial rewardInterstitial = new BidmadRewardInterstitial(zoneId);
-            rewardInterstitial.load();
         }
     }
 

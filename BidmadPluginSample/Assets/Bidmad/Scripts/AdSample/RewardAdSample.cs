@@ -20,6 +20,10 @@ public class RewardAdSample : MonoBehaviour
         if (reward == null)
             reward = new BidmadReward("29e1ef67-98d2-47b3-9fa2-9192327dd75d");
 #endif
+        // Bidmad Rewarded Video Ads auto-reload after the Video ad is shown to the user.
+        // You can disable the auto-reload feature by giving "false" for setAutoReload method.
+        // reward.setAutoReload(false);
+
         reward.load();
 
         reward.setRewardLoadCallback(OnRewardLoad);

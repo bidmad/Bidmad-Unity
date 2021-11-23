@@ -195,7 +195,7 @@ return _sharedObject; \
 /** Banner Interface Start **/
 void _bidmadSetRefreshInterval(const char* zoneId, int time){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getIntance:_zoneID];
+    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
     [banner setRefreshInterval:time];
 }
 
@@ -218,31 +218,30 @@ void _bidmadNewInstanceBanner(const char* zoneId, float _x, float _y) {
 void _bidmadLoadBanner(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getIntance:_zoneID];
+    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
     [banner load];
 }
 
 void _bidmadRemoveBanner(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getIntance:_zoneID];
+    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
     [banner remove];
 }
 
 void _bidmadHideBannerView(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getIntance:_zoneID];
+    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
     [banner hideView];
 }
 
 void _bidmadShowBannerView(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getIntance:_zoneID];
+    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
     [banner showView];
 }
-
 /** Banner Interface End **/
 /** Interstitial Interface Start **/
 void _bidmadNewInstanceInterstitial(const char* zoneId) {
@@ -270,6 +269,12 @@ void _bidmadShowInterstitial(const char* zoneId){
         [interstitial show];
     }
     
+}
+
+void _bidmadSetAutoReloadInterstitial(const char* zoneId, bool isAutoReload) {
+    NSString *_zoneId = [NSString stringWithUTF8String:zoneId];
+    OpenBiddingUnityInterstitial *openBiddingUnityInterstitial = [OpenBiddingUnityInterstitial getInstance:_zoneId];
+    [openBiddingUnityInterstitial setAutoReload:isAutoReload];
 }
 
 bool _bidmadIsLoadedInterstitial(const char* zoneId){
@@ -313,8 +318,13 @@ bool _bidmadIsLoadedReward(const char* zoneId){
     
     return [reward isLoaded];
 }
-/** Reward Interface End **/
 
+void _bidmadSetAutoReloadRewardVideo(const char* zoneId, bool isAutoReload) {
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+    OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
+    [reward setAutoReload:isAutoReload];
+}
+/** Reward Interface End **/
 #pragma mark RewardInterstitial Interface
 
 void _bidmadNewInstanceRewardInterstitial(const char* zoneId) {
@@ -339,6 +349,10 @@ bool _bidmadIsLoadedRewardInterstitial(const char* zoneId){
     return [[OpenBiddingUnityRewardInterstitial sharedInstance] openBiddingIsLoadedRewardInterstitial: _zoneID];
 }
 
+void _bidmadSetAutoReloadRewardInterstitial(const char* zoneId, bool isAutoReload) {
+    [[OpenBiddingUnityRewardInterstitial sharedInstance] setAutoReload:isAutoReload];
+}
+
 /** ETC Interface Start **/
 void _bidmadSetDebug(bool isDebug) {
     [[UnityCommon sharedInstance] setDebugMode:isDebug];
@@ -359,6 +373,11 @@ void _bidmadSetGDPRSetting(bool consent) {
 
 int _bidmadGetGdprConsent(){
     return ((int)[BIDMADGDPR getGDPRSetting]);
+}
+
+const char* _bidmadGetPRIVACYURL() {
+    NSString *privacyUrl = [BIDMADGDPR getPRIVACYURL];
+    return strdup([privacyUrl UTF8String]);
 }
 
 typedef void (*CallbackT)(const char *foo);

@@ -9,23 +9,23 @@ repositories {
 
 dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation ('com.adop.sdk:bidmad-androidx-g:2.0.0.0'){
+    implementation ('com.adop.sdk:bidmad-androidx-g:2.0.1.0'){
       exclude group: "com.google.code.gson", module: "gson"
     }
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'ad.helper.openbidding:admob-obh-g:2.0.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter-g:2.0.0.0'  //Certified ad SDK by Google
+    implementation 'ad.helper.openbidding:admob-obh-g:2.0.1.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter-g:2.0.0.1'  //Certified ad SDK by Google
     implementation 'com.adop.adapter.fnc:fncNetwork-adapter-g:2.0.0.0' //Not certified ad SDK by Google
 }
 
 android {
-	defaultConfig {
+    defaultConfig {
         multiDexEnabled true
-	}
+    }
 
-	dexOptions{ 
+    dexOptions{ 
         javaMaxHeapSize "4g"
-	}
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

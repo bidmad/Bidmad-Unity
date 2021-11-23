@@ -20,6 +20,11 @@ public class InterstitialAdSample : MonoBehaviour
         if (interstitial == null)
             interstitial = new BidmadInterstitial("228b95a9-6f42-46d8-a40d-60f17f751eb1");
 #endif
+
+        // Bidmad Interstitial Ads auto-reload after the interstitial ad is shown to the user.
+        // You can disable the auto-reload feature by giving "false" for setAutoReload method.
+        // interstitial.setAutoReload(false);
+
         interstitial.load();
 
         interstitial.setInterstitialLoadCallback(OnInterstitialLoad);

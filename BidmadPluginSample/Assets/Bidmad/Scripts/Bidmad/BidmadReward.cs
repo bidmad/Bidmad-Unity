@@ -19,6 +19,9 @@ public class BidmadReward
     [DllImport("__Internal")]
     private static extern bool _bidmadIsLoadedReward(string zoneId);
 
+    [DllImport("__Internal")]
+    private static extern void _bidmadSetAutoReloadRewardVideo(string zoneId, bool isAutoReload);
+
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
     private AndroidJavaClass javaClass = null;
@@ -66,6 +69,17 @@ public class BidmadReward
         }
 #endif
 	}
+
+    public void setAutoReload(bool isAutoReload) {
+#if UNITY_IOS
+        _bidmadSetAutoReloadRewardVideo(mZoneId, isAutoReload);
+#elif UNITY_ANDROID
+        if (javaClassInstance != null)
+        {
+            javaClassInstance.Call("setAutoReload", isAutoReload);
+        }
+#endif
+    }
 
     public void setUserId(string userId)
     {

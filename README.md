@@ -387,6 +387,7 @@ public BidmadInterstitial(string zoneId)|BidmadInterstitial 생성자, ZoneId를
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.
 public void show()|Load한 광고를 노출 시킵니다.
 public bool isLoaded()|광고가 Load된 상태인지 체크합니다.
+public void setAutoReload(bool isAutoReload)|Show 이후 다음 광고를 Load 합니다. 해당 옵션은 기본 true로 적용되어있으며, failCallback을 수신한 경우에는 Reload 동작을 하지 않습니다. 
 public void setInterstitialLoadCallback(Action callback)|Action을 등록했다면 전면광고를 Load 했을 때 등록한 Action을 실행합니다.
 public void setInterstitialShowCallback(Action callback)|Action을 등록했다면 전면광고를 Show 했을 때 등록한 Action을 실행합니다.
 public void setInterstitialFailCallback(Action callback)|Action을 등록했다면 ZoneId를 통한 전면광고 Load가 실패 했을 때 등록한 Action을 실행합니다.
@@ -402,6 +403,7 @@ public BidmadReward(string zoneId)|BidmadReward 생성자, ZoneId를 설정합�
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.
 public void show()|Load한 광고를 노출 시킵니다.
 public bool isLoaded()|광고가 Load된 상태인지 체크합니다.
+public void setAutoReload(bool isAutoReload)|Show 이후 다음 광고를 Load 합니다. 해당 옵션은 기본 true로 적용되어있으며, failCallback을 수신한 경우에는 Reload 동작을 하지 않습니다.
 public void setUserId(string id)|서버측 인증이 필요한 경우 호출합니다. 일부 네트워크에서만 동작하며, 사용이 필요한 경우 문의 바랍니다. (Android Only)
 public void setRewardLoadCallback(Action callback)|Action을 등록했다면 보상형광고를 Load 했을 때 등록한 Action을 실행합니다.
 public void setRewardShowCallback(Action callback)|Action을 등록했다면 보상형광고를 Show 했을 때 등록한 Action을 실행합니다.
@@ -421,6 +423,7 @@ public void setUserId(string userId)|서버측 인증이 필요한 경우 호출
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.
 public void show()|Load한 광고를 노출 시킵니다.
 public bool isLoaded()|광고가 Load된 상태인지 체크합니다.
+public void setAutoReload(bool isAutoReload)|Show 이후 다음 광고를 Load 합니다. 해당 옵션은 기본 true로 적용되어있으며, failCallback을 수신한 경우에는 Reload 동작을 하지 않습니다.
 public void setRewardInterstitialLoadCallback(Action callback)|Action을 등록했다면 전면보상형광고를 Load 했을 때 등록한 Action을 실행합니다.
 public void setRewardInterstitialShowCallback(Action callback)|Action을 등록했다면 전면보상형광고를 Show 했을 때 등록한 Action을 실행합니다.
 public void setRewardInterstitialFailCallback(Action callback)|Action을 등록했다면 ZoneId를 통한 전면보상형광고 Load가 실패 했을 때 등록한 Action을 실행합니다.

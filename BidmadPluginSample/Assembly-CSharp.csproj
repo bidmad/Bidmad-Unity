@@ -56,21 +56,22 @@
     <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadBanner.cs" />
+    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadManager.cs" />
     <Compile Include="Assets/Bidmad/Scripts/AdSample/RewardAdSample.cs" />
     <Compile Include="Assets/Bidmad/Scripts/AdSample/BannerAdSample.cs" />
+    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadReward.cs" />
     <Compile Include="Assets/Bidmad/Scripts/AdSample/RewardInterstitialAdPopupSample.cs" />
+    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadRewardInterstitial.cs" />
+    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadInterstitial.cs" />
+    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs" />
     <Compile Include="Assets/Bidmad/Scripts/AdSample/RewardInterstitialAdSample.cs" />
     <Compile Include="Assets/Bidmad/Scripts/ButtonEvent.cs" />
     <Compile Include="Assets/Bidmad/Scripts/AdSample/InterstitialAdSample.cs" />
     <Compile Include="Assets/Bidmad/Scripts/gameobject.cs" />
     <Compile Include="Assets/Bidmad/Scripts/AdSample/GDPRPopupSample.cs" />
-    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadBanner.cs" />
     <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadGoogleGDPR.cs" />
-    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadManager.cs" />
-    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadReward.cs" />
-    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadInterstitial.cs" />
-    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadRewardInterstitial.cs" />
-    <Compile Include="Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs" />
+    <Compile Include="Assets/Bidmad/Scripts/AdSample/RewardAdSampleMan.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

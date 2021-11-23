@@ -384,6 +384,7 @@ public BidmadInterstitial(string zoneId)|This is the BidmadInterstitial construc
 public void load()|Request an ad with the ZoneId entered in the constructor.
 public void show()|Display the loaded advertisement.
 public bool isLoaded()|Check if the ad is loaded.
+public void setAutoReload(bool isAutoReload)|After the show, load the next advertisement. This option is applied as the default true, and if you receive a failCallback, you will not perform Reload action. 
 public void setInterstitialLoadCallback(Action callback)|If an action is registered, the registered action is executed when the interstitial ad is loaded.
 public void setInterstitialShowCallback(Action callback)|If an action is registered, the registered action is executed when the interstitial ad is shown.
 public void setInterstitialFailCallback(Action callback)|If an Action is registered, the registered Action is executed when the load of interstitial ad through ZoneId fails.
@@ -399,6 +400,7 @@ public BidmadReward(string zoneId)|This is the BidmadReward constructor, Set the
 public void load()|Request an ad with the ZoneId entered in the constructor.
 public void show()|Display the loaded advertisement.
 public bool isLoaded()|Check if the ad is loaded.
+public void setAutoReload(bool isAutoReload)|After the show, load the next advertisement. This option is applied as the default true, and if you receive a failCallback, you will not perform Reload action. 
 public void setUserId(string id)|Called when server-side verification is required. It only works on some networks, and if you need to use it, please contact us. (Android Only)
 public void setRewardLoadCallback(Action callback)|If an action is registered, the registered action is executed when the reward ad is loaded.
 public void setRewardShowCallback(Action callback)|If an action is registered, the registered action is executed when the reward ad is shown.
@@ -418,6 +420,7 @@ public void setUserId(string userId)|Called when server-side verification is req
 public void load()|Request an ad with the ZoneId entered in the constructor.
 public void show()|Display the loaded advertisement.
 public bool isLoaded()|Check if the ad is loaded.
+public void setAutoReload(bool isAutoReload)|After the show, load the next advertisement. This option is applied as the default true, and if you receive a failCallback, you will not perform Reload action. 
 public void setRewardInterstitialLoadCallback(Action callback)|If an action is registered, the registered action is executed when the Reward Interstitial ad is loaded.
 public void setRewardInterstitialShowCallback(Action callback)|If an action is registered, the registered action is executed when the Reward Interstitial ad is shown.
 public void setRewardInterstitialFailCallback(Action callback)|If an Action is registered, the registered Action is executed when Reward Interstitil ad loading fails.

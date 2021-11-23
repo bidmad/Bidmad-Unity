@@ -15,7 +15,7 @@ public enum BidmadTrackingAuthorizationStatus
 
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "2.11.0";
+    string UNITY_PLUGIN_VERSION = "2.12.0";
 #if UNITY_IOS
     [DllImport("__Internal")]
     private static extern void _bidmadSetDebug(bool isDebug);
@@ -41,10 +41,13 @@ public class BidmadCommon
     [DllImport("__Internal")]
     private static extern bool _bidmadGetAdvertiserTrackingEnabled();
 
+    [DllImport("__Internal")]
+    private static extern string _bidmadGetPRIVACYURL();
+
 
 #elif UNITY_ANDROID
     private static AndroidJavaClass javaCommonClass = null;
-
+    private static AndroidJavaObject javaCommonClassInstance = null;
     private static AndroidJavaClass javaConsentClass = null;
     private static AndroidJavaObject javaConsentClassInstance = null; 
 #endif
@@ -155,7 +158,7 @@ public class BidmadCommon
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            return result;
+            return _bidmadGetPRIVACYURL();
         }
         else
         {

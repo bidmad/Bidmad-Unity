@@ -38,25 +38,29 @@ extern "C" {
     void _bidmadLoadInterstitial(const char* zoneId);
     void _bidmadShowInterstitial(const char* zoneId);
     bool _bidmadIsLoadedInterstitial(const char* zoneId);
+    void _bidmadSetAutoReloadInterstitial(const char* zoneId, bool isAutoReload);
 
     /*Reward*/
     void _bidmadNewInstanceReward(const char* zoneId);
     void _bidmadLoadRewardVideo(const char* zoneId);
     void _bidmadShowRewardVideo(const char* zoneId);
     bool _bidmadIsLoadedReward(const char* zoneId);
+    void _bidmadSetAutoReloadRewardVideo(const char* zoneId, bool isAutoReload);
 
     /*RewardInterstitial*/
     void _bidmadNewInstanceRewardInterstitial(const char* zoneId);
     void _bidmadLoadRewardInterstitial(const char* zoneId);
     void _bidmadShowRewardInterstitial(const char* zoneId);
     bool _bidmadIsLoadedRewardInterstitial(const char* zoneId);
+    void _bidmadSetAutoReloadRewardInterstitial(const char* zoneId, bool isAutoReload);
 
     /*ETC*/
-    void _bidmadSetDebug(bool isDebug); 
+    void _bidmadSetDebug(bool isDebug);
     void _bidmadSetGgTestDeviceid(const char* deviceId);
     void _bidmadSetUseArea(bool useArea);
     void _bidmadSetGDPRSetting(bool consent);
     int _bidmadGetGdprConsent();
+    const char* _bidmadGetPRIVACYURL();
 
      /* ATT */
     void _bidmadReqAdTrackingAuthorization();

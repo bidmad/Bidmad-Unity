@@ -1,3 +1,11 @@
+# Version 2.12.0
+#### Changes
+- Add Interstitial / Reward / RewardInterstitial AutoReload option
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx-g 2.0.1.0
+- iOS : BidmadSDK.framework 4.0.1.0
+
 # Version 2.11.0
 #### Changes
 - Update iOS and AOS new version
