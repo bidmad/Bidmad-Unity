@@ -22,6 +22,24 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 3. 아동을 타겟으로 하고 PlayStore에 심사를 받는 앱은 인증된 광고 네트워크를 사용을 위해 추가 설정이 필요합니다.<br> 
 앱이 아동을 타겟하고 있다면 추가 설정을 위해 [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/PlayStore-%EC%95%B1-%ED%83%80%EA%B2%9F%ED%8C%85-%EC%97%B0%EB%A0%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%B6%94%EA%B0%80-%EC%84%A4%EC%A0%95.)를 확인하세요.<br>
 
+4. 프로젝트에서 Proguard를 적용하고 있다면 아래의 룰을 추가하세요.
+```cpp
+-keep class com.adop.sdk.** { *; }
+-keep class ad.helper.openbidding.** { *; }
+-keepnames class * implements java.io.Serializable
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+```
+
+5. Android 12버전을 Target하는 경우 [AD_ID 권한 추가 선언 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BKOR%5D)를 확인바랍니다.
+
 *Bidmad는 AndroidX 라이브러리를 사용합니다. AndroidX 프로젝트가 아니라면 AndroidX로 마이그레이션 바랍니다.
 
 #### 1.2 iOS
@@ -52,7 +70,18 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 
 ### 2. Plugin 사용하기
 
-#### 2.1 배너
+#### 2.1 BidmadSDK 초기화
+
+- 앱 시작 시 initializeSdk()를 호출합니다.
+- initializeSdk를 호출하지 않는 경우, SDK 자체적으로 수행하기 때문에 초회 광고 로딩이 늦어질 수 있습니다.
+```
+    BidmadCommon.initializeSdk()
+```
+
+- 전면 또는 보상형 광고를 사용하시는 경우에는 원활한 광고 노출을 위해 initializeSdk() 호출 대신
+아래 전면 / 보상형 광고 가이드에 따라 앱 시작 시점에서 광고를 Load 하시고 원하시는 시점에 Show하시기 바랍니다.
+
+#### 2.2 배너
 
 - 배너광고를 요청하기 위해 BidmadBanner를 생성합니다. 이때 배너 View를 노출 시킬 높이(y) 값을 같이 전달 합니다.
 ```cpp
@@ -84,7 +113,7 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 ```
 
 
-#### 2.2 전면
+#### 2.3 전면
 
 - 전면광고를 요청하기 위해 BidmadInterstitial를 생성합니다.
 - 전면광고를 노출하기전에 isLoaded를 통해 광고 로드 여부를 체크합니다.
@@ -114,7 +143,7 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     }
 ```
 
-#### 2.3 보상형
+#### 2.4 보상형
 
 - 보상형광고를 요청하기 위해 BidmadReward 생성합니다.
 - 보상형광고를 노출하기전에 isLoaded를 통해 광고 로드 여부를 체크합니다.
@@ -151,7 +180,7 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     }
 ```
 
-#### 2.4 전면보상형
+#### 2.5 전면보상형
 
 - 전면보상형광고는 앱 내부 자연스러운 페이지 전환 시 자동으로 게재되는 광고를 통해 리워드를 제공할 수 있는 새로운 보상형 광고 형식입니다. 
 보상형 광고와 달리 사용자는 수신 동의하지 않고도 전면보상형광고를 볼 수 있습니다. 
@@ -369,6 +398,7 @@ public BidmadBanner(string zoneId, float _x, float _y)|BidmadBanner 생성자, Z
 public void setRefreshInterval(int time)|Banner Refresh 주기를 설정합니다.(60s~120s)
 public void removeBanner()|노출된 배너를 제거합니다.
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.
+public void setCUID(string cuid)|각 광고 타입을 위한 CUID를 설정합니다.
 public void pauseBanner()|배너 광고를 정지 시킵니다. 주로 OnPause 이벤트 발생 시 호출하며, Android만 지원합니다. 
 public void resumeBanner()|배너 광고를 다시 시작합니다. 주로 OnResume 이벤트 발생 시 호출하며, Android만 지원합니다. 
 public void hideBannerView()|배너 광고 View를 숨깁니다. 
@@ -388,6 +418,7 @@ public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다
 public void show()|Load한 광고를 노출 시킵니다.
 public bool isLoaded()|광고가 Load된 상태인지 체크합니다.
 public void setAutoReload(bool isAutoReload)|Show 이후 다음 광고를 Load 합니다. 해당 옵션은 기본 true로 적용되어있으며, failCallback을 수신한 경우에는 Reload 동작을 하지 않습니다. 
+public void setCUID(string cuid)|각 광고 타입을 위한 CUID를 설정합니다.
 public void setInterstitialLoadCallback(Action callback)|Action을 등록했다면 전면광고를 Load 했을 때 등록한 Action을 실행합니다.
 public void setInterstitialShowCallback(Action callback)|Action을 등록했다면 전면광고를 Show 했을 때 등록한 Action을 실행합니다.
 public void setInterstitialFailCallback(Action callback)|Action을 등록했다면 ZoneId를 통한 전면광고 Load가 실패 했을 때 등록한 Action을 실행합니다.
@@ -404,6 +435,7 @@ public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다
 public void show()|Load한 광고를 노출 시킵니다.
 public bool isLoaded()|광고가 Load된 상태인지 체크합니다.
 public void setAutoReload(bool isAutoReload)|Show 이후 다음 광고를 Load 합니다. 해당 옵션은 기본 true로 적용되어있으며, failCallback을 수신한 경우에는 Reload 동작을 하지 않습니다.
+public void setCUID(string cuid)|각 광고 타입을 위한 CUID를 설정합니다.
 public void setUserId(string id)|서버측 인증이 필요한 경우 호출합니다. 일부 네트워크에서만 동작하며, 사용이 필요한 경우 문의 바랍니다. (Android Only)
 public void setRewardLoadCallback(Action callback)|Action을 등록했다면 보상형광고를 Load 했을 때 등록한 Action을 실행합니다.
 public void setRewardShowCallback(Action callback)|Action을 등록했다면 보상형광고를 Show 했을 때 등록한 Action을 실행합니다.
@@ -424,6 +456,7 @@ public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다
 public void show()|Load한 광고를 노출 시킵니다.
 public bool isLoaded()|광고가 Load된 상태인지 체크합니다.
 public void setAutoReload(bool isAutoReload)|Show 이후 다음 광고를 Load 합니다. 해당 옵션은 기본 true로 적용되어있으며, failCallback을 수신한 경우에는 Reload 동작을 하지 않습니다.
+public void setCUID(string cuid)|각 광고 타입을 위한 CUID를 설정합니다.
 public void setRewardInterstitialLoadCallback(Action callback)|Action을 등록했다면 전면보상형광고를 Load 했을 때 등록한 Action을 실행합니다.
 public void setRewardInterstitialShowCallback(Action callback)|Action을 등록했다면 전면보상형광고를 Show 했을 때 등록한 Action을 실행합니다.
 public void setRewardInterstitialFailCallback(Action callback)|Action을 등록했다면 ZoneId를 통한 전면보상형광고 Load가 실패 했을 때 등록한 Action을 실행합니다.
@@ -431,7 +464,20 @@ public void setRewardInterstitialCompleteCallback(Action callback)|Action을 등
 public void setRewardInterstitialSkipCallback(Action callback)|Action을 등록했다면 전면보상형광고의 리워드 지급기준에 미달 했을 때 등록한 Action을 실행합니다.
 public void setRewardInterstitialCloseCallback(Action callback)|Action을 등록했다면 전면보상형광고를 Close 했을 때 등록한 Action을 실행합니다.
 
-#### 4.5 iOS14 앱 추적 투명성 승인 요청
+#### 4.5 기타 인터페이스
+
+*기타 인터페이스는 BidmadCommon을 통해 처리되며 이를 위한 함수 목록입니다.
+
+Function|Description
+---|---
+public static void initializeSdk()|BidmadSDK 지원 네트워크를 초기화합니다.
+public static void setIsDebug(bool isDebug)|디버그 로그를 노출시킵니다.
+public static void setGgTestDeviceid(string deviceId)|구글 애드몹 / 애드매니저를 위한 테스트 디바이스 등록 함수입니다. 
+public static void setGdprConsent(bool consent, bool useArea)|GDPR 동의여부를 등록합니다. consent: 동의여부 / useArea: 유럽지역 여부 
+public static int getGdprConsent(bool useArea)|GDPR 동의여부를 가져옵니다.
+public static string getPRIVACYURL()|Bidmad 개인정보 방침 웹 URL을 가져옵니다.
+
+#### 4.6 iOS14 앱 추적 투명성 승인 요청
 
 *앱 추적 투명성 승인 요청에 관한 함수는 BidmadCommon을 통해 제공됩니다.
 

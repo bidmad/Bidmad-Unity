@@ -32,6 +32,7 @@ extern "C" {
     void _bidmadRemoveBanner(const char* zoneId);
     void _bidmadHideBannerView(const char* zoneId);
     void _bidmadShowBannerView(const char* zoneId);
+    void _bidmadSetCUIDBanner(const char* zoneId, const char* cuid);
 
     /*Interstitial*/
     void _bidmadNewInstanceInterstitial(const char* zoneId);
@@ -39,6 +40,7 @@ extern "C" {
     void _bidmadShowInterstitial(const char* zoneId);
     bool _bidmadIsLoadedInterstitial(const char* zoneId);
     void _bidmadSetAutoReloadInterstitial(const char* zoneId, bool isAutoReload);
+    void _bidmadSetCUIDInterstitial(const char* zoneId, const char* cuid);
 
     /*Reward*/
     void _bidmadNewInstanceReward(const char* zoneId);
@@ -46,6 +48,7 @@ extern "C" {
     void _bidmadShowRewardVideo(const char* zoneId);
     bool _bidmadIsLoadedReward(const char* zoneId);
     void _bidmadSetAutoReloadRewardVideo(const char* zoneId, bool isAutoReload);
+    void _bidmadSetCUIDRewardVideo(const char* zoneId, const char* cuid);
 
     /*RewardInterstitial*/
     void _bidmadNewInstanceRewardInterstitial(const char* zoneId);
@@ -53,8 +56,10 @@ extern "C" {
     void _bidmadShowRewardInterstitial(const char* zoneId);
     bool _bidmadIsLoadedRewardInterstitial(const char* zoneId);
     void _bidmadSetAutoReloadRewardInterstitial(const char* zoneId, bool isAutoReload);
+    void _bidmadSetCUIDRewardInterstitial(const char* zoneId, const char* cuid);
 
     /*ETC*/
+    void _bidmadInitializeSdk();
     void _bidmadSetDebug(bool isDebug);
     void _bidmadSetGgTestDeviceid(const char* deviceId);
     void _bidmadSetUseArea(bool useArea);

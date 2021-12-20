@@ -242,6 +242,13 @@ void _bidmadShowBannerView(const char* zoneId){
     OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
     [banner showView];
 }
+
+void _bidmadSetCUIDBanner(const char* zoneId, const char* cuid) {
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+    NSString* _cuid = [NSString stringWithUTF8String:cuid];
+    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
+    [banner setCUID:_cuid];
+}
 /** Banner Interface End **/
 /** Interstitial Interface Start **/
 void _bidmadNewInstanceInterstitial(const char* zoneId) {
@@ -275,6 +282,13 @@ void _bidmadSetAutoReloadInterstitial(const char* zoneId, bool isAutoReload) {
     NSString *_zoneId = [NSString stringWithUTF8String:zoneId];
     OpenBiddingUnityInterstitial *openBiddingUnityInterstitial = [OpenBiddingUnityInterstitial getInstance:_zoneId];
     [openBiddingUnityInterstitial setAutoReload:isAutoReload];
+}
+
+void _bidmadSetCUIDInterstitial(const char* zoneId, const char* cuid) {
+    NSString *_zoneId = [NSString stringWithUTF8String:zoneId];
+    NSString *_cuid = [NSString stringWithUTF8String:cuid];
+    OpenBiddingUnityInterstitial *openBiddingUnityInterstitial = [OpenBiddingUnityInterstitial getInstance:_zoneId];
+    [openBiddingUnityInterstitial setCUID:_cuid];
 }
 
 bool _bidmadIsLoadedInterstitial(const char* zoneId){
@@ -324,6 +338,13 @@ void _bidmadSetAutoReloadRewardVideo(const char* zoneId, bool isAutoReload) {
     OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
     [reward setAutoReload:isAutoReload];
 }
+
+void _bidmadSetCUIDRewardVideo(const char* zoneId, const char* cuid) {
+    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
+    NSString* _cuid = [NSString stringWithUTF8String:cuid];
+    OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
+    [reward setCUID:_cuid];
+}
 /** Reward Interface End **/
 #pragma mark RewardInterstitial Interface
 
@@ -353,7 +374,15 @@ void _bidmadSetAutoReloadRewardInterstitial(const char* zoneId, bool isAutoReloa
     [[OpenBiddingUnityRewardInterstitial sharedInstance] setAutoReload:isAutoReload];
 }
 
+void _bidmadSetCUIDRewardInterstitial(const char* zoneId, const char* cuid) {
+    NSString* _cuid = [NSString stringWithUTF8String:cuid];
+    [[OpenBiddingUnityRewardInterstitial sharedInstance] setCUID:_cuid];
+}
 /** ETC Interface Start **/
+void _bidmadInitializeSdk() {
+    [[BIDMADSetting sharedInstance] initializeSdk];
+}
+
 void _bidmadSetDebug(bool isDebug) {
     [[UnityCommon sharedInstance] setDebugMode:isDebug];
 }

@@ -24,6 +24,9 @@ public class RewardAdSample : MonoBehaviour
         // You can disable the auto-reload feature by giving "false" for setAutoReload method.
         // reward.setAutoReload(false);
 
+        // Bidmad Reward Ads can be set with Custom Unique ID with the following method.
+        // reward.setCUID("YOUR ENCRYPTED CUID TEXT");
+
         reward.load();
 
         reward.setRewardLoadCallback(OnRewardLoad);
@@ -73,4 +76,5 @@ public class RewardAdSample : MonoBehaviour
     {
         Debug.Log("OnRewardClose Deletgate Callback Complate!!!");
     }
+
 }

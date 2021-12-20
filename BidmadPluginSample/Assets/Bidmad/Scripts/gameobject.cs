@@ -8,6 +8,9 @@ public class gameobject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Please call initializeSdk() Method before calling Bidmad Ads
+        BidmadCommon.initializeSdk();
+
         GameObject bidmadManager = new GameObject("BidmadManager");
         bidmadManager.AddComponent<BidmadManager>();
         DontDestroyOnLoad(bidmadManager);

@@ -19,6 +19,10 @@ public class BannerAdSample : MonoBehaviour
 #elif UNITY_IOS
         banner = new BidmadBanner("1c3e3085-333f-45af-8427-2810c26a72fc", 130);
 #endif
+
+        // Bidmad Banner Ads can be set with Custom Unique ID with the following method.
+        // banner.setCUID("YOUR ENCRYPTED CUID TEXT");
+        
         banner.setRefreshInterval(80);
         banner.load();
 
@@ -61,4 +65,5 @@ public class BannerAdSample : MonoBehaviour
         }
     }
     #endif
+
 }

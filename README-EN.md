@@ -22,6 +22,24 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
 3. Apps that target children and are vetted by the PlayStore require additional setup to use certified ad networks.<br> 
 If your app is targeting children, check out our [guide](https://github.com/bidmad/Bidmad-Unity/wiki/PlayStore-%EC%95%B1-%ED%83%80%EA%B2%9F%ED%8C%85-%EC%97%B0%EB%A0%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%B6%94%EA%B0%80-%EC%84%A4%EC%A0%95.) for further setup.<br>
 
+4. If you are using Proguard, add the rule below.
+```cpp
+-keep class com.adop.sdk.** { *; }
+-keep class ad.helper.openbidding.** { *; }
+-keepnames class * implements java.io.Serializable
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+```
+
+5. If targeting Android 12 version, please check [AD_ID Permission Guide](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BENG%5D).
+
 *Bidmad uses the AndroidX library. If it is not an AndroidX project, please migrate to AndroidX.
 
 #### 1.2 iOS
@@ -51,7 +69,19 @@ If your app is targeting children, check out our [guide](https://github.com/bidm
 
 ### 2. Using Plugin
 
-#### 2.1 Banner
+#### 2.1 BidmadSDK Initialization
+
+- Upon starting the app, please call initalizeSdk() Function from BidmadCommon.
+- If initializeSdk function is not called, Sdk initializes itself upon the first ad loading, which subsequently may delay the ad loading.
+```
+    BidmadCommon.initializeSdk()
+```
+
+- For interstitial or rewarded ads, instead of calling initializeSdk(), <br> 
+load interstitial or rewarded ad at the starting point of your application by following the guide below,<br> 
+and show the loaded ad at the point of your choice.<br>
+
+#### 2.2 Banner
 
 - Create BidmadBanner to request banner advertisement. At this time, you must pass the height (y) value
 ```cpp
@@ -83,7 +113,7 @@ If your app is targeting children, check out our [guide](https://github.com/bidm
 ```
 
 
-#### 2.2 Interstitial
+#### 2.3 Interstitial
 
 - Create BidmadInterstitial to request interstitial ad.
 - Before displaying an interstitial ad, check whether the ad is loaded through isLoaded.
@@ -113,7 +143,7 @@ If your app is targeting children, check out our [guide](https://github.com/bidm
     }
 ```
 
-#### 2.3 Reward
+#### 2.4 Reward
 
 - BidmadReward is created to request a reward ad.
 - Before displaying an reward ad, check whether the ad is loaded through isLoaded.
@@ -150,7 +180,7 @@ If your app is targeting children, check out our [guide](https://github.com/bidm
     }
 ```
 
-#### 2.4 Reward Interstitial
+#### 2.5 Reward Interstitial
 
 Reward Interstitial is a new reward-type advertising format that can provide rewarded ads when switching between pages in an app.
 Unlike Reward ads, users can view Reward Interstitial ads without user's consent. However, the developer needs to provide a screen announcing that there will be a reward for watching an ad and the user can cancel watching the ad if he/she wants. (Please check the BidmadSDK sample app)
@@ -366,6 +396,7 @@ public BidmadBanner(string zoneId, float _x, float _y)|This is the BidmadBanner 
 public void setRefreshInterval(int time)|Set the banner refresh cycle.(60s~120s)
 public void removeBanner()|Remove the exposed banner.
 public void load()|Request an ad with the ZoneId entered in the constructor.
+public void setCUID(string cuid)|Sets CUID String property for each Ad Type.
 public void pauseBanner()|Banner ads are stopped. It is mainly called when the OnPause event occurs. Only Android is supported.
 public void resumeBanner()|Restart banner ads. It is mainly called when the OnResume event occurs. Only Android is supported.
 public void hideBannerView()|Hide the banner View. 
@@ -385,6 +416,7 @@ public void load()|Request an ad with the ZoneId entered in the constructor.
 public void show()|Display the loaded advertisement.
 public bool isLoaded()|Check if the ad is loaded.
 public void setAutoReload(bool isAutoReload)|After the show, load the next advertisement. This option is applied as the default true, and if you receive a failCallback, you will not perform Reload action. 
+public void setCUID(string cuid)|Sets CUID String property for each Ad Type.
 public void setInterstitialLoadCallback(Action callback)|If an action is registered, the registered action is executed when the interstitial ad is loaded.
 public void setInterstitialShowCallback(Action callback)|If an action is registered, the registered action is executed when the interstitial ad is shown.
 public void setInterstitialFailCallback(Action callback)|If an Action is registered, the registered Action is executed when the load of interstitial ad through ZoneId fails.
@@ -401,6 +433,7 @@ public void load()|Request an ad with the ZoneId entered in the constructor.
 public void show()|Display the loaded advertisement.
 public bool isLoaded()|Check if the ad is loaded.
 public void setAutoReload(bool isAutoReload)|After the show, load the next advertisement. This option is applied as the default true, and if you receive a failCallback, you will not perform Reload action. 
+public void setCUID(string cuid)|Sets CUID String property for each Ad Type.
 public void setUserId(string id)|Called when server-side verification is required. It only works on some networks, and if you need to use it, please contact us. (Android Only)
 public void setRewardLoadCallback(Action callback)|If an action is registered, the registered action is executed when the reward ad is loaded.
 public void setRewardShowCallback(Action callback)|If an action is registered, the registered action is executed when the reward ad is shown.
@@ -421,6 +454,7 @@ public void load()|Request an ad with the ZoneId entered in the constructor.
 public void show()|Display the loaded advertisement.
 public bool isLoaded()|Check if the ad is loaded.
 public void setAutoReload(bool isAutoReload)|After the show, load the next advertisement. This option is applied as the default true, and if you receive a failCallback, you will not perform Reload action. 
+public void setCUID(string cuid)|Sets CUID String property for each Ad Type.
 public void setRewardInterstitialLoadCallback(Action callback)|If an action is registered, the registered action is executed when the Reward Interstitial ad is loaded.
 public void setRewardInterstitialShowCallback(Action callback)|If an action is registered, the registered action is executed when the Reward Interstitial ad is shown.
 public void setRewardInterstitialFailCallback(Action callback)|If an Action is registered, the registered Action is executed when Reward Interstitil ad loading fails.
@@ -428,7 +462,20 @@ public void setRewardInterstitialCompleteCallback(Action callback)|If an Action 
 public void setRewardInterstitialSkipCallback(Action callback|If an Action is registered, the registered Action is executed when the cirteria for reward is not met.
 public void setRewardInterstitialCloseCallback(Action callback)|If an action is registered, the registered action is executed when the Reward Interstitial ad is closed.
 
-#### 4.5 iOS14 AppTrackingTransparencyAuthorization
+#### 4.5 Other Interfaces
+
+*Other Interfaces are included in BidmadCommon.
+
+Function|Description
+---|---
+public static void initializeSdk()|Ad Networks supported by BidmadSDK are initialized.
+public static void setIsDebug(bool isDebug)|Debug logs are exposed.
+public static void setGgTestDeviceid(string deviceId)|Test Device registration function for AdMob and AdManager. 
+public static void setGdprConsent(bool consent, bool useArea)|Set Wether the user consented on GDPR. consent: User Consent / useArea: whether user is in EU region. 
+public static int getGdprConsent(bool useArea)|Get GDPR Consent info
+public static string getPRIVACYURL()|Get Bidmad Privacy URL 
+
+#### 4.6 iOS14 AppTrackingTransparencyAuthorization
 
 *AppTrackingTransparencyAuthorization functions are provided through BidmadCommon.
 

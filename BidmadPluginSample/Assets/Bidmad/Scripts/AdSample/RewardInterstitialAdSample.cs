@@ -26,6 +26,9 @@ public class RewardInterstitialAdSample : MonoBehaviour
         // You can disable the auto-reload feature by giving "false" for setAutoReload method.
         // rewardInterstitial.setAutoReload(false);
 
+        // Bidmad Rewarded Interstitial Ads can be set with Custom Unique ID with the following method.
+        // rewardInterstitial.setCUID("YOUR ENCRYPTED CUID TEXT");
+
         rewardInterstitial.load();
 
         rewardInterstitial.setRewardInterstitialLoadCallback(OnRewardInterstitialLoad);
@@ -93,4 +96,5 @@ public class RewardInterstitialAdSample : MonoBehaviour
     {
         Debug.Log("OnRewardInterstitialClose Deletgate Callback Complate!!!");
     }
+
 }

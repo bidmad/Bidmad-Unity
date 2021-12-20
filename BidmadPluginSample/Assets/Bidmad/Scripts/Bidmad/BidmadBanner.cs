@@ -28,6 +28,9 @@ public class BidmadBanner
     [DllImport("__Internal")]
     private static extern void _bidmadShowBannerView(string zoneId);
 
+    [DllImport("__Internal")]
+    private static extern void _bidmadSetCUIDBanner(string zoneId, string cuid);
+
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
     private AndroidJavaClass javaClass = null;
@@ -110,6 +113,19 @@ public class BidmadBanner
         if (javaClassInstance != null)
         {
             javaClassInstance.Call("setInterval", time);
+        }
+#endif
+    }
+
+
+    public void setCUID(string cuid) {
+#if UNITY_IOS
+        _bidmadSetCUIDBanner(mZoneId, cuid);
+#elif UNITY_ANDROID
+        if (javaClassInstance != null)
+        {
+            javaClassInstance.Call("setCUID", cuid);
+
         }
 #endif
     }

@@ -1,3 +1,11 @@
+# Version 2.13.0
+#### Changes
+- Add initializeSdk / CUID interface
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx-g 2.1.0.0
+- iOS : BidmadSDK.framework 4.1.0.0
+
 # Version 2.12.0
 #### Changes
 - Add Interstitial / Reward / RewardInterstitial AutoReload option

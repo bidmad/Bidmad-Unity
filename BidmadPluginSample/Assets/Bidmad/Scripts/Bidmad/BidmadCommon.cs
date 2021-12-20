@@ -15,7 +15,7 @@ public enum BidmadTrackingAuthorizationStatus
 
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "2.12.0";
+    string UNITY_PLUGIN_VERSION = "2.13.0";
 #if UNITY_IOS
     [DllImport("__Internal")]
     private static extern void _bidmadSetDebug(bool isDebug);
@@ -44,6 +44,9 @@ public class BidmadCommon
     [DllImport("__Internal")]
     private static extern string _bidmadGetPRIVACYURL();
 
+    [DllImport("__Internal")]
+    private static extern bool _bidmadInitializeSdk();
+
 
 #elif UNITY_ANDROID
     private static AndroidJavaClass javaCommonClass = null;
@@ -51,6 +54,26 @@ public class BidmadCommon
     private static AndroidJavaClass javaConsentClass = null;
     private static AndroidJavaObject javaConsentClassInstance = null; 
 #endif
+
+    public static void initializeSdk() 
+    {
+#if UNITY_IOS
+
+        if (Application.platform == RuntimePlatform.IPhonePlayer) {
+            _bidmadInitializeSdk();
+        }
+
+#elif UNITY_ANDROID
+    using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+    {
+        javaCommonClass = new AndroidJavaClass("com.adop.sdk.Common");
+
+        AndroidJavaObject context = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+        javaCommonClass.CallStatic("initializeSdk", context);
+    }
+
+#endif
+    }
 
 	public static void setIsDebug(bool isDebug)
 	{
@@ -162,7 +185,7 @@ public class BidmadCommon
         }
         else
         {
-            return result;
+            return _bidmadGetPRIVACYURL();
         }
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))

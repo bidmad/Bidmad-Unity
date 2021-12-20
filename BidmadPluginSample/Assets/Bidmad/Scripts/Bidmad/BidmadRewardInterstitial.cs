@@ -20,6 +20,9 @@ public class BidmadRewardInterstitial
     private static extern bool _bidmadIsLoadedRewardInterstitial(string zoneId);
 
     [DllImport("__Internal")]
+    private static extern void _bidmadSetCUIDRewardInterstitial(string zoneId, string cuid);
+
+    [DllImport("__Internal")]
     private static extern void _bidmadSetAutoReloadRewardInterstitial(string zoneId, bool isAutoReload);
 
 #elif UNITY_ANDROID
@@ -66,6 +69,17 @@ public class BidmadRewardInterstitial
         }
 #endif
 	}
+
+    public void setCUID(string cuid) {
+#if UNITY_IOS
+        _bidmadSetCUIDRewardInterstitial(mZoneId, cuid);
+#elif UNITY_ANDROID
+        if (javaClassInstance != null)
+        {
+            javaClassInstance.Call("setCUID", cuid);
+        }
+#endif
+    }
 
     public void setUserId(string userId)
     {

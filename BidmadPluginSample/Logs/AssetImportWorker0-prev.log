@@ -1,0 +1,424 @@
+Using pre-set license
+
+ COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+/Users/adop_mac/Dev/Bidmad-Unity/BidmadPluginSample
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+59682
+Successfully changed project path to: /Users/adop_mac/Dev/Bidmad-Unity/BidmadPluginSample
+/Users/adop_mac/Dev/Bidmad-Unity/BidmadPluginSample
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 25.38 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.5f1 (8095aa901b9b)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/adop_mac/Dev/Bidmad-Unity/BidmadPluginSample/Assets
+GfxDevice: creating device client; threaded=0
+2021-12-20 15:26:59.494 Unity[71286:995814] VX3276-QHD preferred device: Intel(R) Iris(TM) Plus Graphics (low power)
+2021-12-20 15:26:59.494 Unity[71286:995814] Metal devices available: 1
+2021-12-20 15:26:59.494 Unity[71286:995814] 0: Intel(R) Iris(TM) Plus Graphics (low power)
+2021-12-20 15:26:59.495 Unity[71286:995814] Using device Intel(R) Iris(TM) Plus Graphics (low power)
+Initializing Metal device caps: Intel(R) Iris(TM) Plus Graphics
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56286
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Registered in 0.003025 seconds.
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 25.85 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.159 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001258 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.23 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.131 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launching external process: /Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Refreshing native plugins compatible for Editor in 0.25 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1139 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 115.0 MB.
+System memory in use after: 115.1 MB.
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 1582.
+Total: 2.013535 ms (FindLiveObjects: 0.215431 ms CreateObjectMapping: 0.123006 ms MarkObjects: 1.594555 ms  DeleteObjects: 0.078218 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs
+  artifactKey: Guid(6e75acb697d964904ad756cbfbbc30eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs using Guid(6e75acb697d964904ad756cbfbbc30eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5efeb4ca5ccb9ba06808cd321f92c135') in 0.391013 seconds
+  Import took 0.393022 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000319 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadReward.cs
+  artifactKey: Guid(3ea29435783534fbea2bcebcdfe4da01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadReward.cs using Guid(3ea29435783534fbea2bcebcdfe4da01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e1b0684231784ca7be8c76e3b0f77f2') in 0.004776 seconds
+  Import took 0.006594 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000304 seconds.
+  path: Assets/Bidmad/Scripts
+  artifactKey: Guid(7be1d8fda6dc54f5bbbd03f2a173fabc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts using Guid(7be1d8fda6dc54f5bbbd03f2a173fabc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c95898d267ba5ac545212a9985db61cc') in 0.001548 seconds
+  Import took 0.004303 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000286 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadBanner.cs
+  artifactKey: Guid(0662c8756f42a4e5e8b623445e49f266) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadBanner.cs using Guid(0662c8756f42a4e5e8b623445e49f266) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e569272394893fa77e7c1df8499d786e') in 0.006560 seconds
+  Import took 0.010369 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000347 seconds.
+  path: Assets/Bidmad/Scripts/AdSample
+  artifactKey: Guid(6bedfc1dc2300482aa9c2e2cc141d96a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/AdSample using Guid(6bedfc1dc2300482aa9c2e2cc141d96a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ed45f712ea8587fac0a83eae993df0c') in 0.001637 seconds
+  Import took 0.004025 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000483 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad
+  artifactKey: Guid(14568e7b2aeab47b398820876abeb8ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad using Guid(14568e7b2aeab47b398820876abeb8ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6bcccfc7ae18c8217cbe395cde3d9a2') in 0.001633 seconds
+  Import took 0.004357 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000357 seconds.
+  path: Assets/Bidmad/Editor
+  artifactKey: Guid(25b3d0020e2a64312b344d115af1d3f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Editor using Guid(25b3d0020e2a64312b344d115af1d3f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3efd7bdec70e7a29472fe9dd1fc68ada') in 0.000922 seconds
+  Import took 0.003058 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.750085 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadRewardInterstitial.cs
+  artifactKey: Guid(d564bf55eaacd4be69c8f330abcb6351) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadRewardInterstitial.cs using Guid(d564bf55eaacd4be69c8f330abcb6351) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '378c407426c6a8ba142f5967e6e0ef80') in 0.004829 seconds
+  Import took 0.007311 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.646900 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadManager.cs
+  artifactKey: Guid(cd895d44b8a9d4a609487cc4129e3d35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadManager.cs using Guid(cd895d44b8a9d4a609487cc4129e3d35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2648872bb262ed360bf603b888fb7b60') in 0.005323 seconds
+  Import took 0.007994 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.012526 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadManager.cs
+  artifactKey: Guid(cd895d44b8a9d4a609487cc4129e3d35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadManager.cs using Guid(cd895d44b8a9d4a609487cc4129e3d35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2648872bb262ed360bf603b888fb7b60') in 0.010612 seconds
+  Import took 0.013342 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.512710 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadInterstitial.cs
+  artifactKey: Guid(0c4cd4b27a50e4d80be64af306d01333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadInterstitial.cs using Guid(0c4cd4b27a50e4d80be64af306d01333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '703d365804121e694c4038fc13791c9d') in 0.004567 seconds
+  Import took 0.006880 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002722 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadInterstitial.cs
+  artifactKey: Guid(0c4cd4b27a50e4d80be64af306d01333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadInterstitial.cs using Guid(0c4cd4b27a50e4d80be64af306d01333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '703d365804121e694c4038fc13791c9d') in 0.007318 seconds
+  Import took 0.009897 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.573937 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadGoogleGDPR.cs
+  artifactKey: Guid(ae9cfb17bb5f2467f9b44676d569dc20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadGoogleGDPR.cs using Guid(ae9cfb17bb5f2467f9b44676d569dc20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '351c3392d087b325251cac5213d17cb1') in 0.004097 seconds
+  Import took 0.005875 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001012 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.21 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.997 seconds
+Platform modules already initialized, skipping
+Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 0.28 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1136 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.1 MB.
+System memory in use after: 119.2 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 1585.
+Total: 1.909184 ms (FindLiveObjects: 0.216672 ms CreateObjectMapping: 0.034399 ms MarkObjects: 1.635476 ms  DeleteObjects: 0.020752 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 108.087188 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.JarResolver_v1.2.166.dll.mdb
+  artifactKey: Guid(9bf2f2276bf27413f92b2ad82991216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.JarResolver_v1.2.166.dll.mdb using Guid(9bf2f2276bf27413f92b2ad82991216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60461d7015c3e3ad69a59e9dd79b0bc8') in 0.941953 seconds
+  Import took 0.944443 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002165 seconds.
+  path: Assets/ExternalDependencyManager/Editor/LICENSE
+  artifactKey: Guid(b2e90fae93e8b40cfa0231d65a98f241) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/LICENSE using Guid(b2e90fae93e8b40cfa0231d65a98f241) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '330756e8a2f20830c1df20beef2544de') in 0.002678 seconds
+  Import took 0.005197 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002511 seconds.
+  path: Assets/ExternalDependencyManager
+  artifactKey: Guid(65676806103a24b02b8eb1541d2ac849) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager using Guid(65676806103a24b02b8eb1541d2ac849) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2a3a89946a89cab64288bb8ab302681') in 0.001396 seconds
+  Import took 0.003944 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002049 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.166.dll.mdb
+  artifactKey: Guid(5c35f02e4d7a64a738deabe386692e0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.166.dll.mdb using Guid(5c35f02e4d7a64a738deabe386692e0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2d531e474194ece215a4413d1524107') in 0.002658 seconds
+  Import took 0.004365 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003463 seconds.
+  path: Assets/Plugins/iOS
+  artifactKey: Guid(af017ad870a224731a1c0bd44fba4db0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/iOS using Guid(af017ad870a224731a1c0bd44fba4db0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6173fa4d0358b7215615695203b3ea6') in 0.001531 seconds
+  Import took 0.003496 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003682 seconds.
+  path: Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.h
+  artifactKey: Guid(b4eff40f2ea544f3f92089dc902a763b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.h using Guid(b4eff40f2ea544f3f92089dc902a763b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c34afa2b6a1db360a13f076475674db') in 1.875159 seconds
+  Import took 1.877147 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001981 seconds.
+  path: Assets/Plugins/iOS/Bidmad
+  artifactKey: Guid(5f436f28fc6db41599f3c75e721735d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/iOS/Bidmad using Guid(5f436f28fc6db41599f3c75e721735d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0f1b730010684b8be4affae89beec7b') in 0.000976 seconds
+  Import took 0.002707 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002834 seconds.
+  path: Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.166_manifest.txt
+  artifactKey: Guid(837409f68efa541c4aded731ef67c155) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.166_manifest.txt using Guid(837409f68efa541c4aded731ef67c155) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29c31869e5e657ed4ce38c34fcb54e57') in 3.218415 seconds
+  Import took 3.220424 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002350 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.PackageManagerResolver_v1.2.166.dll
+  artifactKey: Guid(4ac23dbb7d725486fba22779549af9e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.PackageManagerResolver_v1.2.166.dll using Guid(4ac23dbb7d725486fba22779549af9e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f2283eb59e2e8928964ac1c33b35583') in 1.094139 seconds
+  Import took 1.096325 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005435 seconds.
+  path: Assets/ExternalDependencyManager/Editor/CHANGELOG.md
+  artifactKey: Guid(6ce8fb3bf4ad94dcc8e973b16ae10772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/CHANGELOG.md using Guid(6ce8fb3bf4ad94dcc8e973b16ae10772) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a1711061b3ea33bbdfe76fd208a479c9') in 1.684479 seconds
+  Import took 1.687079 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001416 seconds.
+  path: Assets/Plugins/Android/bidmad
+  artifactKey: Guid(e11aa3727f99f478b8772bf913a79042) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Android/bidmad using Guid(e11aa3727f99f478b8772bf913a79042) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8585062d75f51528b9e7a255e45a9e8a') in 0.001665 seconds
+  Import took 0.003876 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001892 seconds.
+  path: Assets/ExternalDependencyManager/Editor
+  artifactKey: Guid(cd7a83fe5d05942d0adbba27e3b69e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor using Guid(cd7a83fe5d05942d0adbba27e3b69e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db2aa42774268c5781ff5e3a6d834cd0') in 0.001371 seconds
+  Import took 0.003931 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001906 seconds.
+  path: Assets/Plugins
+  artifactKey: Guid(f08326adffc604bd7843ec1d10467f04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins using Guid(f08326adffc604bd7843ec1d10467f04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '022188ef60a31a5b26b15f2bcc548d9b') in 0.002022 seconds
+  Import took 0.004678 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004551 seconds.
+  path: Assets/Plugins/Android
+  artifactKey: Guid(be5a579d6d65a4aceac8418a00ae8539) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Android using Guid(be5a579d6d65a4aceac8418a00ae8539) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1d6312c5647561cf6b07ae70912c719') in 0.001771 seconds
+  Import took 0.004227 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001958 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.JarResolver_v1.2.166.dll
+  artifactKey: Guid(2afe10824de884fb79c16e4b45f7996e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.JarResolver_v1.2.166.dll using Guid(2afe10824de884fb79c16e4b45f7996e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32b368050ba05a74598621c0c18176af') in 0.001925 seconds
+  Import took 0.004206 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003036 seconds.
+  path: Assets/Bidmad/Editor/BidmadPostProcessBuild.cs
+  artifactKey: Guid(6dca22a99ca104f6baf56e3c653c496e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Editor/BidmadPostProcessBuild.cs using Guid(6dca22a99ca104f6baf56e3c653c496e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8d5c0f5ada07bed3cbf33203a71cf6b') in 0.001913 seconds
+  Import took 0.004237 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001807 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll.mdb
+  artifactKey: Guid(e3df07f2674be4955b0abd7daf98034d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll.mdb using Guid(e3df07f2674be4955b0abd7daf98034d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac4b01e8ba0844bf2906a0165cba43cd') in 0.001645 seconds
+  Import took 0.003712 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005577 seconds.
+  path: Assets/Plugins/iOS/Bidmad/SwiftEnabler.swift
+  artifactKey: Guid(95ea19572b8144c088f240b0d62147b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/iOS/Bidmad/SwiftEnabler.swift using Guid(95ea19572b8144c088f240b0d62147b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3141d5e883e8f878b90f4e11573614f0') in 1.828193 seconds
+  Import took 1.830336 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003405 seconds.
+  path: Assets/Plugins/Android/bidmad/bidmad.gradle
+  artifactKey: Guid(fa9fd5adfc63a41debf54fa400d1479a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Android/bidmad/bidmad.gradle using Guid(fa9fd5adfc63a41debf54fa400d1479a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2f96a0a77671b8c852f859a157882cb') in 0.332138 seconds
+  Import took 0.335250 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005893 seconds.
+  path: Assets/ExternalDependencyManager/Editor/README.md
+  artifactKey: Guid(c663c3558e8d64c41ba5fd1a2dbdb0b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/README.md using Guid(c663c3558e8d64c41ba5fd1a2dbdb0b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8097b614053a30f4e8859ceab236e58') in 0.004412 seconds
+  Import took 0.007342 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003035 seconds.
+  path: Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.mm
+  artifactKey: Guid(aeb94ae2dfb5c43dfbc37599b5eafd66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.mm using Guid(aeb94ae2dfb5c43dfbc37599b5eafd66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73b4de57ca161ae5065a6b22b9a21ae7') in 1.759507 seconds
+  Import took 1.761932 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001984 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.166.dll
+  artifactKey: Guid(27b069db64d92433683f7a33f9949c67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.VersionHandlerImpl_v1.2.166.dll using Guid(27b069db64d92433683f7a33f9949c67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3df24d308498cc0ac1f64e0eb32a321c') in 0.003960 seconds
+  Import took 0.006039 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005826 seconds.
+  path: Assets/Bidmad/Editor/OBHDependencies.xml
+  artifactKey: Guid(5fb976c2d12c04353bf812e678c88832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Editor/OBHDependencies.xml using Guid(5fb976c2d12c04353bf812e678c88832) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '283e5bb9b6c6f036ca9cca5b691f652b') in 1.123386 seconds
+  Import took 1.125506 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002997 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.166.dll
+  artifactKey: Guid(df08a4ff649d24368b8aee754e6f4d19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.166.dll using Guid(df08a4ff649d24368b8aee754e6f4d19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e20306c25b458d332405fb6686c3d822') in 0.001327 seconds
+  Import took 0.002991 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002522 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.PackageManagerResolver_v1.2.166.dll.mdb
+  artifactKey: Guid(dffc29637b0f141279918dc44b831e60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.PackageManagerResolver_v1.2.166.dll.mdb using Guid(dffc29637b0f141279918dc44b831e60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '668e6038670d9713c8b17dd1bd9ab826') in 0.002042 seconds
+  Import took 0.003777 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002094 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.166.dll.mdb
+  artifactKey: Guid(8af972286ebe745a49a34b7772fe2b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.166.dll.mdb using Guid(8af972286ebe745a49a34b7772fe2b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e2ec0dff7c89ba6bf834f7d8eb6401d') in 0.001936 seconds
+  Import took 0.004311 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001194 seconds.
+  path: Assets/Bidmad
+  artifactKey: Guid(3d3f886a6881b4ae5a36f5799b507744) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad using Guid(3d3f886a6881b4ae5a36f5799b507744) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cead3730b3635dc9b678bb2f40114274') in 0.000956 seconds
+  Import took 0.002523 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001856 seconds.
+  path: Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll
+  artifactKey: Guid(c1ed415d040d949298abb8d893bfdd83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll using Guid(c1ed415d040d949298abb8d893bfdd83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'abfa351bbd2650fcd348aa62d9b7d3d6') in 0.001655 seconds
+  Import took 0.004001 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002637 seconds.
+  path: Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs
+  artifactKey: Guid(6e75acb697d964904ad756cbfbbc30eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs using Guid(6e75acb697d964904ad756cbfbbc30eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4518d8e3e26b090a5d3b9d57ebf0d8e') in 0.001316 seconds
+  Import took 0.003039 seconds .
+
