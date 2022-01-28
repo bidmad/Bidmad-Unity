@@ -1,14 +1,18 @@
 # Modified from:
 #     https://github.com/github/gitignore/blob/master/Unity.gitignore
 
-/[Ll]ibrary/
-/[Uu]serSettings/
-[Tt]emp/
-[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+/BidmadPluginSample/[Ll]ibrary/
+/BidmadPluginSample/[Uu]serSettings/
+/BidmadPluginSample[Tt]emp/
+/BidmadPluginSample[Oo]bj/
+/BidmadPluginSample/[Bb]uild/
+/BidmadPluginSample/[Bb]uilds/
+/BidmadPluginSample/[Ll]ogs/
+/BidmadPluginSample/[Mm]emoryCaptures/
+/BidmadPluginSample/Temp/
+
+/BidmadPluginSample/IOS/
+/BidmadPluginSample/IOS_BUILD/
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # [Aa]ssets/AssetStoreTools*
