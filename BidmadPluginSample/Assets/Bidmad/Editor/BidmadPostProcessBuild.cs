@@ -142,7 +142,6 @@ public static class BidmadPostProcessBuild {
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "238da6jt44.skadnetwork");
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "488r3q3dtq.skadnetwork");
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "5tjdwbrq8w.skadnetwork");
-                skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "f73kdq92p3.skadnetwork");
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "f7s53z58qe.skadnetwork");
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "lr83yxwka7.skadnetwork");
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "mp6xlyr22a.skadnetwork");
@@ -150,7 +149,15 @@ public static class BidmadPostProcessBuild {
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "w9q455wk68.skadnetwork");
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "x44k69ngh6.skadnetwork");
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "bvpn9ufa9b.skadnetwork");
-                
+                skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "252b5q8x7y.skadnetwork");
+                skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "9g2aggbj52.skadnetwork");
+                skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "dzg6xy7pwj.skadnetwork");
+                skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "f73kdq92p3.skadnetwork");
+                skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "hdw39hrw9y.skadnetwork");
+                skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "krvm3zuq6h.skadnetwork");
+                skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "x8uqf25wch.skadnetwork");
+                skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "y45688jllp.skadnetwork");
+
                 plist.WriteToFile(plistPath);
             }
         }

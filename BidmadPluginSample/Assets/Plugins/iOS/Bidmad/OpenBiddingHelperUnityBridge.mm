@@ -93,6 +93,7 @@ return _sharedObject; \
 
 -(void)BIDMADOpenBiddingRewardVideoClose:(OpenBiddingRewardVideo *)core
 {
+    UnitySetAudioSessionActive(false);
     UnitySendMessage("BidmadManager", "OnRewardClose", [core.zoneID UTF8String]);
 }
 
@@ -322,6 +323,7 @@ void _bidmadShowRewardVideo(const char* zoneId){
     OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
     
     if([reward isLoaded]){
+        UnitySetAudioSessionActive(true);
         [reward show];
     }
 }
