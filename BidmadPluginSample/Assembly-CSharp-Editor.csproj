@@ -48,8 +48,8 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Bidmad\Editor\BidmadPostProcessBuild.cs" />
-     <None Include="Assets\ExternalDependencyManager\Editor\external-dependency-manager_version-1.2.166_manifest.txt" />
      <None Include="Assets\Bidmad\Editor\OBHDependencies.xml" />
+     <None Include="Assets\ExternalDependencyManager\Editor\external-dependency-manager_version-1.2.166_manifest.txt" />
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity/Hub/Editor/2020.3.5f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
