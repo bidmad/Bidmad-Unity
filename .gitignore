@@ -65,3 +65,8 @@ Thumbs.db.meta
 
 # VS Code
 *.vscode
+
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+/[Aa]ssets/[Ss]treamingAssets/aa.meta

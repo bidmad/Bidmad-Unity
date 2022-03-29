@@ -11,9 +11,7 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 #### 1.1 Android
 
 1. Import the latest downloaded SDK to the project.<br>
-2. Find the [apply plugin:'com.android.application'] code in the gradle file in the project and declare the path to the Bidmad Gradle file under it.<br>
-(*mainTemplate.gradle for 2019.02 or less / launcherTemplate.gradle for 2019.03 or later)
-
+2. Find the [apply plugin:'com.android.application'] code in the launcherTemplate.gradle file in the project and declare the path to the Bidmad Gradle file under it.<br>
 ```cpp
 apply plugin: 'com.android.application'
 
@@ -36,6 +34,27 @@ If your app is targeting children, check out our [guide](https://github.com/bidm
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+
+# Tapjoy
+-keep class com.tapjoy.** { *; }
+-keep class com.moat.** { *; }
+-keepattributes JavascriptInterface
+-keepattributes *Annotation*
+-keep class * extends java.util.ListResourceBundle {
+protected Object[][] getContents();
+}
+-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
+public static final *** NULL;
+}
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * {
+@com.google.android.gms.common.annotation.KeepName *;
+}
+-keepnames class * implements android.os.Parcelable {
+public static final ** CREATOR;
+}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+-dontwarn com.tapjoy.**
 ```
 
 5. If targeting Android 12 version, please check [AD_ID Permission Guide](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BENG%5D).

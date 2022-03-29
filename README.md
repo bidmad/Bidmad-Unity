@@ -11,9 +11,7 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 #### 1.1 Android
 
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다.<br>
-2. 프로젝트 내 gradle 파일에서 [apply plugin: 'com.android.application'] 코드를 찾아 그 아래에 Bidmad Gradle 파일 경로 선언합니다.<br>
-(*2019.02 이하 mainTemplate.gradle / 2019.03 이상 launcherTemplate.gradle)
-
+2. 프로젝트 내 launcherTemplate.gradle 파일에서 [apply plugin: 'com.android.application'] 코드를 찾아 그 아래에 Bidmad Gradle 파일 경로 선언합니다.<br>
 ```cpp
 apply plugin: 'com.android.application'
 
@@ -36,6 +34,27 @@ apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" 
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+
+# Tapjoy
+-keep class com.tapjoy.** { *; }
+-keep class com.moat.** { *; }
+-keepattributes JavascriptInterface
+-keepattributes *Annotation*
+-keep class * extends java.util.ListResourceBundle {
+protected Object[][] getContents();
+}
+-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
+public static final *** NULL;
+}
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * {
+@com.google.android.gms.common.annotation.KeepName *;
+}
+-keepnames class * implements android.os.Parcelable {
+public static final ** CREATOR;
+}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+-dontwarn com.tapjoy.**
 ```
 
 5. Android 12버전을 Target하는 경우 [AD_ID 권한 추가 선언 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BKOR%5D)를 확인바랍니다.

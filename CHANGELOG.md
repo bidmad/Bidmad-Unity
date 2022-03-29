@@ -1,8 +1,17 @@
+# Version 2.15.0
+#### Changes
+- Support Ad Network Applovin MAX, Inmobi, Ironsource, Vungle, Tapjoy
+- AOS Proguard Role Update
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx-g 2.3.0.0
+- iOS : BidmadSDK.framework 4.2.0.0
+
 # Version 2.14.0
 #### Changes
 - Support Ad Network Fyber 
 - Bug Fix
-#### Integrated BidmadSDK Version
+#### Integration Bidmad SDK version
 - Android : bidmad-androidx-g 2.2.0.0
 - iOS : BidmadSDK.framework 4.1.1.0
 
