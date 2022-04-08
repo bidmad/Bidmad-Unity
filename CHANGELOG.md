@@ -1,3 +1,13 @@
+# Version 2.16.0
+#### Changes
+- Advertisement processing logic stabilization
+- Support AOS Ad Network Adfit, Adpie, Cauly
+- Remove Mopub Network
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 2.4.0.0
+- iOS : BidmadSDK.framework 4.2.1.0
+
 # Version 2.15.0
 #### Changes
 - Support Ad Network Applovin MAX, Inmobi, Ironsource, Vungle, Tapjoy

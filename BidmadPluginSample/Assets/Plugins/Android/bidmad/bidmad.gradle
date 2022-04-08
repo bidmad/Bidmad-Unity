@@ -3,7 +3,16 @@ repositories {
     google()
     jcenter()
     mavenCentral()
-    maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //bidmad
+    maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
+    maven { url "http://devrepo.kakao.com:8088/nexus/content/groups/public/" } //Adift
+    maven {
+        url "s3://repo.cauly.net/releases"
+        credentials(AwsCredentials) {
+            accessKey "AKIAWRZUK5MFKYVSUOLB"
+            secretKey "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"
+        }
+    } //Cauly
+    maven { url 'https://jitpack.io' } //adpie
     maven { url "https://artifact.bytedance.com/repository/pangle"} //Pangle
     maven { url "https://sdk.tapjoy.com/" } //Tapjoy
     maven { url "https://android-sdk.is.com/" } //ironsource
@@ -11,13 +20,13 @@ repositories {
 }
 
 dependencies {
-    implementation ('com.adop.sdk:bidmad-androidx-g:2.3.0.0'){
+    implementation ('com.adop.sdk:bidmad-androidx:2.4.0.0'){
       exclude group: "com.google.code.gson", module: "gson"
     }
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'ad.helper.openbidding:admob-obh-g:2.3.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter-g:2.3.0.0'  //Certified ad SDK by Google
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter-g:2.3.0.0' //Not certified ad SDK by Google
+    implementation 'ad.helper.openbidding:admob-obh:2.4.0.0'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.4.0.0'  //Certified ad SDK by Google
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.4.0.0' //Not certified ad SDK by Google
 }
 
 android {
