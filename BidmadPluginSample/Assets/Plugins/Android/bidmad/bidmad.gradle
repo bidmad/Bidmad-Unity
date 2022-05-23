@@ -19,13 +19,13 @@ repositories {
 }
 
 dependencies {
-    implementation ('com.adop.sdk:bidmad-androidx:2.5.0.0'){
+    implementation ('com.adop.sdk:bidmad-androidx:2.5.0.1'){
       exclude group: "com.google.code.gson", module: "gson"
     }
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'ad.helper.openbidding:admob-obh:2.5.0.0'
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.5.0.0'  //Certified ad SDK by Google
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.5.0.0' //Not certified ad SDK by Google
+    implementation 'ad.helper.openbidding:admob-obh:2.5.0.1'
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.5.0.1'  //Certified ad SDK by Google
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.5.1.0' //Not certified ad SDK by Google
 }
 
 android {

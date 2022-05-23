@@ -1,3 +1,12 @@
+# Version 2.17.1
+#### Changes
+- AOS Adfit SDK Update
+- AOS Manifest.xml Update
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 2.5.0.1
+- iOS : BidmadSDK.framework 4.3.0.1
+
 # Version 2.17.0
 #### Changes
 - AOS / IOS AdNetwork Library Update
