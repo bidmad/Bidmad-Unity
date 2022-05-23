@@ -2,8 +2,9 @@
 #### Changes
 - AOS Adfit SDK Update
 - AOS Manifest.xml Update
-- Bug Fix
-- iOS Xcode build bug (Unrecognized Symbol) fix 
+- AOS Changed minSdkversion to 21.
+- iOS Xcode build bug (Unrecognized Symbol) fix
+- Bug Fix 
 #### Integration Bidmad SDK version
 - Android : bidmad-androidx 2.5.0.1
 - iOS : BidmadSDK.framework 4.3.0.1
