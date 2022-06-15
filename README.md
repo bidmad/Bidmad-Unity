@@ -12,7 +12,7 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다.<br>
 2. Assets → External Dependency Manager → Android Resolver → Settings에서 Use Gradle Daemon 체크<br>
-3. Assets → External Dependency Manager → Android Resolver → Force Resolve 실행
+3. Assets → External Dependency Manager → Android Resolver → Force Resolve 실행<br>
 *2.18.0 이전 버전에서 업데이트 하는 경우 [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/AOS-EDM4U-%EC%A0%84%ED%99%98-%EA%B0%80%EC%9D%B4%EB%93%9C)를 참고하여 이전 버전 요소를 제거 바랍니다.<br>
 4. 아동을 타겟으로 하고 PlayStore에 심사를 받는 앱은 인증된 광고 네트워크를 사용을 위해 추가 설정이 필요합니다.<br> 
 앱이 아동을 타겟하고 있다면 추가 설정을 위해 [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/PlayStore-%EC%95%B1-%ED%83%80%EA%B2%9F%ED%8C%85-%EC%97%B0%EB%A0%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%B6%94%EA%B0%80-%EC%84%A4%EC%A0%95.)를 확인하세요.<br>
