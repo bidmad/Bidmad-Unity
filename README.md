@@ -68,6 +68,8 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
+*Bidmad 는 Xcode 13.0 이상을 지원합니다. Xcode 버전이 13.0 미만이라면 13.0 이상 버전으로 업데이트 바랍니다. 
+
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다. <br>
 2. Assets → Bidmad → Editor → BidmadPostProcessBuild.cs 파일을 수정합니다.<br>
     User Tracking Usage Description 과 Google App ID 를 변경해주십시오. 
