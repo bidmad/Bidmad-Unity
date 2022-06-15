@@ -69,6 +69,8 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
+*Bidmad supports Xcode 13.0 or higher. If your Xcode version is lower than 13.0, please update to 13.0 or higher.
+
 1. Please import the latest plugin.<br>
 2. Please make adjustments to BidmadPostProcessBuild.cs file in Assets → Bidmad → Editor.<br>
     Make sure to change User Tracking Usage Description and Google App ID. 
