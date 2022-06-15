@@ -1,3 +1,15 @@
+# Version 2.18.0
+#### Changes
+- Remove Cauly Network
+- AOS RewardInterstitial ad processing update
+- AOS Proguard Role Update
+- AOS Changed library import method from external Gradle files to EDM4U
+- iOS TapJoy Network Dependency Update
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 2.6.0.0
+- iOS : BidmadSDK.framework 4.3.1.0
+
 # Version 2.17.1
 #### Changes
 - AOS Adfit SDK Update

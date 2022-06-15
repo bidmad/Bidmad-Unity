@@ -27,14 +27,15 @@ public class gameobject : MonoBehaviour
         }
 
         gGdpr = new BidmadGoogleGDPR();
-        gGdpr.reset();
+        gGdpr.setDebug("24CA94DDEB5A9979BF934BB443157007", true); // GDPR Test Mode Setting
+        gGdpr.reset(); // Reset GDPR Consent value. Use only in a test app
+
         gGdpr.setConsentInfoUpdateSuccessCallback(onConsentInfoUpdateSuccess);
         gGdpr.setConsentInfoUpdateFailureCallback(onConsentInfoUpdateFailure);
         gGdpr.setConsentFormLoadSuccessCallback(onConsentFormLoadSuccess);
         gGdpr.setConsentFormLoadFailureCallback(onConsentFormLoadFailure);
         gGdpr.setConsentFormDismissedCallback(onConsentFormDismissed);
 
-        gGdpr.setDebug("24CA94DDEB5A9979BF934BB443157007", true);
         gGdpr.requestConsentInfoUpdate();
 
         BidmadCommon.setGdprConsent(false, true);

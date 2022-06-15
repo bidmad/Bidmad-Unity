@@ -11,19 +11,18 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 #### 1.1 Android
 
 1. Import the latest downloaded SDK to the project.<br>
-2. Find the [apply plugin:'com.android.application'] code in the launcherTemplate.gradle file in the project and declare the path to the Bidmad Gradle file under it.<br>
-```cpp
-apply plugin: 'com.android.application'
-
-apply from: "${getRootDir()}/../../Assets/Plugins/Android/bidmad/bidmad.gradle" //Path of Bidmad Gradle.
-```
-3. Apps that target children and are vetted by the PlayStore require additional setup to use certified ad networks.<br> 
+2. Check Use Gradle Daemon in Android Resolver Settings<br>
+*Assets → External Dependency Manager → Android Resolver → Settings<br>
+3. Run force resolve of External Dependency Manager.<br>
+*If you are updating from a version earlier than 2.18.0, please refer to the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/AOS-EDM4U-Migration-Guide) to remove the settings of the old version.<br>
+4. Apps that target children and are vetted by the PlayStore require additional setup to use certified ad networks.<br> 
 If your app is targeting children, check out our [guide](https://github.com/bidmad/Bidmad-Unity/wiki/PlayStore-%EC%95%B1-%ED%83%80%EA%B2%9F%ED%8C%85-%EC%97%B0%EB%A0%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%B6%94%EA%B0%80-%EC%84%A4%EC%A0%95.) for further setup.<br>
-
-4. If you are using Proguard, add the rule below.
+5. If you are using Proguard, add the rule below.
 ```cpp
 -keep class com.adop.sdk.** { *; }
 -keep class ad.helper.openbidding.** { *; }
+-keep class com.adop.adapter.fc.** { *; }
+-keep class com.adop.adapter.fnc.** { *; }
 -keepnames class * implements java.io.Serializable
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;
@@ -34,6 +33,13 @@ If your app is targeting children, check out our [guide](https://github.com/bidm
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+
+# Pangle
+-keep class com.bytedance.sdk.** { *; }
+-keep class com.bykv.vk.openvk.component.video.api.** { *; }
 
 # Tapjoy
 -keep class com.tapjoy.** { *; }
@@ -57,7 +63,7 @@ public static final ** CREATOR;
 -dontwarn com.tapjoy.**
 ```
 
-5. If targeting Android 12 version, please check [AD_ID Permission Guide](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BENG%5D).
+6. If targeting Android 12 version, please check [AD_ID Permission Guide](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BENG%5D).
 
 *Bidmad uses the AndroidX library. If it is not an AndroidX project, please migrate to AndroidX.
 
