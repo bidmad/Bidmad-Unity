@@ -18,6 +18,6 @@
     <iosPod name="BidmadSDK" version="4.4.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
     <iosPod name="OpenBiddingHelper" version="4.4.0.1" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
     <iosPod name="BidmadAdapterFC" version="4.4.0.1" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
-    <iosPod name="BidmadAdapterFNC/ForGame" version="4.4.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
+    <iosPod name="BidmadAdapterFNC/ForGame" version="4.4.0.1" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
   </iosPods>
 </dependencies>
