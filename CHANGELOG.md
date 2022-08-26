@@ -1,3 +1,10 @@
+# Version 2.19.1
+#### Changes
+- Fix Bugs
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 2.7.0.0
+- iOS : BidmadSDK.framework 4.5.0.0
+
 # Version 2.19.0
 #### Changes
 - Update logic related to GDPR consent function by Ad Network.  
