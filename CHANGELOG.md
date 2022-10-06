@@ -1,3 +1,11 @@
+# Version 2.20.0
+#### Changes
+- Support Ad Network for header bidding
+- Fix Bugs
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 2.8.0.0
+- iOS : BidmadSDK.framework 4.5.1.0
+
 # Version 2.19.1
 #### Changes
 - Fix Bugs

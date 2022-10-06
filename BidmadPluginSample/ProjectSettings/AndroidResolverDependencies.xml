@@ -1,9 +1,9 @@
 <dependencies>
   <packages>
-    <package>ad.helper.openbidding:admob-obh:2.6.0.0</package>
-    <package>com.adop.adapter.fc:fcNetwork-adapter:2.6.0.0</package>
-    <package>com.adop.adapter.fnc:fncNetwork-adapter:2.6.0.0</package>
-    <package>com.adop.sdk:bidmad-androidx:2.6.0.0</package>
+    <package>ad.helper.openbidding:admob-obh:2.8.0.0</package>
+    <package>com.adop.adapter.fc:fcNetwork-adapter:2.8.0.0</package>
+    <package>com.adop.adapter.fnc:fncNetwork-adapter:2.8.0.0</package>
+    <package>com.adop.sdk:bidmad-androidx:2.8.0.0</package>
   </packages>
   <files />
   <settings>
