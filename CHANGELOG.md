@@ -1,3 +1,10 @@
+# Version 2.20.1
+#### Changes
+- iOS Xcode Compatibility Expansion, Xcode 13.4.1 ~ 14.X are now supported.
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 2.8.0.0
+- iOS : BidmadSDK.framework 4.5.1.1
+
 # Version 2.20.0
 #### Changes
 - Support Ad Network for header bidding
