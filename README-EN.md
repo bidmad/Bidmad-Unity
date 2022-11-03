@@ -69,7 +69,7 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
-*Bidmad supports Xcode 13.0 or higher. If your Xcode version is lower than 13.0, please update to 13.0 or higher.
+*Bidmad supports Xcode 13.4 or higher. If your Xcode version is lower than 13.4, please update to 13.4 or higher.
 
 1. Please import the latest plugin.<br>
 2. Please make adjustments to BidmadPostProcessBuild.cs file in Assets → Bidmad → Editor.<br>
@@ -82,7 +82,9 @@ public static final ** CREATOR;
 4. After building iOS Xcode Project, iOS Xcode Project folder will contain a project file with <strong>.xcworkspace</strong> extension. Please open it. <br>
 5. Unity-iPhone Project Settings → Build Settings → UnityFramework Target → Set Enable Bitcode to "No".<br>
     ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
+6. Inside the Unity-iPhone Target Project Settings → General → Frameworks, Libraries, and Embedded Content, Click the + button inside and add OMSDK_Pubmatic.xcframework.
+    ![Bidmad-Guide-5](https://i.imgur.com/hMcJ8yS.jpg)<br>
+7. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
 
 *If you're looking for a guide to the privacy requirements of the Apple Store, [see here](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BENG%5D).
 
@@ -476,7 +478,7 @@ public void setRewardCloseCallback(Action callback)|If an action is registered, 
 Function|Description
 ---|---
 public BidmadRewardInterstitial(string zoneId)|This is the BidmadRewardInterstitial constructor, Set the ZoneId
-public void setUserId(string userId)|Called when server-side verification is required. It only works on some networks, and if you need to use it, please contact us. (Android Only)
+public void setUserId(string userId)|Called when server-side verification is required. It only works on some networks, and if you need to use it, please contact us.
 public void load()|Request an ad with the ZoneId entered in the constructor.
 public void show()|Display the loaded advertisement.
 public bool isLoaded()|Check if the ad is loaded.

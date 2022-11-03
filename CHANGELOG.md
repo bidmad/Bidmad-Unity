@@ -1,3 +1,14 @@
+# Version 2.21.0
+#### Changes
+- Support for SSC of Pangle Network (Android)
+- Support for SSC of AdMob, IronSource, Pangle, AdManager, AdColony (iOS)
+- Add Pubmatic Ad Network
+- Temporary suspension of Prebid(Header Bidding) Network support due to Dependency Library issue (Android)
+- Fix Bugs
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 2.9.0.0
+- iOS : BidmadSDK.framework 4.6.0.0
+
 # Version 2.20.1
 #### Changes
 - iOS Xcode Compatibility Expansion, Xcode 13.4.1 ~ 14.X are now supported.

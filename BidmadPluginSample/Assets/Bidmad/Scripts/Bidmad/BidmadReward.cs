@@ -25,6 +25,9 @@ public class BidmadReward
     [DllImport("__Internal")]
     private static extern void _bidmadSetAutoReloadRewardVideo(string zoneId, bool isAutoReload);
 
+    [DllImport("__Internal")]
+    private static extern void _bidmadSetUserId(string userId);
+
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
     private AndroidJavaClass javaClass = null;
@@ -74,6 +77,8 @@ public class BidmadReward
 	}
 
     public void setCUID(string cuid) {
+        if(cuid == null)
+            cuid = "";
 #if UNITY_IOS
         _bidmadSetCUIDRewardVideo(mZoneId, cuid);
 #elif UNITY_ANDROID
@@ -97,8 +102,12 @@ public class BidmadReward
 
     public void setUserId(string userId)
     {
-        //Only Android Support
+        if (userId == null) {
+            userId = "";
+        }
+
 #if UNITY_IOS
+        _bidmadSetUserId(userId);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {

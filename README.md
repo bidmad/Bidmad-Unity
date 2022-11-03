@@ -68,7 +68,7 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
-*Bidmad 는 Xcode 13.0 이상을 지원합니다. Xcode 버전이 13.0 미만이라면 13.0 이상 버전으로 업데이트 바랍니다. 
+*Bidmad 는 Xcode 13.4 이상을 지원합니다. Xcode 버전이 13.4 미만이라면 13.4 이상 버전으로 업데이트 바랍니다. 
 
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다. <br>
 2. Assets → Bidmad → Editor → BidmadPostProcessBuild.cs 파일을 수정합니다.<br>
@@ -81,7 +81,9 @@ public static final ** CREATOR;
 4. iOS Xcode 프로젝트를 빌드한 이후, iOS 프로젝트 폴더에서 <strong>.xcworkspace</strong> 확장자의 파일을 열어주십시오.<br>
 5. Unity-iPhone 프로젝트 세팅 → Build Settings → UnityFramework 타겟 → Enable Bitcode 를 "No" 로 설정하십시오.<br>
     ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
+6. Unity-iPhone 타겟 대상 프로젝트 세팅 → General → Frameworks, Libraries, and Embedded Content 내부 + 버튼 클릭 후 OMSDK_Pubmatic.xcframework 추가하십시오.
+    ![Bidmad-Guide-5](https://i.imgur.com/hMcJ8yS.jpg)<br>
+7. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
 
 *Apple Store에서 요구하는 개인정보 보호에 관한 가이드가 필요한 경우 [이곳](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BKOR%5D)을 참고하세요.
 
@@ -477,7 +479,7 @@ public void setRewardCloseCallback(Action callback)|Action을 등록했다면 �
 Function|Description
 ---|---
 public BidmadRewardInterstitial(string zoneId)|BidmadRewardInterstitial 생성자, ZoneId를 설정합니다.
-public void setUserId(string userId)|서버측 인증이 필요한 경우 호출합니다. 일부 네트워크에서만 동작하며, 사용이 필요한 경우 문의 바랍니다. (Android Only)
+public void setUserId(string userId)|서버측 인증이 필요한 경우 호출합니다. 일부 네트워크에서만 동작하며, 사용이 필요한 경우 문의 바랍니다.
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.
 public void show()|Load한 광고를 노출 시킵니다.
 public bool isLoaded()|광고가 Load된 상태인지 체크합니다.

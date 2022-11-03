@@ -273,10 +273,7 @@ void _bidmadShowInterstitial(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     OpenBiddingUnityInterstitial* interstitial = [OpenBiddingUnityInterstitial getInstance:_zoneID];
     
-    if([interstitial isLoaded]){
-        [interstitial show];
-    }
-    
+    [interstitial show];
 }
 
 void _bidmadSetAutoReloadInterstitial(const char* zoneId, bool isAutoReload) {
@@ -322,10 +319,11 @@ void _bidmadShowRewardVideo(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
     
-    if([reward isLoaded]){
+    if (reward.isLoaded) {
         UnitySetAudioSessionActive(true);
-        [reward show];
     }
+    
+    [reward show];
 }
 
 bool _bidmadIsLoadedReward(const char* zoneId){
@@ -404,6 +402,11 @@ void _bidmadSetGDPRSetting(bool consent) {
 
 int _bidmadGetGdprConsent(){
     return ((int)[BIDMADGDPR getGDPRSetting]);
+}
+
+void _bidmadSetUserId(const char* userId){
+    NSString* _userId = [NSString stringWithUTF8String:userId];
+    [UnityCommon.sharedInstance setUserID:_userId];
 }
 
 const char* _bidmadGetPRIVACYURL() {

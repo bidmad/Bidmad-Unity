@@ -49,6 +49,7 @@ extern "C" {
     bool _bidmadIsLoadedReward(const char* zoneId);
     void _bidmadSetAutoReloadRewardVideo(const char* zoneId, bool isAutoReload);
     void _bidmadSetCUIDRewardVideo(const char* zoneId, const char* cuid);
+    void _bidmadSetUserId(const char* userId);
 
     /*RewardInterstitial*/
     void _bidmadNewInstanceRewardInterstitial(const char* zoneId);
