@@ -8,22 +8,25 @@
             url "https://maven.google.com"
         }
         maven {
-            url "https://devrepo.kakao.com/nexus/content/groups/public/" // Assets/Bidmad/Editor/OBHDependencies.xml:10
+            url "https://devrepo.kakao.com/nexus/content/groups/public/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
         }
         maven {
-            url "https://bidmad-sdk.s3.amazonaws.com/" // Assets/Bidmad/Editor/OBHDependencies.xml:10
+            url "https://bidmad-sdk.s3.amazonaws.com/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
         }
         maven {
-            url "https://sdk.tapjoy.com/" // Assets/Bidmad/Editor/OBHDependencies.xml:10
+            url "https://sdk.tapjoy.com/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
         }
         maven {
-            url "https://artifact.bytedance.com/repository/pangle/" // Assets/Bidmad/Editor/OBHDependencies.xml:10
+            url "https://artifact.bytedance.com/repository/pangle/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
         }
         maven {
-            url "https://jitpack.io/" // Assets/Bidmad/Editor/OBHDependencies.xml:10
+            url "https://jitpack.io/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
         }
         maven {
-            url "https://android-sdk.is.com/" // Assets/Bidmad/Editor/OBHDependencies.xml:10
+            url "https://android-sdk.is.com/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
+        }
+        maven {
+            url "https://repo.pubmatic.com/artifactory/public-repos/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
         }
         mavenLocal()
         mavenCentral()
@@ -36,10 +39,10 @@ apply plugin: 'com.android.library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 // Android Resolver Dependencies Start
-    implementation 'ad.helper.openbidding:admob-obh:2.8.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:12
-    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.8.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:13
-    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.8.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:14
-    implementation 'com.adop.sdk:bidmad-androidx:2.8.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:11
+    implementation 'ad.helper.openbidding:admob-obh:2.9.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:13
+    implementation 'com.adop.adapter.fc:fcNetwork-adapter:2.9.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:14
+    implementation 'com.adop.adapter.fnc:fncNetwork-adapter:2.9.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:15
+    implementation 'com.adop.sdk:bidmad-androidx:2.9.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:12
 // Android Resolver Dependencies End
 **DEPS**}
 
