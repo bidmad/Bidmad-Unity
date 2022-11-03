@@ -39,10 +39,7 @@ public class InterstitialAdSample : MonoBehaviour
     public void ShowInterstitialAd()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        if (interstitial.isLoaded())
-        {
-            interstitial.show();
-        }
+        interstitial.show();
 #endif
     }
 

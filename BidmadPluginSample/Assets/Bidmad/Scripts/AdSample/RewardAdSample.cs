@@ -40,10 +40,7 @@ public class RewardAdSample : MonoBehaviour
     public void ShowRewardAd()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        if (reward.isLoaded())
-        {
-            reward.show();
-        }
+        reward.show();
 #endif
     }
 
