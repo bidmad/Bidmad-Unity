@@ -20,10 +20,7 @@ public class BidmadInterstitial
     private static extern bool _bidmadIsLoadedInterstitial(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern void _bidmadSetCUIDInterstitial(string zoneId, string cuid);
-
-    [DllImport("__Internal")]
-    private static extern void _bidmadSetAutoReloadInterstitial(string zoneId, bool isAutoReload);
+    private static extern void _bidmadSetAutoReloadInterstitial(bool isAutoReload);
 
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
@@ -52,14 +49,12 @@ public class BidmadInterstitial
             javaClassInstance.Call("setActivity", activityContext);
             javaClassInstance.Call("setContext", activityContext);
             javaClassInstance.Call("makeInterstitial");
-
-            javaClassInstance.Call("setAdInfo", mZoneId);
         }
 #endif
     }
 
     public void getInstance()
-	{
+    {
 #if UNITY_IOS
 
 #elif UNITY_ANDROID
@@ -71,32 +66,21 @@ public class BidmadInterstitial
             }
         }
 #endif
-	}
-
-    public void setCUID(string cuid) {
-#if UNITY_IOS
-        _bidmadSetCUIDInterstitial(mZoneId, cuid);
-#elif UNITY_ANDROID
-        if (javaClassInstance != null)
-        {
-            javaClassInstance.Call("setCUID", cuid);
-        }
-#endif
     }
 
     public void setAutoReload(bool isAutoReload) {
 #if UNITY_IOS
-        _bidmadSetAutoReloadInterstitial(mZoneId, isAutoReload);
+        _bidmadSetAutoReloadInterstitial(isAutoReload);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
-            javaClassInstance.Call("setAutoReload", isAutoReload);
+            javaClassInstance.CallStatic("setAutoReload", isAutoReload);
         }
 #endif
     }
 
-	public void load()
-	{
+    public void load()
+    {
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
@@ -108,10 +92,10 @@ public class BidmadInterstitial
             javaClassInstance.Call("load");
         }
 #endif
-	}
+    }
 
-	public void show()
-	{
+    public void show()
+    {
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
@@ -123,7 +107,7 @@ public class BidmadInterstitial
             javaClassInstance.Call("show");
         }
 #endif
-	}
+    }
 
     public bool isLoaded()
     {
@@ -162,7 +146,7 @@ public class BidmadInterstitial
 #endif
     }
 
-    public void setInterstitialFailCallback(Action callback)
+    public void setInterstitialFailCallback(Action<string> callback)
     {
 #if UNITY_ANDROID || UNITY_IOS
         if (BidmadManager.dicInterstitialFail.ContainsKey(mZoneId))

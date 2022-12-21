@@ -27,14 +27,15 @@ public class BannerAdSample : MonoBehaviour
         banner.load();
 
         banner.setBannerLoadCallback(OnBannerLoad);
-        banner.setBannerFailCallback(OnBannerFail);
+        banner.setBannerFailCallback(OnBannerLoadFail);
         banner.setBannerClickCallback(OnBannerClick);
     }
 
     public void removeBanner()
     {
         Debug.Log("removeBanner!!!");
-        banner.removeBanner();
+        if(banner != null)
+            banner.removeBanner();
     }
 
     void OnBannerLoad()
@@ -42,9 +43,9 @@ public class BannerAdSample : MonoBehaviour
         Debug.Log("OnBannerLoad Deletgate Callback Complate!!!");
     }
 
-    void OnBannerFail()
+    void OnBannerLoadFail(string errorInfo)
     {
-        Debug.Log("OnBannerFail Deletgate Callback Complate!!!");
+        Debug.Log("OnBannerLoadFail Deletgate Callback Complate!!! : "+errorInfo);
     }
 
     void OnBannerClick()
@@ -57,11 +58,13 @@ public class BannerAdSample : MonoBehaviour
     {
         if (pause)
         {
-            banner.pauseBanner();
+            if(banner != null)
+                banner.pauseBanner();
         }
         else
         {
-            banner.resumeBanner();
+            if(banner != null)
+                banner.resumeBanner();
         }
     }
     #endif

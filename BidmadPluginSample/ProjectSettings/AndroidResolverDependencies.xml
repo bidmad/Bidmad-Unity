@@ -1,14 +1,14 @@
 <dependencies>
   <packages>
-    <package>ad.helper.openbidding:admob-obh:2.9.0.0</package>
-    <package>com.adop.adapter.fc:fcNetwork-adapter:2.9.0.0</package>
-    <package>com.adop.adapter.fnc:fncNetwork-adapter:2.9.0.0</package>
-    <package>com.adop.sdk:bidmad-androidx:2.9.0.0</package>
+    <package>ad.helper.openbidding:admob-obh:3.0.0</package>
+    <package>com.adop.adapter.fc:fcNetwork-adapter:3.0.0</package>
+    <package>com.adop.adapter.fnc:fncNetwork-adapter:3.0.0</package>
+    <package>com.adop.sdk:bidmad-androidx:3.0.0</package>
   </packages>
   <files />
   <settings>
     <setting name="androidAbis" value="armeabi-v7a" />
-    <setting name="bundleId" value="com.adop.androidTest" />
+    <setting name="bundleId" value="com.adop.androidTest1" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="True" />

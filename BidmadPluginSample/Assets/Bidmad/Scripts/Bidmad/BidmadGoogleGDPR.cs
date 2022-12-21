@@ -99,8 +99,8 @@ public class BidmadGoogleGDPR
 
     /*
         int UNKNOWN = 0;
-        int NOT_REQUIRED = 1;
-        int REQUIRED = 2;
+        int REQUIRED = 1;
+        int NOT_REQUIRED = 2;
         int OBTAINED = 3;
     */
 	public int getConsentStatus()

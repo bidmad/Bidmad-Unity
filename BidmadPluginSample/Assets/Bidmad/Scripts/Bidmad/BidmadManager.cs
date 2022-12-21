@@ -8,27 +8,20 @@ public class BidmadManager : MonoBehaviour
 {
 /*** Banner Dictionnary ***/
     public static Dictionary<string, Action> dicBannerLoad = new Dictionary<string, Action>();
-    public static Dictionary<string, Action> dicBannerFail = new Dictionary<string, Action>();
+    public static Dictionary<string, Action<string>> dicBannerFail = new Dictionary<string, Action<string>>();
     public static Dictionary<string, Action> dicBannerClick = new Dictionary<string, Action>();
 /*** Interstitial Dictionnary ***/
     public static Dictionary<string, Action> dicInterstitialLoad = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicInterstitialShow = new Dictionary<string, Action>();
-    public static Dictionary<string, Action> dicInterstitialFail = new Dictionary<string, Action>();
+    public static Dictionary<string, Action<string>> dicInterstitialFail = new Dictionary<string, Action<string>>();
     public static Dictionary<string, Action> dicInterstitialClose = new Dictionary<string, Action>();
 /*** Reward Dictionnary ***/
     public static Dictionary<string, Action> dicRewardLoad = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicRewardShow = new Dictionary<string, Action>();
-    public static Dictionary<string, Action> dicRewardFail = new Dictionary<string, Action>();
+    public static Dictionary<string, Action<string>> dicRewardFail = new Dictionary<string, Action<string>>();
     public static Dictionary<string, Action> dicRewardComplete = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicRewardSkip = new Dictionary<string, Action>();
     public static Dictionary<string, Action> dicRewardClose = new Dictionary<string, Action>();
-/*** RewardInterstitial Dictionnary ***/
-    public static Dictionary<string, Action> dicRewardInterstitialLoad = new Dictionary<string, Action>();
-    public static Dictionary<string, Action> dicRewardInterstitialShow = new Dictionary<string, Action>();
-    public static Dictionary<string, Action> dicRewardInterstitialFail = new Dictionary<string, Action>();
-    public static Dictionary<string, Action> dicRewardInterstitialComplete = new Dictionary<string, Action>();
-    public static Dictionary<string, Action> dicRewardInterstitialSkip = new Dictionary<string, Action>();
-    public static Dictionary<string, Action> dicRewardInterstitialClose = new Dictionary<string, Action>();
 /*** Common Callback ***/
     public static Action<BidmadTrackingAuthorizationStatus> adTrackingAuthResponse;
 /*** googleGdpr Callback ***/
@@ -48,12 +41,15 @@ public class BidmadManager : MonoBehaviour
         }
     }
 
-    void OnBannerFail(string zoneId)
+    void OnBannerLoadFail(string zoneId_errorInfo)
     {
-        Debug.Log("OnBannerFailed");
+        Debug.Log("OnBannerLoadFail");
+        string[] infoSplit = zoneId_errorInfo.Split('+');
+        string zoneId = infoSplit[0];
+        string errorInfo = infoSplit[1];
         if(dicBannerFail.ContainsKey(zoneId)){
-            Action onBannerFail = dicBannerFail[zoneId];
-            onBannerFail();
+            Action<string> onBannerLoadFail = dicBannerFail[zoneId];
+            onBannerLoadFail(errorInfo);
         }
 
     }
@@ -85,18 +81,21 @@ public class BidmadManager : MonoBehaviour
             onInterstitialShow();
         }
     }
-    void OnInterstitialFail(string zoneId)
+    void OnInterstitialLoadFail(string zoneId_errorInfo)
     {
         Debug.Log("OnInterstitialLoadFail");
+        string[] infoSplit = zoneId_errorInfo.Split('+');
+        string zoneId = infoSplit[0];
+        string errorInfo = infoSplit[1];
         if(dicInterstitialFail.ContainsKey(zoneId)){
-            Action onInterstitialFail = dicInterstitialFail[zoneId];
-            onInterstitialFail();
+            Action<string> onInterstitialLoadFail = dicInterstitialFail[zoneId];
+            onInterstitialLoadFail(errorInfo);
         }
        
     }
     void OnInterstitialClose(string zoneId)
     {
-        Debug.Log("OnInterstitialClose");
+        
         if(dicInterstitialClose.ContainsKey(zoneId)){
             Action onInterstitialClose = dicInterstitialClose[zoneId];
             onInterstitialClose();
@@ -122,12 +121,15 @@ public class BidmadManager : MonoBehaviour
         }
     }
 
-    void OnRewardFail(string zoneId)
+    void OnRewardLoadFail(string zoneId_errorInfo)
     {
-        Debug.Log("OnRewardFail");
+        Debug.Log("OnRewardLoadFail");
+        string[] infoSplit = zoneId_errorInfo.Split('+');
+        string zoneId = infoSplit[0];
+        string errorInfo = infoSplit[1];
         if(dicRewardFail.ContainsKey(zoneId)){
-            Action onRewardFail = dicRewardFail[zoneId];
-            onRewardFail();
+            Action<string> onRewardLoadFail = dicRewardFail[zoneId];
+            onRewardLoadFail(errorInfo);
         }
     }
 
@@ -158,61 +160,6 @@ public class BidmadManager : MonoBehaviour
         }
     }
  /*** Reward Callback ***/
- /*** RewardInterstitial Callback ***/
-        void OnRewardInterstitialLoad(string zoneId) 
-    {
-        Debug.Log("OnRewardInterstitialLoad");
-        if(dicRewardInterstitialLoad.ContainsKey(zoneId)){
-            Action onRewardInterstitialLoad = dicRewardInterstitialLoad[zoneId];
-            onRewardInterstitialLoad();
-        }
-    }
-
-    void OnRewardInterstitialShow(string zoneId)
-    {
-        Debug.Log("OnRewardInterstitialShow");
-        if(dicRewardInterstitialShow.ContainsKey(zoneId)){
-            Action onRewardInterstitialShow = dicRewardInterstitialShow[zoneId];
-            onRewardInterstitialShow();
-        }
-    }
-
-    void OnRewardInterstitialFail(string zoneId)
-    {
-        Debug.Log("OnRewardInterstitialFail");
-        if(dicRewardInterstitialFail.ContainsKey(zoneId)){
-            Action onRewardInterstitialFail = dicRewardInterstitialFail[zoneId];
-            onRewardInterstitialFail();
-        }
-    }
-
-    void OnRewardInterstitialComplete(string zoneId)
-    {
-        Debug.Log("OnRewardInterstitialComplete");
-        if(dicRewardInterstitialComplete.ContainsKey(zoneId)){
-            Action onRewardInterstitialComplete = dicRewardInterstitialComplete[zoneId];
-            onRewardInterstitialComplete();
-        }
-    }
-
-    void OnRewardInterstitialSkip(string zoneId)
-    {
-        Debug.Log("OnRewardInterstitialSkip");
-        if(dicRewardInterstitialSkip.ContainsKey(zoneId)){
-            Action onRewardInterstitialSkip = dicRewardInterstitialSkip[zoneId];
-            onRewardInterstitialSkip();
-        }
-    }
-
-    void OnRewardInterstitialClose(string zoneId)
-    {
-        Debug.Log("OnRewardInterstitialClose");
-        if(dicRewardInterstitialClose.ContainsKey(zoneId)){
-            Action onRewardInterstitialClose = dicRewardInterstitialClose[zoneId];
-            onRewardInterstitialClose();
-        }
-    }
- /*** RewardInterstitial Callback ***/
  /*** Common Callback ***/
     void OnAdTrackingAuthorizationResponse(string responseCode)
     {

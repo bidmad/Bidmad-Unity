@@ -9,14 +9,12 @@
 #ifndef OpenBiddingHelperUnityBridge_h
 #define OpenBiddingHelperUnityBridge_h
 
-#import "BidmadSDK/UnityCommon.h"
 #import "BidmadSDK/BIDMADGDPR.h"
 #import "BidmadSDK/BIDMADSetting.h"
 #import "BidmadSDK/UnityGDPRforGoogle.h"
-#import <OpenBiddingHelper/OpenBiddingUnityReward.h>
-#import <OpenBiddingHelper/OpenBiddingUnityInterstitial.h>
+#import <OpenBiddingHelper/BidmadInterstitialAdForGame.h>
+#import <OpenBiddingHelper/BidmadRewardAdForGame.h>
 #import <OpenBiddingHelper/OpenBiddingUnityBanner.h>
-#import <OpenBiddingHelper/OpenBiddingUnityRewardInterstitial.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,46 +24,36 @@ extern "C" {
 
     /*Banner*/
     void _bidmadSetRefreshInterval(const char* zoneId, int time);
-    void _bidmadNewInstanceBanner(const char* zoneId, float _x, float _y);
     void _bidmadNewInstanceBannerAutoCenter(const char* zoneId, float _y);
+    void _bidmadNewInstanceBanner(const char* zoneId, float _x, float _y);
     void _bidmadLoadBanner(const char* zoneId);
     void _bidmadRemoveBanner(const char* zoneId);
     void _bidmadHideBannerView(const char* zoneId);
     void _bidmadShowBannerView(const char* zoneId);
-    void _bidmadSetCUIDBanner(const char* zoneId, const char* cuid);
 
     /*Interstitial*/
     void _bidmadNewInstanceInterstitial(const char* zoneId);
     void _bidmadLoadInterstitial(const char* zoneId);
     void _bidmadShowInterstitial(const char* zoneId);
+    void _bidmadSetAutoReloadInterstitial(bool isAutoReload);
     bool _bidmadIsLoadedInterstitial(const char* zoneId);
-    void _bidmadSetAutoReloadInterstitial(const char* zoneId, bool isAutoReload);
-    void _bidmadSetCUIDInterstitial(const char* zoneId, const char* cuid);
 
     /*Reward*/
     void _bidmadNewInstanceReward(const char* zoneId);
     void _bidmadLoadRewardVideo(const char* zoneId);
     void _bidmadShowRewardVideo(const char* zoneId);
     bool _bidmadIsLoadedReward(const char* zoneId);
-    void _bidmadSetAutoReloadRewardVideo(const char* zoneId, bool isAutoReload);
-    void _bidmadSetCUIDRewardVideo(const char* zoneId, const char* cuid);
-    void _bidmadSetUserId(const char* userId);
-
-    /*RewardInterstitial*/
-    void _bidmadNewInstanceRewardInterstitial(const char* zoneId);
-    void _bidmadLoadRewardInterstitial(const char* zoneId);
-    void _bidmadShowRewardInterstitial(const char* zoneId);
-    bool _bidmadIsLoadedRewardInterstitial(const char* zoneId);
-    void _bidmadSetAutoReloadRewardInterstitial(const char* zoneId, bool isAutoReload);
-    void _bidmadSetCUIDRewardInterstitial(const char* zoneId, const char* cuid);
+    void _bidmadSetAutoReloadRewardVideo(bool isAutoReload);
 
     /*ETC*/
-    void _bidmadInitializeSdk();
+    void _bidmadInitializeSdk(const char* appKey);
     void _bidmadSetDebug(bool isDebug);
-    void _bidmadSetGgTestDeviceid(const char* deviceId);
+    void _bidmadSetGgTestDeviceid(const char* _deviceId);
     void _bidmadSetUseArea(bool useArea);
     void _bidmadSetGDPRSetting(bool consent);
     int _bidmadGetGdprConsent();
+    void _bidmadSetCuid(const char* cuid);
+    void _bidmadSetUseServerSideCallback(bool isServerSideCallback);
     const char* _bidmadGetPRIVACYURL();
 
      /* ATT */
@@ -84,7 +72,6 @@ extern "C" {
     int _bidmadGDPRforGoogleGetConsentStatus();
     void _bidmadGDPRforGoogleReset();
     void _bidmadGDPRforGoogleSetDelegate();
-
     
 #ifdef __cplusplus
 }

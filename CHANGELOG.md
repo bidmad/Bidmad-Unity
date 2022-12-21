@@ -1,3 +1,12 @@
+# Version 3.0.0
+#### Changes
+- Update initializeSdk, setCuid, useServerSideCallback methods
+- Reward Interstitial Removed
+- Fix Bugs
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.0.0
+- iOS : BidmadSDK.framework 5.0.0
+
 # Version 2.21.0
 #### Changes
 - Support for SSC of Pangle Network (Android)

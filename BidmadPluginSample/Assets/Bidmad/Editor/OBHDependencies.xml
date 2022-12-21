@@ -9,16 +9,16 @@
       <repository>https://android-sdk.is.com/</repository>
       <repository>https://repo.pubmatic.com/artifactory/public-repos/</repository>
     </repositories>
-    <androidPackage spec="com.adop.sdk:bidmad-androidx:2.9.0.0"/>
-    <androidPackage spec="ad.helper.openbidding:admob-obh:2.9.0.0"/>
-    <androidPackage spec="com.adop.adapter.fc:fcNetwork-adapter:2.9.0.0"/>
-    <androidPackage spec="com.adop.adapter.fnc:fncNetwork-adapter:2.9.0.0"/>
+    <androidPackage spec="com.adop.sdk:bidmad-androidx:3.0.0"/>
+    <androidPackage spec="ad.helper.openbidding:admob-obh:3.0.0"/>
+    <androidPackage spec="com.adop.adapter.fc:fcNetwork-adapter:3.0.0"/>
+    <androidPackage spec="com.adop.adapter.fnc:fncNetwork-adapter:3.0.0"/>
   </androidPackages>
 
   <iosPods>
-    <iosPod name="BidmadSDK" version="4.6.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
-    <iosPod name="OpenBiddingHelper" version="4.6.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
-    <iosPod name="BidmadAdapterFC" version="4.6.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
-    <iosPod name="BidmadAdapterFNC/ForGame" version="4.6.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
+    <iosPod name="BidmadSDK" version="5.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
+    <iosPod name="OpenBiddingHelper" version="5.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
+    <iosPod name="BidmadAdapterFC" version="5.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
+    <iosPod name="BidmadAdapterFNC" version="5.0.0" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="11.0"/>
   </iosPods>
 </dependencies>

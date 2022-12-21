@@ -8,8 +8,12 @@ public class gameobject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Please call initializeSdk() Method before calling Bidmad Ads
-        BidmadCommon.initializeSdk();
+        // Please call initializeSdk(string) Method before calling Bidmad Ads
+        #if UNITY_IOS
+        BidmadCommon.initializeSdk("6b097551-7f78-11ed-a117-026864a21938"); //TEST APP KEY
+        #elif UNITY_ANDROID
+        BidmadCommon.initializeSdk("6933aab2-7f78-11ed-a117-026864a21938"); //TEST APP KEY
+        #endif
 
         GameObject bidmadManager = new GameObject("BidmadManager");
         bidmadManager.AddComponent<BidmadManager>();
@@ -26,23 +30,19 @@ public class gameobject : MonoBehaviour
             Destroy(bidmadManager);
         }
 
-        gGdpr = new BidmadGoogleGDPR();
-        gGdpr.setDebug("24CA94DDEB5A9979BF934BB443157007", true); // GDPR Test Mode Setting
-        gGdpr.reset(); // Reset GDPR Consent value. Use only in a test app
+        // gGdpr = new BidmadGoogleGDPR();
+        // gGdpr.setDebug("24CA94DDEB5A9979BF934BB443157007", true); // GDPR Test Mode Setting
+        // gGdpr.reset(); // Reset GDPR Consent value. Use only in a test app
 
-        gGdpr.setConsentInfoUpdateSuccessCallback(onConsentInfoUpdateSuccess);
-        gGdpr.setConsentInfoUpdateFailureCallback(onConsentInfoUpdateFailure);
-        gGdpr.setConsentFormLoadSuccessCallback(onConsentFormLoadSuccess);
-        gGdpr.setConsentFormLoadFailureCallback(onConsentFormLoadFailure);
-        gGdpr.setConsentFormDismissedCallback(onConsentFormDismissed);
+        // gGdpr.setConsentInfoUpdateSuccessCallback(onConsentInfoUpdateSuccess);
+        // gGdpr.setConsentInfoUpdateFailureCallback(onConsentInfoUpdateFailure);
+        // gGdpr.setConsentFormLoadSuccessCallback(onConsentFormLoadSuccess);
+        // gGdpr.setConsentFormLoadFailureCallback(onConsentFormLoadFailure);
+        // gGdpr.setConsentFormDismissedCallback(onConsentFormDismissed);
 
-        gGdpr.requestConsentInfoUpdate();
+        // gGdpr.requestConsentInfoUpdate();
 
-        BidmadCommon.setGdprConsent(false, true);
-        Debug.Log("getGdprConsent : " + BidmadCommon.getGdprConsent(true));
-        Debug.Log("getGdprConsent : " + BidmadCommon.getGdprConsent(false));
-
-        // BidmadCommon.setGgTestDeviceid("24CA94DDEB5A9979BF934BB443157007");
+        // BidmadCommon.setGdprConsent(false, true);
 
         #if UNITY_IOS
         BidmadCommon.reqAdTrackingAuthorization(adTrackingAuthCallback);

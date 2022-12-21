@@ -15,7 +15,7 @@ return _sharedObject; \
 
 #import "OpenBiddingHelperUnityBridge.h"
 
-@interface OpenBiddingHelperUnityBridge : NSObject<BIDMADOpenBiddingBannerDelegate,BIDMADOpenBiddingInterstitialDelegate,BIDMADOpenBiddingRewardVideoDelegate, OpenBiddingRewardInterstitialDelegate, BIDMADUnityCommonDelegate, BIDMADGDPRforGoogleProtocol>
+@interface OpenBiddingHelperUnityBridge : NSObject<BIDMADOpenBiddingBannerDelegate,BIDMADOpenBiddingInterstitialDelegate,BIDMADOpenBiddingRewardVideoDelegate, BIDMADGDPRforGoogleProtocol>
 + (OpenBiddingHelperUnityBridge *)sharedInstance;
 @end
 
@@ -27,111 +27,64 @@ return _sharedObject; \
     });
 }
 
-/** Banner Callback Start **/
--(void)BIDMADOpenBiddingBannerLoad:(OpenBiddingBanner *)core{
-    UnitySendMessage("BidmadManager", "OnBannerLoad", [core.zoneID UTF8String]);
+- (void)onLoadAd:(id)bidmadAd {
+    if ([bidmadAd isKindOfClass:OpenBiddingBanner.class]) {
+        UnitySendMessage("BidmadManager", "OnBannerLoad", [(OpenBiddingBanner *)bidmadAd zoneID].UTF8String);
+    } else if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
+        UnitySendMessage("BidmadManager", "OnInterstitialLoad", [(OpenBiddingInterstitial *)bidmadAd zoneID].UTF8String);
+    } else if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
+        UnitySendMessage("BidmadManager", "OnRewardLoad", [(OpenBiddingRewardVideo *)bidmadAd zoneID].UTF8String);
+    }
 }
 
-- (void)BIDMADOpenBiddingBannerAllFail:(OpenBiddingBanner *)core{
-    UnitySendMessage("BidmadManager", "OnBannerFail", [core.zoneID UTF8String]);
+- (void)onLoadFailAd:(id)bidmadAd error:(NSError *)error {
+    if ([bidmadAd isKindOfClass:OpenBiddingBanner.class]) {
+        UnitySendMessage("BidmadManager", "OnBannerLoadFail", [NSString stringWithFormat:@"%@+[code: %ld][message: %@]", [(OpenBiddingBanner *)bidmadAd zoneID], error.code, error.localizedDescription].UTF8String);
+    } else if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
+        UnitySendMessage("BidmadManager", "OnInterstitialLoadFail", [NSString stringWithFormat:@"%@+[code: %ld][message: %@]", [(OpenBiddingInterstitial *)bidmadAd zoneID], error.code, error.localizedDescription].UTF8String);
+    } else if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
+        UnitySendMessage("BidmadManager", "OnRewardLoadFail", [NSString stringWithFormat:@"%@+[code: %ld][message: %@]", [(OpenBiddingRewardVideo *)bidmadAd zoneID], error.code, error.localizedDescription].UTF8String);
+    }
 }
 
--(void)BIDMADOpenBiddingBannerClick:(OpenBiddingBanner *)core{
-    UnitySendMessage("BidmadManager", "OnBannerClick", [core.zoneID UTF8String]);
+- (void)onClickAd:(id)bidmadAd {
+    if ([bidmadAd isKindOfClass:OpenBiddingBanner.class]) {
+        UnitySendMessage("BidmadManager", "OnBannerClick", [(OpenBiddingBanner *)bidmadAd zoneID].UTF8String);
+    } else if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
+        /* Click Callback Unsupported by Unity Engine */
+    } else if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
+        /* Click Callback Unsupported by Unity Engine */
+    }
 }
 
--(void)BIDMADOpenBiddingBannerClosed:(OpenBiddingBanner *)core {
-    
+- (void)onCloseAd:(id)bidmadAd {
+    if ([bidmadAd isKindOfClass:OpenBiddingBanner.class]) {
+        /* Close Callback Unsupported by Unity Engine */
+    } else if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
+        UnitySendMessage("BidmadManager", "OnInterstitialClose", [(OpenBiddingInterstitial *)bidmadAd zoneID].UTF8String);
+    } else if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
+        UnitySendMessage("BidmadManager", "OnRewardClose", [(OpenBiddingRewardVideo *)bidmadAd zoneID].UTF8String);
+    }
 }
 
-/** Banner Callback End **/
-/** Interstitial Callback Start **/
-
--(void)BIDMADOpenBiddingInterstitialLoad:(OpenBiddingInterstitial *)core{
-    UnitySendMessage("BidmadManager", "OnInterstitialLoad", [core.zoneID UTF8String]);
+- (void)onShowAd:(id)bidmadAd {
+    if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
+        UnitySendMessage("BidmadManager", "OnInterstitialShow", [(OpenBiddingInterstitial *)bidmadAd zoneID].UTF8String);
+    } else if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
+        UnitySendMessage("BidmadManager", "OnRewardShow", [(OpenBiddingRewardVideo *)bidmadAd zoneID].UTF8String);
+    }
 }
 
--(void)BIDMADOpenBiddingInterstitialShow:(OpenBiddingInterstitial *)core{
-    UnitySendMessage("BidmadManager", "OnInterstitialShow", [core.zoneID UTF8String]);
+- (void)onCompleteAd:(id)bidmadAd {
+    if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
+        UnitySendMessage("BidmadManager", "OnRewardComplete", [(OpenBiddingRewardVideo *)bidmadAd zoneID].UTF8String);
+    }
 }
 
--(void)BIDMADOpenBiddingInterstitialClose:(OpenBiddingInterstitial *)core{
-    UnitySendMessage("BidmadManager", "OnInterstitialClose", [core.zoneID UTF8String]);
-}
-
--(void)BIDMADOpenBiddingInterstitialAllFail:(OpenBiddingInterstitial *)core{
-    UnitySendMessage("BidmadManager", "OnInterstitialFail", [core.zoneID UTF8String]);
-}
-
-/** Interstitial Callback End **/
-/** Reward Callback Start **/
-
--(void)BIDMADOpenBiddingRewardVideoLoad:(OpenBiddingRewardVideo *)core
-{
-    UnitySendMessage("BidmadManager", "OnRewardLoad", [core.zoneID UTF8String]);
-}
-
--(void)BIDMADOpenBiddingRewardVideoShow:(OpenBiddingRewardVideo *)core
-{
-    UnitySendMessage("BidmadManager", "OnRewardShow", [core.zoneID UTF8String]);
-}
-
--(void)BIDMADOpenBiddingRewardVideoAllFail:(OpenBiddingRewardVideo *)core
-{
-    UnitySendMessage("BidmadManager", "OnRewardFail", [core.zoneID UTF8String]);
-}
-
--(void)BIDMADOpenBiddingRewardVideoSucceed:(OpenBiddingRewardVideo *)core
-{
-    UnitySendMessage("BidmadManager", "OnRewardComplete", [core.zoneID UTF8String]);
-}
-
--(void)BIDMADOpenBiddingRewardSkipped:(OpenBiddingRewardVideo *)core
-{
-    UnitySendMessage("BidmadManager", "OnRewardSkip", [core.zoneID UTF8String]);
-}
-
--(void)BIDMADOpenBiddingRewardVideoClose:(OpenBiddingRewardVideo *)core
-{
-    UnitySetAudioSessionActive(false);
-    UnitySendMessage("BidmadManager", "OnRewardClose", [core.zoneID UTF8String]);
-}
-
-/** Reward Callback End **/
-
-#pragma mark RewardInterstitial Callback
-
-- (void)OpenBiddingRewardInterstitialAllFail:(OpenBiddingRewardInterstitial *)core {
-    NSLog(@"OpenBiddingHelper Unity Bridge Callback → OpenBiddingRewardInterstitialAllFail");
-    UnitySendMessage("BidmadManager", "OnRewardInterstitialAllFail", [core.zoneID UTF8String]);
-}
-- (void)OpenBiddingRewardInterstitialLoad:(OpenBiddingRewardInterstitial *)core {
-    NSLog(@"OpenBiddingHelper Unity Bridge Callback → OpenBiddingRewardInterstitialLoad");
-    UnitySendMessage("BidmadManager", "OnRewardInterstitialLoad", [core.zoneID UTF8String]);
-}
-- (void)OpenBiddingRewardInterstitialClose:(OpenBiddingRewardInterstitial *)core {
-    NSLog(@"OpenBiddingHelper Unity Bridge Callback → OpenBiddingRewardInterstitialClose");
-    UnitySendMessage("BidmadManager", "OnRewardInterstitialClose", [core.zoneID UTF8String]);
-}
-- (void)OpenBiddingRewardInterstitialShow:(OpenBiddingRewardInterstitial *)core {
-    NSLog(@"OpenBiddingHelper Unity Bridge Callback → OpenBiddingRewardInterstitialShow");
-    UnitySendMessage("BidmadManager", "OnRewardInterstitialShow", [core.zoneID UTF8String]);
-}
-- (void)OpenBiddingRewardInterstitialComplete:(OpenBiddingRewardInterstitial *)core {
-    NSLog(@"OpenBiddingHelper Unity Bridge Callback → OpenBiddingRewardInterstitialComplete");
-    UnitySendMessage("BidmadManager", "OnRewardInterstitialComplete", [core.zoneID UTF8String]);
-}
-- (void)OpenBiddingRewardInterstitialClick:(OpenBiddingRewardInterstitial *)core {
-    NSLog(@"OpenBiddingHelper Unity Bridge Callback → OpenBiddingRewardInterstitialClick");
-    UnitySendMessage("BidmadManager", "OnRewardInterstitialClick", [core.zoneID UTF8String]);
-}
-- (void)OpenBiddingRewardInterstitialSuccess:(OpenBiddingRewardInterstitial *)core {
-    NSLog(@"OpenBiddingHelper Unity Bridge Callback → OpenBiddingRewardInterstitialSuccess");
-    UnitySendMessage("BidmadManager", "OnRewardInterstitialComplete", [core.zoneID UTF8String]);
-}
-- (void)OpenBiddingRewardInterstitialSkipped:(OpenBiddingRewardInterstitial *) core {
-    NSLog(@"OpenBiddingHelper Unity Bridge Callback → OpenBiddingRewardInterstitialSkipped");
-    UnitySendMessage("BidmadManager", "OnRewardInterstitialSkipped", [core.zoneID UTF8String]);
+- (void)onSkipAd:(id)bidmadAd {
+    if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
+        UnitySendMessage("BidmadManager", "OnRewardSkip", [(OpenBiddingRewardVideo *)bidmadAd zoneID].UTF8String);
+    }
 }
 
 /** Common Callback Start **/
@@ -234,162 +187,83 @@ void _bidmadHideBannerView(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
     OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
-    [banner hideView];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [banner hideView];
+    });
 }
 
 void _bidmadShowBannerView(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
     
     OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
-    [banner showView];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [banner showView];
+    });
 }
 
-void _bidmadSetCUIDBanner(const char* zoneId, const char* cuid) {
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    NSString* _cuid = [NSString stringWithUTF8String:cuid];
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
-    [banner setCUID:_cuid];
-}
 /** Banner Interface End **/
 /** Interstitial Interface Start **/
 void _bidmadNewInstanceInterstitial(const char* zoneId) {
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-
-    UIViewController* pRootViewController = UnityGetGLViewController();
-    OpenBiddingUnityInterstitial* interstitial = [[OpenBiddingUnityInterstitial alloc]initWithZoneId:_zoneID parentVC:pRootViewController];
-    [interstitial setDelegate:[OpenBiddingHelperUnityBridge sharedInstance]];
+    [BidmadInterstitialAdForGame initialSetupForZoneID:[NSString stringWithUTF8String:zoneId]];
+    [BidmadInterstitialAdForGame setDelegate:OpenBiddingHelperUnityBridge.sharedInstance];
 }
 
 void _bidmadLoadInterstitial(const char* zoneId){
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityInterstitial* interstitial = [OpenBiddingUnityInterstitial getInstance:_zoneID];
-    
-    if(![interstitial isLoaded]){
-        [interstitial load];
-    }
+    [BidmadInterstitialAdForGame loadWithZoneID:[NSString stringWithUTF8String:zoneId]];
 }
 
 void _bidmadShowInterstitial(const char* zoneId){
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityInterstitial* interstitial = [OpenBiddingUnityInterstitial getInstance:_zoneID];
-    
-    [interstitial show];
+    [BidmadInterstitialAdForGame showWithZoneID:[NSString stringWithUTF8String:zoneId] viewController:UnityGetGLViewController()];
 }
 
-void _bidmadSetAutoReloadInterstitial(const char* zoneId, bool isAutoReload) {
-    NSString *_zoneId = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityInterstitial *openBiddingUnityInterstitial = [OpenBiddingUnityInterstitial getInstance:_zoneId];
-    [openBiddingUnityInterstitial setAutoReload:isAutoReload];
-}
-
-void _bidmadSetCUIDInterstitial(const char* zoneId, const char* cuid) {
-    NSString *_zoneId = [NSString stringWithUTF8String:zoneId];
-    NSString *_cuid = [NSString stringWithUTF8String:cuid];
-    OpenBiddingUnityInterstitial *openBiddingUnityInterstitial = [OpenBiddingUnityInterstitial getInstance:_zoneId];
-    [openBiddingUnityInterstitial setCUID:_cuid];
+void _bidmadSetAutoReloadInterstitial(bool isAutoReload) {
+    [BidmadInterstitialAdForGame setAutoReload:isAutoReload];
 }
 
 bool _bidmadIsLoadedInterstitial(const char* zoneId){
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityInterstitial* interstitial = [OpenBiddingUnityInterstitial getInstance:_zoneID];
-    
-    return [interstitial isLoaded];
+    return [BidmadInterstitialAdForGame isLoadedWithZoneID:[NSString stringWithUTF8String:zoneId]];
 }
 /** Interstitial Interface End **/
 /** Reward Interface Start **/
 void _bidmadNewInstanceReward(const char* zoneId) {
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-
-    UIViewController* pRootViewController = UnityGetGLViewController();
-    OpenBiddingUnityReward *reward = [[OpenBiddingUnityReward alloc]initWithZoneId:_zoneID parentVC:pRootViewController];
-    [reward setDelegate:[OpenBiddingHelperUnityBridge sharedInstance]];
+    [BidmadRewardAdForGame initialSetupForZoneID:[NSString stringWithUTF8String:zoneId]];
+    [BidmadRewardAdForGame setDelegate:[OpenBiddingHelperUnityBridge sharedInstance]];
 }
 
 void _bidmadLoadRewardVideo(const char* zoneId){
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
-
-    if(![reward isLoaded]){
-        [reward load];
-    }
-
+    [BidmadRewardAdForGame loadWithZoneID:[NSString stringWithUTF8String:zoneId]];
 }
 
 void _bidmadShowRewardVideo(const char* zoneId){
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
-    
-    if (reward.isLoaded) {
+    if ([BidmadRewardAdForGame isLoadedWithZoneID:[NSString stringWithUTF8String:zoneId]]) {
         UnitySetAudioSessionActive(true);
     }
     
-    [reward show];
+    [BidmadRewardAdForGame showWithZoneID:[NSString stringWithUTF8String:zoneId] viewController:UnityGetGLViewController()];
 }
 
 bool _bidmadIsLoadedReward(const char* zoneId){
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
-    
-    return [reward isLoaded];
+    return [BidmadRewardAdForGame isLoadedWithZoneID:[NSString stringWithUTF8String:zoneId]];
 }
 
-void _bidmadSetAutoReloadRewardVideo(const char* zoneId, bool isAutoReload) {
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
-    [reward setAutoReload:isAutoReload];
-}
-
-void _bidmadSetCUIDRewardVideo(const char* zoneId, const char* cuid) {
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    NSString* _cuid = [NSString stringWithUTF8String:cuid];
-    OpenBiddingUnityReward *reward = [OpenBiddingUnityReward getInstance:_zoneID];
-    [reward setCUID:_cuid];
+void _bidmadSetAutoReloadRewardVideo(bool isAutoReload) {
+    [BidmadRewardAdForGame setAutoReload:isAutoReload];
 }
 /** Reward Interface End **/
-#pragma mark RewardInterstitial Interface
 
-void _bidmadNewInstanceRewardInterstitial(const char* zoneId) {
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    
-    UIViewController* pRootViewController = UnityGetGLViewController();
-    [[OpenBiddingUnityRewardInterstitial sharedInstance] openBiddingNewInstanceRewardInterstitial:_zoneID withDelegate:[OpenBiddingHelperUnityBridge sharedInstance] parentVC:pRootViewController];
-}
-
-void _bidmadLoadRewardInterstitial(const char* zoneId){
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    [[OpenBiddingUnityRewardInterstitial sharedInstance] openBiddingLoadRewardInterstitial: _zoneID];
-}
-
-void _bidmadShowRewardInterstitial(const char* zoneId){
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    [[OpenBiddingUnityRewardInterstitial sharedInstance] openBiddingShowRewardInterstitial: _zoneID];
-}
-
-bool _bidmadIsLoadedRewardInterstitial(const char* zoneId){
-    NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    return [[OpenBiddingUnityRewardInterstitial sharedInstance] openBiddingIsLoadedRewardInterstitial: _zoneID];
-}
-
-void _bidmadSetAutoReloadRewardInterstitial(const char* zoneId, bool isAutoReload) {
-    [[OpenBiddingUnityRewardInterstitial sharedInstance] setAutoReload:isAutoReload];
-}
-
-void _bidmadSetCUIDRewardInterstitial(const char* zoneId, const char* cuid) {
-    NSString* _cuid = [NSString stringWithUTF8String:cuid];
-    [[OpenBiddingUnityRewardInterstitial sharedInstance] setCUID:_cuid];
-}
 /** ETC Interface Start **/
-void _bidmadInitializeSdk() {
-    [[BIDMADSetting sharedInstance] initializeSdk];
+void _bidmadInitializeSdk(const char* appKey) {
+    NSString * _appKey = [NSString stringWithUTF8String:appKey];
+    [BIDMADSetting.sharedInstance initializeSdkWithKey:_appKey];
 }
 
 void _bidmadSetDebug(bool isDebug) {
-    [[UnityCommon sharedInstance] setDebugMode:isDebug];
+    BIDMADSetting.sharedInstance.isDebug = isDebug;
 }
 
 void _bidmadSetGgTestDeviceid(const char* _deviceId){
     NSString* deviceId = [NSString stringWithUTF8String:_deviceId];
-    [[UnityCommon sharedInstance] setGoogleTestId:deviceId];
+    BIDMADSetting.sharedInstance.testDeviceId = deviceId;
 }
 
 void _bidmadSetUseArea(bool useArea){
@@ -404,9 +278,13 @@ int _bidmadGetGdprConsent(){
     return ((int)[BIDMADGDPR getGDPRSetting]);
 }
 
-void _bidmadSetUserId(const char* userId){
-    NSString* _userId = [NSString stringWithUTF8String:userId];
-    [UnityCommon.sharedInstance setUserID:_userId];
+void _bidmadSetCuid(const char* cuid) {
+    NSString* _cuid = [NSString stringWithUTF8String:cuid];
+    BIDMADSetting.sharedInstance.cuid = _cuid;
+}
+
+void _bidmadSetUseServerSideCallback(bool isServerSideCallback) {
+    BIDMADSetting.sharedInstance.useServerSideCallback = [NSNumber numberWithBool:isServerSideCallback];
 }
 
 const char* _bidmadGetPRIVACYURL() {
@@ -414,21 +292,20 @@ const char* _bidmadGetPRIVACYURL() {
     return strdup([privacyUrl UTF8String]);
 }
 
-typedef void (*CallbackT)(const char *foo);
-// extern "C" void method(CallbackT callback);
 void _bidmadReqAdTrackingAuthorization()
 {
-    [[UnityCommon sharedInstance] setDelegate:[OpenBiddingHelperUnityBridge sharedInstance]];
-    [[UnityCommon sharedInstance] reqAdTrackingAuthorization];
+    [[BIDMADSetting sharedInstance] reqAdTrackingAuthorizationWithCompletionHandler:^(BidmadTrackingAuthorizationStatus status) {
+        [OpenBiddingHelperUnityBridge.sharedInstance BIDMADAdTrackingAuthorizationResponse:[NSString stringWithFormat:@"%d",status]];
+    }];
 }
 void _bidmadSetAdvertiserTrackingEnabled(bool enable)
 {
-    [[UnityCommon sharedInstance] setAdvertiserTrackingEnabled:enable];
+    [BIDMADSetting.sharedInstance setAdvertiserTrackingEnabled:enable];
 }
 
 bool _bidmadGetAdvertiserTrackingEnabled()
 {
-    return [[UnityCommon sharedInstance] getAdvertiserTrackingEnabled];
+    return [BIDMADSetting.sharedInstance getAdvertiserTrackingEnabled];
 }
 /** ETC Interface End **/
 /** GDPRforGoogle Start **/

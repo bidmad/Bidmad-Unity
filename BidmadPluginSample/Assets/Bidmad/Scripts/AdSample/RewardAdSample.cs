@@ -31,7 +31,7 @@ public class RewardAdSample : MonoBehaviour
 
         reward.setRewardLoadCallback(OnRewardLoad);
         reward.setRewardShowCallback(OnRewardShow);
-        reward.setRewardFailCallback(OnRewardFail);
+        reward.setRewardFailCallback(OnRewardLoadFail);
         reward.setRewardCompleteCallback(OnRewardComplete);
         reward.setRewardSkipCallback(OnRewardSkip);
         reward.setRewardCloseCallback(OnRewardClose);
@@ -40,7 +40,16 @@ public class RewardAdSample : MonoBehaviour
     public void ShowRewardAd()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        reward.show();
+        if(reward == null)
+        {
+            return;
+        }
+
+        if (reward.isLoaded()) {
+            reward.show();
+        } else {
+            reward.load();
+        }
 #endif
     }
 
@@ -54,9 +63,9 @@ public class RewardAdSample : MonoBehaviour
         Debug.Log("OnRewardShow Deletgate Callback Complate!!!");
     }
 
-    void OnRewardFail()
+    void OnRewardLoadFail(string errorInfo)
     {
-        Debug.Log("OnRewardFail Deletgate Callback Complate!!!");
+        Debug.Log("OnRewardLoadFail Deletgate Callback Complate!!! : " + errorInfo);
     }
 
     void OnRewardComplete()

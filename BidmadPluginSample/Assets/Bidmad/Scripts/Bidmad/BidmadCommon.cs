@@ -15,7 +15,7 @@ public enum BidmadTrackingAuthorizationStatus
 
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "2.21.0";
+    string UNITY_PLUGIN_VERSION = "3.0.0";
 #if UNITY_IOS
     [DllImport("__Internal")]
     private static extern void _bidmadSetDebug(bool isDebug);
@@ -45,31 +45,35 @@ public class BidmadCommon
     private static extern string _bidmadGetPRIVACYURL();
 
     [DllImport("__Internal")]
-    private static extern bool _bidmadInitializeSdk();
+    private static extern void _bidmadInitializeSdk(string appKey);
 
+    [DllImport("__Internal")]
+    private static extern void _bidmadSetCuid(string cuid);
+
+    [DllImport("__Internal")]
+    private static extern void _bidmadSetUseServerSideCallback(bool isServerSideCallback);
 
 #elif UNITY_ANDROID
     private static AndroidJavaClass javaCommonClass = null;
     private static AndroidJavaObject javaCommonClassInstance = null;
     private static AndroidJavaClass javaConsentClass = null;
     private static AndroidJavaObject javaConsentClassInstance = null; 
+    private static AndroidJavaClass javaAdOptionClass = null;
+    private static AndroidJavaObject javaAdOptonClassInstance = null;
 #endif
 
-    public static void initializeSdk() 
+    public static void initializeSdk(string appkey) 
     {
 #if UNITY_IOS
-
-        if (Application.platform == RuntimePlatform.IPhonePlayer) {
-            _bidmadInitializeSdk();
-        }
+        _bidmadInitializeSdk(appkey);
 
 #elif UNITY_ANDROID
     using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
     {
-        javaCommonClass = new AndroidJavaClass("com.adop.sdk.Common");
+        javaCommonClass = new AndroidJavaClass("ad.helper.openbidding.BidmadCommon");
 
         AndroidJavaObject context = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
-        javaCommonClass.CallStatic("initializeSdk", context);
+        javaCommonClass.CallStatic("initializeSdk", context, appkey);
     }
 
 #endif
@@ -85,7 +89,7 @@ public class BidmadCommon
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
-            javaCommonClass = new AndroidJavaClass("com.adop.sdk.Common");
+            javaCommonClass = new AndroidJavaClass("ad.helper.openbidding.BidmadCommon");
             javaCommonClass.CallStatic("setDebugging", isDebug);
         }
 #endif
@@ -101,11 +105,50 @@ public class BidmadCommon
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
-            javaCommonClass = new AndroidJavaClass("com.adop.sdk.Common");
+            javaCommonClass = new AndroidJavaClass("ad.helper.openbidding.BidmadCommon");
             javaCommonClass.CallStatic("setGgTestDeviceid", deviceId);
         }
 #endif
 	}
+
+        public static void setCuid(string cuid)
+    {
+#if UNITY_IOS
+        _bidmadSetCuid(cuid);
+
+#elif UNITY_ANDROID
+        using (javaAdOptionClass = new AndroidJavaClass("com.adop.sdk.AdOption"))
+        {
+            
+            if(javaAdOptionClass != null) 
+            {
+                Debug.Log("setCuid AdOption!!");
+                javaAdOptonClassInstance = javaAdOptionClass.CallStatic<AndroidJavaObject>("getInstance");
+                javaAdOptonClassInstance.Call("setCuid", cuid);
+            }
+        }
+#endif
+    }
+
+    public static void setUseServerSideCallback(bool isServerSideCallback)
+    {
+#if UNITY_IOS   
+        _bidmadSetUseServerSideCallback(isServerSideCallback);
+
+#elif UNITY_ANDROID
+        using(javaAdOptionClass = new AndroidJavaClass("com.adop.sdk.AdOption"))
+        {
+            
+            if(javaAdOptionClass != null) 
+            {
+                Debug.Log("setUseServerSideCallback AdOption!!");
+                javaAdOptonClassInstance = javaAdOptionClass.CallStatic<AndroidJavaObject>("getInstance");
+                javaAdOptonClassInstance.Call("setUseServerSideCallback", isServerSideCallback);
+            }
+        }
+#endif
+    } 
+
 
 	public static void setGdprConsent(bool consent, bool useArea)
 	{

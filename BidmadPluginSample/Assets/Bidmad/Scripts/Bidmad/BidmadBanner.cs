@@ -28,9 +28,6 @@ public class BidmadBanner
     [DllImport("__Internal")]
     private static extern void _bidmadShowBannerView(string zoneId);
 
-    [DllImport("__Internal")]
-    private static extern void _bidmadSetCUIDBanner(string zoneId, string cuid);
-
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
     private AndroidJavaClass javaClass = null;
@@ -58,8 +55,6 @@ public class BidmadBanner
             javaClassInstance.Call("setContext", activityContext);
             javaClassInstance.Call("setBottom", (int)_y);
             javaClassInstance.Call("makeAdView");
-
-            javaClassInstance.Call("setAdInfo", mZoneId);
         }
 #endif
     }
@@ -84,8 +79,6 @@ public class BidmadBanner
             javaClassInstance.Call("setBottom", (int)_y);
             javaClassInstance.Call("setLeft", (int)_x);
             javaClassInstance.Call("makeAdView");
-
-            javaClassInstance.Call("setAdInfo", mZoneId);
         }
 #endif
     }
@@ -117,18 +110,6 @@ public class BidmadBanner
 #endif
     }
 
-
-    public void setCUID(string cuid) {
-#if UNITY_IOS
-        _bidmadSetCUIDBanner(mZoneId, cuid);
-#elif UNITY_ANDROID
-        if (javaClassInstance != null)
-        {
-            javaClassInstance.Call("setCUID", cuid);
-
-        }
-#endif
-    }
 
 	public void removeBanner()
 	{
@@ -217,7 +198,7 @@ public class BidmadBanner
 #endif
     }
 
-    public void setBannerFailCallback(Action callback)
+    public void setBannerFailCallback(Action<string> callback)
     {
 #if UNITY_ANDROID || UNITY_IOS
         if (BidmadManager.dicBannerFail.ContainsKey(mZoneId))

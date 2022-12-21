@@ -32,14 +32,21 @@ public class InterstitialAdSample : MonoBehaviour
 
         interstitial.setInterstitialLoadCallback(OnInterstitialLoad);
         interstitial.setInterstitialShowCallback(OnInterstitialShow);
-        interstitial.setInterstitialFailCallback(OnInterstitialFail);
+        interstitial.setInterstitialFailCallback(OnInterstitialLoadFail);
         interstitial.setInterstitialCloseCallback(OnInterstitialClose);
     }
 
     public void ShowInterstitialAd()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        interstitial.show();
+        if(interstitial == null)
+            return;
+
+        if (interstitial.isLoaded()){
+            interstitial.show();
+        } else {
+            interstitial.load();
+        }
 #endif
     }
 
@@ -53,9 +60,9 @@ public class InterstitialAdSample : MonoBehaviour
         Debug.Log("OnInterstitialShow Deletgate Callback Complate!!!");
     }
 
-    void OnInterstitialFail()
+    void OnInterstitialLoadFail(string errorInfo) 
     {
-        Debug.Log("OnInterstitialFail Deletgate Callback Complate!!!");
+        Debug.Log("OnInterstitialFail Deletgate Callback Complate!!! : "+errorInfo);
     }
 
     void OnInterstitialClose()

@@ -20,13 +20,7 @@ public class BidmadReward
     private static extern bool _bidmadIsLoadedReward(string zoneId);
 
     [DllImport("__Internal")]
-    private static extern void _bidmadSetCUIDRewardVideo(string zoneId, string cuid);
-
-    [DllImport("__Internal")]
-    private static extern void _bidmadSetAutoReloadRewardVideo(string zoneId, bool isAutoReload);
-
-    [DllImport("__Internal")]
-    private static extern void _bidmadSetUserId(string userId);
+    private static extern void _bidmadSetAutoReloadRewardVideo(bool isAutoReload);
 
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
@@ -55,14 +49,12 @@ public class BidmadReward
             javaClassInstance.Call("setActivity", activityContext);
             javaClassInstance.Call("setContext", activityContext);
             javaClassInstance.Call("makeReward");
-
-            javaClassInstance.Call("setAdInfo", mZoneId);
         }
 #endif
     }
 
     public void getInstance()
-	{
+    {
 #if UNITY_IOS
 #elif UNITY_ANDROID
         using (javaClass = new AndroidJavaClass("ad.helper.openbidding.reward.UnityReward"))
@@ -74,50 +66,21 @@ public class BidmadReward
 
         }
 #endif
-	}
-
-    public void setCUID(string cuid) {
-        if(cuid == null)
-            cuid = "";
-#if UNITY_IOS
-        _bidmadSetCUIDRewardVideo(mZoneId, cuid);
-#elif UNITY_ANDROID
-        if (javaClassInstance != null)
-        {
-            javaClassInstance.Call("setCUID", cuid);
-        }
-#endif
     }
 
     public void setAutoReload(bool isAutoReload) {
 #if UNITY_IOS
-        _bidmadSetAutoReloadRewardVideo(mZoneId, isAutoReload);
+        _bidmadSetAutoReloadRewardVideo(isAutoReload);
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
-            javaClassInstance.Call("setAutoReload", isAutoReload);
-        }
-#endif
-    }
-
-    public void setUserId(string userId)
-    {
-        if (userId == null) {
-            userId = "";
-        }
-
-#if UNITY_IOS
-        _bidmadSetUserId(userId);
-#elif UNITY_ANDROID
-        if (javaClassInstance != null)
-        {
-            javaClassInstance.Call("setUserId", userId);
+            javaClassInstance.CallStatic("setAutoReload", isAutoReload);
         }
 #endif
     }
 
     public void load()
-	{
+    {
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
@@ -129,7 +92,7 @@ public class BidmadReward
             javaClassInstance.Call("load");
         }
 #endif
-	}
+    }
 
     public void show()
     {
@@ -180,7 +143,7 @@ public class BidmadReward
 #endif
     }
 
-    public void setRewardFailCallback(Action callback)
+    public void setRewardFailCallback(Action<string> callback)
     {
 #if UNITY_ANDROID || UNITY_IOS
         if (BidmadManager.dicRewardFail.ContainsKey(mZoneId)){

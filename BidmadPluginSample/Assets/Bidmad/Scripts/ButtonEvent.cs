@@ -20,11 +20,6 @@ public class ButtonEvent : MonoBehaviour
         SceneManager.LoadScene("Reward");
     }
 
-    public void MoveRewardInterstitialScene()
-    {
-        SceneManager.LoadScene("RewardInterstitial");
-    }
-
     public void MoveMainScene()
     {
         SceneManager.LoadScene("Main");
