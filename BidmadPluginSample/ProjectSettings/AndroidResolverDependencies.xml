@@ -3,7 +3,7 @@
     <package>ad.helper.openbidding:admob-obh:3.0.0</package>
     <package>com.adop.adapter.fc:fcNetwork-adapter:3.0.0</package>
     <package>com.adop.adapter.fnc:fncNetwork-adapter:3.0.0</package>
-    <package>com.adop.sdk:bidmad-androidx:3.0.0</package>
+    <package>com.adop.sdk:bidmad-androidx:3.0.1</package>
   </packages>
   <files />
   <settings>
