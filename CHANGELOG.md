@@ -1,3 +1,12 @@
+# Version 3.1.0
+#### Changes
+- Support Mobon Ad Network
+- Update AOS Ad Network of Admob, UnityAds, Applovin, Pangle, Fyber, Tapjoy, Facebook
+
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.1.0
+- iOS : BidmadSDK.framework 5.1.0
+
 # Version 3.0.1
 #### Changes
 - Fix banner bugs
