@@ -109,7 +109,11 @@ The initializeSdk method receives the App Key as a parameter, and the App Key ca
 Before loading ads, call the initializeSdk method as shown in the following example at the beginning of app.
 
 ```
-    BidmadCommon.initializeSdk()
+#if UNITY_IOS
+    BidmadCommon.initializeSdk("IOS APP KEY");
+#elif UNITY_ANDROID
+    BidmadCommon.initializeSdk("ANDROID APP KEY");
+#endif
 ```
 
 #### 2.3 Banner

@@ -110,7 +110,11 @@ initializeSdk 메서드는 ADOP Insight 에서 확인가능한 App Key 를 인�
 광고를 로드하기 전, 앱 실행 초기에 다음 예시와 같이 initializeSdk 메서드를 호출해주십시오.
 
 ```
-BidmadCommon.initializeSdk("YOUR_APPKEY");
+#if UNITY_IOS
+    BidmadCommon.initializeSdk("IOS APP KEY");
+#elif UNITY_ANDROID
+    BidmadCommon.initializeSdk("ANDROID APP KEY");
+#endif
 ```
 
 #### 2.3 배너
