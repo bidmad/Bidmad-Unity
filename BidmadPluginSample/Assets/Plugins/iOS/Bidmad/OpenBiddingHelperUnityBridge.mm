@@ -149,55 +149,51 @@ return _sharedObject; \
 /** Banner Interface Start **/
 void _bidmadSetRefreshInterval(const char* zoneId, int time){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
-    [banner setRefreshInterval:time];
+    [BidmadBannerAdForGame setRefreshInterval:time withZoneID:_zoneID];
 }
 
 void _bidmadNewInstanceBannerAutoCenter(const char* zoneId, float _y) {
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-
     UIViewController* pRootViewController = UnityGetGLViewController();
-    OpenBiddingUnityBanner *banner = [[OpenBiddingUnityBanner alloc] initWithZoneId:_zoneID parentVC:pRootViewController adYPoint:(int)_y];
-    [banner setDelegate:[OpenBiddingHelperUnityBridge sharedInstance]];
+    [BidmadBannerAdForGame initialSetupForZoneID:_zoneID viewController:pRootViewController yCoordinate:_y];
+    [BidmadBannerAdForGame setDelegate:OpenBiddingHelperUnityBridge.sharedInstance];
 }
 
 void _bidmadNewInstanceBanner(const char* zoneId, float _x, float _y) {
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-
     UIViewController* pRootViewController = UnityGetGLViewController();
-    OpenBiddingUnityBanner* banner = [[OpenBiddingUnityBanner alloc]initWithZoneId:_zoneID parentVC:pRootViewController adsPosition:CGPointMake(_x,_y)];
-    [banner setDelegate:[OpenBiddingHelperUnityBridge sharedInstance]];
+    [BidmadBannerAdForGame initialSetupForZoneID:_zoneID viewController:pRootViewController xCoordinate:_x yCoordinate:_y];
+    [BidmadBannerAdForGame setDelegate:OpenBiddingHelperUnityBridge.sharedInstance];
+}
+
+void _bidmadNewInstanceBannerAdPosition(const char* zoneId, int position) {
+    NSString *_zoneID = [NSString stringWithUTF8String:zoneId];
+    UIViewController *pRootViewController = UnityGetGLViewController();
+    [BidmadBannerAdForGame initialSetupForZoneID:_zoneID viewController:pRootViewController adPosition:(BIDMADAdPosition)position];
+    [BidmadBannerAdForGame setDelegate:OpenBiddingHelperUnityBridge.sharedInstance];
 }
 
 void _bidmadLoadBanner(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
-    [banner load];
+    [BidmadBannerAdForGame loadWithZoneID:_zoneID];
 }
 
 void _bidmadRemoveBanner(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
-    [banner remove];
+    [BidmadBannerAdForGame removeWithZoneID:_zoneID];
 }
 
 void _bidmadHideBannerView(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [banner hideView];
+        [BidmadBannerAdForGame hideWithZoneID:_zoneID];
     });
 }
 
 void _bidmadShowBannerView(const char* zoneId){
     NSString* _zoneID = [NSString stringWithUTF8String:zoneId];
-    
-    OpenBiddingUnityBanner* banner = [OpenBiddingUnityBanner getInstance:_zoneID];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [banner showView];
+        [BidmadBannerAdForGame showWithZoneID:_zoneID];
     });
 }
 

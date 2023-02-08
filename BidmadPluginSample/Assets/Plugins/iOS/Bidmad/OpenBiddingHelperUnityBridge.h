@@ -12,9 +12,9 @@
 #import "BidmadSDK/BIDMADGDPR.h"
 #import "BidmadSDK/BIDMADSetting.h"
 #import "BidmadSDK/UnityGDPRforGoogle.h"
+#import <OpenBiddingHelper/BidmadBannerAdForGame.h>
 #import <OpenBiddingHelper/BidmadInterstitialAdForGame.h>
 #import <OpenBiddingHelper/BidmadRewardAdForGame.h>
-#import <OpenBiddingHelper/OpenBiddingUnityBanner.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,6 +26,7 @@ extern "C" {
     void _bidmadSetRefreshInterval(const char* zoneId, int time);
     void _bidmadNewInstanceBannerAutoCenter(const char* zoneId, float _y);
     void _bidmadNewInstanceBanner(const char* zoneId, float _x, float _y);
+    void _bidmadNewInstanceBannerAdPosition(const char* zoneId, int position);
     void _bidmadLoadBanner(const char* zoneId);
     void _bidmadRemoveBanner(const char* zoneId);
     void _bidmadHideBannerView(const char* zoneId);
