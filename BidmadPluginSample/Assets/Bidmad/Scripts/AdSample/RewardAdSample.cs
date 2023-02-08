@@ -25,7 +25,7 @@ public class RewardAdSample : MonoBehaviour
         // reward.setAutoReload(false);
 
         // Bidmad Reward Ads can be set with Custom Unique ID with the following method.
-        // reward.setCUID("YOUR ENCRYPTED CUID TEXT");
+        // BidmadCommon.setCuid("YOUR ENCRYPTED CUID TEXT");
 
         reward.load();
 

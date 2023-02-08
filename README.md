@@ -144,6 +144,21 @@ BidmadCommon.initializeSdk("YOUR_APPKEY");
 #endif
 ```
 
+- 3.2.0 이상 버전의 Bidmad Plugin을 사용하는 경우, Y 좌표 대신 광고 위치를 설정하는 것도 지원됩니다. 광고 위치 값에는 Center, Top, Bottom, Left, Right, TopLeft, TopRight, BottomLeft, BottomRight가 포함됩니다. 배너 광고의 광고 위치 설정은 다음 예시를 참고하세요.
+
+```
+    static BidmadBanner banner;
+
+    public void LoadBannerAd()
+    {
+#if UNITY_ANDROID
+        banner = new BidmadBanner("Your Android ZoneId", AdPosition.Bottom);
+#elif UNITY_IOS
+        banner = new BidmadBanner("Your iOS ZoneId", AdPosition.Bottom);
+#endif
+        banner.load();
+    }
+```
 
 #### 2.4 전면
 
@@ -314,6 +329,7 @@ Function|Description
 ---|---
 public BidmadBanner(string zoneId, float _y)|BidmadBanner 생성자, ZoneId와 배너 높이 위치 값(y)을 설정합니다.
 public BidmadBanner(string zoneId, float _x, float _y)|BidmadBanner 생성자, ZoneId와 배너의 위치정보 X,Y를 설정합니다.
+public BidmadBanner(string zoneId, AdPosition position);|BidmadBanner 생성자, ZoneId와 배너의 위치를 설정합니다.
 public void setRefreshInterval(int time)|Banner Refresh 주기를 설정합니다.(60s~120s)
 public void removeBanner()|노출된 배너를 제거합니다.
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.

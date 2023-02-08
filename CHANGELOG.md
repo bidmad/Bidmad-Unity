@@ -1,3 +1,12 @@
+# Version 3.2.0
+#### Changes
+- Support AdPosition
+- Add Coupang Network (Android)
+
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.3.0
+- iOS : BidmadSDK.framework 5.3.0
+
 # Version 3.1.0
 #### Changes
 - Support Mobon Ad Network

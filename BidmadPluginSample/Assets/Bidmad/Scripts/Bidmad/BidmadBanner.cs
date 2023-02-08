@@ -4,6 +4,19 @@ using System.Collections;
 using System.Runtime.InteropServices;
 using AOT;
 
+public enum AdPosition {
+        Center = 0,
+        Top = 1,
+        Bottom = 2,
+        Left = 3,
+        Right = 4,
+        TopLeft = 5,
+        TopRight = 6,
+        BottomLeft = 7,
+        BottomRight = 8,
+        None = 9
+    }
+
 public class BidmadBanner
 {
 #if UNITY_IOS
@@ -12,6 +25,9 @@ public class BidmadBanner
 
     [DllImport("__Internal")]
     private static extern void _bidmadNewInstanceBannerAutoCenter(string zoneId, float _y);
+
+    [DllImport("__Internal")]
+    private static extern void _bidmadNewInstanceBannerAdPosition(string zoneId, int position);
 
     [DllImport("__Internal")]
     private static extern void _bidmadSetRefreshInterval(string zoneId, int time);
@@ -35,6 +51,7 @@ public class BidmadBanner
 #endif
 
     private string mZoneId = "";
+    private AdPosition mPosition = AdPosition.None;
     private bool setBannerPosition = false;
 
     public BidmadBanner(string zoneId, float _y)
@@ -78,6 +95,30 @@ public class BidmadBanner
             javaClassInstance.Call("setContext", activityContext);
             javaClassInstance.Call("setBottom", (int)_y);
             javaClassInstance.Call("setLeft", (int)_x);
+            javaClassInstance.Call("makeAdView");
+        }
+#endif
+    }
+
+    public BidmadBanner(string zoneId, AdPosition position)
+    {
+        mZoneId = zoneId;
+        mPosition = position;
+
+#if UNITY_IOS
+        _bidmadNewInstanceBannerAdPosition(zoneId, (int)position);
+#elif UNITY_ANDROID
+        using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        {
+            activityContext = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+        }
+
+        getInstance();
+        if(javaClassInstance != null)
+        {
+            javaClassInstance.Call("setActivity", activityContext);
+            javaClassInstance.Call("setContext", activityContext);
+            javaClassInstance.Call("setAdPosition", (int)position);
             javaClassInstance.Call("makeAdView");
         }
 #endif
@@ -130,6 +171,11 @@ public class BidmadBanner
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
+            if(mPosition != AdPosition.None){
+                javaClassInstance.Call("loadWithAdPosition");
+                return;
+            }
+
             if(!setBannerPosition)
                 javaClassInstance.Call("loadWithY");
             else

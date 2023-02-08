@@ -26,7 +26,7 @@ public class InterstitialAdSample : MonoBehaviour
         // interstitial.setAutoReload(false);
 
         // Bidmad Interstitial Ads can be set with Custom Unique ID with the following method.
-        // interstitial.setCUID("YOUR ENCRYPTED CUID TEXT");
+        // BidmadCommon.setCuid("YOUR ENCRYPTED CUID TEXT");
 
         interstitial.load();
 

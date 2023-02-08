@@ -143,6 +143,21 @@ Before loading ads, call the initializeSdk method as shown in the following exam
 #endif
 ```
 
+- If you are using Bidmad Plugin with 3.2.0 or higher version, setting the ad position instead of Y coordinate is also supported. The ad position values include Center, Top, Bottom, Left, Right, TopLeft, TopRight, BottomLeft, BottomRight. Refer to the following example for setting the ad position for your banner ads.
+
+```
+    static BidmadBanner banner;
+
+    public void LoadBannerAd()
+    {
+#if UNITY_ANDROID
+        banner = new BidmadBanner("Your Android ZoneId", AdPosition.Bottom);
+#elif UNITY_IOS
+        banner = new BidmadBanner("Your iOS ZoneId", AdPosition.Bottom);
+#endif
+        banner.load();
+    }
+```
 
 #### 2.4 Interstitial
 
@@ -312,6 +327,7 @@ Function|Description
 ---|---
 public BidmadBanner(string zoneId, float _y)|This is the BidmadBanner constructor. set the ZoneId and banner height position value (y).
 public BidmadBanner(string zoneId, float _x, float _y)|This is the BidmadBanner constructor, set the ZoneId and banner position x,y.
+public BidmadBanner(string zoneId, AdPosition position);|This BidmadBanner constructor sets the ZoneId and Banner Position.
 public void setRefreshInterval(int time)|Set the banner refresh cycle.(60s~120s)
 public void removeBanner()|Remove the exposed banner.
 public void load()|Request an ad with the ZoneId entered in the constructor.
