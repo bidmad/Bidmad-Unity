@@ -1,3 +1,7 @@
+# Version 3.2.1
+#### Changes
+- Fix build error Duplicate class a.a.a
+
 # Version 3.2.0
 #### Changes
 - Support AdPosition
