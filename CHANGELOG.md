@@ -1,3 +1,7 @@
+# Version 3.2.2
+#### Changes
+- Removed location permission declared in Prebid Adapter library.
+
 # Version 3.2.1
 #### Changes
 - Fix build error Duplicate class a.a.a

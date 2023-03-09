@@ -12,7 +12,7 @@
     <androidPackage spec="com.adop.sdk:bidmad-androidx:3.3.0"/>
     <androidPackage spec="ad.helper.openbidding:admob-obh:3.3.0"/>
     <androidPackage spec="com.adop.adapter.fc:fcNetwork-adapter:3.3.0"/>
-    <androidPackage spec="com.adop.adapter.fnc:fncNetwork-adapter:3.3.2"/>
+    <androidPackage spec="com.adop.adapter.fnc:fncNetwork-adapter:3.3.3"/>
   </androidPackages>
 
   <iosPods>
