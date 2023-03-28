@@ -82,45 +82,11 @@ public static final ** CREATOR;
 4. iOS Xcode 프로젝트를 빌드한 이후, iOS 프로젝트 폴더에서 <strong>.xcworkspace</strong> 확장자의 파일을 열어주십시오.<br>
 5. Unity-iPhone 프로젝트 세팅 → Build Settings → UnityFramework 타겟 → Enable Bitcode 를 "No" 로 설정하십시오.<br>
     ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. Unity-iPhone 타겟 대상 프로젝트 세팅 → General → Frameworks, Libraries, and Embedded Content 내부 + 버튼 클릭 후 OMSDK_Pubmatic.xcframework, ADOPUtility.xcframework, BidmadAdapterDynamic.xcframework, PromisesObjC.framework, OMSDK_Teadstv.xcframework, TeadsSDK.xcframework 추가하십시오.
-    ![Bidmad-Guide-5](https://i.imgur.com/997NKID.png)<br>
+6. Unity-iPhone 타겟 대상 프로젝트 세팅 → General → Frameworks, Libraries, and Embedded Content 내부 + 버튼 클릭 후 OMSDK_Pubmatic.xcframework 추가하십시오.
+    ![Bidmad-Guide-5](https://i.imgur.com/hMcJ8yS.jpg)<br>
 7. Unity-iPhone 타겟 대상 프로젝트 세팅 → General → Frameworks, Libraries, and Embedded Content 내부에 Pods → Pods → AdFitSDK → Frameworks → AdFitSDK.framework 를 드래그해 넣습니다. 아래 GIF 를 참고해주세요.
     ![Bidmad-Guide-6](https://i.imgur.com/2ztRu9H.gif)<br>
-8. Unity-iPhone 타겟 대상 프로젝트 세팅 → Build Phases 내부 + 버튼 클릭 후 New Run Script Phase 를 클릭하세요.
-    ![Bidmad-Guide-7](https://i.imgur.com/jlmk9sF.png)<br>
-9. 아래 코드를 복사해 Run Script 탭 아래 Shell Script 내부에 붙여넣으세요.
-```
-APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
-
-# This script loops through the frameworks embedded in the application and
-# removes unused architectures.
-find "$APP_PATH" -name 'AdFitSDK.framework' -type d | while read -r FRAMEWORK
-do
-    FRAMEWORK_EXECUTABLE_NAME=$(defaults read "$FRAMEWORK/Info.plist" CFBundleExecutable)
-    FRAMEWORK_EXECUTABLE_PATH="$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME"
-    echo "Executable is $FRAMEWORK_EXECUTABLE_PATH"
-
-    EXTRACTED_ARCHS=()
-
-    for ARCH in $ARCHS
-    do
-        echo "Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME"
-        lipo -extract "$ARCH" "$FRAMEWORK_EXECUTABLE_PATH" -o "$FRAMEWORK_EXECUTABLE_PATH-$ARCH"
-        EXTRACTED_ARCHS+=("$FRAMEWORK_EXECUTABLE_PATH-$ARCH")
-    done
-
-    echo "Merging extracted architectures: ${ARCHS}"
-    lipo -o "$FRAMEWORK_EXECUTABLE_PATH-merged" -create "${EXTRACTED_ARCHS[@]}"
-    rm "${EXTRACTED_ARCHS[@]}"
-
-    echo "Replacing original executable with thinned version"
-    rm "$FRAMEWORK_EXECUTABLE_PATH"
-    mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
-
-done
-```
-![Bidmad-Guide-8](https://i.imgur.com/SKRjDhg.png)<br>
-10. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
+8. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
 
 *Apple Store에서 요구하는 개인정보 보호에 관한 가이드가 필요한 경우 [이곳](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BKOR%5D)을 참고하세요.
 

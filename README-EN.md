@@ -82,45 +82,11 @@ public static final ** CREATOR;
 4. After building iOS Xcode Project, iOS Xcode Project folder will contain a project file with <strong>.xcworkspace</strong> extension. Please open it. <br>
 5. Unity-iPhone Project Settings → Build Settings → UnityFramework Target → Set Enable Bitcode to "No".<br>
     ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. Inside the Unity-iPhone Target Project Settings → General → Frameworks, Libraries, and Embedded Content, Click the + button inside and add OMSDK_Pubmatic.xcframework, ADOPUtility.xcframework, BidmadAdapterDynamic.xcframework, PromisesObjC.framework, OMSDK_Teadstv.xcframework, TeadsSDK.xcframework.
-    ![Bidmad-Guide-5](https://i.imgur.com/997NKID.png)<br>
+6. Inside the Unity-iPhone Target Project Settings → General → Frameworks, Libraries, and Embedded Content, Click the + button inside and add OMSDK_Pubmatic.xcframework.
+    ![Bidmad-Guide-5](https://i.imgur.com/hMcJ8yS.jpg)<br>
 7. Drag and drop Pods → Pods → AdFitSDK → Frameworks → AdFitSDK.framework into the Unity-iPhone target project settings → General → Frameworks, Libraries, and Embedded Content. Please refer to the GIF below.
     ![Bidmad-Guide-6](https://i.imgur.com/2ztRu9H.gif)<br>
-8. Inside the Unity-iPhone Target Project Settings -> Build Phases, click the + button inside and click Add New Run Phase button.
-    ![Bidmad-Guide-7](https://i.imgur.com/jlmk9sF.png)<br>
-9. Copy and paste the following code into the Shell Script section of Run Script tab.
-```
-APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
-
-# This script loops through the frameworks embedded in the application and
-# removes unused architectures.
-find "$APP_PATH" -name 'AdFitSDK.framework' -type d | while read -r FRAMEWORK
-do
-    FRAMEWORK_EXECUTABLE_NAME=$(defaults read "$FRAMEWORK/Info.plist" CFBundleExecutable)
-    FRAMEWORK_EXECUTABLE_PATH="$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME"
-    echo "Executable is $FRAMEWORK_EXECUTABLE_PATH"
-
-    EXTRACTED_ARCHS=()
-
-    for ARCH in $ARCHS
-    do
-        echo "Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME"
-        lipo -extract "$ARCH" "$FRAMEWORK_EXECUTABLE_PATH" -o "$FRAMEWORK_EXECUTABLE_PATH-$ARCH"
-        EXTRACTED_ARCHS+=("$FRAMEWORK_EXECUTABLE_PATH-$ARCH")
-    done
-
-    echo "Merging extracted architectures: ${ARCHS}"
-    lipo -o "$FRAMEWORK_EXECUTABLE_PATH-merged" -create "${EXTRACTED_ARCHS[@]}"
-    rm "${EXTRACTED_ARCHS[@]}"
-
-    echo "Replacing original executable with thinned version"
-    rm "$FRAMEWORK_EXECUTABLE_PATH"
-    mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
-
-done
-```
-![Bidmad-Guide-8](https://i.imgur.com/SKRjDhg.png)<br>
-10. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
+8. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
 
 *If you're looking for a guide to the privacy requirements of the Apple Store, [see here](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BENG%5D).
 

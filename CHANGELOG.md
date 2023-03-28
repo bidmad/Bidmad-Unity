@@ -1,11 +1,10 @@
-# Version 3.3.0
+# Version 3.2.2
 #### Changes
-- Support NasMedia Ad Network (Android)
-- Support Teads Ad Network, Bug Fixes (iOS)
+- Removed location permission declared in Prebid Adapter library.
 
-#### Integration Bidmad SDK version
-- Android : bidmad-androidx 3.4.0
-- iOS : BidmadSDK.framework 6.0.0
+# Version 3.2.1
+#### Changes
+- Fix build error Duplicate class a.a.a
 
 # Version 3.2.0
 #### Changes
