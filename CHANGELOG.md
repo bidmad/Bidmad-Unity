@@ -3,24 +3,28 @@
 - Add TestTools Function
 - Support NasMedia Ad Network 
 - Support Teads Ad Network, Bug Fixes (iOS)
-
 #### Integration Bidmad SDK version
-- Android : bidmad-androidx 3.4.0
+- Android : bidmad-androidx 3.5.0
 - iOS : BidmadSDK.framework 6.0.1
 
 # Version 3.2.2
 #### Changes
 - Removed location permission declared in Prebid Adapter library.
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.3.0
+- iOS : BidmadSDK.framework 5.3.0
 
 # Version 3.2.1
 #### Changes
 - Fix build error Duplicate class a.a.a
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.3.0
+- iOS : BidmadSDK.framework 5.3.0
 
 # Version 3.2.0
 #### Changes
 - Support AdPosition
 - Add Coupang Network (Android)
-
 #### Integration Bidmad SDK version
 - Android : bidmad-androidx 3.3.0
 - iOS : BidmadSDK.framework 5.3.0
@@ -29,7 +33,6 @@
 #### Changes
 - Support Mobon Ad Network
 - Update AOS Ad Network of Admob, UnityAds, Applovin, Pangle, Fyber, Tapjoy, Facebook
-
 #### Integration Bidmad SDK version
 - Android : bidmad-androidx 3.1.0
 - iOS : BidmadSDK.framework 5.1.0
@@ -37,13 +40,15 @@
 # Version 3.0.1
 #### Changes
 - Fix banner bugs
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.0.0
+- iOS : BidmadSDK.framework 5.0.0
 
 # Version 3.0.0
 #### Changes
 - Update initializeSdk, setCuid, useServerSideCallback methods
 - Reward Interstitial Removed
 - Fix Bugs
-
 #### Integration Bidmad SDK version
 - Android : bidmad-androidx 3.0.0
 - iOS : BidmadSDK.framework 5.0.0
