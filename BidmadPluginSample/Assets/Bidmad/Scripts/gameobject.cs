@@ -8,15 +8,18 @@ public class gameobject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Please call initializeSdk(string) Method before calling Bidmad Ads
-        #if UNITY_IOS
-        BidmadCommon.initializeSdk("6b097551-7f78-11ed-a117-026864a21938"); //TEST APP KEY
-        #elif UNITY_ANDROID
-        BidmadCommon.initializeSdk("6933aab2-7f78-11ed-a117-026864a21938"); //TEST APP KEY
-        #endif
 
         GameObject bidmadManager = new GameObject("BidmadManager");
         bidmadManager.AddComponent<BidmadManager>();
+
+        // Please call initializeSdk(string) Method before calling Bidmad Ads
+        #if UNITY_IOS
+        BidmadCommon.initializeSdkWithCallback("6b097551-7f78-11ed-a117-026864a21938", onInitialized); //TEST APP KEY
+        #elif UNITY_ANDROID
+         // BidmadCommon.initializeSdk("6933aab2-7f78-11ed-a117-026864a21938"); //TEST APP KEY
+        BidmadCommon.initializeSdkWithCallback("6933aab2-7f78-11ed-a117-026864a21938", onInitialized);
+        #endif
+
         DontDestroyOnLoad(bidmadManager);
         var obj = FindObjectsOfType<BidmadManager>();
 
@@ -71,6 +74,10 @@ public class gameobject : MonoBehaviour
         }
     }
     #endif
+
+    void onInitialized(bool isComplete){
+        Debug.Log("onInitialized callback : " + isComplete);
+    }
 
     void onConsentInfoUpdateSuccess()
     {

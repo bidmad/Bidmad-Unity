@@ -151,6 +151,19 @@ initializeSdk 메서드는 ADOP Insight 에서 확인가능한 App Key 를 인�
 #endif
 ```
 
+혹은, 3.4.0 이상 버전의 Bidmad Plugin을 사용하는 경우, bool 타입을 인자값으로 받는 Action 함수를 initializeSdk 메서드의 인자값으로 넣어 초기화 여부를 확인할 수 있습니다.
+
+```
+#if UNITY_IOS
+    BidmadCommon.initializeSdk("IOS APP KEY", onInitialized);
+#elif UNITY_ANDROID
+    BidmadCommon.initializeSdk("ANDROID APP KEY", onInitialized);
+#endif
+
+void onInitialized(bool isComplete){
+}
+```
+
 #### 2.3 배너
 
 - 배너광고를 요청하기 위해 BidmadBanner를 생성합니다. 이때 배너 View를 노출 시킬 높이(y) 값을 같이 전달 합니다.
@@ -160,7 +173,7 @@ initializeSdk 메서드는 ADOP Insight 에서 확인가능한 App Key 를 인�
     public void LoadBannerAd()
     {
 #if UNITY_ANDROID
-        banner = new BidmadBanner("Your Android ZoneId", 0);
+        banner = new BidmadBanner("Your Android ZoneId", (float)0); // y 좌표 사용 시, float 타입 명시.
 #elif UNITY_IOS
         banner = new BidmadBanner("Your iOS ZoneId", 0);
 #endif
@@ -196,6 +209,14 @@ initializeSdk 메서드는 ADOP Insight 에서 확인가능한 App Key 를 인�
 #endif
         banner.load();
     }
+```
+
+- 3.4.0 이상 버전의 Bidmad Plugin을 사용하는 경우, 로드 요청 이후 banner 위치를 재 조정 할 수 있습니다.
+
+```
+    banner.load();
+    // RePosition
+    banner.updateViewPosition(0, 130);
 ```
 
 #### 2.4 전면
@@ -371,6 +392,9 @@ public BidmadBanner(string zoneId, AdPosition position);|BidmadBanner 생성자,
 public void setRefreshInterval(int time)|Banner Refresh 주기를 설정합니다.(60s~120s)
 public void removeBanner()|노출된 배너를 제거합니다.
 public void load()|생성자에서 입력한 ZoneId로 광고를 요청합니다.
+public void updateViewPosition(float _y)|로드 이후 배너 뷰를 x기준 중앙 정렬된 상태로 y를 재배치 합니다. y는 뷰의 하단을 기준으로 합니다.
+public void updateViewPosition(float _x, float _y)|로드 이후 배너 뷰 x, y 위치를 재배치 합니다. x는 뷰의 좌측, y는 뷰의 하단을 기준으로 합니다.
+public void updateViewPosition(AdPosition position)|로드 이후 배너 뷰의 AdPosition 값으로 재배치 합니다.
 public void pauseBanner()|배너 광고를 정지 시킵니다. 주로 OnPause 이벤트 발생 시 호출하며, Android만 지원합니다. 
 public void resumeBanner()|배너 광고를 다시 시작합니다. 주로 OnResume 이벤트 발생 시 호출하며, Android만 지원합니다. 
 public void hideBannerView()|배너 광고 View를 숨깁니다. 
@@ -420,6 +444,7 @@ public void setRewardCloseCallback(Action callback)|Action을 등록했다면 �
 Function|Description
 ---|---
 public static void initializeSdk(string appkey)|BidmadSDK 환경 설정을 초기화하고, 전면 및 리워드 광고를 프리로드합니다.
+public static void initializeSdkWithCallback(string appkey, Action<bool> callback)|BidmadSDK 환경 설정을 초기화하고, 전면 및 리워드 광고를 프리로드합니다. Action<bool> 함수로 초기화 여부를 받습니다.
 public static void setIsDebug(bool isDebug)|디버그 로그를 노출시킵니다.
 public static void setGgTestDeviceid(string deviceId)|구글 애드몹 / 애드매니저를 위한 테스트 디바이스 등록 함수입니다.
 public static void setCuid(string cuid)|cuid(Customer User Identifier)를 설정을 위한 함수 입니다.

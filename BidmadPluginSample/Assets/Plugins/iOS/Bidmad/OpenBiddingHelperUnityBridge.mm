@@ -197,6 +197,21 @@ void _bidmadShowBannerView(const char* zoneId){
     });
 }
 
+void _bidmadUpdateBannerViewPositionAnchor(const char* zoneId, int position) {
+    [BidmadBannerAdForGame initialSetupForZoneID:[NSString stringWithUTF8String:zoneId] viewController:UnityGetGLViewController() adPosition:(BIDMADAdPosition)position];
+    [BidmadBannerAdForGame updateViewPositionWithZoneID:[NSString stringWithUTF8String:zoneId]];
+}
+
+void _bidmadUpdateBannerViewPositionXYCoordinate(const char* zoneId, float _x, float _y) {
+    [BidmadBannerAdForGame initialSetupForZoneID:[NSString stringWithUTF8String:zoneId] viewController:UnityGetGLViewController() xCoordinate:_x yCoordinate:_y];
+    [BidmadBannerAdForGame updateViewPositionWithZoneID:[NSString stringWithUTF8String:zoneId]];
+}
+
+void _bidmadUpdateBannerViewPositionYCoordinateAutoCenter(const char* zoneId, float _y) {
+    [BidmadBannerAdForGame initialSetupForZoneID:[NSString stringWithUTF8String:zoneId] viewController:UnityGetGLViewController() yCoordinate:_y];
+    [BidmadBannerAdForGame updateViewPositionWithZoneID:[NSString stringWithUTF8String:zoneId]];
+}
+
 /** Banner Interface End **/
 /** Interstitial Interface Start **/
 void _bidmadNewInstanceInterstitial(const char* zoneId) {
@@ -251,6 +266,17 @@ void _bidmadSetAutoReloadRewardVideo(bool isAutoReload) {
 void _bidmadInitializeSdk(const char* appKey) {
     NSString * _appKey = [NSString stringWithUTF8String:appKey];
     [BIDMADSetting.sharedInstance initializeSdkWithKey:_appKey];
+}
+
+void _bidmadInitializeSdkWithCallback(const char* appKey) {
+    NSString * _appKey = [NSString stringWithUTF8String:appKey];
+    [BIDMADSetting.sharedInstance initializeSdkWithKey:_appKey completionHandler:^(BOOL initStatus) {
+        if (initStatus) {
+            UnitySendMessage("BidmadManager", "OnInitialized", "true");
+        } else {
+            UnitySendMessage("BidmadManager", "OnInitialized", "false");
+        }
+    }];
 }
 
 void _bidmadSetDebug(bool isDebug) {

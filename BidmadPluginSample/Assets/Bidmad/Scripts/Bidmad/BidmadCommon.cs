@@ -15,7 +15,7 @@ public enum BidmadTrackingAuthorizationStatus
 
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "3.3.0";
+    string UNITY_PLUGIN_VERSION = "3.4.0";
 #if UNITY_IOS
     [DllImport("__Internal")]
     private static extern void _bidmadSetDebug(bool isDebug);
@@ -48,6 +48,9 @@ public class BidmadCommon
     private static extern void _bidmadInitializeSdk(string appKey);
 
     [DllImport("__Internal")]
+    private static extern void _bidmadInitializeSdkWithCallback(string appKey);
+
+    [DllImport("__Internal")]
     private static extern void _bidmadSetCuid(string cuid);
 
     [DllImport("__Internal")]
@@ -76,6 +79,23 @@ public class BidmadCommon
         javaCommonClass.CallStatic("initializeSdk", context, appkey);
     }
 
+#endif
+    }
+
+    public static void initializeSdkWithCallback(string appkey, Action<bool> callback) {
+        BidmadManager.onInitialized = callback;
+
+#if UNITY_IOS
+        _bidmadInitializeSdkWithCallback(appkey);
+
+#elif UNITY_ANDROID
+        using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        {
+            javaCommonClass = new AndroidJavaClass("ad.helper.openbidding.BidmadCommon");
+
+            AndroidJavaObject context = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+            javaCommonClass.CallStatic("initializeSdkWithUnityListener", context, appkey);
+        }
 #endif
     }
 

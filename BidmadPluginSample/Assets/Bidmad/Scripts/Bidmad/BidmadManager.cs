@@ -24,12 +24,26 @@ public class BidmadManager : MonoBehaviour
     public static Dictionary<string, Action> dicRewardClose = new Dictionary<string, Action>();
 /*** Common Callback ***/
     public static Action<BidmadTrackingAuthorizationStatus> adTrackingAuthResponse;
+    public static Action<bool> onInitialized;
 /*** googleGdpr Callback ***/
     public static Action consentInfoUpdateSuccess;
     public static Action<string> consentInfoUpdateFailure;
     public static Action consentFormLoadSuccess;
     public static Action<string> consentFormLoadFailure;
     public static Action<string> consentFormDismissed;
+
+/*** Initialize Callback ***/
+    void OnInitialized(string isComplete)
+    {
+        Debug.Log("OnInitialized");
+        if(onInitialized != null) {
+            if (isComplete == "true") {
+                onInitialized(true);
+            } else {
+                onInitialized(false);
+            }
+        }
+    }
 
 /*** Banner Callback ***/
     void OnBannerLoad(string zoneId)

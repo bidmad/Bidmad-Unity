@@ -1,3 +1,13 @@
+# Version 3.4.0
+#### Changes
+- Remove Ad Network of AdMixer, InMobi, Prebid, Tapjoy
+- Update AOS Ad Network of Admob, UnityAds, Applovin, Ironsource, Vungle, AdPie, Adfit, Pangle, PubMatic, Facebook
+- Support Initialize Callback
+- Support Banner RePosition
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.6.0
+- iOS : BidmadSDK.framework 6.2.0
+
 # Version 3.3.0
 #### Changes
 - Add TestTools Function

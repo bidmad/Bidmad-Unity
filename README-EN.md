@@ -146,20 +146,34 @@ Before loading ads, call the initializeSdk method as shown in the following exam
 #if UNITY_IOS
     BidmadCommon.initializeSdk("IOS APP KEY");
 #elif UNITY_ANDROID
-    BidmadCommon.initializeSdk("ANDROID APP KEY");
+    BidmadCommon.initializeSdk("ANDROID APP KEY"); 
 #endif
+```
+
+Or, if you are using Bidmad Plugin version 3.4.0 or later, you can check the initialization status by putting an Action function that receives a bool type as a parameter value as a parameter value of the initializeSdk method.
+
+```
+#if UNITY_IOS
+    BidmadCommon.initializeSdk("IOS APP KEY", onInitialized);
+#elif UNITY_ANDROID
+    BidmadCommon.initializeSdk("ANDROID APP KEY", onInitialized);
+#endif
+
+void onInitialized(bool isComplete){
+}
 ```
 
 #### 2.3 Banner
 
-- Create BidmadBanner to request banner advertisement. At this time, you must pass the height (y) value
+- Create BidmadBanner to request banner advertisement. At this time, you must pass the height (y) value. 
+- 
 ```cpp
     static BidmadBanner banner;
 
     public void LoadBannerAd()
     {
 #if UNITY_ANDROID
-        banner = new BidmadBanner("Your Android ZoneId", 0);
+        banner = new BidmadBanner("Your Android ZoneId", (float)0); // Explicitly specify the data type as float.
 #elif UNITY_IOS
         banner = new BidmadBanner("Your iOS ZoneId", 0);
 #endif
@@ -195,6 +209,14 @@ Before loading ads, call the initializeSdk method as shown in the following exam
 #endif
         banner.load();
     }
+```
+
+- If you are using Bidmad Plugin with 3.4.0 or higher version, After loading, it is possible to change the banner position.
+
+```
+    banner.load();
+    // Reposition
+    banner.updateViewPosition(0, 130);
 ```
 
 #### 2.4 Interstitial
@@ -369,6 +391,9 @@ public BidmadBanner(string zoneId, AdPosition position);|This BidmadBanner const
 public void setRefreshInterval(int time)|Set the banner refresh cycle.(60s~120s)
 public void removeBanner()|Remove the exposed banner.
 public void load()|Request an ad with the ZoneId entered in the constructor.
+public void updateViewPosition(float _y)|After loading, the banner view will be repositioned based on the bottom of the view, so that it is centered horizontally along the x value.
+public void updateViewPosition(float _x, float _y)|After loading, the banner view will be repositioned based on the left of the view for the x value, and the bottom of the view for the y value.
+public void updateViewPosition(AdPosition position)|After loading, the banner view will be repositioned based on AdPosition values
 public void pauseBanner()|Banner ads are stopped. It is mainly called when the OnPause event occurs. Only Android is supported.
 public void resumeBanner()|Restart banner ads. It is mainly called when the OnResume event occurs. Only Android is supported.
 public void hideBannerView()|Hide the banner View. 
@@ -418,6 +443,7 @@ public void setRewardCloseCallback(Action callback)|If an action is registered, 
 Function|Description
 ---|---
 public static void initializeSdk(string appkey)|initialize the BidmadSDK configurations and preload the interstitial and reward ads.
+public static void initializeSdkWithCallback(string appkey, Action<bool> callback)|initialize the BidmadSDK configurations and preload the interstitial and reward ads. Action<bool> receive Initialize Status
 public static void setIsDebug(bool isDebug)|Debug logs are exposed.
 public static void setGgTestDeviceid(string deviceId)|Test Device registration function for AdMob and AdManager.
 public static void setCuid(string cuid)|a function to set the cuid(Customer User Identifier)

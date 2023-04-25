@@ -31,6 +31,9 @@ extern "C" {
     void _bidmadRemoveBanner(const char* zoneId);
     void _bidmadHideBannerView(const char* zoneId);
     void _bidmadShowBannerView(const char* zoneId);
+    void _bidmadUpdateBannerViewPositionAnchor(const char* zoneId, int position);
+    void _bidmadUpdateBannerViewPositionXYCoordinate(const char* zoneId, float _x, float _y);
+    void _bidmadUpdateBannerViewPositionYCoordinateAutoCenter(const char* zoneId, float _y);
 
     /*Interstitial*/
     void _bidmadNewInstanceInterstitial(const char* zoneId);
@@ -48,6 +51,7 @@ extern "C" {
 
     /*ETC*/
     void _bidmadInitializeSdk(const char* appKey);
+    void _bidmadInitializeSdkWithCallback(const char* appKey);
     void _bidmadSetDebug(bool isDebug);
     void _bidmadSetGgTestDeviceid(const char* _deviceId);
     void _bidmadSetUseArea(bool useArea);

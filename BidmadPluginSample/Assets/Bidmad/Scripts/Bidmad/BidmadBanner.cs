@@ -44,6 +44,15 @@ public class BidmadBanner
     [DllImport("__Internal")]
     private static extern void _bidmadShowBannerView(string zoneId);
 
+    [DllImport("__Internal")]
+    private static extern void _bidmadUpdateBannerViewPositionAnchor(string zoneId, int position);
+
+    [DllImport("__Internal")]
+    private static extern void _bidmadUpdateBannerViewPositionXYCoordinate(string zoneId, float _x, float _y);
+
+    [DllImport("__Internal")]
+    private static extern void _bidmadUpdateBannerViewPositionYCoordinateAutoCenter(string zoneId, float _y);
+
 #elif UNITY_ANDROID
     private AndroidJavaObject activityContext = null;
     private AndroidJavaClass javaClass = null;
@@ -229,6 +238,56 @@ public class BidmadBanner
         if (javaClassInstance != null)
         {
             javaClassInstance.Call("onResume");
+        }
+#endif
+    }
+
+    /**
+      * Update the position of the view to the provided AdPosition object.
+      * @param position The AdPosition object e.g. Top, Center, Bottom, Left ...
+      */
+    public void updateViewPosition(AdPosition position) {
+#if UNITY_IOS
+        _bidmadUpdateBannerViewPositionAnchor(mZoneId, (int)position);
+#elif UNITY_ANDROID
+        if(javaClassInstance != null)
+        {
+            javaClassInstance.Call("setAdPosition", (int)position);
+            javaClassInstance.Call("setReplace", 2); // @second param is Position Type
+        }
+#endif
+    }
+
+    /**
+      * Update the position of the view to the provided x and y coordinates.
+      * @param _x The x coordinate of the view.
+      * @param _y The y coordinate of the view.
+      */
+    public void updateViewPosition(float _x, float _y) {
+#if UNITY_IOS
+        _bidmadUpdateBannerViewPositionXYCoordinate(mZoneId, _x, _y);
+#elif UNITY_ANDROID
+        if(javaClassInstance != null)
+        {
+            javaClassInstance.Call("setBottom", (int)_y);
+            javaClassInstance.Call("setLeft", (int)_x);
+            javaClassInstance.Call("setReplace", 1); // @second param is Position Type
+        }
+#endif
+    }
+
+    /**
+      * Update the y-coordinate of the view to the provided value, and the ad will be centered in x-coordinate by default.
+      * @param _y The new y coordinate of the view.
+      */
+    public void updateViewPosition(float _y) {
+#if UNITY_IOS
+        _bidmadUpdateBannerViewPositionYCoordinateAutoCenter(mZoneId, _y);
+#elif UNITY_ANDROID
+        if(javaClassInstance != null)
+        {
+            javaClassInstance.Call("setBottom", (int)_y);
+            javaClassInstance.Call("setReplace", 0); // @second param is Position Type
         }
 #endif
     }

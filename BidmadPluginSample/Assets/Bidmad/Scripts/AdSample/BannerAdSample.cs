@@ -15,7 +15,7 @@ public class BannerAdSample : MonoBehaviour
     {
 #if UNITY_ANDROID
     
-        banner = new BidmadBanner("944fe870-fa3a-4d1b-9cc2-38e50b2aed43", 130);  // Auto Center alignment
+        banner = new BidmadBanner("944fe870-fa3a-4d1b-9cc2-38e50b2aed43", (float)130);  // Auto Center alignment
         // banner = new BidmadBanner("944fe870-fa3a-4d1b-9cc2-38e50b2aed43", 0, 130); // If you need to set position x.
         // banner = new BidmadBanner("944fe870-fa3a-4d1b-9cc2-38e50b2aed43", AdPosition.Bottom); // If you need to set AdPosition.
 
@@ -29,6 +29,9 @@ public class BannerAdSample : MonoBehaviour
         banner.setRefreshInterval(80);
         
         banner.load();
+
+        // Ads can be repositioned after loading.
+        // banner.updateViewPosition(0, 130);
   
         banner.setBannerLoadCallback(OnBannerLoad);
         banner.setBannerFailCallback(OnBannerLoadFail);
