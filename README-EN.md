@@ -63,7 +63,18 @@ public static final ** CREATOR;
 -dontwarn com.tapjoy.**
 ```
 
-6. If targeting Android 12 version, please check [AD_ID Permission Guide](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BENG%5D).
+6. Activate Project Settings → Publish Settings → Custom Main Manifest and  Declare the code below inside the application tag of AndroidManifest.xml ([Guide](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D#app-id-from-admob-dashboard))<br>
+   *Please check the value of com.google.android.gms.ads.APPLICATION_ID on the Admob dashboard.
+
+```xml
+<application>
+   ...
+   <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="APPLICATION_ID"/>
+   ...
+</application>
+```
+
+7.  If targeting Android 12 version, please check [AD_ID Permission Guide](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BENG%5D).
 
 *Bidmad uses the AndroidX library. If it is not an AndroidX project, please migrate to AndroidX.
 

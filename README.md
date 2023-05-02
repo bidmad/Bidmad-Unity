@@ -1,4 +1,5 @@
 
+
 # BidmadPlugin
 
 BidmadPlugin은 모바일 앱 광고 SDK인 Bidmad를 Unity에서 사용하기 위한 Plugin입니다.<br>
@@ -63,7 +64,18 @@ public static final ** CREATOR;
 -dontwarn com.tapjoy.**
 ```
 
-6. Android 12버전을 Target하는 경우 [AD_ID 권한 추가 선언 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BKOR%5D)를 확인바랍니다.
+6. Project Settings  → Publish Settings  → Custom Main Manifest를 활성화하여 AndroidManifest.xml의 application 태그 안에 아래 코드를 선언합니다([가이드](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D#app-id-from-admob-dashboard))<br>
+   *com.google.android.gms.ads.APPLICATION_ID의 value는 Admob 대시보드에서 확인 바랍니다.
+
+```xml
+<application>
+   ...
+   <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="APPLICATION_ID"/>
+   ...
+</application>
+```
+
+7. Android 12버전을 Target하는 경우 [AD_ID 권한 추가 선언 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BKOR%5D)를 확인바랍니다.
 
 *Bidmad는 AndroidX 라이브러리를 사용합니다. AndroidX 프로젝트가 아니라면 AndroidX로 마이그레이션 바랍니다.
 
