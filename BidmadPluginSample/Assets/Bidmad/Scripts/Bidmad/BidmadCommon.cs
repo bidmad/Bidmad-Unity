@@ -69,6 +69,8 @@ public class BidmadCommon
     private static AndroidJavaObject javaConsentClassInstance = null; 
     private static AndroidJavaClass javaAdOptionClass = null;
     private static AndroidJavaObject javaAdOptonClassInstance = null;
+    private static AndroidJavaClass javaAdFreeClass = null;
+    private static AndroidJavaObject javaAdFreeClassInstance = null;
 #endif
 
     public static void initializeSdk(string appkey) 
