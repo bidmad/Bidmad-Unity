@@ -1,3 +1,13 @@
+# Version 3.5.0
+#### Changes
+- Support Ad Network Coupang (Banner / NativeAd) 
+- Add Interface Ad block status callback by Coupang Ad Network
+- Android Improved banner refresh function
+
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.7.1
+- iOS : BidmadSDK.framework 6.3.0
+
 # Version 3.4.0
 #### Changes
 - Remove Ad Network of AdMixer, InMobi, Prebid, Tapjoy

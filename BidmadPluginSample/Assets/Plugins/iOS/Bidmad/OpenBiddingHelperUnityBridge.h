@@ -15,6 +15,7 @@
 #import <OpenBiddingHelper/BidmadBannerAdForGame.h>
 #import <OpenBiddingHelper/BidmadInterstitialAdForGame.h>
 #import <OpenBiddingHelper/BidmadRewardAdForGame.h>
+#import <OpenBiddingHelper/BidmadAdFreeInformation.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -60,6 +61,8 @@ extern "C" {
     void _bidmadSetCuid(const char* cuid);
     void _bidmadSetUseServerSideCallback(bool isServerSideCallback);
     const char* _bidmadGetPRIVACYURL();
+    void _bidmadSetAdFreeEventListener();
+    bool _bidmadIsAdFree();
 
      /* ATT */
     void _bidmadReqAdTrackingAuthorization();

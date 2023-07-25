@@ -15,7 +15,7 @@ return _sharedObject; \
 
 #import "OpenBiddingHelperUnityBridge.h"
 
-@interface OpenBiddingHelperUnityBridge : NSObject<BIDMADOpenBiddingBannerDelegate,BIDMADOpenBiddingInterstitialDelegate,BIDMADOpenBiddingRewardVideoDelegate, BIDMADGDPRforGoogleProtocol>
+@interface OpenBiddingHelperUnityBridge : NSObject<BIDMADOpenBiddingBannerDelegate,BIDMADOpenBiddingInterstitialDelegate,BIDMADOpenBiddingRewardVideoDelegate, BIDMADGDPRforGoogleProtocol, BidmadAdFreeInformationDelegate>
 + (OpenBiddingHelperUnityBridge *)sharedInstance;
 @end
 
@@ -85,6 +85,10 @@ return _sharedObject; \
     if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
         UnitySendMessage("BidmadManager", "OnRewardSkip", [(OpenBiddingRewardVideo *)bidmadAd zoneID].UTF8String);
     }
+}
+
+- (void)didAdFreeInformationStatusChange:(BidmadAdFreeInformationStatus)status {
+    UnitySendMessage("BidmadManager", "OnAdFree", (status == BidmadAdFreeInformationStatusBlocked) == YES ? [@"true" UTF8String] : [@"false" UTF8String]);
 }
 
 /** Common Callback Start **/
@@ -329,6 +333,17 @@ bool _bidmadGetAdvertiserTrackingEnabled()
 {
     return [BIDMADSetting.sharedInstance getAdvertiserTrackingEnabled];
 }
+
+void _bidmadSetAdFreeEventListener()
+{
+    [BidmadAdFreeInformation setDelegate:[OpenBiddingHelperUnityBridge sharedInstance]];
+}
+
+bool _bidmadIsAdFree()
+{
+    return ([BidmadAdFreeInformation status] == BidmadAdFreeInformationStatusBlocked);
+}
+
 /** ETC Interface End **/
 /** GDPRforGoogle Start **/
 

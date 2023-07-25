@@ -15,7 +15,7 @@ public enum BidmadTrackingAuthorizationStatus
 
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "3.4.0";
+    string UNITY_PLUGIN_VERSION = "3.5.0";
 #if UNITY_IOS
     [DllImport("__Internal")]
     private static extern void _bidmadSetDebug(bool isDebug);
@@ -55,6 +55,12 @@ public class BidmadCommon
 
     [DllImport("__Internal")]
     private static extern void _bidmadSetUseServerSideCallback(bool isServerSideCallback);
+    
+    [DllImport("__Internal")]
+    private static extern void _bidmadSetAdFreeEventListener();
+    
+    [DllImport("__Internal")]
+    private static extern bool _bidmadIsAdFree();
 
 #elif UNITY_ANDROID
     private static AndroidJavaClass javaCommonClass = null;
@@ -311,6 +317,42 @@ public class BidmadCommon
         return false;
 #endif
         return false;
+    }
+
+    public static void setAdFreeEventListener(Action<bool> callback)
+    {
+        BidmadManager.onAdFree = callback;
+        
+#if UNITY_IOS
+        _bidmadSetAdFreeEventListener();
+#elif UNITY_ANDROID
+        using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        {
+            javaAdFreeClass = new AndroidJavaClass("ad.helper.openbidding.AdFreeInformation");
+
+            AndroidJavaObject context = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+            javaAdFreeClassInstance = javaAdFreeClass.CallStatic<AndroidJavaObject>("getInstance", context);
+            javaAdFreeClassInstance.Call("setOnAdFreeWithUnityListener");
+        }
+#endif
+    }
+    
+    public static bool isAdFree() {
+#if UNITY_IOS
+        return _bidmadIsAdFree();
+#elif UNITY_ANDROID
+        using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        {
+            javaAdFreeClass = new AndroidJavaClass("ad.helper.openbidding.AdFreeInformation");
+
+            AndroidJavaObject context = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
+            javaAdFreeClassInstance = javaAdFreeClass.CallStatic<AndroidJavaObject>("getInstance", context);
+            int status = javaAdFreeClassInstance.Call<int>("getAdFreeStatus");
+            
+            return (status == 0)? true : false;
+        }
+        return false;
+#endif
     }
 
 }//END

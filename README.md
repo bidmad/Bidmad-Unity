@@ -459,6 +459,8 @@ public static void initializeSdk(string appkey)|BidmadSDK 환경 설정을 초�
 public static void initializeSdkWithCallback(string appkey, Action<bool> callback)|BidmadSDK 환경 설정을 초기화하고, 전면 및 리워드 광고를 프리로드합니다. Action<bool> 함수로 초기화 여부를 받습니다.
 public static void setIsDebug(bool isDebug)|디버그 로그를 노출시킵니다.
 public static void setGgTestDeviceid(string deviceId)|구글 애드몹 / 애드매니저를 위한 테스트 디바이스 등록 함수입니다.
+public static void setAdFreeEventListener(Action<bool> callback)|쿠팡 광고네트워크에 의한 광고차단 상태 변경 정보를 받기위해 콜백 함수를 설정합니다.
+public static bool isAdFree()|쿠팡 광고네트워크에 의한 광고 차단 여부를 확인합니다.
 public static void setCuid(string cuid)|cuid(Customer User Identifier)를 설정을 위한 함수 입니다.
 public static void setUseServerSideCallback(bool isServerSideCallback)|Server Side Callback 사용시 세팅을 위한 함수입니다. 
 public static void setGdprConsent(bool consent, bool useArea)|GDPR 동의여부를 등록합니다. consent: 동의여부 / useArea: 유럽지역 여부 
@@ -480,3 +482,4 @@ public static bool getAdvertiserTrackingEnabled()|설정된 앱 추적 투명성
 
 - [GDPR 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/Unity-GDPR-Guide-%5BKOR%5D)
 - [v3.0.0 Migration Guide](https://github.com/bidmad/Bidmad-Unity/wiki/v3.0.0-Migration-Guide)
+- [쿠팡 네트워크 광고 차단 인터페이스 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/쿠팡-네트워크-광고-차단-인터페이스-가이드)

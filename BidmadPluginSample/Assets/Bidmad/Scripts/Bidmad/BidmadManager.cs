@@ -25,6 +25,7 @@ public class BidmadManager : MonoBehaviour
 /*** Common Callback ***/
     public static Action<BidmadTrackingAuthorizationStatus> adTrackingAuthResponse;
     public static Action<bool> onInitialized;
+    public static Action<bool> onAdFree;
 /*** googleGdpr Callback ***/
     public static Action consentInfoUpdateSuccess;
     public static Action<string> consentInfoUpdateFailure;
@@ -200,6 +201,17 @@ public class BidmadManager : MonoBehaviour
                 default:
                     adTrackingAuthResponse(BidmadTrackingAuthorizationStatus.BidmadAuthorizationStatusDenied);
                     break;
+            }
+        }
+    }
+    
+    void OnAdFree(string responseCode)
+    {
+        if(onAdFree != null) {
+            if (responseCode == "true") {
+                onAdFree(true);
+            } else {
+                onAdFree(false);
             }
         }
     }
