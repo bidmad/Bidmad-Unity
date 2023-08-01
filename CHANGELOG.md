@@ -1,3 +1,10 @@
+# Version 3.5.1
+#### Changes
+-  Android Coupang Ad Network Orientation Bugs Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.7.1
+- iOS : BidmadSDK.framework 6.3.0
+
 # Version 3.5.0
 #### Changes
 - Support Ad Network Coupang (Banner / NativeAd) 
