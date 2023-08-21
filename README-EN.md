@@ -132,6 +132,11 @@ done
 ```
 ![Bidmad-Guide-8](https://i.imgur.com/SKRjDhg.png)<br>
 10. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
+11. **For users of plugin version 3.5.2 or higher** Please remove the following field in the "info.plist" file from the folder "/Pods/Fyber_Marketplace_SDK/IASDKCore/IASDKCore.xcframework" in your iOS project folder.
+```
+<key>DebugSymbolsPath</key>
+<string>dSYMs</string>
+```
 
 *If you're looking for a guide to the privacy requirements of the Apple Store, [see here](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BENG%5D).
 

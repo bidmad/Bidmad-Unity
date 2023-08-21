@@ -133,6 +133,11 @@ done
 ```
 ![Bidmad-Guide-8](https://i.imgur.com/SKRjDhg.png)<br>
 10. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
+11. **3.5.2 버전 이상 사용 시** IOS 프로젝트 폴더 내부 "/Pods/Fyber_Marketplace_SDK/IASDKCore/IASDKCore.xcframework" 폴더에 담긴 "Info.plist" 파일 내부 아래 기록된 필드를 제거해주세요
+```
+<key>DebugSymbolsPath</key>
+<string>dSYMs</string>
+```
 
 *Apple Store에서 요구하는 개인정보 보호에 관한 가이드가 필요한 경우 [이곳](https://github.com/bidmad/Bidmad-Unity/wiki/Apple-privacy-survey%5BKOR%5D)을 참고하세요.
 
