@@ -1,3 +1,13 @@
+# Version 3.5.2
+#### Changes
+- Android: Ad Network SDK Update (Admob, Applovin, Pangle, Fyber)
+- Android: Fix Pangle network SSC Deprecated code
+- iOS: Ad Network SDK Update (Admob, UnityAds, Applovin, Ironsource, Vungle, Pangle, PubMatic, Facebook)
+- iOS: Pangle New Interface Update
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.8.0
+- iOS : BidmadSDK.framework 6.3.1
+
 # Version 3.5.1
 #### Changes
 -  Android Coupang Ad Network Orientation Bugs Fix
