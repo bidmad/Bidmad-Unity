@@ -93,7 +93,7 @@ public static final ** CREATOR;
 4. After building iOS Xcode Project, iOS Xcode Project folder will contain a project file with <strong>.xcworkspace</strong> extension. Please open it. <br>
 5. Unity-iPhone Project Settings → Build Settings → UnityFramework Target → Set Enable Bitcode to "No".<br>
     ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. Inside the Unity-iPhone Target Project Settings → General → Frameworks, Libraries, and Embedded Content, Click the + button inside and add OMSDK_Pubmatic.xcframework, ADOPUtility.xcframework, BidmadAdapterDynamic.xcframework, FBLPromises.framework, OMSDK_Teadstv.xcframework, TeadsSDK.xcframework.
+6. Inside the Unity-iPhone Target Project Settings → General → Frameworks, Libraries, and Embedded Content, Click the + button inside and add OMSDK_Pubmatic.xcframework, ADOPUtility.xcframework, BidmadAdapterDynamic.xcframework, FBLPromises.framework, OMSDK_Teadstv.xcframework, TeadsSDK.xcframework, IASDKCore.xcframework.
     ![Bidmad-Guide-5](https://i.imgur.com/997NKID.png)<br>
 7. Drag and drop Pods → Pods → AdFitSDK → Frameworks → AdFitSDK.framework into the Unity-iPhone target project settings → General → Frameworks, Libraries, and Embedded Content. Please refer to the GIF below.
     ![Bidmad-Guide-6](https://i.imgur.com/2ztRu9H.gif)<br>
