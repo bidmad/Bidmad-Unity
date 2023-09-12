@@ -1,3 +1,11 @@
+# Version 3.5.3
+#### Changes
+- Android: Banner Ad Refresh Bug Fix
+- iOS: Fix UnityAds Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.9.0
+- iOS : BidmadSDK.framework 6.3.2
+
 # Version 3.5.2
 #### Changes
 - Android: Ad Network SDK Update (Admob, Applovin, Pangle, Fyber)
