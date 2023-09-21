@@ -1,3 +1,11 @@
+# Version 3.5.4
+#### Changes
+- Support for Banner Ad loading while hidden
+- iOS: Banner Ad Area No Touch Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.9.0
+- iOS : BidmadSDK.framework 6.3.4
+
 # Version 3.5.3
 #### Changes
 - Android: Banner Ad Refresh Bug Fix

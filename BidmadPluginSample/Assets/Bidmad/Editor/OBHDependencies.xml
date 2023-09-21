@@ -10,14 +10,14 @@
       <repository>https://repo.pubmatic.com/artifactory/public-repos/</repository>
     </repositories>
     <androidPackage spec="com.adop.sdk:bidmad-androidx:3.9.0"/>
-    <androidPackage spec="ad.helper.openbidding:admob-obh:3.9.0"/>
+    <androidPackage spec="ad.helper.openbidding:admob-obh:3.9.1"/>
     <androidPackage spec="com.adop.adapter.fc:fcNetwork-adapter:3.9.0"/>
     <androidPackage spec="com.adop.adapter.fnc:fncNetwork-adapter:3.9.0"/>
   </androidPackages>
 
   <iosPods>
-    <iosPod name="BidmadSDK" version="6.3.2" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="OpenBiddingHelper" version="6.3.2" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadSDK" version="6.3.4" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="OpenBiddingHelper" version="6.3.5" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="12.0"/>
     <iosPod name="BidmadAdapterDynamic" version="6.3.1" bitcodeEnabled="true" addToAllTargets="false" minTargetSdk="12.0"/>
   </iosPods>
 </dependencies>

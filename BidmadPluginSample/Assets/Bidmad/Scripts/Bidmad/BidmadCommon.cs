@@ -15,7 +15,7 @@ public enum BidmadTrackingAuthorizationStatus
 
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "3.5.3";
+    string UNITY_PLUGIN_VERSION = "3.5.4";
 #if UNITY_IOS
     [DllImport("__Internal")]
     private static extern void _bidmadSetDebug(bool isDebug);
@@ -355,7 +355,6 @@ public class BidmadCommon
         }
         return false;
 #endif
-        return false;
     }
 
 }//END
