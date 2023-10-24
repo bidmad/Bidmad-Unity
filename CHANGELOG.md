@@ -1,3 +1,15 @@
+# Version 3.6.0
+#### Changes
+- Supports Mediation Adapter dependency by ad network 
+- Android : Applovin reward payment bug fix
+- Android : Couapng Ad call api bug fix
+- iOS : Banner ad refreshing behaviour bug fix
+- iOS : Ad network multi load bug fix
+
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.10.0
+- iOS : BidmadSDK.framework 6.4.0
+
 # Version 3.5.4
 #### Changes
 - Support for Banner Ad loading while hidden
