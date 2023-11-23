@@ -21,7 +21,7 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="BidmadSDK" version="6.4.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadSDK" version="6.4.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
     <iosPod name="OpenBiddingHelper" version="6.4.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
     <iosPod name="BidmadADOPCoupangAdapter" version="1.0.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
     <iosPod name="BidmadAdColonyAdapter" version="4.9.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>

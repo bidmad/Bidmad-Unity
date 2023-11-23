@@ -1,3 +1,11 @@
+# Version 3.6.1
+#### Changes
+- iOS : DAU collection bug fix (Critical)
+
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.10.0
+- iOS : BidmadSDK.framework 6.4.1
+
 # Version 3.6.0
 #### Changes
 - Supports Mediation Adapter dependency by ad network 
