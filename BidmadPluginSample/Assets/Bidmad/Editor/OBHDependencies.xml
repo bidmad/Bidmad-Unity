@@ -6,36 +6,39 @@
       <repository>https://artifact.bytedance.com/repository/pangle/</repository>
       <repository>https://jitpack.io/</repository>
       <repository>https://repo.pubmatic.com/artifactory/public-repos/</repository>
+      <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
     </repositories>
-    <androidPackage spec="com.adop.sdk:bidmad-androidx:3.10.0"/>
-    <androidPackage spec="ad.helper.openbidding:admob-obh:3.10.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:admob:22.0.0.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:adcolony:4.8.0.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:applovin:11.9.0.0"/>
+    <androidPackage spec="ad.helper.openbidding:admob-obh:3.11.0"/>
+    <androidPackage spec="com.adop.sdk:bidmad-androidx:3.11.0"/>
+    <androidPackage spec="com.adop.sdk.adapter:admob:22.0.0.2"/>
+    <androidPackage spec="com.adop.sdk.adapter:adcolony:4.8.0.1"/>
+    <androidPackage spec="com.adop.sdk.adapter:applovin:11.9.0.2"/>
     <androidPackage spec="com.adop.sdk.adapter:coupang:1.0.0.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:fyber:8.2.3.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:pangle:5.2.0.3.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:pubmatic:2.7.1.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:unityads:4.6.1.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:vungle:6.12.1.0"/>
+    <androidPackage spec="com.adop.sdk.adapter:fyber:8.2.3.2"/>
+    <androidPackage spec="com.adop.sdk.adapter:pangle:5.2.1.1.1"/>
+    <androidPackage spec="com.adop.sdk.adapter:pubmatic:2.7.1.1"/>
+    <androidPackage spec="com.adop.sdk.adapter:unityads:4.6.1.2"/>
+    <androidPackage spec="com.adop.sdk.adapter:vungle:6.12.1.1"/>
+    <androidPackage spec="com.adop.sdk.partners:admobbidding:1.0.0"/>
   </androidPackages>
 
   <iosPods>
-    <iosPod name="BidmadSDK" version="6.4.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="OpenBiddingHelper" version="6.4.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadADOPCoupangAdapter" version="1.0.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadAdColonyAdapter" version="4.9.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadAdFitAdapter" version="3.12.7.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadAppLovinAdapter" version="11.11.3.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadAtomAdapter" version="1.0.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadFyberAdapter" version="8.2.4.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadGoogleAdManagerAdapter" version="10.12.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadGoogleAdMobAdapter" version="10.12.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadIronSourceAdapter" version="7.5.0.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadPangleAdapter" version="5.3.1.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadPubmaticAdapter" version="3.2.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadTeadsAdapter" version="5.0.27.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadUnityAdsAdapter" version="4.8.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
-    <iosPod name="BidmadVungleAdapter" version="7.1.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadSDK" version="6.5.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="OpenBiddingHelper" version="6.5.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadADOPCoupangAdapter" version="1.0.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadAdColonyAdapter" version="4.9.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadAdFitAdapter" version="3.12.7.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadAppLovinAdapter" version="11.11.3.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadAtomAdapter" version="1.0.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadFyberAdapter" version="8.2.4.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadGoogleAdManagerAdapter" version="10.12.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadGoogleAdMobAdapter" version="10.12.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadIronSourceAdapter" version="7.5.0.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadPangleAdapter" version="5.3.1.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadPubmaticAdapter" version="3.2.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadTeadsAdapter" version="5.0.27.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadUnityAdsAdapter" version="4.8.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadVungleAdapter" version="7.1.0.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
+    <iosPod name="BidmadPartners/AdMobBidding" version="1.0.2" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="12.0"/>
   </iosPods>
 </dependencies>

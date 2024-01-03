@@ -1,3 +1,12 @@
+# Version 3.6.2
+#### Changes
+- Android : Fix Pangle Target SDK 34 crash issue.
+- iOS : Dependency Update
+
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.11.0
+- iOS : BidmadSDK.framework 6.5.0
+
 # Version 3.6.1
 #### Changes
 - iOS : DAU collection bug fix (Critical)
