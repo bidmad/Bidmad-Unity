@@ -9,7 +9,7 @@
       <repository>https://repo.pubmatic.com/artifactory/public-repos/</repository>
       <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
     </repositories>
-    <androidPackage spec="ad.helper.openbidding:admob-obh-dev:3.13.0"/>
+    <androidPackage spec="ad.helper.openbidding:admob-obh:3.13.0"/>
     <androidPackage spec="com.adop.sdk:bidmad-androidx:3.13.0"/>
     <androidPackage spec="com.adop.sdk.adapter:adfit:3.12.15.1"/>
     <androidPackage spec="com.adop.sdk.adapter:admob:22.0.0.3"/>
