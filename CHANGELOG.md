@@ -1,3 +1,12 @@
+# Version 3.7.0
+#### Changes
+- Android : Support Criteo Ad Network.
+- iOS : Dependency Update for Privacy Manifest
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.13.0
+- iOS : BidmadSDK.framework 6.6.1
+
 # Version 3.6.2
 #### Changes
 - Android : Fix Pangle Target SDK 34 crash issue.

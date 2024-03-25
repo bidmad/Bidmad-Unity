@@ -4,6 +4,14 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>FBLPromises_Privacy.bundle/Info.plist</key>
+		<data>
+		7NwtloqGfWPJJrivYGYJxt14Wtc=
+		</data>
+		<key>FBLPromises_Privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		ZajnvEs/MYRS3X4TPLAhBWi8mc4=
+		</data>
 		<key>Headers/FBLPromise+All.h</key>
 		<data>
 		1/HWSa9B9CfE+6oTjy3jrp1Dbng=
@@ -74,7 +82,7 @@
 		</data>
 		<key>Headers/FBLPromise.h</key>
 		<data>
-		66aJuIe5lIRcT8lc2CR4XlzUCqA=
+		7OfQzgwmGOgsO/CHeNSkTs6YP2g=
 		</data>
 		<key>Headers/FBLPromiseError.h</key>
 		<data>
@@ -90,7 +98,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		DAU1y8QC1NBxmxHmb8G1JMySjno=
+		TtjR1KNPf94QPwj0+7XDkmQKGg4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -103,6 +111,28 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>FBLPromises_Privacy.bundle/Info.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			7NwtloqGfWPJJrivYGYJxt14Wtc=
+			</data>
+			<key>hash2</key>
+			<data>
+			EUpczntapFDv59sah7+c1Yji0kY0QZZuVIvqeUj6yR0=
+			</data>
+		</dict>
+		<key>FBLPromises_Privacy.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ZajnvEs/MYRS3X4TPLAhBWi8mc4=
+			</data>
+			<key>hash2</key>
+			<data>
+			dLDNcvwjwe8wLyLuJ1P2GBfNxa8P96fy0GMrUk+4rOo=
+			</data>
+		</dict>
 		<key>Headers/FBLPromise+All.h</key>
 		<dict>
 			<key>hash</key>
@@ -294,11 +324,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			66aJuIe5lIRcT8lc2CR4XlzUCqA=
+			7OfQzgwmGOgsO/CHeNSkTs6YP2g=
 			</data>
 			<key>hash2</key>
 			<data>
-			MD1VrgE/xaO9Oy+HbINsjj3NdgjHGD0vqLUkZ9TEkgQ=
+			8zo1VQB3l2nvOKVHu1ra+QRd1asb8+/pFf9rbETehMk=
 			</data>
 		</dict>
 		<key>Headers/FBLPromiseError.h</key>
