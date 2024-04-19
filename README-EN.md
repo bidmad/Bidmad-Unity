@@ -79,7 +79,8 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
-*Bidmad supports Xcode 13.4 or higher. If your Xcode version is lower than 13.4, please update to 13.4 or higher.
+*Bidmad supports Xcode 15.3 or higher. If your Xcode version is lower than 15.3, please update to 15.3 or higher.
+*When submitting your application to the App Store, use the following guide to properly set up your privacy survey: [Guide for Privacy Manifest & Privacy Survey](https://github.com/bidmad/Bidmad-iOS/wiki/Guide-for-Privacy-Manifest-&-Privacy-Survey-%5BEN%5D)
 
 1. Please import the latest plugin.<br>
 2. Please make adjustments to BidmadPostProcessBuild.cs file in Assets → Bidmad → Editor.<br>

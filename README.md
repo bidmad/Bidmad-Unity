@@ -80,7 +80,8 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
-*Bidmad 는 Xcode 13.4 이상을 지원합니다. Xcode 버전이 13.4 미만이라면 13.4 이상 버전으로 업데이트 바랍니다. 
+*Bidmad 는 Xcode 15.3 이상을 지원합니다. Xcode 버전이 15.3 미만이라면 15.3 이상 버전으로 업데이트 바랍니다.
+*App Store에 애플리케이션을 제출할 때 다음 가이드를 참고하여 개인정보 보호 정책 및 설문조사를 올바르게 설정하세요: [Guide for Privacy Manifest & Privacy Survey](https://github.com/bidmad/Bidmad-iOS/wiki/Guide-for-Privacy-Manifest-&-Privacy-Survey-%5BKR%5D)
 
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다. <br>
 2. Assets → Bidmad → Editor → BidmadPostProcessBuild.cs 파일을 수정합니다.<br>
