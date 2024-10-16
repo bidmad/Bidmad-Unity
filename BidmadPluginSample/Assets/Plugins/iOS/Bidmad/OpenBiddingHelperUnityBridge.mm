@@ -267,14 +267,16 @@ void _bidmadSetAutoReloadRewardVideo(bool isAutoReload) {
 /** Reward Interface End **/
 
 /** ETC Interface Start **/
-void _bidmadInitializeSdk(const char* appKey) {
-    NSString * _appKey = [NSString stringWithUTF8String:appKey];
-    [BIDMADSetting.sharedInstance initializeSdkWithKey:_appKey];
+void _bidmadInitializeSdk(const char* appDomain) {
+    NSString * _appDomain = [NSString stringWithUTF8String:appDomain];
+    [BIDMADSetting.sharedInstance initializeSdkWithDomain:_appDomain platform:@"unity"];
 }
 
-void _bidmadInitializeSdkWithCallback(const char* appKey) {
-    NSString * _appKey = [NSString stringWithUTF8String:appKey];
-    [BIDMADSetting.sharedInstance initializeSdkWithKey:_appKey completionHandler:^(BOOL initStatus) {
+void _bidmadInitializeSdkWithCallback(const char* appDomain) {
+    NSString * _appDomain = [NSString stringWithUTF8String:appDomain];
+    [BIDMADSetting.sharedInstance initializeSdkWithDomain:_appDomain
+                                                 platform:@"unity"
+                                        completionHandler:^(BOOL initStatus) {
         if (initStatus) {
             UnitySendMessage("BidmadManager", "OnInitialized", "true");
         } else {

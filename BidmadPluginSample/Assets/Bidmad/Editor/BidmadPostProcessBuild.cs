@@ -12,15 +12,6 @@ public static class BidmadPostProcessBuild {
         [PostProcessBuildAttribute ( 45 )]
         public static void OnPostProcessBuild(BuildTarget buildTarget, string buildPath) {
             if(buildTarget == BuildTarget.iOS) {
-                System.Diagnostics.Debugger.Break();
-
-                string pathToXCFramework = System.IO.Path.Combine(Application.dataPath, @"Bidmad/Editor/FBLPromises.xcframework");
-                string pathToFrameworksFolder = Path.Combine(buildPath, @"Libraries/Plugins/iOS/Bidmad");
-                string destination = Path.Combine(pathToFrameworksFolder, "FBLPromises.xcframework");
-
-                // Copy the XCFramework to the Frameworks folder
-                FileUtil.CopyFileOrDirectory(pathToXCFramework, destination);
-
                 // We need to tell the Unity build to look at the write build file path and specifically reference the exposed Swift header file for it to work 
                 var projectPath = buildPath + "/Unity-iPhone.xcodeproj/project.pbxproj";
                 var project = new PBXProject();
@@ -32,11 +23,8 @@ public static class BidmadPostProcessBuild {
                     project.TargetGuidByName("Unity-iPhone");
                 #endif
 
-                string fileGuid = project.AddFile(destination, destination);
-
                 // We specifically reference the generated Swift to Objective-C header 
                 project.SetBuildProperty(target, "SWIFT_VERSION", "5.0");
-
                 project.WriteToFile(projectPath);
 
                 // We now set up a plist

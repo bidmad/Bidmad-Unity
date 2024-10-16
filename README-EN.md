@@ -7,6 +7,11 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 - [Download the latest sample project](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
 - [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases)
 
+> [!IMPORTANT]
+> Starting with version 3.8.0, the previously used Appkey has been changed to AppDomain.<br>
+> **AppDomain is not compatible with existing Appkeys, so a new AppDomain must be issued to initiaize.**<br>
+> If you are updating to version 3.8.0, please contact **Techlabs Platform Operations Team.**<br>
+
 ### 1. Add Plugin
 #### 1.1 Android
 
@@ -79,8 +84,7 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
-*Bidmad supports Xcode 15.3 or higher. If your Xcode version is lower than 15.3, please update to 15.3 or higher.
-*When submitting your application to the App Store, use the following guide to properly set up your privacy survey: [Guide for Privacy Manifest & Privacy Survey](https://github.com/bidmad/Bidmad-iOS/wiki/Guide-for-Privacy-Manifest-&-Privacy-Survey-%5BEN%5D)
+*Bidmad supports Xcode 13.4 or higher. If your Xcode version is lower than 13.4, please update to 13.4 or higher.
 
 1. Please import the latest plugin.<br>
 2. Please make adjustments to BidmadPostProcessBuild.cs file in Assets → Bidmad → Editor.<br>
@@ -154,14 +158,15 @@ Prior to initial configuration of the app, when updating from version 2.21.0 or 
 
 #### 2.2 BidmadSDK Initialization
 Performs tasks required to run BidmadSDK. The SDK won't allow ads to load unless you call the initializeSdk method.<br>
-The initializeSdk method receives the App Key as a parameter, and the App Key can be copied from ADOP Insight. You can get the App Key by referring to the [Find your App Key](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D) guide.<br>
-Before loading ads, call the initializeSdk method as shown in the following example at the beginning of app.
+The initializeSdk method receives App Domain as a parameter.<br>
+Before loading ads, call the initializeSdk method as shown in the following example at the beginning of app execution.<br>
+(*To check the App Domain, please contact the Techlabs platform operation team.)
 
 ```
 #if UNITY_IOS
-    BidmadCommon.initializeSdk("IOS APP KEY");
+    BidmadCommon.initializeSdk("IOS APP DOMAIN");
 #elif UNITY_ANDROID
-    BidmadCommon.initializeSdk("ANDROID APP KEY"); 
+    BidmadCommon.initializeSdk("ANDROID APP DOMAIN"); 
 #endif
 ```
 
@@ -169,9 +174,9 @@ Or, if you are using Bidmad Plugin version 3.4.0 or later, you can check the ini
 
 ```
 #if UNITY_IOS
-    BidmadCommon.initializeSdk("IOS APP KEY", onInitialized);
+    BidmadCommon.initializeSdk("IOS APP DOMAIN", onInitialized);
 #elif UNITY_ANDROID
-    BidmadCommon.initializeSdk("ANDROID APP KEY", onInitialized);
+    BidmadCommon.initializeSdk("ANDROID APP DOMAIN", onInitialized);
 #endif
 
 void onInitialized(bool isComplete){
@@ -457,8 +462,8 @@ public void setRewardCloseCallback(Action callback)|If an action is registered, 
 
 Function|Description
 ---|---
-public static void initializeSdk(string appkey)|initialize the BidmadSDK configurations and preload the interstitial and reward ads.
-public static void initializeSdkWithCallback(string appkey, Action<bool> callback)|initialize the BidmadSDK configurations and preload the interstitial and reward ads. Action<bool> receive Initialize Status
+public static void initializeSdk(string appdomain)|initialize the BidmadSDK configurations and preload the interstitial and reward ads.
+public static void initializeSdkWithCallback(string appdomain, Action<bool> callback)|initialize the BidmadSDK configurations and preload the interstitial and reward ads. Action<bool> receive Initialize Status
 public static void setIsDebug(bool isDebug)|Debug logs are exposed.
 public static void setGgTestDeviceid(string deviceId)|Test Device registration function for AdMob and AdManager.
 public static void setCuid(string cuid)|a function to set the cuid(Customer User Identifier)

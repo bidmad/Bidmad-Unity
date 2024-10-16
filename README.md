@@ -9,6 +9,11 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 - [최신 샘플 프로젝트 다운로드](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
 - [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases)
 
+> [!IMPORTANT]
+> 3.8.0 버전부터는 기존에 사용하던 **Appkey가 AppDomain으로 변경**되었습니다.<br>
+> **AppDomain은 기존 Appkey와 호환이 되지 않아 initiaize를 위해서는 AppDomain을 새로 발급받으셔야 합니다.**<br>
+> 3.8.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
+
 ### 1. Plugin 추가하기
 #### 1.1 Android
 
@@ -80,8 +85,7 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
-*Bidmad 는 Xcode 15.3 이상을 지원합니다. Xcode 버전이 15.3 미만이라면 15.3 이상 버전으로 업데이트 바랍니다.
-*App Store에 애플리케이션을 제출할 때 다음 가이드를 참고하여 개인정보 보호 정책 및 설문조사를 올바르게 설정하세요: [Guide for Privacy Manifest & Privacy Survey](https://github.com/bidmad/Bidmad-iOS/wiki/Guide-for-Privacy-Manifest-&-Privacy-Survey-%5BKR%5D)
+*Bidmad 는 Xcode 13.4 이상을 지원합니다. Xcode 버전이 13.4 미만이라면 13.4 이상 버전으로 업데이트 바랍니다. 
 
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다. <br>
 2. Assets → Bidmad → Editor → BidmadPostProcessBuild.cs 파일을 수정합니다.<br>
@@ -156,14 +160,14 @@ done
 
 #### 2.2 BidmadSDK 초기화
 BidmadSDK 실행에 필요한 작업을 수행합니다. SDK는 initializeSdk 메서드를 호출하지 않은 경우 광고 로드를 허용하지 않습니다.<br>
-initializeSdk 메서드는 ADOP Insight 에서 확인가능한 App Key 를 인자값으로 받고 있습니다. App Key 는 [App Key 찾기](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D) 가이드를 참고해 가져올 수 있습니다.<br>
-광고를 로드하기 전, 앱 실행 초기에 다음 예시와 같이 initializeSdk 메서드를 호출해주십시오.
+initializeSdk 메서드는 App Domain를 인자값으로 받고 있으며 광고를 로드하기 전, 앱 실행 초기에 다음 예시와 같이 initializeSdk 메서드를 호출해주십시오.<br>
+(*App Domain을 발급받으시려면 테크랩스 플랫폼 운영팀으로 연락 부탁 드립니다.)
 
 ```
 #if UNITY_IOS
-    BidmadCommon.initializeSdk("IOS APP KEY");
+    BidmadCommon.initializeSdk("IOS APP DOMAIN");
 #elif UNITY_ANDROID
-    BidmadCommon.initializeSdk("ANDROID APP KEY");
+    BidmadCommon.initializeSdk("ANDROID APP DOMAIN");
 #endif
 ```
 
@@ -171,9 +175,9 @@ initializeSdk 메서드는 ADOP Insight 에서 확인가능한 App Key 를 인�
 
 ```
 #if UNITY_IOS
-    BidmadCommon.initializeSdk("IOS APP KEY", onInitialized);
+    BidmadCommon.initializeSdk("IOS APP DOMAIN", onInitialized);
 #elif UNITY_ANDROID
-    BidmadCommon.initializeSdk("ANDROID APP KEY", onInitialized);
+    BidmadCommon.initializeSdk("ANDROID APP DOMAIN", onInitialized);
 #endif
 
 void onInitialized(bool isComplete){
@@ -459,8 +463,8 @@ public void setRewardCloseCallback(Action callback)|Action을 등록했다면 �
 
 Function|Description
 ---|---
-public static void initializeSdk(string appkey)|BidmadSDK 환경 설정을 초기화하고, 전면 및 리워드 광고를 프리로드합니다.
-public static void initializeSdkWithCallback(string appkey, Action<bool> callback)|BidmadSDK 환경 설정을 초기화하고, 전면 및 리워드 광고를 프리로드합니다. Action<bool> 함수로 초기화 여부를 받습니다.
+public static void initializeSdk(string appdomain)|BidmadSDK 환경 설정을 초기화하고, 전면 및 리워드 광고를 프리로드합니다.
+public static void initializeSdkWithCallback(string appdomain, Action<bool> callback)|BidmadSDK 환경 설정을 초기화하고, 전면 및 리워드 광고를 프리로드합니다. Action<bool> 함수로 초기화 여부를 받습니다.
 public static void setIsDebug(bool isDebug)|디버그 로그를 노출시킵니다.
 public static void setGgTestDeviceid(string deviceId)|구글 애드몹 / 애드매니저를 위한 테스트 디바이스 등록 함수입니다.
 public static void setAdFreeEventListener(Action<bool> callback)|쿠팡 광고네트워크에 의한 광고차단 상태 변경 정보를 받기위해 콜백 함수를 설정합니다.

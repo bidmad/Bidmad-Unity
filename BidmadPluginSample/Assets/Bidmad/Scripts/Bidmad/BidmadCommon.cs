@@ -15,7 +15,7 @@ public enum BidmadTrackingAuthorizationStatus
 
 public class BidmadCommon
 {
-    string UNITY_PLUGIN_VERSION = "3.7.0";
+    string UNITY_PLUGIN_VERSION = "3.8.0";
 #if UNITY_IOS
     [DllImport("__Internal")]
     private static extern void _bidmadSetDebug(bool isDebug);
@@ -45,10 +45,10 @@ public class BidmadCommon
     private static extern string _bidmadGetPRIVACYURL();
 
     [DllImport("__Internal")]
-    private static extern void _bidmadInitializeSdk(string appKey);
+    private static extern void _bidmadInitializeSdk(string appDomain);
 
     [DllImport("__Internal")]
-    private static extern void _bidmadInitializeSdkWithCallback(string appKey);
+    private static extern void _bidmadInitializeSdkWithCallback(string appDomain);
 
     [DllImport("__Internal")]
     private static extern void _bidmadSetCuid(string cuid);
@@ -73,42 +73,47 @@ public class BidmadCommon
     private static AndroidJavaObject javaAdFreeClassInstance = null;
 #endif
 
-    public static void initializeSdk(string appkey) 
+    public static void initializeSdk(string appDomain) 
     {
 #if UNITY_IOS
-        _bidmadInitializeSdk(appkey);
+        _bidmadInitializeSdk(appDomain);
 
 #elif UNITY_ANDROID
     using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
     {
-        javaCommonClass = new AndroidJavaClass("ad.helper.openbidding.BidmadCommon");
 
+        javaCommonClass = new AndroidJavaClass("com.adop.sdk.Common");
+        javaCommonClass.CallStatic("setRunningPlatform", 4);
+
+        javaCommonClass = new AndroidJavaClass("ad.helper.openbidding.BidmadCommon");
         AndroidJavaObject context = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
-        javaCommonClass.CallStatic("initializeSdk", context, appkey);
+        javaCommonClass.CallStatic("initializeSdk", context, appDomain);
     }
 
 #endif
     }
 
-    public static void initializeSdkWithCallback(string appkey, Action<bool> callback) {
+    public static void initializeSdkWithCallback(string appDomain, Action<bool> callback) {
         BidmadManager.onInitialized = callback;
 
 #if UNITY_IOS
-        _bidmadInitializeSdkWithCallback(appkey);
+        _bidmadInitializeSdkWithCallback(appDomain);
 
 #elif UNITY_ANDROID
         using (AndroidJavaClass activityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         {
+            javaCommonClass = new AndroidJavaClass("com.adop.sdk.Common");
+            javaCommonClass.CallStatic("setRunningPlatform", 4);
+            
             javaCommonClass = new AndroidJavaClass("ad.helper.openbidding.BidmadCommon");
-
             AndroidJavaObject context = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
-            javaCommonClass.CallStatic("initializeSdkWithUnityListener", context, appkey);
+            javaCommonClass.CallStatic("initializeSdkWithUnityListener", context, appDomain);
         }
 #endif
     }
 
-	public static void setIsDebug(bool isDebug)
-	{
+    public static void setIsDebug(bool isDebug)
+    {
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
@@ -121,10 +126,10 @@ public class BidmadCommon
             javaCommonClass.CallStatic("setDebugging", isDebug);
         }
 #endif
-	}
+    }
 
-	public static void setGgTestDeviceid(string deviceId)
-	{
+    public static void setGgTestDeviceid(string deviceId)
+    {
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
@@ -137,7 +142,7 @@ public class BidmadCommon
             javaCommonClass.CallStatic("setGgTestDeviceid", deviceId);
         }
 #endif
-	}
+    }
 
         public static void setCuid(string cuid)
     {
@@ -178,8 +183,8 @@ public class BidmadCommon
     } 
 
 
-	public static void setGdprConsent(bool consent, bool useArea)
-	{
+    public static void setGdprConsent(bool consent, bool useArea)
+    {
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
@@ -200,11 +205,11 @@ public class BidmadCommon
             }
         }
 #endif
-	}
+    }
 
-	public static int getGdprConsent(bool useArea)
-	{
-		int result = 999;
+    public static int getGdprConsent(bool useArea)
+    {
+        int result = 999;
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
@@ -245,11 +250,11 @@ public class BidmadCommon
         }
 #endif
         return result;
-	}
+    }
 
-	public static string getPRIVACYURL()
-	{
-		string result = "";
+    public static string getPRIVACYURL()
+    {
+        string result = "";
 #if UNITY_IOS
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
@@ -275,7 +280,7 @@ public class BidmadCommon
         }
 #endif
         return "";
-	}
+    }
 
 
     public static void reqAdTrackingAuthorization(Action<BidmadTrackingAuthorizationStatus> callback)

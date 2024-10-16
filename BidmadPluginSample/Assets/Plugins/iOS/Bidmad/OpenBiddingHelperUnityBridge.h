@@ -51,8 +51,8 @@ extern "C" {
     void _bidmadSetAutoReloadRewardVideo(bool isAutoReload);
 
     /*ETC*/
-    void _bidmadInitializeSdk(const char* appKey);
-    void _bidmadInitializeSdkWithCallback(const char* appKey);
+    void _bidmadInitializeSdk(const char* appDomain);
+    void _bidmadInitializeSdkWithCallback(const char* appDomain);
     void _bidmadSetDebug(bool isDebug);
     void _bidmadSetGgTestDeviceid(const char* _deviceId);
     void _bidmadSetUseArea(bool useArea);

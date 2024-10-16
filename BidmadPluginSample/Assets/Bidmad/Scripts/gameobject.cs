@@ -14,10 +14,9 @@ public class gameobject : MonoBehaviour
 
         // Please call initializeSdk(string) Method before calling Bidmad Ads
         #if UNITY_IOS
-        BidmadCommon.initializeSdkWithCallback("6b097551-7f78-11ed-a117-026864a21938", onInitialized); //TEST APP KEY
+        BidmadCommon.initializeSdkWithCallback("Your iOS APP DOMAIN", onInitialized);
         #elif UNITY_ANDROID
-         // BidmadCommon.initializeSdk("6933aab2-7f78-11ed-a117-026864a21938"); //TEST APP KEY
-        BidmadCommon.initializeSdkWithCallback("6933aab2-7f78-11ed-a117-026864a21938", onInitialized);
+        BidmadCommon.initializeSdkWithCallback("Your Android APP DOMAIN", onInitialized);
         #endif
 
         DontDestroyOnLoad(bidmadManager);
