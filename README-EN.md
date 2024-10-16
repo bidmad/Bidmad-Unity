@@ -170,7 +170,7 @@ Before loading ads, call the initializeSdk method as shown in the following exam
 #endif
 ```
 
-Or, if you are using Bidmad Plugin version 3.4.0 or later, you can check the initialization status by putting an Action function that receives a bool type as a parameter value as a parameter value of the initializeSdk method.
+Or, you can check the initialization status by putting an Action function that receives a bool type as a parameter value as a parameter value of the initializeSdk method.
 
 ```
 #if UNITY_IOS

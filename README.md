@@ -171,7 +171,7 @@ initializeSdk 메서드는 App Domain를 인자값으로 받고 있으며 광고
 #endif
 ```
 
-혹은, 3.4.0 이상 버전의 Bidmad Plugin을 사용하는 경우, bool 타입을 인자값으로 받는 Action 함수를 initializeSdk 메서드의 인자값으로 넣어 초기화 여부를 확인할 수 있습니다.
+혹은, bool 타입을 인자값으로 받는 Action 함수를 initializeSdk 메서드의 인자값으로 넣어 초기화 여부를 확인할 수 있습니다.
 
 ```
 #if UNITY_IOS
