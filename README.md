@@ -98,8 +98,8 @@ public static final ** CREATOR;
 4. iOS Xcode 프로젝트를 빌드한 이후, iOS 프로젝트 폴더에서 <strong>.xcworkspace</strong> 확장자의 파일을 열어주십시오.<br>
 5. Unity-iPhone 프로젝트 세팅 → Build Settings → UnityFramework 타겟 → Enable Bitcode 를 "No" 로 설정하십시오.<br>
     ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. Unity-iPhone 타겟 대상 프로젝트 세팅 → General → Frameworks, Libraries, and Embedded Content 내부 + 버튼 클릭 후 OMSDK_Pubmatic.xcframework, ADOPUtility.xcframework, FBLPromises.framework, OMSDK_Teadstv.xcframework, TeadsSDK.xcframework, IASDKCore.xcframework 추가하십시오.
-    ![Bidmad-Guide-5](https://i.imgur.com/997NKID.png)<br>
+6. Unity-iPhone 타겟 대상 프로젝트 세팅 → General → Frameworks, Libraries, and Embedded Content 내부 + 버튼 클릭 후 AdPopcornSSP.xcframework, AppLovinSDK.xcframework, BidmadSDK.xcframework, NaverAdsServices.xcframework, OMSDK_Navercorp.xcframework, OMSDK_Pubmatic.xcframework, OMSDK_Teadstv.xcframework, TeadsSDK.xcframework 추가하십시오.
+    ![Bidmad-Guide-5](https://i.imgur.com/bymCvJ9.png)<br>
 7. Unity-iPhone 타겟 대상 프로젝트 세팅 → General → Frameworks, Libraries, and Embedded Content 내부에 Pods → Pods → AdFitSDK → Frameworks → AdFitSDK.framework 를 드래그해 넣습니다. 아래 GIF 를 참고해주세요.
     ![Bidmad-Guide-6](https://i.imgur.com/2ztRu9H.gif)<br>
 8. Unity-iPhone 타겟 대상 프로젝트 세팅 → Build Phases 내부 + 버튼 클릭 후 New Run Script Phase 를 클릭하세요.
@@ -171,7 +171,7 @@ initializeSdk 메서드는 App Domain를 인자값으로 받고 있으며 광고
 #endif
 ```
 
-혹은, bool 타입을 인자값으로 받는 Action 함수를 initializeSdk 메서드의 인자값으로 넣어 초기화 여부를 확인할 수 있습니다.
+혹은, 3.4.0 이상 버전의 Bidmad Plugin을 사용하는 경우, bool 타입을 인자값으로 받는 Action 함수를 initializeSdk 메서드의 인자값으로 넣어 초기화 여부를 확인할 수 있습니다.
 
 ```
 #if UNITY_IOS

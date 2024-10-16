@@ -97,8 +97,8 @@ public static final ** CREATOR;
 4. After building iOS Xcode Project, iOS Xcode Project folder will contain a project file with <strong>.xcworkspace</strong> extension. Please open it. <br>
 5. Unity-iPhone Project Settings → Build Settings → UnityFramework Target → Set Enable Bitcode to "No".<br>
     ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. Inside the Unity-iPhone Target Project Settings → General → Frameworks, Libraries, and Embedded Content, Click the + button inside and add OMSDK_Pubmatic.xcframework, ADOPUtility.xcframework, FBLPromises.framework, OMSDK_Teadstv.xcframework, TeadsSDK.xcframework, IASDKCore.xcframework.
-    ![Bidmad-Guide-5](https://i.imgur.com/997NKID.png)<br>
+6. Inside the Unity-iPhone Target Project Settings → General → Frameworks, Libraries, and Embedded Content, Click the + button inside and add AdPopcornSSP.xcframework, AppLovinSDK.xcframework, BidmadSDK.xcframework, NaverAdsServices.xcframework, OMSDK_Navercorp.xcframework, OMSDK_Pubmatic.xcframework, OMSDK_Teadstv.xcframework, and TeadsSDK.xcframework.
+    ![Bidmad-Guide-5](https://i.imgur.com/bymCvJ9.png)<br>
 7. Drag and drop Pods → Pods → AdFitSDK → Frameworks → AdFitSDK.framework into the Unity-iPhone target project settings → General → Frameworks, Libraries, and Embedded Content. Please refer to the GIF below.
     ![Bidmad-Guide-6](https://i.imgur.com/2ztRu9H.gif)<br>
 8. Inside the Unity-iPhone Target Project Settings -> Build Phases, click the + button inside and click Add New Run Phase button.
@@ -170,7 +170,7 @@ Before loading ads, call the initializeSdk method as shown in the following exam
 #endif
 ```
 
-Or, you can check the initialization status by putting an Action function that receives a bool type as a parameter value as a parameter value of the initializeSdk method.
+Or, if you are using Bidmad Plugin version 3.4.0 or later, you can check the initialization status by putting an Action function that receives a bool type as a parameter value as a parameter value of the initializeSdk method.
 
 ```
 #if UNITY_IOS
