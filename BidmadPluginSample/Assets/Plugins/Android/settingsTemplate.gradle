@@ -19,25 +19,19 @@ dependencyResolutionManagement {
 // Android Resolver Repos Start
         def unityProjectPath = $/file:///**DIR_UNITYPROJECT**/$.replace("\\", "/")
         maven {
-            url "https://devrepo.kakao.com/nexus/content/groups/public/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
+            url "https://devrepo.kakao.com/nexus/content/groups/public/" // Assets/Bidmad/Editor/OBHDependencies.xml:9
         }
         maven {
-            url "https://jitpack.io/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
+            url "https://bidmad-sdk.s3.amazonaws.com/" // Assets/Bidmad/Editor/OBHDependencies.xml:9
         }
         maven {
-            url "https://bidmad-sdk.s3.amazonaws.com/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
+            url "https://artifact.bytedance.com/repository/pangle/" // Assets/Bidmad/Editor/OBHDependencies.xml:9
         }
         maven {
-            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" // Assets/Bidmad/Editor/OBHDependencies.xml:11
+            url "https://jitpack.io/" // Assets/Bidmad/Editor/OBHDependencies.xml:9
         }
         maven {
-            url "https://artifact.bytedance.com/repository/pangle/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
-        }
-        maven {
-            url "https://repo.pubmatic.com/artifactory/public-repos/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
-        }
-        maven {
-            url "https://sdk.tapjoy.com/" // Assets/Bidmad/Editor/OBHDependencies.xml:11
+            url "https://taboolapublic.jfrog.io/artifactory/mobile-release" // Assets/Bidmad/Editor/OBHDependencies.xml:9
         }
         mavenLocal()
 // Android Resolver Repos End

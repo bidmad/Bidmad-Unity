@@ -63,6 +63,7 @@
   <ItemGroup>
     <None Include="Assets/Bidmad/Editor/OBHDependencies.xml" />
     <None Include="Assets/ExternalDependencyManager/Editor/1.2.186/Google.IOSResolver.dll" />
+    <None Include="Assets/Bidmad/Editor/Unity.iOS.Extensions.Xcode.dll" />
     <None Include="Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll" />
     <None Include="Assets/ExternalDependencyManager/Editor/1.2.186/Google.PackageManagerResolver.dll" />
     <None Include="Assets/ExternalDependencyManager/Editor/1.2.186/Google.VersionHandlerImpl.dll" />
@@ -418,6 +419,10 @@
       <HintPath>Library/PackageCache/com.unity.collab-proxy@2.5.2/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Google.JarResolver">
+      <HintPath>Assets/ExternalDependencyManager/Editor/1.2.186/Google.JarResolver.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library/PackageCache/com.unity.collab-proxy@2.5.2/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
@@ -434,10 +439,6 @@
       <HintPath>Library/PackageCache/com.unity.collab-proxy@2.5.2/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Google.JarResolver">
-      <HintPath>Assets/ExternalDependencyManager/Editor/1.2.186/Google.JarResolver.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Google.PackageManagerResolver">
       <HintPath>Assets/ExternalDependencyManager/Editor/1.2.186/Google.PackageManagerResolver.dll</HintPath>
       <Private>False</Private>
@@ -448,6 +449,10 @@
     </Reference>
     <Reference Include="Google.IOSResolver">
       <HintPath>Assets/ExternalDependencyManager/Editor/1.2.186/Google.IOSResolver.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.iOS.Extensions.Xcode">
+      <HintPath>Assets/Bidmad/Editor/Unity.iOS.Extensions.Xcode.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">

@@ -2,36 +2,39 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
+using UnityEditor.iOS.Xcode.Custom;
+using UnityEditor.iOS.Xcode.Custom.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public static class BidmadPostProcessBuild {
-        [PostProcessBuildAttribute ( 45 )]
+        [PostProcessBuildAttribute ( 150 )]
         public static void OnPostProcessBuild(BuildTarget buildTarget, string buildPath) {
-            if(buildTarget == BuildTarget.iOS) {
+        if(buildTarget == BuildTarget.iOS) {
                 // We need to tell the Unity build to look at the write build file path and specifically reference the exposed Swift header file for it to work 
                 var projectPath = buildPath + "/Unity-iPhone.xcodeproj/project.pbxproj";
-                var project = new PBXProject();
+                var project = new UnityEditor.iOS.Xcode.Custom.PBXProject();
                 project.ReadFromFile(projectPath);
-                var target =
-                #if UNITY_2019_3_OR_NEWER
-                    project.GetUnityMainTargetGuid();
-                #else
-                    project.TargetGuidByName("Unity-iPhone");
-                #endif
+
+                var target = project.TargetGuidByName("Unity-iPhone");
 
                 // We specifically reference the generated Swift to Objective-C header 
                 project.SetBuildProperty(target, "SWIFT_VERSION", "5.0");
+                
+                // Embed dynamic frameworks from Pods folder
+                EmbedDynamicFrameworks(project, target, buildPath, projectPath);
+                
                 project.WriteToFile(projectPath);
 
                 // We now set up a plist
                 string plistPath = buildPath + "/Info.plist";
-                PlistDocument plist = new PlistDocument(); 
+                UnityEditor.iOS.Xcode.Custom.PlistDocument plist = new UnityEditor.iOS.Xcode.Custom.PlistDocument(); 
                 plist.ReadFromFile(plistPath);
-                PlistElementDict rootDict = plist.root;
+                UnityEditor.iOS.Xcode.Custom.PlistElementDict rootDict = plist.root;
 
                 // Set the IDFA request description
                 string trackingDescription = "Your data will be used to provide you a better and personalized ad experience.";
@@ -214,6 +217,165 @@ public static class BidmadPostProcessBuild {
                 skAdNetworkArray.AddDict().SetString("SKAdNetworkIdentifier", "zq492l623r.skadnetwork");
 
                 plist.WriteToFile(plistPath);
+
+                RemoveThumbOption(buildTarget, buildPath);
+            }
+    }
+    
+    private static void EmbedDynamicFrameworks(UnityEditor.iOS.Xcode.Custom.PBXProject project, string target, string buildPath, string projectPath) {
+        string podsPath = Path.Combine(buildPath, "Pods");
+        
+        if (!Directory.Exists(podsPath)) {
+            UnityEngine.Debug.Log("Pods directory not found at: " + podsPath);
+            return;
+        }
+        
+        var frameworkDirectories = Directory.GetDirectories(podsPath, "*.framework", SearchOption.AllDirectories);
+        UnityEngine.Debug.Log("frameworkDirectories: " + string.Join(", ", frameworkDirectories));
+
+        // Check if the parent folder of each of frameworkDirectories does not contain simulator keyword.
+        // If it does, skip the framework.
+        var frameworkSearchPaths = new List<string>();
+
+        frameworkSearchPaths.Add("$(SRCROOT)/Pods");
+
+        foreach (var frameworkPath in frameworkDirectories) {
+            string parentFolder = Path.GetDirectoryName(frameworkPath); 
+            if (parentFolder.Contains("simulator") || parentFolder.Contains("tvos")) {
+                UnityEngine.Debug.Log("Skipping framework in simulator or tvos folder: " + frameworkPath);
+            } else {
+                string? searchablePath = ProcessFramework(project, target, buildPath, podsPath, frameworkPath, projectPath);
+                if (searchablePath != null) {
+                    frameworkSearchPaths.Add(searchablePath);
+                }
+            }
+        }
+
+        UnityEngine.Debug.Log("frameworkSearchPaths: " + string.Join(", ", frameworkSearchPaths));
+
+        project.SetBuildProperty(target, "FRAMEWORK_SEARCH_PATHS", "$(inherited)");
+        
+        foreach (var frameworkSearchPath in frameworkSearchPaths) {
+            project.AddBuildProperty(target, "FRAMEWORK_SEARCH_PATHS", frameworkSearchPath);
+        }
+    }
+    
+    private static string? ProcessFramework(UnityEditor.iOS.Xcode.Custom.PBXProject project, string target, string buildPath, string podsPath, string frameworkPath, string projectPath) {
+        string frameworkName = Path.GetFileNameWithoutExtension(frameworkPath);
+        string relativeFrameworkPath = "Pods/" + GetRelativePath(podsPath, frameworkPath);
+        
+        // Check if it's a dynamic framework by examining the binary file type
+        string binaryPath = Path.Combine(frameworkPath, frameworkName);
+        if (File.Exists(binaryPath)) {
+            bool isDynamicFramework = IsDynamicFramework(binaryPath);
+            
+            if (isDynamicFramework) {
+                return EmbedFramework(project, target, frameworkName, relativeFrameworkPath, projectPath);
+            } else {
+                UnityEngine.Debug.Log("Skipped static framework: " + frameworkName);
+            }
+        }
+
+        return null;
+    }
+    
+    private static string EmbedFramework(UnityEditor.iOS.Xcode.Custom.PBXProject project, string target, string frameworkName, string relativeFrameworkPath, string projectPath) {
+        // Add the framework to the project
+        string frameworkGuid = project.AddFile(relativeFrameworkPath, relativeFrameworkPath, UnityEditor.iOS.Xcode.Custom.PBXSourceTree.Source);
+        
+        // Add the framework to the target's frameworks build phase
+        project.AddFileToBuild(target, frameworkGuid);
+        
+        // Use the extension method to properly embed the framework
+        PBXProjectExtensions.AddFileToEmbedFrameworks(project, target, frameworkGuid);
+        UnityEngine.Debug.Log($"Successfully embedded {frameworkName} using PBXProjectExtensions");
+
+        string searchablePath = "$(SRCROOT)/" + Regex.Replace(relativeFrameworkPath, @"/[^/]+\.framework$", "");
+
+        UnityEngine.Debug.Log("Embedded dynamic framework: " + frameworkName);
+
+        return searchablePath;
+    }
+    
+    private static bool IsDynamicFramework(string binaryPath) {
+        try {
+            // Use the 'file' command to determine the binary type
+            var startInfo = new ProcessStartInfo {
+                FileName = "file",
+                Arguments = $"\"{binaryPath}\"",
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            };
+            
+            using (var process = Process.Start(startInfo)) {
+                if (process != null) {
+                    string output = process.StandardOutput.ReadToEnd();
+                    string error = process.StandardError.ReadToEnd();
+                    process.WaitForExit();
+                    
+                    if (process.ExitCode != 0) {
+                        UnityEngine.Debug.LogError($"'file' command failed for {binaryPath}: {error}");
+                        return false;
+                    }
+                    
+                    // Check if the output contains "dynamically linked shared library"
+                    // This indicates a dynamic framework
+                    bool isDynamic = output.Contains("dynamically linked shared library");
+                    
+                    // Also check for "current ar archive" which indicates a static library
+                    bool isStatic = output.Contains("current ar archive");
+                    
+                    // Log the file type for debugging
+                    UnityEngine.Debug.Log($"Framework binary type for {Path.GetFileName(binaryPath)}: {output.Trim()}");
+                    
+                    if (isDynamic) {
+                        UnityEngine.Debug.Log($"Detected dynamic framework: {Path.GetFileName(binaryPath)}");
+                        return true;
+                    } else if (isStatic) {
+                        UnityEngine.Debug.Log($"Detected static framework: {Path.GetFileName(binaryPath)}");
+                        return false;
+                    } else {
+                        // If we can't determine, log a warning and default to static
+                        UnityEngine.Debug.LogWarning($"Could not determine framework type for {Path.GetFileName(binaryPath)}, defaulting to static. Output: {output.Trim()}");
+                        return false;
+                    }
+                }
+            }
+        } catch (System.Exception ex) {
+            UnityEngine.Debug.LogError($"Error checking framework type for {binaryPath}: {ex.Message}");
+        }
+        
+        // Default to false (static) if we can't determine
+        return false;
+    }
+    
+    private static string GetRelativePath(string basePath, string fullPath) {
+        if (fullPath.StartsWith(basePath)) {
+            return fullPath.Substring(basePath.Length).TrimStart(Path.DirectorySeparatorChar);
+        }
+        return fullPath;
+    }
+
+    public static void RemoveThumbOption(BuildTarget buildTarget, string pathToBuiltProject)
+    {
+        if (buildTarget == BuildTarget.iOS)
+        {
+            //1.Load the Xcode project into a PBXProject instance, and get the main target.
+            var projectPath = UnityEditor.iOS.Xcode.PBXProject.GetPBXProjectPath(pathToBuiltProject);
+            var project = new UnityEditor.iOS.Xcode.PBXProject();
+            project.ReadFromString(File.ReadAllText(projectPath));
+            var mainTargetGuid = project.GetUnityMainTargetGuid();
+
+            //OTHER_CFLAGS
+            var otherCFlags = project.GetBuildPropertyForAnyConfig(mainTargetGuid, "OTHER_CFLAGS");
+            if (otherCFlags != null || otherCFlags != "")
+            {
+                var newOtherCFlags = otherCFlags.Replace("-mno-thumb", "");
+                project.SetBuildProperty(mainTargetGuid, "OTHER_CFLAGS", newOtherCFlags);
+                project.WriteToFile(projectPath);
             }
         }
     }
+}

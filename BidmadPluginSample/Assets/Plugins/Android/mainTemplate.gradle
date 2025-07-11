@@ -4,20 +4,20 @@ apply plugin: 'com.android.library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 // Android Resolver Dependencies Start
-    implementation 'ad.helper.openbidding:admob-obh:3.18.0' // Assets/Bidmad/Editor/OBHDependencies.xml:12
-    implementation 'com.adop.sdk.adapter:adfit:3.12.15.2' // Assets/Bidmad/Editor/OBHDependencies.xml:14
-    implementation 'com.adop.sdk.adapter:admob:22.0.0.6' // Assets/Bidmad/Editor/OBHDependencies.xml:15
-    implementation 'com.adop.sdk.adapter:adpie:1.13.6.0' // Assets/Bidmad/Editor/OBHDependencies.xml:16
-    implementation 'com.adop.sdk.adapter:adpopcorn:3.6.3.0' // Assets/Bidmad/Editor/OBHDependencies.xml:17
-    implementation 'com.adop.sdk.adapter:applovin:11.9.0.4' // Assets/Bidmad/Editor/OBHDependencies.xml:18
-    implementation 'com.adop.sdk.adapter:criteo:6.0.0.2' // Assets/Bidmad/Editor/OBHDependencies.xml:19
-    implementation 'com.adop.sdk.adapter:fyber:8.2.3.4' // Assets/Bidmad/Editor/OBHDependencies.xml:20
-    implementation 'com.adop.sdk.adapter:pangle:5.2.1.1.3' // Assets/Bidmad/Editor/OBHDependencies.xml:21
-    implementation 'com.adop.sdk.adapter:pubmatic:2.7.1.4' // Assets/Bidmad/Editor/OBHDependencies.xml:22
-    implementation 'com.adop.sdk.adapter:unityads:4.6.1.5' // Assets/Bidmad/Editor/OBHDependencies.xml:23
-    implementation 'com.adop.sdk.adapter:vungle:6.12.1.3' // Assets/Bidmad/Editor/OBHDependencies.xml:24
-    implementation 'com.adop.sdk.partners:admobbidding:1.0.2' // Assets/Bidmad/Editor/OBHDependencies.xml:25
-    implementation 'com.adop.sdk:bidmad-androidx:3.18.0' // Assets/Bidmad/Editor/OBHDependencies.xml:13
+    implementation 'ad.helper.openbidding:admob-obh:3.23.0' // Assets/Bidmad/Editor/OBHDependencies.xml:10
+    implementation 'com.adop.sdk.adapter:admixer:1.0.9.0' // Assets/Bidmad/Editor/OBHDependencies.xml:12
+    implementation 'com.adop.sdk.adapter:admob:24.4.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:13
+    implementation 'com.adop.sdk.adapter:adpopcorn:3.8.2.0' // Assets/Bidmad/Editor/OBHDependencies.xml:14
+    implementation 'com.adop.sdk.adapter:applovin:13.3.1.0' // Assets/Bidmad/Editor/OBHDependencies.xml:15
+    implementation 'com.adop.sdk.adapter:fyber:8.3.7.0' // Assets/Bidmad/Editor/OBHDependencies.xml:16
+    implementation 'com.adop.sdk.adapter:mobwith:1.1.3' // Assets/Bidmad/Editor/OBHDependencies.xml:18
+    implementation 'com.adop.sdk.adapter:ortb:1.0.1' // Assets/Bidmad/Editor/OBHDependencies.xml:17
+    implementation 'com.adop.sdk.adapter:pangle:7.2.0.6.0' // Assets/Bidmad/Editor/OBHDependencies.xml:19
+    implementation 'com.adop.sdk.adapter:taboola:4.0.8.0' // Assets/Bidmad/Editor/OBHDependencies.xml:20
+    implementation 'com.adop.sdk.adapter:unityads:4.15.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:21
+    implementation 'com.adop.sdk.adapter:vungle:7.5.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:22
+    implementation 'com.adop.sdk:bidmad-androidx:3.23.0' // Assets/Bidmad/Editor/OBHDependencies.xml:11
+    implementation 'com.google.ads.mediation:applovin:13.3.1.0' // Assets/Bidmad/Editor/OBHDependencies.xml:23
 // Android Resolver Dependencies End
 **DEPS**}
 
@@ -64,6 +64,7 @@ android {
         ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
     }**PACKAGING_OPTIONS**
 }
+
 **IL_CPP_BUILD_SETUP**
 **SOURCE_BUILD_SETUP**
 **EXTERNAL_SOURCES**
