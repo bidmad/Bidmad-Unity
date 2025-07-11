@@ -1,3 +1,13 @@
+# Version 3.9.0
+#### Changes
+- Ad Network SDK Update
+- iOS Change Min iOS Version 13
+- AOS Change Min SDK 23, Target SDK 35
+- Bug Fix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.23.0
+- iOS : BidmadSDK.framework 6.12.4
+
 # Version 3.8.0
 #### Changes
 - Add ad Networks<br>

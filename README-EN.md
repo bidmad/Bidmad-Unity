@@ -97,13 +97,9 @@ public static final ** CREATOR;
 4. After building iOS Xcode Project, iOS Xcode Project folder will contain a project file with <strong>.xcworkspace</strong> extension. Please open it. <br>
 5. Unity-iPhone Project Settings → Build Settings → UnityFramework Target → Set Enable Bitcode to "No".<br>
     ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. Inside the Unity-iPhone Target Project Settings → General → Frameworks, Libraries, and Embedded Content, Click the + button inside and add AdPopcornSSP.xcframework, AppLovinSDK.xcframework, BidmadSDK.xcframework, NaverAdsServices.xcframework, OMSDK_Navercorp.xcframework, OMSDK_Pubmatic.xcframework, OMSDK_Teadstv.xcframework, and TeadsSDK.xcframework.
-    ![Bidmad-Guide-5](https://i.imgur.com/bymCvJ9.png)<br>
-7. Drag and drop Pods → Pods → AdFitSDK → Frameworks → AdFitSDK.framework into the Unity-iPhone target project settings → General → Frameworks, Libraries, and Embedded Content. Please refer to the GIF below.
-    ![Bidmad-Guide-6](https://i.imgur.com/2ztRu9H.gif)<br>
-8. Inside the Unity-iPhone Target Project Settings -> Build Phases, click the + button inside and click Add New Run Phase button.
+6. Inside the Unity-iPhone Target Project Settings -> Build Phases, click the + button inside and click Add New Run Phase button.
     ![Bidmad-Guide-7](https://i.imgur.com/jlmk9sF.png)<br>
-9. Copy and paste the following code into the Shell Script section of Run Script tab.
+7. Copy and paste the following code into the Shell Script section of Run Script tab.
 ```
 APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
 
