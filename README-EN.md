@@ -8,9 +8,9 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 - [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases)
 
 > [!IMPORTANT]  
-> To support the latest Android libraries, the development environment requirements for Android have been updated.<br>  
-> Starting from version 3.9.1 and later, the following environment is required<br><br>  
-> **AGP 8.6.0 or higher, Java 17 or higher**<br><br>  
+> To support the latest Android libraries, the development environment requirements for Android have been updated.<br>
+> Starting from version 3.9.1 and later, the following environment is required<br><br>
+> **AGP 8.6.0 or higher, Java 17 or higher**<br><br>
 > Please note that builds or execution may be restricted in older environments, so make sure to **update your development environment** accordingly.
 
 > [!IMPORTANT]
