@@ -10,6 +10,12 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 - [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases)
 
 > [!IMPORTANT]
+> Android의 최신 라이브러리들을 지원하기 위해 Android에서의 개발환경 요구사항이 상향 조정되었습니다.<br>
+> 3.9.1 이후 업데이트 되는 버전은 다음의 개발환경을 요구합니다.<br><br>
+> **AGP 8.6.0 이상, Java 17 이상**<br><br>
+> 기존의 개발 환경에서는 **빌드 또는 실행이 제한될 수 있으니, 개발 환경을 업데이트**해 주시기 바랍니다.
+
+> [!IMPORTANT]
 > 3.8.0 버전부터는 기존에 사용하던 **Appkey가 AppDomain으로 변경**되었습니다.<br>
 > **AppDomain은 기존 Appkey와 호환이 되지 않아 initiaize를 위해서는 AppDomain을 새로 발급받으셔야 합니다.**<br>
 > 3.8.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
