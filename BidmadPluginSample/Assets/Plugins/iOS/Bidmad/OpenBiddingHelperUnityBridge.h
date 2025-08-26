@@ -9,14 +9,6 @@
 #ifndef OpenBiddingHelperUnityBridge_h
 #define OpenBiddingHelperUnityBridge_h
 
-#import "BidmadSDK/BIDMADGDPR.h"
-#import "BidmadSDK/BIDMADSetting.h"
-#import "BidmadSDK/UnityGDPRforGoogle.h"
-#import <OpenBiddingHelper/BidmadBannerAdForGame.h>
-#import <OpenBiddingHelper/BidmadInterstitialAdForGame.h>
-#import <OpenBiddingHelper/BidmadRewardAdForGame.h>
-#import <OpenBiddingHelper/BidmadAdFreeInformation.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif

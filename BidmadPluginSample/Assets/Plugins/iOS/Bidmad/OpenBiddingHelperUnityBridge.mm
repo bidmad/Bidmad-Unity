@@ -14,6 +14,11 @@ _sharedObject = block(); \
 return _sharedObject; \
 
 #import "OpenBiddingHelperUnityBridge.h"
+#import <BidmadSDK/BidmadSDK.h>
+#import <BidmadSDK/BidmadSDK-Swift.h>
+#import <OpenBiddingHelper/OpenBiddingHelper.h>
+#import <OpenBiddingHelper/OpenBiddingHelper-Swift.h>
+#import <BidmadSDK/UnityGDPRforGoogle.h>
 
 @interface OpenBiddingHelperUnityBridge : NSObject<BIDMADOpenBiddingBannerDelegate,BIDMADOpenBiddingInterstitialDelegate,BIDMADOpenBiddingRewardVideoDelegate, BIDMADGDPRforGoogleProtocol, BidmadAdFreeInformationDelegate>
 + (OpenBiddingHelperUnityBridge *)sharedInstance;
