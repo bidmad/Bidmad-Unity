@@ -427,6 +427,10 @@
       <HintPath>Library/PackageCache/com.unity.collab-proxy@2.5.2/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.iOS.Extensions.Xcode">
+      <HintPath>Assets/Bidmad/Editor/Unity.iOS.Extensions.Xcode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library/PackageCache/com.unity.collab-proxy@2.5.2/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
       <Private>False</Private>
@@ -449,10 +453,6 @@
     </Reference>
     <Reference Include="Google.IOSResolver">
       <HintPath>Assets/ExternalDependencyManager/Editor/1.2.186/Google.IOSResolver.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.iOS.Extensions.Xcode">
-      <HintPath>Assets/Bidmad/Editor/Unity.iOS.Extensions.Xcode.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
