@@ -2,7 +2,7 @@
 <projectSettings>
   <projectSetting name="com.google.external-dependency-managerAnalyticsCookie" value="0b97164080394cf992fe6c53f8da143d" />
   <projectSetting name="com.google.external-dependency-managerAnalyticsEnabled" value="True" />
-  <projectSetting name="Google.IOSResolver.AutoPodToolInstallInEditor" value="True" />
+  <projectSetting name="Google.IOSResolver.AutoPodToolInstallInEditor" value="False" />
   <projectSetting name="Google.IOSResolver.CocoapodsIntegrationMethod" value="2" />
   <projectSetting name="Google.IOSResolver.PodfileAddUseFrameworks" value="True" />
   <projectSetting name="Google.IOSResolver.PodfileAllowPodsInMultipleTargets" value="True" />
