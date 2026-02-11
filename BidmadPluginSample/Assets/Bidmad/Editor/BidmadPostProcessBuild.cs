@@ -240,8 +240,8 @@ public static class BidmadPostProcessBuild {
         frameworkSearchPaths.Add("$(SRCROOT)/Pods");
 
         foreach (var frameworkPath in frameworkDirectories) {
-            string parentFolder = Path.GetDirectoryName(frameworkPath); 
-            if (parentFolder.Contains("simulator") || parentFolder.Contains("tvos")) {
+            string parentFolder = Path.GetDirectoryName(frameworkPath);
+            if (parentFolder.Contains("simulator") || parentFolder.Contains("tvos") || parentFolder.Contains("maccatalyst") || parentFolder.Contains("X86") || parentFolder.Contains("x86")) {
                 UnityEngine.Debug.Log("Skipping framework in simulator or tvos folder: " + frameworkPath);
             } else {
                 string? searchablePath = ProcessFramework(project, target, buildPath, podsPath, frameworkPath, projectPath);
