@@ -105,10 +105,54 @@ phase1_preflight() {
   echo "Preflight OK: version=$VERSION, branch=$branch, repo=$RELEASE_REPO" >&2
 }
 
+phase2_export() {
+  cd "$REPO_ROOT"
+  mkdir -p "$RELEASES_DIR"
+  local output_path="$RELEASES_DIR/BidmadUnityPlugin_$VERSION.unitypackage"
+  rm -f "$output_path"
+
+  export BIDMAD_PACKAGE_OUTPUT="$output_path"
+
+  local unity_cmd="$UNITY_BIN"
+  if [[ ! -x "$unity_cmd" ]]; then
+    unity_cmd="$(command -v Unity)"
+  fi
+
+  local log_file="$RELEASES_DIR/unity_${VERSION}.log"
+  set +e
+  "$unity_cmd" \
+    -batchmode -nographics -quit \
+    -projectPath "$PROJECT_PATH" \
+    -executeMethod Bidmad.Editor.BidmadPackageExporter.Export \
+    -logFile - | tee "$log_file"
+  local unity_exit=${PIPESTATUS[0]}
+  set -e
+
+  if [[ "$unity_exit" -ne 0 ]]; then
+    echo "Error: Unity batchmode exited $unity_exit (see $log_file)" >&2
+    return 1
+  fi
+
+  if [[ ! -f "$output_path" ]]; then
+    echo "Error: expected output not produced: $output_path" >&2
+    return 1
+  fi
+
+  local size
+  size=$(wc -c <"$output_path" | tr -d ' ')
+  if [[ "$size" -lt 50000 ]]; then
+    echo "Error: output package suspiciously small ($size bytes); minimum 50000" >&2
+    return 1
+  fi
+
+  echo "Export OK: $output_path ($size bytes)" >&2
+}
+
 main() {
   parse_args "$@"
   phase1_preflight
-  echo "Preflight complete (later phases not yet implemented)" >&2
+  phase2_export
+  echo "Phases 1-2 complete (later phases not yet implemented)" >&2
   return 0
 }
 
