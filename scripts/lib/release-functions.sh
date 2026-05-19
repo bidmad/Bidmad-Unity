@@ -49,6 +49,17 @@ extract_notes() {
 }
 
 read_unity_version() {
-  echo "TODO: read_unity_version not implemented" >&2
-  return 1
+  local project_path="${1:-}"
+  local pv_file="$project_path/ProjectSettings/ProjectVersion.txt"
+  if [[ -z "$project_path" || ! -f "$pv_file" ]]; then
+    echo "Error: $pv_file not found" >&2
+    return 1
+  fi
+  local version
+  version="$(grep -E '^m_EditorVersion:' "$pv_file" | head -n1 | sed 's/^m_EditorVersion:[[:space:]]*//')"
+  if [[ -z "$version" ]]; then
+    echo "Error: m_EditorVersion not found in $pv_file" >&2
+    return 1
+  fi
+  printf '%s\n' "$version"
 }
