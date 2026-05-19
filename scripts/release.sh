@@ -148,11 +148,24 @@ phase2_export() {
   echo "Export OK: $output_path ($size bytes)" >&2
 }
 
+phase3_notes() {
+  cd "$REPO_ROOT"
+  mkdir -p "$RELEASES_DIR"
+  local notes_path="$RELEASES_DIR/notes_$VERSION.md"
+  extract_notes "$CHANGELOG" "$VERSION" > "$notes_path"
+  echo "Notes written: $notes_path" >&2
+}
+
 main() {
   parse_args "$@"
   phase1_preflight
   phase2_export
-  echo "Phases 1-2 complete (later phases not yet implemented)" >&2
+  phase3_notes
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    echo "Dry run complete. Artifacts under $RELEASES_DIR/" >&2
+    return 0
+  fi
+  echo "Phases 4-5 not yet implemented" >&2
   return 0
 }
 
