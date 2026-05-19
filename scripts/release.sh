@@ -156,6 +156,28 @@ phase3_notes() {
   echo "Notes written: $notes_path" >&2
 }
 
+phase4_push_tag() {
+  cd "$REPO_ROOT"
+  local branch
+  branch="$(git rev-parse --abbrev-ref HEAD)"
+  git push origin "refs/heads/$branch:refs/heads/$branch"
+  git tag "$VERSION"
+  git push origin "refs/tags/$VERSION:refs/tags/$VERSION"
+  echo "Pushed branch $branch and tag $VERSION" >&2
+}
+
+phase5_release() {
+  cd "$REPO_ROOT"
+  local pkg="$RELEASES_DIR/BidmadUnityPlugin_$VERSION.unitypackage"
+  local notes="$RELEASES_DIR/notes_$VERSION.md"
+  gh release create "$VERSION" \
+    --repo "$RELEASE_REPO" \
+    --title "BidmadUnityPlugin $VERSION Update" \
+    --notes-file "$notes" \
+    "$pkg"
+  echo "Release $VERSION created on $RELEASE_REPO" >&2
+}
+
 main() {
   parse_args "$@"
   phase1_preflight
@@ -165,8 +187,9 @@ main() {
     echo "Dry run complete. Artifacts under $RELEASES_DIR/" >&2
     return 0
   fi
-  echo "Phases 4-5 not yet implemented" >&2
-  return 0
+  phase4_push_tag
+  phase5_release
+  echo "Release $VERSION complete." >&2
 }
 
 main "$@"
