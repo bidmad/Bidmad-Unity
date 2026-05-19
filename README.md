@@ -493,3 +493,25 @@ public static bool getAdvertiserTrackingEnabled()|설정된 앱 추적 투명성
 - [GDPR 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/Unity-GDPR-Guide-%5BKOR%5D)
 - [v3.0.0 Migration Guide](https://github.com/bidmad/Bidmad-Unity/wiki/v3.0.0-Migration-Guide)
 - [쿠팡 네트워크 광고 차단 인터페이스 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/쿠팡-네트워크-광고-차단-인터페이스-가이드)
+
+## Releasing a new version
+
+릴리즈는 `scripts/release.sh`로 자동화되어 있습니다.
+
+1. `CHANGELOG.md` 상단에 새 `# Version X.Y.Z` 섹션을 추가하고 커밋합니다.
+2. 워킹 트리가 깨끗하고 `master` 브랜치에 있는지 확인합니다.
+3. 다음을 실행합니다:
+   ```bash
+   ./scripts/release.sh            # CHANGELOG 최상단 버전 사용
+   ./scripts/release.sh 3.9.3      # 명시적 버전
+   ./scripts/release.sh --dry-run  # 푸시 없이 unitypackage만 생성
+   ```
+
+테스트:
+```bash
+make test        # bats 유닛 + 인테그레이션
+make test-build  # 실제 Unity로 --dry-run smoke test
+```
+
+Unity 2022.3.62f3과 `gh` CLI가 설치/인증되어 있어야 합니다.
+`bats-core`는 `brew install bats-core`로 설치하세요.

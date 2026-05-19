@@ -489,3 +489,25 @@ public static bool getAdvertiserTrackingEnabled()| Set app tracking transparency
 
 - [GDPR Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Unity-GDPR-Guide-%5BENG%5D)
 - [v3.0.0 Migration Guide](https://github.com/bidmad/Bidmad-Unity/wiki/v3.0.0-Migration-Guide)
+
+## Releasing a new version
+
+Releases are automated via `scripts/release.sh`.
+
+1. Add a new `# Version X.Y.Z` section at the top of `CHANGELOG.md` and commit.
+2. Confirm a clean working tree on `master`.
+3. Run:
+   ```bash
+   ./scripts/release.sh            # auto-detects version from CHANGELOG
+   ./scripts/release.sh 3.9.3      # explicit version
+   ./scripts/release.sh --dry-run  # build .unitypackage without pushing
+   ```
+
+Test suite:
+```bash
+make test        # bats unit + integration
+make test-build  # real-Unity --dry-run smoke test
+```
+
+Requirements: Unity 2022.3.62f3, `gh` CLI authenticated, `bats-core`
+(`brew install bats-core`).
