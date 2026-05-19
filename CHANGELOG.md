@@ -1,3 +1,11 @@
+# Version 3.9.3
+#### Changes
+- iOS : Update BidmadSDK 6.13.9, OpenBiddingHelper 6.13.7
+- iOS : Add BidmadGoogleGDPRAdapter 6.13.1
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.25.0
+- iOS : BidmadSDK.framework 6.13.9
+
 # Version 3.9.2
 #### Changes
 - iOS Build code Bug Fix
