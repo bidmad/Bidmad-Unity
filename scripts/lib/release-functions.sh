@@ -2,8 +2,18 @@
 # Pure functions for release.sh. Source this file; do not execute directly.
 
 parse_latest_version() {
-  echo "TODO: parse_latest_version not implemented" >&2
-  return 1
+  local changelog="${1:-}"
+  if [[ -z "$changelog" || ! -f "$changelog" ]]; then
+    echo "Error: changelog file not found: $changelog" >&2
+    return 1
+  fi
+  local version
+  version="$(grep -E '^# Version [0-9]+\.[0-9]+\.[0-9]+$' "$changelog" | head -n1 | sed 's/^# Version //')"
+  if [[ -z "$version" ]]; then
+    echo "Error: no '# Version X.Y.Z' heading found in $changelog" >&2
+    return 1
+  fi
+  printf '%s\n' "$version"
 }
 
 extract_notes() {
