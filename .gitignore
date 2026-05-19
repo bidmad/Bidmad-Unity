@@ -66,3 +66,6 @@ Thumbs.db.meta
 *.pdb.meta
 *.mdb.meta
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
+
+# Release automation artifacts
+/releases/
