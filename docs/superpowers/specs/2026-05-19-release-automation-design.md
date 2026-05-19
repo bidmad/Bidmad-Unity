@@ -367,16 +367,13 @@ for each containing directory, so Unity can re-create the parent folder
 structure when the user imports.
 
 The script's output package, **after extraction**, must contain exactly
-the following `pathname` entries (and nothing else), matching the
-3.9.2 layout that customers already expect:
+the following `pathname` entries (and nothing else):
 
 ```
-Assets/Bidmad
 Assets/Bidmad/Editor
 Assets/Bidmad/Editor/BidmadPostProcessBuild.cs
 Assets/Bidmad/Editor/OBHDependencies.xml
 Assets/Bidmad/Editor/Unity.iOS.Extensions.Xcode.dll
-Assets/Bidmad/Scripts
 Assets/Bidmad/Scripts/Bidmad
 Assets/Bidmad/Scripts/Bidmad/BidmadBanner.cs
 Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs
@@ -396,20 +393,24 @@ Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll
 Assets/ExternalDependencyManager/Editor/LICENSE
 Assets/ExternalDependencyManager/Editor/README.md
 Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.186_manifest.txt
-Assets/Plugins
-Assets/Plugins/iOS
 Assets/Plugins/iOS/Bidmad
 Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.h
 Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.mm
 Assets/Plugins/iOS/Bidmad/SwiftEnabler.swift
 ```
 
-The intermediate folder entries (`Assets/Bidmad`,
-`Assets/Bidmad/Scripts`, `Assets/Plugins`, `Assets/Plugins/iOS`,
-`Assets/ExternalDependencyManager`,
-`Assets/ExternalDependencyManager/Editor`,
-`Assets/ExternalDependencyManager/Editor/1.2.186`) are auto-included by
-Unity's `ExportPackage`; the script does not list them explicitly.
+**Note on parent folder markers.** The historical 3.9.2 release also
+listed parent-folder entries like `Assets/Bidmad`,
+`Assets/Bidmad/Scripts`, `Assets/Plugins`, and `Assets/Plugins/iOS`.
+`AssetDatabase.ExportPackage` does **not** include parent folder
+markers for parents that lie outside the export folder list. Children
+and descendants of named folders are included (so
+`Assets/ExternalDependencyManager/Editor/1.2.186` shows up because it
+is below the named `Assets/ExternalDependencyManager`), but parents of
+named folders are not. The customer experience is identical either
+way — Unity's importer auto-creates any missing parent folders on
+import, with no GUID conflict because the parent folders don't yet
+exist in the destination project.
 
 When a customer imports this `.unitypackage` into a fresh Unity project,
 the resulting project's `Assets/` tree looks like this:

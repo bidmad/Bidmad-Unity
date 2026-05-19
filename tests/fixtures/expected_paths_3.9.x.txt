@@ -1,9 +1,7 @@
-Assets/Bidmad
 Assets/Bidmad/Editor
 Assets/Bidmad/Editor/BidmadPostProcessBuild.cs
 Assets/Bidmad/Editor/OBHDependencies.xml
 Assets/Bidmad/Editor/Unity.iOS.Extensions.Xcode.dll
-Assets/Bidmad/Scripts
 Assets/Bidmad/Scripts/Bidmad
 Assets/Bidmad/Scripts/Bidmad/BidmadBanner.cs
 Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs
@@ -23,8 +21,6 @@ Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll
 Assets/ExternalDependencyManager/Editor/LICENSE
 Assets/ExternalDependencyManager/Editor/README.md
 Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.186_manifest.txt
-Assets/Plugins
-Assets/Plugins/iOS
 Assets/Plugins/iOS/Bidmad
 Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.h
 Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.mm
