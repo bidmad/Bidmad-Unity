@@ -35,15 +35,26 @@ existing 3.9.2 release and the project layout:
 | Asset filename | `BidmadUnityPlugin_<version>.unitypackage` |
 | Unity editor version | `2022.3.62f3` (from `BidmadPluginSample/ProjectSettings/ProjectVersion.txt`) |
 | Unity binary path (Mac) | `/Applications/Unity/Hub/Editor/2022.3.62f3/Unity.app/Contents/MacOS/Unity` |
-| Export folders | `Assets/Bidmad`, `Assets/ExternalDependencyManager`, `Assets/Plugins/iOS/Bidmad` |
+| Export folders | `Assets/Bidmad/Editor`, `Assets/Bidmad/Scripts/Bidmad`, `Assets/ExternalDependencyManager`, `Assets/Plugins/iOS/Bidmad` |
 | Reference asset size | ~380 KB (sanity bound: built asset must be > 50 KB) |
 | Target repo | `bidmad/Bidmad-Unity` |
 
-The three export folders were confirmed by extracting
+The four export folders were confirmed by extracting
 `BidmadUnityPlugin_3.9.2.unitypackage` and listing every `pathname` file
-inside. `Assets/Plugins/Android/`, `Assets/Resources/`, and
-`Assets/Scenes/` are intentionally excluded — the first contains
-project-specific gradle templates, the latter two are sample content.
+inside.
+
+**Important: do not pass `Assets/Bidmad` as a top-level export root.**
+The current `BidmadPluginSample` project includes sample/demo code under
+`Assets/Bidmad/Scripts/AdSample/`, `Assets/Bidmad/Scripts/ButtonEvent.cs`,
+and `Assets/Bidmad/Scripts/gameobject.cs`. These are intentionally part of
+the in-repo sample but must **not** ship in the redistributable. Naming
+the two specific subfolders `Assets/Bidmad/Editor` and
+`Assets/Bidmad/Scripts/Bidmad` selects the redistributable surface
+without sweeping in samples.
+
+`Assets/Plugins/Android/`, `Assets/Resources/`, and `Assets/Scenes/` are
+also intentionally excluded — the first contains project-specific gradle
+templates, the latter two are sample content.
 
 ## Pipeline
 
@@ -195,7 +206,8 @@ namespace Bidmad.Editor {
                     return;
                 }
                 string[] folders = new[] {
-                    "Assets/Bidmad",
+                    "Assets/Bidmad/Editor",
+                    "Assets/Bidmad/Scripts/Bidmad",
                     "Assets/ExternalDependencyManager",
                     "Assets/Plugins/iOS/Bidmad",
                 };
@@ -245,7 +257,8 @@ tests/
 │   ├── CHANGELOG_missing_version.md
 │   ├── CHANGELOG_version_at_end.md
 │   ├── CHANGELOG_malformed_header.md
-│   └── ProjectVersion.txt
+│   ├── ProjectVersion.txt
+│   └── expected_paths_3.9.x.txt
 └── stubs/
     └── bin/
         ├── git
@@ -337,6 +350,136 @@ This tier is run before the first real release after the script is
 written, and again any time `BidmadPackageExporter.cs` or the export
 folder list changes.
 
+## Expected Output Structure
+
+A `.unitypackage` is a gzipped tar archive where each asset lives in a
+GUID-named directory with three sibling files: `asset` (the file
+contents), `asset.meta` (the Unity meta), and `pathname` (the target
+import path). The package format also includes folder-marker entries
+for each containing directory, so Unity can re-create the parent folder
+structure when the user imports.
+
+The script's output package, **after extraction**, must contain exactly
+the following `pathname` entries (and nothing else), matching the
+3.9.2 layout that customers already expect:
+
+```
+Assets/Bidmad
+Assets/Bidmad/Editor
+Assets/Bidmad/Editor/BidmadPostProcessBuild.cs
+Assets/Bidmad/Editor/OBHDependencies.xml
+Assets/Bidmad/Editor/Unity.iOS.Extensions.Xcode.dll
+Assets/Bidmad/Scripts
+Assets/Bidmad/Scripts/Bidmad
+Assets/Bidmad/Scripts/Bidmad/BidmadBanner.cs
+Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs
+Assets/Bidmad/Scripts/Bidmad/BidmadGoogleGDPR.cs
+Assets/Bidmad/Scripts/Bidmad/BidmadInterstitial.cs
+Assets/Bidmad/Scripts/Bidmad/BidmadManager.cs
+Assets/Bidmad/Scripts/Bidmad/BidmadReward.cs
+Assets/ExternalDependencyManager
+Assets/ExternalDependencyManager/Editor
+Assets/ExternalDependencyManager/Editor/1.2.186
+Assets/ExternalDependencyManager/Editor/1.2.186/Google.IOSResolver.dll
+Assets/ExternalDependencyManager/Editor/1.2.186/Google.JarResolver.dll
+Assets/ExternalDependencyManager/Editor/1.2.186/Google.PackageManagerResolver.dll
+Assets/ExternalDependencyManager/Editor/1.2.186/Google.VersionHandlerImpl.dll
+Assets/ExternalDependencyManager/Editor/CHANGELOG.md
+Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll
+Assets/ExternalDependencyManager/Editor/LICENSE
+Assets/ExternalDependencyManager/Editor/README.md
+Assets/ExternalDependencyManager/Editor/external-dependency-manager_version-1.2.186_manifest.txt
+Assets/Plugins
+Assets/Plugins/iOS
+Assets/Plugins/iOS/Bidmad
+Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.h
+Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.mm
+Assets/Plugins/iOS/Bidmad/SwiftEnabler.swift
+```
+
+The intermediate folder entries (`Assets/Bidmad`,
+`Assets/Bidmad/Scripts`, `Assets/Plugins`, `Assets/Plugins/iOS`,
+`Assets/ExternalDependencyManager`,
+`Assets/ExternalDependencyManager/Editor`,
+`Assets/ExternalDependencyManager/Editor/1.2.186`) are auto-included by
+Unity's `ExportPackage`; the script does not list them explicitly.
+
+When a customer imports this `.unitypackage` into a fresh Unity project,
+the resulting project's `Assets/` tree looks like this:
+
+```
+Assets/
+├── Bidmad/
+│   ├── Editor/
+│   │   ├── BidmadPostProcessBuild.cs
+│   │   ├── OBHDependencies.xml
+│   │   └── Unity.iOS.Extensions.Xcode.dll
+│   └── Scripts/
+│       └── Bidmad/
+│           ├── BidmadBanner.cs
+│           ├── BidmadCommon.cs
+│           ├── BidmadGoogleGDPR.cs
+│           ├── BidmadInterstitial.cs
+│           ├── BidmadManager.cs
+│           └── BidmadReward.cs
+├── ExternalDependencyManager/
+│   └── Editor/
+│       ├── 1.2.186/
+│       │   ├── Google.IOSResolver.dll
+│       │   ├── Google.JarResolver.dll
+│       │   ├── Google.PackageManagerResolver.dll
+│       │   └── Google.VersionHandlerImpl.dll
+│       ├── CHANGELOG.md
+│       ├── Google.VersionHandler.dll
+│       ├── LICENSE
+│       ├── README.md
+│       └── external-dependency-manager_version-1.2.186_manifest.txt
+└── Plugins/
+    └── iOS/
+        └── Bidmad/
+            ├── OpenBiddingHelperUnityBridge.h
+            ├── OpenBiddingHelperUnityBridge.mm
+            └── SwiftEnabler.swift
+```
+
+Plus a `.meta` file alongside every file and folder (Unity generates
+these from the import; the script does not need to manage them).
+
+### Output Structure Verification
+
+The Tier-3 dry-run smoke test asserts this structure. Concretely:
+
+```bash
+# After ./scripts/release.sh --dry-run produces the .unitypackage:
+tmp=$(mktemp -d)
+tar -xzf releases/BidmadUnityPlugin_<ver>.unitypackage -C "$tmp"
+
+# Each GUID dir has a `pathname` file containing the asset's target path.
+# head -n1 guards against trailing newlines / multi-line pathname files.
+for f in "$tmp"/*/pathname; do
+  head -n1 "$f"
+done | sort > "$tmp/actual_paths.txt"
+
+diff -u tests/fixtures/expected_paths_3.9.x.txt "$tmp/actual_paths.txt"
+```
+
+Both `expected_paths_3.9.x.txt` and the runtime output are sorted, so
+`diff -u` exits zero only on an exact match. Any addition or removal in
+the redistributable surface produces a contextual diff that points at
+the specific path.
+
+The fixture file `tests/fixtures/expected_paths_3.9.x.txt` contains the
+pathname list above. When the redistributable surface intentionally
+changes (e.g., a new `Bidmad*.cs` file lands under
+`Assets/Bidmad/Scripts/Bidmad/`), update the fixture in the same commit
+as the source change.
+
+The Tier-2 stub `Unity` does not need to produce real package contents —
+it only needs to write a > 50 KB file at `$BIDMAD_PACKAGE_OUTPUT` so the
+size-sanity check passes. Pathname-set verification is exclusively a
+Tier-3 concern, because only a real Unity export produces real package
+contents.
+
 ## Error Handling and Idempotency
 
 - Every error exits with a unique non-zero code and a single stderr line
@@ -363,7 +506,9 @@ folder list changes.
 - `tests/run.sh`
 - `tests/unit/*.bats`
 - `tests/integration/*.bats`
-- `tests/fixtures/*`
+- `tests/fixtures/*` (CHANGELOG variants, ProjectVersion sample, and
+  `expected_paths_3.9.x.txt` — the canonical pathname list verified
+  against `.unitypackage` output)
 - `tests/stubs/bin/{git,gh,Unity}`
 - `Makefile`
 - `docs/superpowers/specs/2026-05-19-release-automation-design.md` (this file)
