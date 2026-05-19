@@ -190,7 +190,14 @@ Decomposed into named functions to allow Tier-1 unit testing:
 `main()` orchestrates the five phases and is the only function with
 side effects beyond filesystem writes under `releases/`.
 
-### `BidmadPluginSample/Assets/Bidmad/Editor/BidmadPackageExporter.cs`
+### `BidmadPluginSample/Assets/Editor/BidmadPackageExporter.cs`
+
+The script lives under a **top-level** `Assets/Editor/` folder — not
+`Assets/Bidmad/Editor/`. Unity treats any folder named `Editor` as
+editor-only regardless of position, but the export folder list
+includes `Assets/Bidmad/Editor/` recursively, so a script placed
+there would leak into the redistributable .unitypackage. Putting it
+at the top level keeps it editor-only AND out of the export scope.
 
 ```csharp
 namespace Bidmad.Editor {
@@ -498,8 +505,8 @@ contents.
 
 **Added:**
 - `scripts/release.sh`
-- `BidmadPluginSample/Assets/Bidmad/Editor/BidmadPackageExporter.cs`
-- `BidmadPluginSample/Assets/Bidmad/Editor/BidmadPackageExporter.cs.meta`
+- `BidmadPluginSample/Assets/Editor/BidmadPackageExporter.cs`
+- `BidmadPluginSample/Assets/Editor/BidmadPackageExporter.cs.meta`
   (Unity will auto-generate this `.meta` the first time the project is
   opened in the editor; commit it alongside the `.cs` file so other
   developers don't get a meta-regeneration diff on next checkout)
