@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Stub for git. Network-affecting subcommands are intercepted; everything else
+# passes through to the real git binary at $REAL_GIT.
+echo "git $*" >> "${STUB_LOG:-/dev/null}"
+
+real_git="${REAL_GIT:-/usr/bin/git}"
+
+case "${1:-}" in
+  push)
+    exit "${STUB_GIT_PUSH_EXIT:-0}"
+    ;;
+  ls-remote)
+    if [[ -n "${STUB_GIT_LSREMOTE_OUTPUT:-}" ]]; then
+      printf '%s\n' "$STUB_GIT_LSREMOTE_OUTPUT"
+    fi
+    exit "${STUB_GIT_LSREMOTE_EXIT:-0}"
+    ;;
+  *)
+    exec "$real_git" "$@"
+    ;;
+esac
