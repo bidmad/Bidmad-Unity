@@ -22,7 +22,7 @@
   </androidPackages>
 
   <iosPods>
-    <iosPod name="BidmadSDK/core" version="6.13.9" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
+    <iosPod name="BidmadSDK" version="6.13.9" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
     <iosPod name="OpenBiddingHelper" version="6.13.7" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
     <iosPod name="BidmadGoogleGDPRAdapter" version="6.13.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
     <iosPod name="BidmadAdFitAdapter" version="3.12.7.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
