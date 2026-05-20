@@ -355,11 +355,11 @@ public class BidmadCommon
             AndroidJavaObject context = activityClass.GetStatic<AndroidJavaObject>("currentActivity");
             javaAdFreeClassInstance = javaAdFreeClass.CallStatic<AndroidJavaObject>("getInstance", context);
             int status = javaAdFreeClassInstance.Call<int>("getAdFreeStatus");
-            
+
             return (status == 0)? true : false;
         }
-        return false;
 #endif
+        return false;
     }
 
 }//END
