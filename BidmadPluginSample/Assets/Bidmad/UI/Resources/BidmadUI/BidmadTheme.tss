@@ -1,0 +1,5 @@
+/* Bidmad runtime theme.
+   Imports Unity's built-in default runtime theme so PanelSettings has a valid
+   ThemeStyleSheet. All Bidmad visuals live in BidmadStyles.uss, so even if this
+   import resolves to an empty sheet on a given Unity version, the UI still renders. */
+@import url("unity-theme://default");

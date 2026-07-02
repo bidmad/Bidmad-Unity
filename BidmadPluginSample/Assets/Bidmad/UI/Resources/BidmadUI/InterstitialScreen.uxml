@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="screen">
+        <ui:VisualElement class="content">
+            <ui:VisualElement class="appbar">
+                <ui:Button name="btn-back" text="‹  Back" class="iconbtn" />
+                <ui:Label text="INTERSTITIAL" class="badge" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="hero">
+                <ui:VisualElement class="hero-accent accent-interstitial" />
+                <ui:VisualElement class="hero-text">
+                    <ui:Label text="Interstitial Ad" class="hero-title" />
+                    <ui:Label text="Load a full-screen ad, then show it when it is ready." class="hero-desc" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:Button name="btn-load" text="Load Interstitial Ad" class="btn btn-secondary" />
+            <ui:Button name="btn-show" text="Show Interstitial Ad" class="btn btn-accent" />
+
+            <ui:VisualElement class="status-card">
+                <ui:Label text="STATUS" class="status-label" />
+                <ui:VisualElement class="status-row">
+                    <ui:VisualElement name="status-dot" class="status-dot dot--info" />
+                    <ui:Label name="status" text="Idle — load an ad first." class="status status--info" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:Label text="Interstitial ads auto-reload after being shown." class="hint" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

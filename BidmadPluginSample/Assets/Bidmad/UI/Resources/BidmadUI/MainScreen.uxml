@@ -1,0 +1,50 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="screen">
+        <ui:VisualElement class="content content--centered">
+            <ui:VisualElement class="appbar">
+                <ui:VisualElement class="brand">
+                    <ui:Label text="BIDMAD" class="brand-mark" />
+                    <ui:Label text="UNITY ADS SDK" class="brand-sub" />
+                </ui:VisualElement>
+                <ui:Label text="SAMPLE" class="badge" />
+            </ui:VisualElement>
+
+            <ui:Label text="AD FORMATS" class="section-title" />
+
+            <ui:VisualElement class="card">
+                <ui:Button name="btn-banner" class="nav">
+                    <ui:VisualElement class="nav-accent accent-banner" />
+                    <ui:VisualElement class="nav-text">
+                        <ui:Label text="Banner" class="nav-title" />
+                        <ui:Label text="Anchored display ad" class="nav-desc" />
+                    </ui:VisualElement>
+                    <ui:Label text="›" class="nav-chevron" />
+                </ui:Button>
+
+                <ui:VisualElement class="divider" />
+
+                <ui:Button name="btn-interstitial" class="nav">
+                    <ui:VisualElement class="nav-accent accent-interstitial" />
+                    <ui:VisualElement class="nav-text">
+                        <ui:Label text="Interstitial" class="nav-title" />
+                        <ui:Label text="Full-screen ad" class="nav-desc" />
+                    </ui:VisualElement>
+                    <ui:Label text="›" class="nav-chevron" />
+                </ui:Button>
+
+                <ui:VisualElement class="divider" />
+
+                <ui:Button name="btn-reward" class="nav">
+                    <ui:VisualElement class="nav-accent accent-reward" />
+                    <ui:VisualElement class="nav-text">
+                        <ui:Label text="Rewarded" class="nav-title" />
+                        <ui:Label text="Rewarded video ad" class="nav-desc" />
+                    </ui:VisualElement>
+                    <ui:Label text="›" class="nav-chevron" />
+                </ui:Button>
+            </ui:VisualElement>
+
+            <ui:Label text="Select an ad format to load and preview it on device." class="hint" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
