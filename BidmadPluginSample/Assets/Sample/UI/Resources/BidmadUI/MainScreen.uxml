@@ -4,7 +4,7 @@
             <ui:VisualElement class="appbar">
                 <ui:VisualElement class="brand">
                     <ui:Label text="BIDMAD" class="brand-mark" />
-                    <ui:Label text="UNITY ADS SDK" class="brand-sub" />
+                    <ui:Label text="Bidmad Unity Sample" class="brand-sub" />
                 </ui:VisualElement>
                 <ui:Label text="SAMPLE" class="badge" />
             </ui:VisualElement>
