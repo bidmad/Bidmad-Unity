@@ -20,7 +20,7 @@ return _sharedObject; \
 #import <OpenBiddingHelper/OpenBiddingHelper-Swift.h>
 #import <BidmadSDK/UnityGDPRforGoogle.h>
 
-@interface OpenBiddingHelperUnityBridge : NSObject<BIDMADOpenBiddingBannerDelegate,BIDMADOpenBiddingInterstitialDelegate,BIDMADOpenBiddingRewardVideoDelegate, BIDMADGDPRforGoogleProtocol, BidmadAdFreeInformationDelegate>
+@interface OpenBiddingHelperUnityBridge : NSObject<BidmadBannerAdDelegate,BIDMADOpenBiddingInterstitialDelegate,BIDMADOpenBiddingRewardVideoDelegate, BIDMADGDPRforGoogleProtocol, BidmadAdFreeInformationDelegate>
 + (OpenBiddingHelperUnityBridge *)sharedInstance;
 @end
 
@@ -33,9 +33,7 @@ return _sharedObject; \
 }
 
 - (void)onLoadAd:(id)bidmadAd {
-    if ([bidmadAd isKindOfClass:OpenBiddingBanner.class]) {
-        UnitySendMessage("BidmadManager", "OnBannerLoad", [(OpenBiddingBanner *)bidmadAd zoneID].UTF8String);
-    } else if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
+    if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
         UnitySendMessage("BidmadManager", "OnInterstitialLoad", [(OpenBiddingInterstitial *)bidmadAd zoneID].UTF8String);
     } else if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
         UnitySendMessage("BidmadManager", "OnRewardLoad", [(OpenBiddingRewardVideo *)bidmadAd zoneID].UTF8String);
@@ -43,9 +41,7 @@ return _sharedObject; \
 }
 
 - (void)onLoadFailAd:(id)bidmadAd error:(NSError *)error {
-    if ([bidmadAd isKindOfClass:OpenBiddingBanner.class]) {
-        UnitySendMessage("BidmadManager", "OnBannerLoadFail", [NSString stringWithFormat:@"%@+[code: %ld][message: %@]", [(OpenBiddingBanner *)bidmadAd zoneID], error.code, error.localizedDescription].UTF8String);
-    } else if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
+    if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
         UnitySendMessage("BidmadManager", "OnInterstitialLoadFail", [NSString stringWithFormat:@"%@+[code: %ld][message: %@]", [(OpenBiddingInterstitial *)bidmadAd zoneID], error.code, error.localizedDescription].UTF8String);
     } else if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
         UnitySendMessage("BidmadManager", "OnRewardLoadFail", [NSString stringWithFormat:@"%@+[code: %ld][message: %@]", [(OpenBiddingRewardVideo *)bidmadAd zoneID], error.code, error.localizedDescription].UTF8String);
@@ -53,19 +49,30 @@ return _sharedObject; \
 }
 
 - (void)onClickAd:(id)bidmadAd {
-    if ([bidmadAd isKindOfClass:OpenBiddingBanner.class]) {
-        UnitySendMessage("BidmadManager", "OnBannerClick", [(OpenBiddingBanner *)bidmadAd zoneID].UTF8String);
-    } else if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
+    if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
         /* Click Callback Unsupported by Unity Engine */
     } else if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
         /* Click Callback Unsupported by Unity Engine */
     }
 }
 
+/** Banner delegate (BidmadBannerAdDelegate) — SDK 3.28+ replaced the OpenBiddingBanner
+    callbacks with BMBanner/BidmadInfo-based ones. **/
+- (void)onLoadBannerAd:(BidmadBannerAd *)bannerAd info:(BidmadInfo *)info {
+    UnitySendMessage("BidmadManager", "OnBannerLoad", info.zoneId.UTF8String);
+}
+
+- (void)onLoadFailBannerAd:(BidmadBannerAd *)bannerAd error:(NSError *)error {
+    NSString *zoneID = [(BMBanner *)bannerAd zoneId];
+    UnitySendMessage("BidmadManager", "OnBannerLoadFail", [NSString stringWithFormat:@"%@+[code: %ld][message: %@]", zoneID, error.code, error.localizedDescription].UTF8String);
+}
+
+- (void)onClickBannerAd:(BidmadBannerAd *)bannerAd info:(BidmadInfo *)info {
+    UnitySendMessage("BidmadManager", "OnBannerClick", info.zoneId.UTF8String);
+}
+
 - (void)onCloseAd:(id)bidmadAd {
-    if ([bidmadAd isKindOfClass:OpenBiddingBanner.class]) {
-        /* Close Callback Unsupported by Unity Engine */
-    } else if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
+    if ([bidmadAd isKindOfClass:OpenBiddingInterstitial.class]) {
         UnitySendMessage("BidmadManager", "OnInterstitialClose", [(OpenBiddingInterstitial *)bidmadAd zoneID].UTF8String);
     } else if ([bidmadAd isKindOfClass:OpenBiddingRewardVideo.class]) {
         UnitySendMessage("BidmadManager", "OnRewardClose", [(OpenBiddingRewardVideo *)bidmadAd zoneID].UTF8String);
