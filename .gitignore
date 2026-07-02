@@ -73,5 +73,4 @@ Thumbs.db.meta
 /releases/
 
 # External Dependency Manager / Android template backups (auto-regenerated)
-*.backup
-*.backup.meta
+*.backup*
