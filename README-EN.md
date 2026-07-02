@@ -7,6 +7,9 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 - [Download the latest sample project](https://github.com/bidmad/Bidmad-Unity/archive/master.zip)
 - [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases)
 
+> [!IMPORTANT]
+> This plugin must be built with **Unity 6 (6000.x) or higher**. The current sample project is built and verified on **Unity 6000.0.78f1**.
+
 > [!IMPORTANT]  
 > To support the latest Android libraries, the development environment requirements for Android have been updated.<br>
 > Starting from version 3.9.1 and later, the following environment is required<br><br>
@@ -90,7 +93,7 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
-*Bidmad supports Xcode 13.4 or higher. If your Xcode version is lower than 13.4, please update to 13.4 or higher.
+*Bidmad supports Xcode 26.0 or higher. If your Xcode version is lower than 26.0, please update to 26.0 or higher.
 
 1. Please import the latest plugin.<br>
 2. Please make adjustments to BidmadPostProcessBuild.cs file in Assets → Bidmad → Editor.<br>
@@ -101,11 +104,9 @@ public static final ** CREATOR;
     ![Bidmad-Guide-4](https://i.imgur.com/8cvpZR0.png)<br>
     Please check and click the OK button on <strong>Link Frameworks Statically</strong> inside the settings panel.<br>
 4. After building iOS Xcode Project, iOS Xcode Project folder will contain a project file with <strong>.xcworkspace</strong> extension. Please open it. <br>
-5. Unity-iPhone Project Settings → Build Settings → UnityFramework Target → Set Enable Bitcode to "No".<br>
-    ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. Inside the Unity-iPhone Target Project Settings -> Build Phases, click the + button inside and click Add New Run Phase button.
+5. Inside the Unity-iPhone Target Project Settings -> Build Phases, click the + button inside and click Add New Run Phase button.
     ![Bidmad-Guide-7](https://i.imgur.com/jlmk9sF.png)<br>
-7. Copy and paste the following code into the Shell Script section of Run Script tab.
+6. Copy and paste the following code into the Shell Script section of Run Script tab.
 ```
 APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
 
@@ -137,7 +138,7 @@ do
 done
 ```
 ![Bidmad-Guide-8](https://i.imgur.com/SKRjDhg.png)<br>
-10. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
+7. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
 ```
 <key>DebugSymbolsPath</key>
 <string>dSYMs</string>
