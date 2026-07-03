@@ -1,3 +1,11 @@
+# Version 4.0.1
+#### Changes
+- Android : Add Pangle Ad Network adapter (pangle 7.9.1.3.0)
+- Android : Add Vungle Ad Network adapter (vungle 7.7.2.0)
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.28.1
+- iOS : BidmadSDK.framework 7.0.0
+
 # Version 4.0.0
 #### Changes
 - Requires Unity 6 or higher to build (verified on Unity 6000.0.78f1)
