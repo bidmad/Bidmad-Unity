@@ -6,8 +6,8 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 # shellcheck source=lib/release-functions.sh
 source "$SCRIPT_DIR/lib/release-functions.sh"
 
-UNITY_BIN="${UNITY_BIN:-/Applications/Unity/Hub/Editor/2022.3.62f3/Unity.app/Contents/MacOS/Unity}"
-UNITY_VERSION="${UNITY_VERSION:-2022.3.62f3}"
+UNITY_BIN="${UNITY_BIN:-/Applications/Unity/Hub/Editor/6000.0.78f1/Unity.app/Contents/MacOS/Unity}"
+UNITY_VERSION="${UNITY_VERSION:-6000.0.78f1}"
 RELEASE_REPO="${RELEASE_REPO:-bidmad/Bidmad-Unity}"
 PROJECT_PATH="$REPO_ROOT/BidmadPluginSample"
 CHANGELOG="$REPO_ROOT/CHANGELOG.md"
