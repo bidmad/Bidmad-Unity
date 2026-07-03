@@ -1,9 +1,9 @@
 using UnityEngine.SceneManagement;
 
-namespace Bidmad.Sample.UI
+namespace SampleUI
 {
     /// <summary>Interstitial sample screen.</summary>
-    public class InterstitialScreen : BidmadScreenBase
+    public class InterstitialScreen : SampleScreenBase
     {
         protected override string UxmlName => "InterstitialScreen";
 

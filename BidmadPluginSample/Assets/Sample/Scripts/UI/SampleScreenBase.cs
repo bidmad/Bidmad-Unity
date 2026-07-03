@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Bidmad.Sample.UI
+namespace SampleUI
 {
     /// <summary>
-    /// Base class for every Bidmad sample screen. Builds a UI Toolkit panel
+    /// Base class for every sample screen. Builds a UI Toolkit panel
     /// (UIDocument + PanelSettings) entirely from code so no scene assets or
     /// serialized references are required. Subclasses only declare which UXML
     /// to load and how to wire its buttons.
     /// </summary>
-    public abstract class BidmadScreenBase : MonoBehaviour
+    public abstract class SampleScreenBase : MonoBehaviour
     {
         // UXML / USS / theme all live under a Resources folder and are loaded by path.
-        private const string ResourceRoot = "BidmadUI/";
+        private const string ResourceRoot = "SampleUI/";
 
         protected VisualElement Root { get; private set; }
 
@@ -27,13 +27,13 @@ namespace Bidmad.Sample.UI
             var tree = Resources.Load<VisualTreeAsset>(ResourceRoot + UxmlName);
             if (tree == null)
             {
-                Debug.LogError($"[BidmadUI] Missing UXML resource: {ResourceRoot + UxmlName}");
+                Debug.LogError($"[SampleUI] Missing UXML resource: {ResourceRoot + UxmlName}");
                 return;
             }
 
             var panel = ScriptableObject.CreateInstance<PanelSettings>();
-            panel.name = "BidmadPanelSettings";
-            panel.themeStyleSheet = Resources.Load<ThemeStyleSheet>(ResourceRoot + "BidmadTheme");
+            panel.name = "SamplePanelSettings";
+            panel.themeStyleSheet = Resources.Load<ThemeStyleSheet>(ResourceRoot + "SampleTheme");
             // Design against a dp-like reference so px values map to natural mobile
             // sizes; match width (0) keeps sizing consistent across portrait aspects.
             panel.scaleMode = PanelScaleMode.ScaleWithScreenSize;
@@ -48,7 +48,7 @@ namespace Bidmad.Sample.UI
             Root = doc.rootVisualElement;
             if (Root == null)
             {
-                Debug.LogError("[BidmadUI] UIDocument produced no root visual element.");
+                Debug.LogError("[SampleUI] UIDocument produced no root visual element.");
                 return;
             }
 
@@ -58,7 +58,7 @@ namespace Bidmad.Sample.UI
 
             Root.style.flexGrow = 1;
 
-            var styles = Resources.Load<StyleSheet>(ResourceRoot + "BidmadStyles");
+            var styles = Resources.Load<StyleSheet>(ResourceRoot + "SampleStyles");
             if (styles != null)
                 Root.styleSheets.Add(styles);
 
@@ -132,7 +132,7 @@ namespace Bidmad.Sample.UI
             var button = Root?.Q<Button>(buttonName);
             if (button == null)
             {
-                Debug.LogWarning($"[BidmadUI] Button '{buttonName}' not found in {UxmlName}.");
+                Debug.LogWarning($"[SampleUI] Button '{buttonName}' not found in {UxmlName}.");
                 return null;
             }
             button.clicked += onClick;

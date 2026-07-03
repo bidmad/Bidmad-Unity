@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Bidmad.Sample.UI
+namespace SampleUI
 {
     /// <summary>
     /// Replaces the legacy uGUI canvas in each sample scene with a UI Toolkit
     /// panel. Runs automatically at startup and on every scene load, so the
     /// scenes themselves never need to be modified.
     /// </summary>
-    public static class BidmadUIBootstrap
+    public static class SampleUIBootstrap
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Init()
@@ -25,8 +25,8 @@ namespace Bidmad.Sample.UI
             if (!scene.IsValid())
                 return;
 
-            // Skip if a Bidmad screen is already present (avoids duplicates).
-            if (Object.FindFirstObjectByType<BidmadScreenBase>() != null)
+            // Skip if a sample screen is already present (avoids duplicates).
+            if (Object.FindFirstObjectByType<SampleScreenBase>() != null)
                 return;
 
             System.Type controller = scene.name switch
@@ -43,7 +43,7 @@ namespace Bidmad.Sample.UI
 
             RemoveLegacyCanvases();
 
-            var go = new GameObject("BidmadUI [" + scene.name + "]");
+            var go = new GameObject("SampleUI [" + scene.name + "]");
             go.AddComponent(controller);
         }
 

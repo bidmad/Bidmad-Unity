@@ -1,9 +1,9 @@
 using UnityEngine.SceneManagement;
 
-namespace Bidmad.Sample.UI
+namespace SampleUI
 {
     /// <summary>Banner sample screen.</summary>
-    public class BannerScreen : BidmadScreenBase
+    public class BannerScreen : SampleScreenBase
     {
         protected override string UxmlName => "BannerScreen";
 

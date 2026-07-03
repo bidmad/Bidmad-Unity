@@ -1,9 +1,9 @@
 using UnityEngine.SceneManagement;
 
-namespace Bidmad.Sample.UI
+namespace SampleUI
 {
     /// <summary>Main menu: navigates to each ad-format sample scene.</summary>
-    public class MainMenuScreen : BidmadScreenBase
+    public class MainMenuScreen : SampleScreenBase
     {
         protected override string UxmlName => "MainScreen";
 
