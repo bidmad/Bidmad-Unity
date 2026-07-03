@@ -10,6 +10,9 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 - [최신 Plugin 다운로드](https://github.com/bidmad/Bidmad-Unity/releases)
 
 > [!IMPORTANT]
+> 본 플러그인은 **Unity 6 (6000.x) 이상**에서 빌드해야 합니다. 현재 샘플 프로젝트는 **Unity 6000.0.78f1** 환경에서 빌드 및 검증되었습니다.
+
+> [!IMPORTANT]
 > Android의 최신 라이브러리들을 지원하기 위해 Android에서의 개발환경 요구사항이 상향 조정되었습니다.<br>
 > 3.9.1 이후 업데이트 되는 버전은 다음의 개발환경을 요구합니다.<br><br>
 > **AGP 8.6.0 이상, Java 17 이상**<br><br>
@@ -91,7 +94,7 @@ public static final ** CREATOR;
 
 #### 1.2 iOS
 
-*Bidmad 는 Xcode 13.4 이상을 지원합니다. Xcode 버전이 13.4 미만이라면 13.4 이상 버전으로 업데이트 바랍니다. 
+*Bidmad 는 Xcode 26.0 이상을 지원합니다. Xcode 버전이 26.0 미만이라면 26.0 이상 버전으로 업데이트 바랍니다. 
 
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다. <br>
 2. Assets → Bidmad → Editor → BidmadPostProcessBuild.cs 파일을 수정합니다.<br>
@@ -102,11 +105,9 @@ public static final ** CREATOR;
     ![Bidmad-Guide-4](https://i.imgur.com/8cvpZR0.png)<br>
     Setting 패널에서 <strong>Link Frameworks Statically</strong> 를 체크한 뒤, OK 버튼을 눌러주십시오.<br>
 4. iOS Xcode 프로젝트를 빌드한 이후, iOS 프로젝트 폴더에서 <strong>.xcworkspace</strong> 확장자의 파일을 열어주십시오.<br>
-5. Unity-iPhone 프로젝트 세팅 → Build Settings → UnityFramework 타겟 → Enable Bitcode 를 "No" 로 설정하십시오.<br>
-    ![Bidmad-Guide-4](https://i.imgur.com/cgCHNQA.png)<br>
-6. Unity-iPhone 타겟 대상 프로젝트 세팅 → Build Phases 내부 + 버튼 클릭 후 New Run Script Phase 를 클릭하세요.
+5. Unity-iPhone 타겟 대상 프로젝트 세팅 → Build Phases 내부 + 버튼 클릭 후 New Run Script Phase 를 클릭하세요.
     ![Bidmad-Guide-7](https://i.imgur.com/jlmk9sF.png)<br>
-7. 아래 코드를 복사해 Run Script 탭 아래 Shell Script 내부에 붙여넣으세요.
+6. 아래 코드를 복사해 Run Script 탭 아래 Shell Script 내부에 붙여넣으세요.
 ```
 APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
 
@@ -138,7 +139,7 @@ do
 done
 ```
 ![Bidmad-Guide-8](https://i.imgur.com/SKRjDhg.png)<br>
-10. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
+7. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
 ```
 <key>DebugSymbolsPath</key>
 <string>dSYMs</string>
@@ -469,8 +470,6 @@ public static void initializeSdk(string appdomain)|BidmadSDK 환경 설정을 �
 public static void initializeSdkWithCallback(string appdomain, Action<bool> callback)|BidmadSDK 환경 설정을 초기화하고, 전면 및 리워드 광고를 프리로드합니다. Action<bool> 함수로 초기화 여부를 받습니다.
 public static void setIsDebug(bool isDebug)|디버그 로그를 노출시킵니다.
 public static void setGgTestDeviceid(string deviceId)|구글 애드몹 / 애드매니저를 위한 테스트 디바이스 등록 함수입니다.
-public static void setAdFreeEventListener(Action<bool> callback)|쿠팡 광고네트워크에 의한 광고차단 상태 변경 정보를 받기위해 콜백 함수를 설정합니다.
-public static bool isAdFree()|쿠팡 광고네트워크에 의한 광고 차단 여부를 확인합니다.
 public static void setCuid(string cuid)|cuid(Customer User Identifier)를 설정을 위한 함수 입니다.
 public static void setUseServerSideCallback(bool isServerSideCallback)|Server Side Callback 사용시 세팅을 위한 함수입니다. 
 public static void setGdprConsent(bool consent, bool useArea)|GDPR 동의여부를 등록합니다. consent: 동의여부 / useArea: 유럽지역 여부 

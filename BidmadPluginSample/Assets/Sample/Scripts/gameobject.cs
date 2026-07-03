@@ -20,7 +20,7 @@ public class gameobject : MonoBehaviour
         #endif
 
         DontDestroyOnLoad(bidmadManager);
-        var obj = FindObjectsOfType<BidmadManager>();
+        var obj = FindObjectsByType<BidmadManager>(FindObjectsSortMode.None);
 
         if (obj.Length == 1)
         {

@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="screen">
+        <ui:VisualElement class="content">
+            <ui:VisualElement class="appbar">
+                <ui:Button name="btn-back" text="‹  Back" class="iconbtn" />
+                <ui:Label text="REWARDED" class="badge" />
+            </ui:VisualElement>
+
+            <ui:VisualElement class="hero">
+                <ui:VisualElement class="hero-accent accent-reward" />
+                <ui:VisualElement class="hero-text">
+                    <ui:Label text="Rewarded Ad" class="hero-title" />
+                    <ui:Label text="Load a rewarded video, then show it to grant a reward." class="hero-desc" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:Button name="btn-load" text="Load Rewarded Ad" class="btn btn-secondary" />
+            <ui:Button name="btn-show" text="Show Rewarded Ad" class="btn btn-primary" />
+
+            <ui:VisualElement class="status-card">
+                <ui:Label text="STATUS" class="status-label" />
+                <ui:VisualElement class="status-row">
+                    <ui:VisualElement name="status-dot" class="status-dot dot--info" />
+                    <ui:Label name="status" text="Idle — load an ad first." class="status status--info" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <ui:Label text="Rewarded ads auto-reload after being shown." class="hint" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

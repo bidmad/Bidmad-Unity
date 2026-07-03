@@ -1,3 +1,14 @@
+# Version 4.0.0
+#### Changes
+- Requires Unity 6 or higher to build (verified on Unity 6000.0.78f1)
+- iOS : Change Min iOS Version 14
+- iOS : Update BidmadSDK 7.0.0, OpenBiddingHelper 7.0.0, BidmadGoogleGDPRAdapter 7.0.0
+- Android : Update bidmad-androidx 3.28.1
+- Update SKAdNetwork identifier list
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.28.1
+- iOS : BidmadSDK.framework 7.0.0
+
 # Version 3.9.3
 #### Changes
 - iOS : Update BidmadSDK 6.13.9, OpenBiddingHelper 6.13.7

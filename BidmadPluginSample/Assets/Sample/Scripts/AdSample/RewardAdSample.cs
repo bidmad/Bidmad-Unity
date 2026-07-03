@@ -5,6 +5,10 @@ using UnityEngine;
 public class RewardAdSample : MonoBehaviour
 {
     static BidmadReward reward;
+
+    // Optional UI hook: raised with a human-readable status message on each event.
+    public System.Action<string> OnStatus;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +17,7 @@ public class RewardAdSample : MonoBehaviour
 
     public void LoadRewardAd()
     {
+        OnStatus?.Invoke("Requesting rewarded ad…");
 #if UNITY_ANDROID
         if (reward == null)
             reward = new BidmadReward("7d9a2c9e-5755-4022-85f1-6d4fc79e4418");
@@ -48,6 +53,7 @@ public class RewardAdSample : MonoBehaviour
         if (reward.isLoaded()) {
             reward.show();
         } else {
+            OnStatus?.Invoke("Not ready yet — reloading…");
             reward.load();
         }
 #endif
@@ -56,31 +62,37 @@ public class RewardAdSample : MonoBehaviour
     void OnRewardLoad()
     {
         Debug.Log("OnRewardLoad Deletgate Callback Complate!!!");
+        OnStatus?.Invoke("Rewarded ad loaded");
     }
 
     void OnRewardShow()
     {
         Debug.Log("OnRewardShow Deletgate Callback Complate!!!");
+        OnStatus?.Invoke("Rewarded ad shown");
     }
 
     void OnRewardLoadFail(string errorInfo)
     {
         Debug.Log("OnRewardLoadFail Deletgate Callback Complate!!! : " + errorInfo);
+        OnStatus?.Invoke("Rewarded ad failed: " + errorInfo);
     }
 
     void OnRewardComplete()
     {
         Debug.Log("OnRewardComplete Deletgate Callback Complate!!!");
+        OnStatus?.Invoke("Reward earned");
     }
 
     void OnRewardSkip()
     {
         Debug.Log("OnRewardSkip Deletgate Callback Complate!!!");
+        OnStatus?.Invoke("Reward skipped");
     }
 
     void OnRewardClose()
     {
         Debug.Log("OnRewardClose Deletgate Callback Complate!!!");
+        OnStatus?.Invoke("Rewarded ad closed");
     }
 
 }

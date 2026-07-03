@@ -3,8 +3,8 @@
 
 /BidmadPluginSample/[Ll]ibrary/
 /BidmadPluginSample/[Uu]serSettings/
-/BidmadPluginSample[Tt]emp/
-/BidmadPluginSample[Oo]bj/
+/BidmadPluginSample/[Tt]emp/
+/BidmadPluginSample/[Oo]bj/
 /BidmadPluginSample/[Bb]uild/
 /BidmadPluginSample/[Bb]uilds/
 /BidmadPluginSample/[Ll]ogs/
@@ -14,6 +14,7 @@
 
 /BidmadPluginSample/IOS/
 /BidmadPluginSample/IOS_BUILD/
+/BidmadPluginSample/ANDROID_BUILD/
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # [Aa]ssets/AssetStoreTools*
@@ -30,6 +31,7 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+*.slnx
 *.suo
 *.tmp
 *.user
@@ -69,3 +71,6 @@ Thumbs.db.meta
 
 # Release automation artifacts
 /releases/
+
+# External Dependency Manager / Android template backups (auto-regenerated)
+*.backup*

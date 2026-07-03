@@ -7,37 +7,38 @@
       <repository>https://jitpack.io/</repository>
       <repository>https://taboolapublic.jfrog.io/artifactory/mobile-release</repository>
       <repository>https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea</repository>
+      <repository>https://repo.premiumads.net/artifactory/mobile-ads-sdk/</repository>
     </repositories>
-    <androidPackage spec="ad.helper.openbidding:admob-obh:3.25.0"/>
-    <androidPackage spec="com.adop.sdk:bidmad-androidx:3.25.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:admixer:1.0.9.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:admob:24.4.0.1"/>
-    <androidPackage spec="com.adop.sdk.adapter:adpopcorn:3.8.2.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:applovin:13.3.1.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:fyber:8.3.7.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:ortb:1.0.1"/>
-    <androidPackage spec="com.adop.sdk.adapter:taboola:4.0.8.0"/>
-    <androidPackage spec="com.adop.sdk.adapter:unityads:4.15.0.0"/>
-    <androidPackage spec="com.adop.sdk.partners:admobbidding:1.1.3U"/>
+    <androidPackage spec="ad.helper.openbidding:admob-obh:3.28.0"/>
+    <androidPackage spec="com.adop.sdk:bidmad-androidx:3.28.1"/>
+    <androidPackage spec="com.adop.sdk.adapter:admixer:1.0.9.1"/>
+    <androidPackage spec="com.adop.sdk.adapter:admob:25.2.0.0"/>
+    <androidPackage spec="com.adop.sdk.adapter:adpopcorn:3.8.2.1"/>
+    <androidPackage spec="com.adop.sdk.adapter:applovin:13.6.2.0"/>
+    <androidPackage spec="com.adop.sdk.adapter:fyber:8.4.4.0"/>
+    <androidPackage spec="com.adop.sdk.adapter:ortb:1.0.2"/>
+    <androidPackage spec="com.adop.sdk.adapter:taboola:4.0.8.1"/>
+    <androidPackage spec="com.adop.sdk.adapter:unityads:4.17.0.0"/>
+    <androidPackage spec="com.adop.sdk.partners:admobbidding:1.1.5"/>
   </androidPackages>
 
   <iosPods>
-    <iosPod name="BidmadSDK" version="6.13.9" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="OpenBiddingHelper" version="6.13.7" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadGoogleGDPRAdapter" version="6.13.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadAdFitAdapter" version="3.12.7.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadAdmixerAdapter" version="2.0.2.12.2" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadAppLovinAdapter" version="13.3.1.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadFyberAdapter" version="8.3.7.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadGoogleAdManagerAdapter" version="12.6.0.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadGoogleAdMobAdapter" version="12.6.0.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadMobwithAdapter" version="1.0.0.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadORTBAdapter" version="1.0.0.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadPangleAdapter" version="7.2.0.5.12.2" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadTaboolaAdapter" version="3.8.33.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadTeadsAdapter" version="5.2.0.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadUnityAdsAdapter" version="4.15.0.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadVungleAdapter" version="7.5.1.12.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
-    <iosPod name="BidmadPartners/AdMobBidding" version="1.0.7" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="13.0" />
+    <iosPod name="BidmadSDK" version="7.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="OpenBiddingHelper" version="7.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadGoogleGDPRAdapter" version="7.0.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadAdFitAdapter" version="3.18.3.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadAdmixerAdapter" version="2.3.2.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadAppLovinAdapter" version="13.6.2.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadFyberAdapter" version="8.4.6.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadGoogleAdManagerAdapter" version="13.2.0.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadGoogleAdMobAdapter" version="13.2.0.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadMobwithAdapter" version="2.0.0.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadORTBAdapter" version="1.0.0.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadPangleAdapter" version="7.9.0.8.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadTaboolaAdapter" version="3.9.12.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadTeadsAdapter" version="6.1.0.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadUnityAdsAdapter" version="4.17.0.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadVungleAdapter" version="7.7.2.14.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
+    <iosPod name="BidmadPartners/AdMobBidding" version="1.0.11" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
   </iosPods>
 </dependencies>

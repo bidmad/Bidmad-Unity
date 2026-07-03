@@ -155,7 +155,10 @@ public class BidmadBanner
 #elif UNITY_ANDROID
         if (javaClassInstance != null)
         {
-            javaClassInstance.Call("setInterval", time);
+            using (AndroidJavaObject boxedTime = new AndroidJavaObject("java.lang.Integer", time))
+            {
+                javaClassInstance.Call("setInterval", boxedTime);
+            }
         }
 #endif
     }

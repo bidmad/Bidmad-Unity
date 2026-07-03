@@ -5,6 +5,10 @@ using UnityEngine;
 public class BannerAdSample : MonoBehaviour
 {
     static BidmadBanner banner;
+
+    // Optional UI hook: raised with a human-readable status message on each event.
+    public System.Action<string> OnStatus;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +17,7 @@ public class BannerAdSample : MonoBehaviour
 
     public void LoadBannerAd()
     {
+        OnStatus?.Invoke("Requesting banner…");
 #if UNITY_ANDROID
     
         banner = new BidmadBanner("944fe870-fa3a-4d1b-9cc2-38e50b2aed43", (float)130);  // Auto Center alignment
@@ -43,21 +48,25 @@ public class BannerAdSample : MonoBehaviour
         Debug.Log("removeBanner!!!");
         if(banner != null)
             banner.removeBanner();
+        OnStatus?.Invoke("Banner removed.");
     }
 
     void OnBannerLoad()
     {
         Debug.Log("OnBannerLoad Deletgate Callback Complate!!!");
+        OnStatus?.Invoke("Banner loaded");
     }
 
     void OnBannerLoadFail(string errorInfo)
     {
         Debug.Log("OnBannerLoadFail Deletgate Callback Complate!!! : "+errorInfo);
+        OnStatus?.Invoke("Banner failed: " + errorInfo);
     }
 
     void OnBannerClick()
     {
         Debug.Log("OnBannerClick Deletgate Callback Complate!!!");
+        OnStatus?.Invoke("Banner clicked");
     }
 
     #if UNITY_ANDROID
