@@ -1,3 +1,17 @@
+# Version 4.0.2
+#### Changes
+- Android : Update bidmad-androidx 3.28.2, admob-obh 3.28.1
+- Android : End of support for AdMixer / AdPopcorn ad networks (adapters removed)
+- Android : Update Ad Network adapters (admob 25.4.0.0, applovin 13.6.2.1, fyber 8.4.6.0, ortb 1.0.3, pangle 8.1.0.3.0, taboola 4.0.38.0, unityads 4.19.0.0, vungle 7.7.7.0)
+- Android : Update admobbidding partner bundle 1.1.6 (add LINE adapter, PremiumAds split into a separate module)
+- iOS : Update BidmadSDK 7.0.1, OpenBiddingHelper 7.0.1, BidmadGoogleGDPRAdapter 7.0.1
+- iOS : End of support for AdMixer ad network (BidmadAdmixerAdapter removed)
+- iOS : Update ad network adapters to the {NetworkSDK}.14.1 line
+- iOS : Update BidmadPartners/AdMobBidding 1.0.13 (BidmadPremiumAdsGoogleAdapter no longer bundled)
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.28.2
+- iOS : BidmadSDK.framework 7.0.1
+
 # Version 4.0.1
 #### Changes
 - Android : Add Pangle Ad Network adapter (pangle 7.9.1.3.0)
