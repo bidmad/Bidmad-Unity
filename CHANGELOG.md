@@ -1,3 +1,14 @@
+# Version 4.0.3
+#### Changes
+- Android : Update bidmad-androidx 3.28.5, admob-obh 3.28.2
+- Android : Add Bidmad Inspector 1.0.0
+- Android : Update vungle adapter 7.7.7.1
+- iOS : Update BidmadSDK 7.1.1, OpenBiddingHelper 7.1.1, BidmadGoogleGDPRAdapter 7.1.1 (foldable / tablet support)
+- iOS : Update ad network adapters to the {NetworkSDK}.15.x line
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.28.5
+- iOS : BidmadSDK.framework 7.1.1
+
 # Version 4.0.2
 #### Changes
 - Android : Update bidmad-androidx 3.28.2, admob-obh 3.28.1
