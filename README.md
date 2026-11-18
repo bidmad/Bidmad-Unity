@@ -55,9 +55,6 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 -keep class com.bytedance.sdk.** { *; }
 -keep class com.bykv.vk.openvk.component.video.api.** { *; }
 
-# Tapjoy
--keep class com.tapjoy.** { *; }
--keep class com.moat.** { *; }
 -keepattributes JavascriptInterface
 -keepattributes *Annotation*
 -keep class * extends java.util.ListResourceBundle {
@@ -74,7 +71,6 @@ public static final *** NULL;
 public static final ** CREATOR;
 }
 -keep class com.google.android.gms.ads.identifier.** { *; }
--dontwarn com.tapjoy.**
 ```
 
 6. Project Settings  → Publish Settings  → Custom Main Manifest를 활성화하여 AndroidManifest.xml의 application 태그 안에 아래 코드를 선언합니다([가이드](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D#app-id-from-admob-dashboard))<br>
@@ -492,3 +488,4 @@ public static bool getAdvertiserTrackingEnabled()|설정된 앱 추적 투명성
 - [GDPR 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/Unity-GDPR-Guide-%5BKOR%5D)
 - [v3.0.0 Migration Guide](https://github.com/bidmad/Bidmad-Unity/wiki/v3.0.0-Migration-Guide)
 - [쿠팡 네트워크 광고 차단 인터페이스 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/쿠팡-네트워크-광고-차단-인터페이스-가이드)
+- [난독화 점검 보고서 전송 가이드](https://github.com/bidmad/Bidmad-Android/wiki/Android-Obfuscation-Inspection-Report-Guide%5BKOR%5D)

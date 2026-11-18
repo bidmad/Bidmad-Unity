@@ -54,9 +54,6 @@ If your app is targeting children, check out our [guide](https://github.com/bidm
 -keep class com.bytedance.sdk.** { *; }
 -keep class com.bykv.vk.openvk.component.video.api.** { *; }
 
-# Tapjoy
--keep class com.tapjoy.** { *; }
--keep class com.moat.** { *; }
 -keepattributes JavascriptInterface
 -keepattributes *Annotation*
 -keep class * extends java.util.ListResourceBundle {
@@ -73,7 +70,6 @@ public static final *** NULL;
 public static final ** CREATOR;
 }
 -keep class com.google.android.gms.ads.identifier.** { *; }
--dontwarn com.tapjoy.**
 ```
 
 6. Activate Project Settings → Publish Settings → Custom Main Manifest and  Declare the code below inside the application tag of AndroidManifest.xml ([Guide](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D#app-id-from-admob-dashboard))<br>
@@ -490,3 +486,4 @@ public static bool getAdvertiserTrackingEnabled()| Set app tracking transparency
 
 - [GDPR Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Unity-GDPR-Guide-%5BENG%5D)
 - [v3.0.0 Migration Guide](https://github.com/bidmad/Bidmad-Unity/wiki/v3.0.0-Migration-Guide)
+- [Obfuscation Inspection Report Guide](https://github.com/bidmad/Bidmad-Android/wiki/Android-Obfuscation-Inspection-Report-Guide%5BENG%5D)
