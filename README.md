@@ -92,6 +92,8 @@ public static final ** CREATOR;
 
 *Bidmad 는 Xcode 26.0 이상을 지원합니다. Xcode 버전이 26.0 미만이라면 26.0 이상 버전으로 업데이트 바랍니다. 
 
+*Bidmad 는 iOS 14.0 이상을 지원합니다. Project Settings → Player → iOS → Other Settings → **Target minimum iOS Version** 을 14.0 이상으로 설정 바랍니다. (Unity 6 신규 프로젝트의 기본값은 13.0 이며, 이 상태로 빌드하면 pod install 이 실패합니다.)
+
 1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다. <br>
 2. Assets → Bidmad → Editor → BidmadPostProcessBuild.cs 파일을 수정합니다.<br>
     User Tracking Usage Description 과 Google App ID 를 변경해주십시오. 

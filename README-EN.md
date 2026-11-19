@@ -91,6 +91,8 @@ public static final ** CREATOR;
 
 *Bidmad supports Xcode 26.0 or higher. If your Xcode version is lower than 26.0, please update to 26.0 or higher.
 
+*Bidmad requires iOS 14.0 or higher. Set Project Settings → Player → iOS → Other Settings → **Target minimum iOS Version** to 14.0 or higher. (New Unity 6 projects default to 13.0, which makes pod install fail.)
+
 1. Please import the latest plugin.<br>
 2. Please make adjustments to BidmadPostProcessBuild.cs file in Assets → Bidmad → Editor.<br>
     Make sure to change User Tracking Usage Description and Google App ID. 
