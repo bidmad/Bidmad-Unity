@@ -15,8 +15,7 @@ dependencies {
     implementation 'com.adop.sdk.adapter:unityads:4.19.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:19
     implementation 'com.adop.sdk.adapter:vungle:7.7.7.1' // Assets/Bidmad/Editor/OBHDependencies.xml:20
     implementation 'com.adop.sdk.partners:admobbidding:1.1.6' // Assets/Bidmad/Editor/OBHDependencies.xml:21
-    implementation 'com.adop.sdk:bidmad-androidx:3.28.5' // Assets/Bidmad/Editor/OBHDependencies.xml:12
-    implementation 'com.adop.sdk.adapter:inspector:1.0.0' // Assets/Bidmad/Editor/OBHDependencies.xml:22
+    implementation 'com.adop.sdk:bidmad-androidx:3.28.6' // Assets/Bidmad/Editor/OBHDependencies.xml:12
 // Android Resolver Dependencies End
 **DEPS**}
 

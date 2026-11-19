@@ -1,3 +1,10 @@
+# Version 4.0.4
+#### Changes
+- Android : Inspector adapter hotfix
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.28.6
+- iOS : BidmadSDK.framework 7.1.1
+
 # Version 4.0.3
 #### Changes
 - Android : Update bidmad-androidx 3.28.5, admob-obh 3.28.2
