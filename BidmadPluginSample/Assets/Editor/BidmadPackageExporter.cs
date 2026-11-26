@@ -22,7 +22,6 @@ namespace Bidmad.Editor
                 {
                     "Assets/Bidmad/Editor",
                     "Assets/Bidmad/Scripts/Bidmad",
-                    "Assets/ExternalDependencyManager",
                     "Assets/Plugins/iOS/Bidmad",
                 };
 

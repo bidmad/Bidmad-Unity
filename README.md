@@ -24,15 +24,17 @@ Plugin을 사용하여 Unity 모바일 앱에서 배너 / 전면 / 보상형 광
 > 3.8.0 버전으로 업데이트 하시는 경우에는 **테크랩스 플랫폼 사업부 운영팀에 연락 부탁 드립니다.**<br>
 
 ### 1. Plugin 추가하기
+1. 다운로드 받은 최신 버전 Plugin을 프로젝트에 Import합니다.<br>
+2. Window → Package Management → Package Manager → Unity Registry 에서 **External Dependency Manager** (`com.unity.external-dependency-manager`) **2.2.0** 을 설치합니다.<br>
+    *4.0.x 이하 버전에서 업데이트하는 경우, 프로젝트의 Assets → ExternalDependencyManager 폴더(Google EDM4U)를 삭제하고, 선택 창이 뜨면 **Use Unity's External Dependency Manager** 를 선택합니다.<br>
+
 #### 1.1 Android
 
-1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다.<br>
-2. Assets → External Dependency Manager → Android Resolver → Settings에서 Use Gradle Daemon 체크<br>
-3. Assets → External Dependency Manager → Android Resolver → Force Resolve 실행<br>
+1. Assets → External Dependency Manager → Android Resolver → Force Resolve 실행<br>
 *2.18.0 이전 버전에서 업데이트 하는 경우 [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/AOS-EDM4U-%EC%A0%84%ED%99%98-%EA%B0%80%EC%9D%B4%EB%93%9C)를 참고하여 이전 버전 요소를 제거 바랍니다.<br>
-4. 아동을 타겟으로 하고 PlayStore에 심사를 받는 앱은 인증된 광고 네트워크를 사용을 위해 추가 설정이 필요합니다.<br> 
+2. 아동을 타겟으로 하고 PlayStore에 심사를 받는 앱은 인증된 광고 네트워크를 사용을 위해 추가 설정이 필요합니다.<br> 
 앱이 아동을 타겟하고 있다면 추가 설정을 위해 [가이드](https://github.com/bidmad/Bidmad-Unity/wiki/PlayStore-%EC%95%B1-%ED%83%80%EA%B2%9F%ED%8C%85-%EC%97%B0%EB%A0%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%B6%94%EA%B0%80-%EC%84%A4%EC%A0%95.)를 확인하세요.<br>
-5. 프로젝트에서 Proguard를 적용하고 있다면 아래의 룰을 추가하세요.
+3. 프로젝트에서 Proguard를 적용하고 있다면 아래의 룰을 추가하세요.
 ```cpp
 -keep class com.adop.sdk.** { *; }
 -keep class ad.helper.openbidding.** { *; }
@@ -73,7 +75,7 @@ public static final ** CREATOR;
 -keep class com.google.android.gms.ads.identifier.** { *; }
 ```
 
-6. Project Settings  → Publish Settings  → Custom Main Manifest를 활성화하여 AndroidManifest.xml의 application 태그 안에 아래 코드를 선언합니다([가이드](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D#app-id-from-admob-dashboard))<br>
+4. Project Settings  → Publish Settings  → Custom Main Manifest를 활성화하여 AndroidManifest.xml의 application 태그 안에 아래 코드를 선언합니다([가이드](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D#app-id-from-admob-dashboard))<br>
    *com.google.android.gms.ads.APPLICATION_ID의 value는 Admob 대시보드에서 확인 바랍니다.
 
 ```xml
@@ -84,7 +86,7 @@ public static final ** CREATOR;
 </application>
 ```
 
-7. Android 12버전을 Target하는 경우 [AD_ID 권한 추가 선언 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BKOR%5D)를 확인바랍니다.
+5. Android 12버전을 Target하는 경우 [AD_ID 권한 추가 선언 가이드](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BKOR%5D)를 확인바랍니다.
 
 *Bidmad는 AndroidX 라이브러리를 사용합니다. AndroidX 프로젝트가 아니라면 AndroidX로 마이그레이션 바랍니다.
 
@@ -92,52 +94,14 @@ public static final ** CREATOR;
 
 *Bidmad 는 Xcode 26.0 이상을 지원합니다. Xcode 버전이 26.0 미만이라면 26.0 이상 버전으로 업데이트 바랍니다. 
 
-*Bidmad 는 iOS 14.0 이상을 지원합니다. Project Settings → Player → iOS → Other Settings → **Target minimum iOS Version** 을 14.0 이상으로 설정 바랍니다. (Unity 6 신규 프로젝트의 기본값은 13.0 이며, 이 상태로 빌드하면 pod install 이 실패합니다.)
+*Bidmad 는 iOS 15.0 이상을 지원합니다. Project Settings → Player → iOS → Other Settings → **Target minimum iOS Version** 을 15.0 이상으로 설정 바랍니다.
 
-1. 다운로드 받은 최신 버전 SDK를 프로젝트에 Import합니다. <br>
-2. Assets → Bidmad → Editor → BidmadPostProcessBuild.cs 파일을 수정합니다.<br>
+1. Assets → Bidmad → Editor → BidmadPostProcessBuild.cs 파일을 수정합니다.<br>
     User Tracking Usage Description 과 Google App ID 를 변경해주십시오. 
     Google App ID 는 [App Key 찾기](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BKR%5D) 가이드 내부 "App ID from ADMOB Dashboard" 섹션을 참고해 가져올 수 있습니다.<br>
     ![Bidmad-Guide-3](https://i.imgur.com/xPuJaSC.png)<br>
-3. Assets → External Dependency Manager → iOS Resolver → Settings 경로를 통해 세팅을 열어주십시오.<br>
-    ![Bidmad-Guide-4](https://i.imgur.com/8cvpZR0.png)<br>
-    Setting 패널에서 <strong>Link Frameworks Statically</strong> 를 체크한 뒤, OK 버튼을 눌러주십시오.<br>
-4. iOS Xcode 프로젝트를 빌드한 이후, iOS 프로젝트 폴더에서 <strong>.xcworkspace</strong> 확장자의 파일을 열어주십시오.<br>
-5. Unity-iPhone 타겟 대상 프로젝트 세팅 → Build Phases 내부 + 버튼 클릭 후 New Run Script Phase 를 클릭하세요.
-    ![Bidmad-Guide-7](https://i.imgur.com/jlmk9sF.png)<br>
-6. 아래 코드를 복사해 Run Script 탭 아래 Shell Script 내부에 붙여넣으세요.
-```
-APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
-
-# This script loops through the frameworks embedded in the application and
-# removes unused architectures.
-find "$APP_PATH" -name 'AdFitSDK.framework' -type d | while read -r FRAMEWORK
-do
-    FRAMEWORK_EXECUTABLE_NAME=$(defaults read "$FRAMEWORK/Info.plist" CFBundleExecutable)
-    FRAMEWORK_EXECUTABLE_PATH="$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME"
-    echo "Executable is $FRAMEWORK_EXECUTABLE_PATH"
-
-    EXTRACTED_ARCHS=()
-
-    for ARCH in $ARCHS
-    do
-        echo "Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME"
-        lipo -extract "$ARCH" "$FRAMEWORK_EXECUTABLE_PATH" -o "$FRAMEWORK_EXECUTABLE_PATH-$ARCH"
-        EXTRACTED_ARCHS+=("$FRAMEWORK_EXECUTABLE_PATH-$ARCH")
-    done
-
-    echo "Merging extracted architectures: ${ARCHS}"
-    lipo -o "$FRAMEWORK_EXECUTABLE_PATH-merged" -create "${EXTRACTED_ARCHS[@]}"
-    rm "${EXTRACTED_ARCHS[@]}"
-
-    echo "Replacing original executable with thinned version"
-    rm "$FRAMEWORK_EXECUTABLE_PATH"
-    mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
-
-done
-```
-![Bidmad-Guide-8](https://i.imgur.com/SKRjDhg.png)<br>
-7. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
+2. iOS 빌드 후 생성된 Xcode 프로젝트 폴더에서 **Unity-iPhone.xcworkspace** 를 열어주십시오.<br>
+3. [App Tracking Transparency Guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BKOR%5D)에 따라 앱 추적 투명성 승인 요청 팝업을 적용시켜주십시오. SKAdNetwork 리스트는 BidmadPostProcessBuild.cs 파일에 포함되어있습니다.<br>
 ```
 <key>DebugSymbolsPath</key>
 <string>dSYMs</string>
@@ -150,7 +114,7 @@ done
 1. Assets → Plugins → iOS → Bidmad 폴더 및 내부 파일 전체를 삭제하십시오
 2. Assets → Resources → Bidmad 폴더 및 내부 파일 전체를 삭제하십시오.
 3. Assets → Bidmad → Scripts 폴더 및 내부 파일 전체를 삭제하십시오.
-3. info.plist 내부 SKAdNetwork, Google App ID, User Tracking Usage Description 세팅 모두 BidmadPostProcessBuild.cs 파일로 옮겨졌습니다 (1.2 iOS 빌드가이드 2번 참고).
+3. info.plist 내부 SKAdNetwork, Google App ID, User Tracking Usage Description 세팅 모두 BidmadPostProcessBuild.cs 파일로 옮겨졌습니다 (1.2 iOS 빌드가이드 1번 참고).
     이전에 info.plist에 설정하셨던 Google App ID / User Tracking Usage Description을 BidmadPostProcessBuild.cs 파일로 이전시켜주십시오. SKAdNetwork는 옮기실 필요가 없으며, BidmadPostProcessBuild에 App ID / User Tracking Usage Description 세팅 후 저장한 뒤에는, 추가로 info.plist 세팅을 할 부분이 없습니다.
 4. 이후 위 1.2 iOS 빌드 가이드를 따라 해주시면 되겠습니다. 
 

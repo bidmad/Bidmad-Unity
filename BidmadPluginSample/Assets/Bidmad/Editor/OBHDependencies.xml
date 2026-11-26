@@ -21,22 +21,49 @@
     <androidPackage spec="com.adop.sdk.partners:admobbidding:1.1.6"/>
   </androidPackages>
 
-  <iosPods>
-    <iosPod name="BidmadSDK" version="7.1.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="OpenBiddingHelper" version="7.1.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadGoogleGDPRAdapter" version="7.1.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadAdFitAdapter" version="3.18.3.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadAppLovinAdapter" version="13.6.2.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadFyberAdapter" version="8.4.6.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadGoogleAdManagerAdapter" version="13.2.0.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadGoogleAdMobAdapter" version="13.2.0.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadMobwithAdapter" version="2.0.0.15.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadORTBAdapter" version="1.0.0.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadPangleAdapter" version="7.9.0.8.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadTaboolaAdapter" version="3.9.12.15.1" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadTeadsAdapter" version="6.1.0.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadUnityAdsAdapter" version="4.17.0.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadVungleAdapter" version="7.7.2.15.0" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-    <iosPod name="BidmadPartners/AdMobBidding" version="1.0.13" bitcodeEnabled="false" addToAllTargets="false" minTargetSdk="14.0" />
-  </iosPods>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadSDK-SPM.git" version="7.2.0">
+    <swiftPackage name="BidmadSDK" target="All" minTargetSdk="15.0" />
+    <swiftPackage name="OpenBiddingHelper" target="All" />
+    <swiftPackage name="BidmadGoogleGDPRAdapter" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadAdFitAdapter-SPM.git" version="7.2.0+3.18.3">
+    <swiftPackage name="BidmadAdFitAdapter" target="All" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadAppLovinAdapter-SPM.git" version="7.2.0+13.7.0">
+    <swiftPackage name="BidmadAppLovinAdapter" target="All" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadFyberAdapter-SPM.git" version="7.2.0+8.5.1">
+    <swiftPackage name="BidmadFyberAdapter" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadGoogleAdManagerAdapter-SPM.git" version="7.2.0+13.11.0">
+    <swiftPackage name="BidmadGoogleAdManagerAdapter" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadGoogleAdMobAdapter-SPM.git" version="7.2.0+13.11.0">
+    <swiftPackage name="BidmadGoogleAdMobAdapter" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadMobwithAdapter-SPM.git" version="7.2.0">
+    <swiftPackage name="BidmadMobwithAdapter" target="All" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadORTBAdapter-SPM.git" version="7.2.0">
+    <swiftPackage name="BidmadORTBAdapter" target="All" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadPangleAdapter-SPM.git" version="7.2.0+8.4.0-release.7">
+    <swiftPackage name="BidmadPangleAdapter" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadTaboolaAdapter-SPM.git" version="7.2.0+3.9.12">
+    <swiftPackage name="BidmadTaboolaAdapter" target="All" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadTeadsAdapter-SPM.git" version="7.2.0+6.1.0">
+    <swiftPackage name="BidmadTeadsAdapter" target="All" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadUnityAdsAdapter-SPM.git" version="7.2.0+4.21.0">
+    <swiftPackage name="BidmadUnityAdsAdapter" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadVungleAdapter-SPM.git" version="7.2.0+7.7.8">
+    <swiftPackage name="BidmadVungleAdapter" target="All" />
+  </remoteSwiftPackage>
+  <remoteSwiftPackage url="https://github.com/bidmad/BidmadPartnersAdMobBidding-SPM.git" version="7.2.0">
+    <swiftPackage name="BidmadPartnersAdMobBidding" />
+    <swiftPackage name="BidmadPartnersAdMobBiddingDynamicSDKs" target="All" />
+  </remoteSwiftPackage>
 </dependencies>

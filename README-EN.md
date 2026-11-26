@@ -22,16 +22,17 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 > If you are updating to version 3.8.0, please contact **Techlabs Platform Operations Team.**<br>
 
 ### 1. Add Plugin
+1. Import the latest downloaded plugin to the project.<br>
+2. Install **External Dependency Manager** (`com.unity.external-dependency-manager`) **2.2.0** from Window → Package Management → Package Manager → Unity Registry.<br>
+    *If you are updating from 4.0.x or earlier, delete the Assets → ExternalDependencyManager folder (Google's EDM4U) from your project, and select **Use Unity's External Dependency Manager** if prompted.<br>
+
 #### 1.1 Android
 
-1. Import the latest downloaded SDK to the project.<br>
-2. Check Use Gradle Daemon in Android Resolver Settings<br>
-*Assets → External Dependency Manager → Android Resolver → Settings<br>
-3. Run force resolve of External Dependency Manager.<br>
+1. Run Assets → External Dependency Manager → Android Resolver → Force Resolve.<br>
 *If you are updating from a version earlier than 2.18.0, please refer to the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/AOS-EDM4U-Migration-Guide) to remove the settings of the old version.<br>
-4. Apps that target children and are vetted by the PlayStore require additional setup to use certified ad networks.<br> 
+2. Apps that target children and are vetted by the PlayStore require additional setup to use certified ad networks.<br> 
 If your app is targeting children, check out our [guide](https://github.com/bidmad/Bidmad-Unity/wiki/PlayStore-%EC%95%B1-%ED%83%80%EA%B2%9F%ED%8C%85-%EC%97%B0%EB%A0%B9%EC%97%90-%EB%94%B0%EB%A5%B8-%EC%B6%94%EA%B0%80-%EC%84%A4%EC%A0%95.) for further setup.<br>
-5. If you are using Proguard, add the rule below.
+3. If you are using Proguard, add the rule below.
 ```cpp
 -keep class com.adop.sdk.** { *; }
 -keep class ad.helper.openbidding.** { *; }
@@ -72,7 +73,7 @@ public static final ** CREATOR;
 -keep class com.google.android.gms.ads.identifier.** { *; }
 ```
 
-6. Activate Project Settings → Publish Settings → Custom Main Manifest and  Declare the code below inside the application tag of AndroidManifest.xml ([Guide](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D#app-id-from-admob-dashboard))<br>
+4. Activate Project Settings → Publish Settings → Custom Main Manifest and  Declare the code below inside the application tag of AndroidManifest.xml ([Guide](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D#app-id-from-admob-dashboard))<br>
    *Please check the value of com.google.android.gms.ads.APPLICATION_ID on the Admob dashboard.
 
 ```xml
@@ -83,7 +84,7 @@ public static final ** CREATOR;
 </application>
 ```
 
-7.  If targeting Android 12 version, please check [AD_ID Permission Guide](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BENG%5D).
+5.  If targeting Android 12 version, please check [AD_ID Permission Guide](https://github.com/bidmad/Bidmad-Unity/wiki/AD_ID-Permission-Guide%5BENG%5D).
 
 *Bidmad uses the AndroidX library. If it is not an AndroidX project, please migrate to AndroidX.
 
@@ -91,52 +92,14 @@ public static final ** CREATOR;
 
 *Bidmad supports Xcode 26.0 or higher. If your Xcode version is lower than 26.0, please update to 26.0 or higher.
 
-*Bidmad requires iOS 14.0 or higher. Set Project Settings → Player → iOS → Other Settings → **Target minimum iOS Version** to 14.0 or higher. (New Unity 6 projects default to 13.0, which makes pod install fail.)
+*Bidmad requires iOS 15.0 or higher. Set Project Settings → Player → iOS → Other Settings → **Target minimum iOS Version** to 15.0 or higher.
 
-1. Please import the latest plugin.<br>
-2. Please make adjustments to BidmadPostProcessBuild.cs file in Assets → Bidmad → Editor.<br>
+1. Please make adjustments to BidmadPostProcessBuild.cs file in Assets → Bidmad → Editor.<br>
     Make sure to change User Tracking Usage Description and Google App ID. 
     You can get Google App ID by referring to the "App ID from ADMOB Dashboard" section inside the [Find your App Key](https://github.com/bidmad/SDK/wiki/Find-your-app-key%5BEN%5D) guide.<br><br>
     ![Bidmad-Guide-3](https://i.imgur.com/xPuJaSC.png)<br>
-3. Please open the settings panel from Assets - External Dependency Manager - iOS Resolver - Settings.<br>
-    ![Bidmad-Guide-4](https://i.imgur.com/8cvpZR0.png)<br>
-    Please check and click the OK button on <strong>Link Frameworks Statically</strong> inside the settings panel.<br>
-4. After building iOS Xcode Project, iOS Xcode Project folder will contain a project file with <strong>.xcworkspace</strong> extension. Please open it. <br>
-5. Inside the Unity-iPhone Target Project Settings -> Build Phases, click the + button inside and click Add New Run Phase button.
-    ![Bidmad-Guide-7](https://i.imgur.com/jlmk9sF.png)<br>
-6. Copy and paste the following code into the Shell Script section of Run Script tab.
-```
-APP_PATH="${TARGET_BUILD_DIR}/${WRAPPER_NAME}"
-
-# This script loops through the frameworks embedded in the application and
-# removes unused architectures.
-find "$APP_PATH" -name 'AdFitSDK.framework' -type d | while read -r FRAMEWORK
-do
-    FRAMEWORK_EXECUTABLE_NAME=$(defaults read "$FRAMEWORK/Info.plist" CFBundleExecutable)
-    FRAMEWORK_EXECUTABLE_PATH="$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME"
-    echo "Executable is $FRAMEWORK_EXECUTABLE_PATH"
-
-    EXTRACTED_ARCHS=()
-
-    for ARCH in $ARCHS
-    do
-        echo "Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME"
-        lipo -extract "$ARCH" "$FRAMEWORK_EXECUTABLE_PATH" -o "$FRAMEWORK_EXECUTABLE_PATH-$ARCH"
-        EXTRACTED_ARCHS+=("$FRAMEWORK_EXECUTABLE_PATH-$ARCH")
-    done
-
-    echo "Merging extracted architectures: ${ARCHS}"
-    lipo -o "$FRAMEWORK_EXECUTABLE_PATH-merged" -create "${EXTRACTED_ARCHS[@]}"
-    rm "${EXTRACTED_ARCHS[@]}"
-
-    echo "Replacing original executable with thinned version"
-    rm "$FRAMEWORK_EXECUTABLE_PATH"
-    mv "$FRAMEWORK_EXECUTABLE_PATH-merged" "$FRAMEWORK_EXECUTABLE_PATH"
-
-done
-```
-![Bidmad-Guide-8](https://i.imgur.com/SKRjDhg.png)<br>
-7. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
+2. After building the iOS Xcode project, open **Unity-iPhone.xcworkspace** in the project folder.<br>
+3. Follow the [guide](https://github.com/bidmad/Bidmad-Unity/wiki/Preparing-for-iOS-14%5BENG%5D) to apply app tracking transparency approval request pop-up. SKAdNetwork lists are included in BidmadPostProcessBuild.cs file.<br>
 ```
 <key>DebugSymbolsPath</key>
 <string>dSYMs</string>
@@ -149,7 +112,7 @@ done
 1. Delete Assets → Plugins → iOS → Bidmad
 2. Delete Assets → Resources → Bidmad
 3. Delete Assets → Bidmad → Scripts
-4. SKAdNetwork, Google App ID, User Tracking Usage Description Settings, which previously were set inside info.plist, are all moved to BidmadPostProcessBuild.cs (Please refer to the second step of 1.2 iOS Build Guide). Please set your App ID and User Tracking Usage Description in BidmadPostProcessBuild.cs file. It is not necessary for you to set SKAdNetwork as BidmadPostProcess is pre-set with needed SKAdNetworks. After setting and saving BidmadPostProcessBuild, there is no need for you to additionally set the info.plist. 
+4. SKAdNetwork, Google App ID, User Tracking Usage Description Settings, which previously were set inside info.plist, are all moved to BidmadPostProcessBuild.cs (Please refer to the first step of 1.2 iOS Build Guide). Please set your App ID and User Tracking Usage Description in BidmadPostProcessBuild.cs file. It is not necessary for you to set SKAdNetwork as BidmadPostProcess is pre-set with needed SKAdNetworks. After setting and saving BidmadPostProcessBuild, there is no need for you to additionally set the info.plist. 
 4. After following the steps above, please follow the steps in the section 1.2 iOS Build Guide.
 
 ### 2. Using Plugin

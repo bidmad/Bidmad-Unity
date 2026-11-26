@@ -1,3 +1,14 @@
+# Version 4.1.0
+#### Changes
+- iOS : Update BidmadSDK 7.2.0, OpenBiddingHelper 7.2.0, BidmadGoogleGDPRAdapter 7.2.0, distributed through Swift Package Manager only
+- iOS : Ad network adapters move from CocoaPods to Swift packages (7.2.0+{NetworkSDK})
+- iOS : Requires Unity's External Dependency Manager (com.unity.external-dependency-manager) 2.2.0 instead of Google's EDM4U (no longer bundled)
+- iOS : Minimum iOS version 15.0
+- iOS : "Link Frameworks Statically" and the AdFit Run Script phase are no longer needed
+#### Integration Bidmad SDK version
+- Android : bidmad-androidx 3.28.6
+- iOS : BidmadSDK 7.2.0
+
 # Version 4.0.4
 #### Changes
 - Android : Inspector adapter hotfix
