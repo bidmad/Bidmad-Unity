@@ -140,10 +140,28 @@ phase2_export() {
 
   local size
   size=$(wc -c <"$output_path" | tr -d ' ')
-  if [[ "$size" -lt 50000 ]]; then
-    echo "Error: output package suspiciously small ($size bytes); minimum 50000" >&2
+  # Since 4.1.0 the package carries only the plugin's own files (EDM is a
+  # Unity package the app installs), so it is small; check what it contains.
+  if [[ "$size" -lt 10000 ]]; then
+    echo "Error: output package suspiciously small ($size bytes); minimum 10000" >&2
     return 1
   fi
+
+  local unpacked paths required
+  unpacked=$(mktemp -d)
+  tar -xzf "$output_path" -C "$unpacked"
+  paths=$(for f in "$unpacked"/*/pathname; do cat "$f"; echo; done)
+  rm -rf "$unpacked"
+  for required in \
+    Assets/Bidmad/Editor/OBHDependencies.xml \
+    Assets/Bidmad/Editor/BidmadPostProcessBuild.cs \
+    Assets/Bidmad/Scripts/Bidmad/BidmadCommon.cs \
+    Assets/Plugins/iOS/Bidmad/OpenBiddingHelperUnityBridge.mm; do
+    if ! grep -qx "$required" <<<"$paths"; then
+      echo "Error: output package lacks $required" >&2
+      return 1
+    fi
+  done
 
   echo "Export OK: $output_path ($size bytes)" >&2
 }
