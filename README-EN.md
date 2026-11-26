@@ -8,18 +8,10 @@ You can use the plugin to serve banner/interstitial/reward ads in your Unity mob
 - [Download the latest plugin](https://github.com/bidmad/Bidmad-Unity/releases)
 
 > [!IMPORTANT]
-> This plugin must be built with **Unity 6 (6000.x) or higher**. The current sample project is built and verified on **Unity 6000.0.78f1**.
-
-> [!IMPORTANT]  
-> To support the latest Android libraries, the development environment requirements for Android have been updated.<br>
-> Starting from version 3.9.1 and later, the following environment is required<br><br>
-> **AGP 8.6.0 or higher, Java 17 or higher**<br><br>
-> Please note that builds or execution may be restricted in older environments, so make sure to **update your development environment** accordingly.
-
-> [!IMPORTANT]
-> Starting with version 3.8.0, the previously used Appkey has been changed to AppDomain.<br>
-> **AppDomain is not compatible with existing Appkeys, so a new AppDomain must be issued to initiaize.**<br>
-> If you are updating to version 3.8.0, please contact **Techlabs Platform Operations Team.**<br>
+> - From 4.1.0, the plugin uses Unity's **External Dependency Manager** instead of Google's EDM4U. Before updating, please check the new installation steps in [1. Add Plugin](#1-add-plugin).
+> - This plugin must be built with **Unity 6 (6000.x) or higher**. The current sample project is built and verified on **Unity 6000.0.78f1**.
+> - To support the latest Android libraries, version 3.9.1 and later require **AGP 8.6.0 or higher, Java 17 or higher**. Builds or execution may be restricted in older environments, so make sure to **update your development environment** accordingly.
+> - Starting with version 3.8.0, the previously used Appkey has been changed to AppDomain. **AppDomain is not compatible with existing Appkeys, so a new AppDomain must be issued to initialize.** If you are updating to version 3.8.0, please contact **Techlabs Platform Operations Team.**
 
 ### 1. Add Plugin
 1. Import the latest downloaded plugin to the project.<br>
